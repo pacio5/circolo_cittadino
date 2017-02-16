@@ -3,8 +3,7 @@
  */
 package entita;
 
-import java.time.*;
-
+import java.sql.Date;
 /**
  * @author eliapacioni
  *
@@ -14,7 +13,7 @@ public class Socio {
 	protected String nome;
 	protected String cognome;
 	protected char sesso;
-	protected LocalDate dataNascita;
+	protected Date dataNascita;
 	protected String luogoNascita;
 	protected String indirizzo;
 	protected String citta;
@@ -24,16 +23,16 @@ public class Socio {
 	protected String professione;
 	protected String statoSociale;
 	protected String coniuge;
-	protected LocalDate dataAmmissione;
+	protected Date dataAmmissione;
 	protected double tassaAmmissione;
 	protected String modPagamento;
 	protected String metPagamento;
 	protected String tipologia;
 	protected Figlio figli[];
 
-	public Socio(String codice, String name, String surname, char sex, LocalDate dateB, String placeB, String address,
+	public Socio(String codice, String name, String surname, char sex, Date dateB, String placeB, String address,
 			String city, String postalCode, String mail, String tel, String profession, String socialStatus,
-			String spouse, LocalDate dateAmmission, double taxAmmission, String modPay, String metPay, String type,
+			String spouse, Date dateAmmission, double taxAmmission, String modPay, String metPay, String type,
 			Figlio sons[]) {
 		cf = codice;
 		nome = name;
@@ -78,7 +77,7 @@ public class Socio {
 		return sesso;
 	}
 
-	public LocalDate getDataNascita() {
+	public Date getDataNascita() {
 		return dataNascita;
 	}
 
@@ -118,7 +117,7 @@ public class Socio {
 		return coniuge;
 	}
 
-	public LocalDate getDataAmmissione() {
+	public Date getDataAmmissione() {
 		return dataAmmissione;
 	}
 
@@ -158,7 +157,7 @@ public class Socio {
 		sesso = sex;
 	}
 
-	public void setDataNascita(LocalDate dateB) {
+	public void setDataNascita(Date dateB) {
 		dataNascita = dateB;
 	}
 
@@ -198,7 +197,7 @@ public class Socio {
 		coniuge = spouse;
 	}
 
-	public void setDataAmmissione(LocalDate dateA) {
+	public void setDataAmmissione(Date dateA) {
 		dataAmmissione = dateA;
 	}
 
