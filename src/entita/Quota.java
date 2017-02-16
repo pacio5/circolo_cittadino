@@ -1,6 +1,5 @@
 package entita;
 
-import java.lang.*;
 import java.sql.Date;
 
 public class Quota {
