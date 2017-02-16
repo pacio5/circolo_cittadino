@@ -18,9 +18,6 @@ import java.io.*;
  *
  */
 public class MySql {
-
-	// Utilizzare la lettura da file per caricare le impostazioni del database,
-	// considerare che è una classe statica
 	private String driver;
 	private String url;
 	private String utente;
