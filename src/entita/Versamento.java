@@ -7,28 +7,30 @@ public class Versamento {
 	private int id;
 	private double importo;
 	private String[] mesi;
+	private String socio;
 	private Date data;
 	private String descrizione = new String();
 
 	public Versamento() {
-		this(-1, null, 0, null, null);
+		this(-1, null, 0, null, null, null);
 	}
 
-	public Versamento(int cod, String[] month, double value, Date dataV, String desc) {
+	public Versamento(int cod, String[] month, double value, String member, Date dataV, String desc) {
 		id = cod;
 		mesi = month;
 		importo = value;
+		socio = member;
 		data = dataV;
 		descrizione = desc;
 	}
 
 	public boolean equals(Versamento x) {
-		return (id == x.id && mesi.equals(x.mesi) && importo == x.importo && !data.after(x.data) && !data.before(x.data)
+		return (id == x.id && mesi.equals(x.mesi) && importo == x.importo && socio.equals(x.socio) && !data.after(x.data) && !data.before(x.data)
 				&& descrizione.equals(x.descrizione));
 	}
 
 	public String toString() {
-		return "Versamento [Id=" + id + ", Importo=" + importo + ", Mesi=" + Arrays.toString(mesi) + ", Data=" + data
+		return "Versamento [Id=" + id + ", Importo=" + importo + ", Socio="+ socio +", Mesi=" + Arrays.toString(mesi) + ", Data=" + data
 				+ ", Descrizione=" + descrizione + "]";
 	}
 
@@ -43,6 +45,10 @@ public class Versamento {
 
 	public double getImporto() {
 		return importo;
+	}
+	
+	public String getSocio(){
+		return socio;
 	}
 
 	public Date getData() {
@@ -64,6 +70,10 @@ public class Versamento {
 
 	public void setImporto(double value) {
 		importo = value;
+	}
+	
+	public void setSocio(String member){
+		socio = member;
 	}
 
 	public void setData(Date dataV) {
