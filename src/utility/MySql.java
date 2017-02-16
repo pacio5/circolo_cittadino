@@ -64,7 +64,7 @@ public class MySql {
 	}
 
 	// Effettua la connessione al db
-	public Connection connessione() {
+	public Connection Open() {
 		try {
 			// Carico il driver
 			Class.forName(driver);
@@ -84,7 +84,7 @@ public class MySql {
 	}
 
 	// Chiude la connessione al db
-	public void chiudiConnessione() {
+	public void Close() {
 		try {
 			conn.close();
 		} catch (SQLException e) {
