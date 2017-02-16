@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+  <driver>com.mysql.jdbc.Driver</driver>
+  <url>localhost:8889/circolo</url>
+  <user>root@localhost</user>
+  <password>" "</password>
+</database>
