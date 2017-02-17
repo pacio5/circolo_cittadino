@@ -61,23 +61,22 @@ public class MySql {
 	}
 
 	// Effettua la connessione al db
-	public Connection open() {
+	public void open() {
 		try {
 			// Carico il driver
 			Class.forName(driver);
 		} catch (ClassNotFoundException e1) {
 			// Il driver non può essere caricato
-			System.out.println("Driver non trovato");
+			e1.printStackTrace();
 			System.exit(1);
 		}
 		try {
 			// Apro la connessione
-			conn = DriverManager.getConnection(url);
+			conn = DriverManager.getConnection(url, utente, password);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return conn;
 	}
 
 	// Chiude la connessione al db
