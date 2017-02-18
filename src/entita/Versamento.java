@@ -1,23 +1,24 @@
 package entita;
 
 import java.sql.Date;
-import java.util.Arrays;
 
 public class Versamento {
 	private int id;
 	private double importo;
-	private String[] mesi;
+	private String[] mesi = new String[12];
+	private int lunghmesi;
 	private String socio;
 	private Date data;
 	private String descrizione = new String();
 
 	public Versamento() {
-		this(-1, null, 0, null, null, null);
+		
 	}
 
-	public Versamento(int cod, String[] month, double value, String member, Date dataV, String desc) {
+	public Versamento(int cod, String[] month, int length, double value, String member, Date dataV, String desc) {
 		id = cod;
-		mesi = month;
+		mesi = month.clone();
+		lunghmesi = length;
 		importo = value;
 		socio = member;
 		data = dataV;
@@ -29,9 +30,10 @@ public class Versamento {
 				&& descrizione.equals(x.descrizione));
 	}
 
+
 	public String toString() {
-		return "Versamento [Id=" + id + ", Importo=" + importo + ", Socio="+ socio +", Mesi=" + Arrays.toString(mesi) + ", Data=" + data
-				+ ", Descrizione=" + descrizione + "]";
+		return "Versamento [Id = " + id + ", Importo = " + importo + ", Socio = " + socio + ", Data = "
+				+ data + ", Descrizione = " + descrizione + "]";
 	}
 
 	/* Lettura attributi */
@@ -41,6 +43,14 @@ public class Versamento {
 
 	public String[] getMesi() {
 		return mesi;
+	}
+	
+	public String getMese(int index) {
+		return mesi[index];
+	}
+	
+	public int getMesiLeng(){
+		return lunghmesi;
 	}
 
 	public double getImporto() {
@@ -64,8 +74,13 @@ public class Versamento {
 		id = cod;
 	}
 
-	public void setMesi(String[] month) {
-		mesi = month;
+	public void setMesi(String[] months) {
+		mesi = months.clone();
+	}
+	
+	public void setMese(String month){
+		mesi[lunghmesi] = month;
+		lunghmesi++;
 	}
 
 	public void setImporto(double value) {
