@@ -12,7 +12,7 @@ public class Versamento {
 	private String descrizione = new String();
 
 	public Versamento() {
-		
+
 	}
 
 	public Versamento(int cod, String[] month, int length, double value, String member, Date dataV, String desc) {
@@ -26,14 +26,13 @@ public class Versamento {
 	}
 
 	public boolean equals(Versamento x) {
-		return (id == x.id && mesi.equals(x.mesi) && importo == x.importo && socio.equals(x.socio) && !data.after(x.data) && !data.before(x.data)
-				&& descrizione.equals(x.descrizione));
+		return (id == x.id && mesi.equals(x.mesi) && importo == x.importo && socio.equals(x.socio)
+				&& !data.after(x.data) && !data.before(x.data) && descrizione.equals(x.descrizione));
 	}
 
-
 	public String toString() {
-		return "Versamento [Id = " + id + ", Importo = " + importo + ", Socio = " + socio + ", Data = "
-				+ data + ", Descrizione = " + descrizione + "]";
+		return "Versamento [Id = " + id + ", Importo = " + importo + ", Socio = " + socio + ", Data = " + data
+				+ ", Descrizione = " + descrizione + "]";
 	}
 
 	/* Lettura attributi */
@@ -44,20 +43,20 @@ public class Versamento {
 	public String[] getMesi() {
 		return mesi;
 	}
-	
+
 	public String getMese(int index) {
 		return mesi[index];
 	}
-	
-	public int getMesiLeng(){
+
+	public int getMesiLeng() {
 		return lunghmesi;
 	}
 
 	public double getImporto() {
 		return importo;
 	}
-	
-	public String getSocio(){
+
+	public String getSocio() {
 		return socio;
 	}
 
@@ -77,8 +76,8 @@ public class Versamento {
 	public void setMesi(String[] months) {
 		mesi = months.clone();
 	}
-	
-	public void setMese(String month){
+
+	public void setMese(String month) {
 		mesi[lunghmesi] = month;
 		lunghmesi++;
 	}
@@ -86,8 +85,8 @@ public class Versamento {
 	public void setImporto(double value) {
 		importo = value;
 	}
-	
-	public void setSocio(String member){
+
+	public void setSocio(String member) {
 		socio = member;
 	}
 
