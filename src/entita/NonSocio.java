@@ -8,21 +8,21 @@ package entita;
  *
  */
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class NonSocio {
 	protected String cf;
 	protected String nome;
 	protected String cognome;
 	protected char sesso;
-	protected LocalDate dataNascita;
+	protected Date dataNascita;
 	protected String indirizzo;
 	protected String citta;
 	protected String cap;
 	protected String email;
 	protected String telefono;
 
-	public NonSocio(String codice, String name, String surname, char sex, LocalDate dateB, String address, String city,
+	public NonSocio(String codice, String name, String surname, char sex, Date dateB, String address, String city,
 			String postalCode, String mail, String tel) {
 		cf = codice;
 		nome = name;
@@ -56,7 +56,7 @@ public class NonSocio {
 		return sesso;
 	}
 
-	public LocalDate getDataNascita() {
+	public Date getDataNascita() {
 		return dataNascita;
 	}
 
@@ -96,7 +96,7 @@ public class NonSocio {
 		sesso = sex;
 	}
 
-	public void setDataNascita(LocalDate dateB) {
+	public void setDataNascita(Date dateB) {
 		dataNascita = dateB;
 	}
 
