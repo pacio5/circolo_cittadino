@@ -24,6 +24,14 @@ public class Versamento {
 		data = dataV;
 		descrizione = desc;
 	}
+	
+	public Versamento(int cod, double value, String member, Date dataV, String desc) {
+		id = cod;
+		importo = value;
+		socio = member;
+		data = dataV;
+		descrizione = desc;
+	}
 
 	public boolean equals(Versamento x) {
 		return (id == x.id && mesi.equals(x.mesi) && importo == x.importo && socio.equals(x.socio)

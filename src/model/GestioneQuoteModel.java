@@ -62,12 +62,8 @@ public class GestioneQuoteModel {
 			Statement command = db.getConn().createStatement();
 			ResultSet rs = command.executeQuery("SELECT * FROM Quota");
 			while (rs.next()) {
-				Quota appoggio = new Quota();
-				appoggio.setId(rs.getInt("ID"));
-				appoggio.setDataI(rs.getDate("DATA_INIZIO"));
-				appoggio.setDataF(rs.getDate("DATA_FINE"));
-				appoggio.setValore(rs.getFloat("VALORE"));
-				appoggio.setTipologia(rs.getString("TIPOLOGIA"));
+				Quota appoggio = new Quota(rs.getInt("ID"), rs.getFloat("VALORE"), rs.getString("TIPOLOGIA"),
+						rs.getDate("DATA_INIZIO"), rs.getDate("DATA_FINE"));
 				quote.add(appoggio);
 			}
 			rs.close();
@@ -134,12 +130,8 @@ public class GestioneQuoteModel {
 			Statement command = db.getConn().createStatement();
 			ResultSet rs = command.executeQuery("SELECT * FROM Versamento");
 			while (rs.next()) {
-				Versamento appoggio = new Versamento();
-				appoggio.setId(rs.getInt("ID"));
-				appoggio.setData(rs.getDate("DATA"));
-				appoggio.setDescrizione(rs.getString("DESCRIZIONE"));
-				appoggio.setImporto(rs.getFloat("IMPORTO"));
-				appoggio.setSocio(rs.getString("SOCIO"));
+				Versamento appoggio = new Versamento(rs.getInt("ID"), rs.getFloat("IMPORTO"), rs.getString("SOCIO"),
+						rs.getDate("DATA"), rs.getString("DESCRIZIONE"));
 				spill.add(appoggio);
 			}
 			rs = command.executeQuery("SELECT * FROM Mese");
