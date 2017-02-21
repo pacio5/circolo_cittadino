@@ -6,13 +6,15 @@ import utility.MySql;
 import entita.Versamento;
 import entita.Quota;
 
-public class GestioneQuoteModel {
+public class QuotaModel {	
+	
+	MySql db;
 
-	public GestioneQuoteModel() {
-
+	public QuotaModel() {
+		db = new MySql();
 	}
 
-	MySql db = new MySql();
+	
 
 	/* Operazioni quote */
 	public void insertQuota(Quota quo) {
@@ -62,9 +64,8 @@ public class GestioneQuoteModel {
 			Statement command = db.getConn().createStatement();
 			ResultSet rs = command.executeQuery("SELECT * FROM Quota");
 			while (rs.next()) {
-				Quota appoggio = new Quota(rs.getInt("ID"), rs.getFloat("VALORE"), rs.getString("TIPOLOGIA"),
-						rs.getDate("DATA_INIZIO"), rs.getDate("DATA_FINE"));
-				quote.add(appoggio);
+				quote.add(new Quota(rs.getInt("ID"), rs.getFloat("VALORE"), rs.getString("TIPOLOGIA"),
+						rs.getDate("DATA_INIZIO"), rs.getDate("DATA_FINE")));
 			}
 			rs.close();
 		} catch (SQLException e) {
@@ -130,9 +131,8 @@ public class GestioneQuoteModel {
 			Statement command = db.getConn().createStatement();
 			ResultSet rs = command.executeQuery("SELECT * FROM Versamento");
 			while (rs.next()) {
-				Versamento appoggio = new Versamento(rs.getInt("ID"), rs.getFloat("IMPORTO"), rs.getString("SOCIO"),
-						rs.getDate("DATA"), rs.getString("DESCRIZIONE"));
-				spill.add(appoggio);
+				spill.add(new Versamento(rs.getInt("ID"), rs.getFloat("IMPORTO"), rs.getString("SOCIO"),
+						rs.getDate("DATA"), rs.getString("DESCRIZIONE")));
 			}
 			rs = command.executeQuery("SELECT * FROM Mese");
 			rs.next();
