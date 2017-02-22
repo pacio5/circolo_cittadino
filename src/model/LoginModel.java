@@ -4,7 +4,9 @@
 package model;
 
 import utility.MySql;
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
 
 /**
  * @author eliapacioni
@@ -19,10 +21,12 @@ public class LoginModel {
 	public boolean accedi(String user, String password) {
 		db.open();
 		boolean accesso = false;
+		String query = "SELECT * FROM utente WHERE nomeuser=? AND password=?;";
 		try {
-			Statement st = db.getConn().createStatement();
-			String query = "SELECT * FROM utente WHERE nomeUtente='" + user + "' AND password='" + password + "';";
-			ResultSet rs = st.executeQuery(query);
+			PreparedStatement st = db.getConn().prepareStatement(query);
+			st.setString(1, user);
+			st.setString(2, password);
+			ResultSet rs = st.executeQuery();
 			if (rs.next())
 				accesso = true;
 			rs.close();
