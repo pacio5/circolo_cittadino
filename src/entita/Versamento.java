@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Versamento {
 	private int id;
-	private double importo;
+	private float importo;
 	private String[] mesi = new String[12];
 	private int lunghmesi;
 	private String socio;
@@ -15,7 +15,7 @@ public class Versamento {
 
 	}
 
-	public Versamento(int cod, String[] month, int length, double value, String member, Date dataV, String desc) {
+	public Versamento(int cod, String[] month, int length, float value, String member, Date dataV, String desc) {
 		id = cod;
 		mesi = month.clone();
 		lunghmesi = length;
@@ -25,7 +25,7 @@ public class Versamento {
 		descrizione = desc;
 	}
 	
-	public Versamento(int cod, double value, String member, Date dataV, String desc) {
+	public Versamento(int cod, float value, String member, Date dataV, String desc) {
 		id = cod;
 		importo = value;
 		socio = member;
@@ -60,7 +60,7 @@ public class Versamento {
 		return lunghmesi;
 	}
 
-	public double getImporto() {
+	public float getImporto() {
 		return importo;
 	}
 
@@ -90,7 +90,7 @@ public class Versamento {
 		lunghmesi++;
 	}
 
-	public void setImporto(double value) {
+	public void setImporto(float value) {
 		importo = value;
 	}
 
