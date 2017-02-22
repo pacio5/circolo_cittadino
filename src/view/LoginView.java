@@ -5,12 +5,13 @@ import java.awt.FlowLayout;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JPasswordField;
 
 public class LoginView {
 
 	private JFrame frmCircoloCittadino;
 	private JTextField textFieldUsername;
-	private JTextField textFieldPassword;
+	private JPasswordField Password;
 	private JButton btnAccedi;
 
 	/**
@@ -34,8 +35,8 @@ public class LoginView {
 
 		JLabel lblPassword = new JLabel("Password");
 
-		textFieldPassword = new JTextField();
-		textFieldPassword.setColumns(10);
+		Password = new JPasswordField();
+		Password.setColumns(10);
 
 		btnAccedi = new JButton("Accedi");
 		FlowLayout flowLayout = new FlowLayout(FlowLayout.CENTER, 5, 5);
@@ -43,8 +44,9 @@ public class LoginView {
 		frmCircoloCittadino.getContentPane().add(lblUsername);
 		frmCircoloCittadino.getContentPane().add(textFieldUsername);
 		frmCircoloCittadino.getContentPane().add(lblPassword);
-		frmCircoloCittadino.getContentPane().add(textFieldPassword);
+		frmCircoloCittadino.getContentPane().add(Password);
 		frmCircoloCittadino.getContentPane().add(btnAccedi);
+		
 	}
 
 	public JTextField getTextFieldUsername() {
@@ -52,7 +54,7 @@ public class LoginView {
 	}
 
 	public JTextField getTextFieldPassword() {
-		return textFieldPassword;
+		return Password;
 	}
 
 	public JFrame getFrame() {
