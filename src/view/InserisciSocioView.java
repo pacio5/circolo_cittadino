@@ -37,16 +37,9 @@ public class InserisciSocioView {
 	private JButton btnDashboard;
 
 	/**
-	 * Create the application.
+	 * Create the frame.
 	 */
 	public InserisciSocioView() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
 		frame = new JFrame("Circolo Cittadino - Inserisci un nuovo socio");
 		frame.setBounds(100, 100, 672, 423);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

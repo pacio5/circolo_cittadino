@@ -55,7 +55,7 @@ public class Socio {
 		tipologia = type;
 		figli = null;
 	}
-	
+
 	public Socio(String codice, String name, String surname, char sex, Date dateB, String placeB, String address,
 			String city, String postalCode, String mail, String tel, String profession, String socialStatus,
 			String spouse, Date dateAmmission, float taxAmmission, String modPay, String metPay, String type,
@@ -64,7 +64,6 @@ public class Socio {
 				spouse, dateAmmission, taxAmmission, modPay, metPay, type);
 		figli = sons;
 	}
-
 
 	public Socio() {
 		this(null, null, null, ' ', null, null, null, null, null, null, null, null, null, null, null, 0, null, null,

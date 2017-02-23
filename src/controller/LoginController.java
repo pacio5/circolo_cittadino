@@ -22,6 +22,7 @@ public class LoginController {
 
 	public LoginController() {
 		loginView = new LoginView();
+		loginView.getFrame().setVisible(true);
 		loginModel = new LoginModel();
 	}
 	

@@ -11,6 +11,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import entita.Socio;
+import controller.AdminController;
 
 /**
  * @author eliapacioni
@@ -26,6 +27,7 @@ public class SocioController {
 		view = new InserisciSocioView();
 		view.getFrame().setVisible(true);
 	}
+	
 	
 	
 	public void ControllaInserimento() {
@@ -58,9 +60,19 @@ public class SocioController {
 						view.getMetPagamento().getSelectedItem().toString(),
 						view.getTipologia().getSelectedItem().toString()
 						));
-				JOptionPane.showMessageDialog(view.getFrame().getContentPane(), esito);
+				if(esito){
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
+					view.getFrame().dispose();
+					AdminController adminController = new AdminController();
+					adminController.controlloEvento();
+				}
+				else{
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Non Effettuato");
+				}
 			}
 		});
+		
+		TornaAllaDashboard();
 
 	}
 	

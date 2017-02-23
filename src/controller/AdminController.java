@@ -4,9 +4,8 @@
 package controller;
 
 import view.AdminView;
-import view.LoginView;
-//import model.AdminModel;
-
+import controller.LoginController;
+import controller.SocioController;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -24,17 +23,30 @@ public class AdminController {
 	 * adminModel;
 	 */
 
+	public AdminController(){
+		adminView = new AdminView();
+		adminView.getFrame().setVisible(true);
+	}
+	
 	public AdminController(AdminView view) {
 		adminView = view;
-		// adminModel = new AdminModel();
 	}
 
 	public void controlloEvento() {
 		adminView.getBtnLogout().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				LoginView loginView = new LoginView();
-				loginView.getFrame().setVisible(true);
+				LoginController loginController = new LoginController();
+				loginController.controlloEvento();
+				adminView.getFrame().dispose();
+			}
+		});
+		
+		adminView.getBtnInserisciSocio().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SocioController socioController = new SocioController();
+				socioController.ControllaInserimento();
 				adminView.getFrame().dispose();
 			}
 		});
