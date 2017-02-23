@@ -25,11 +25,6 @@ public class LoginController {
 		loginView.getFrame().setVisible(true);
 		loginModel = new LoginModel();
 	}
-	
-	public LoginController(LoginView view){
-		loginView = view;
-		loginModel = new LoginModel();
-	}
 
 	public void controlloEvento() {
 
