@@ -4,6 +4,7 @@
 package entita;
 
 import java.sql.Date;
+
 /**
  * @author eliapacioni
  *
@@ -24,7 +25,7 @@ public class Socio {
 	protected String statoSociale;
 	protected String coniuge;
 	protected Date dataAmmissione;
-	protected double tassaAmmissione;
+	protected float tassaAmmissione;
 	protected String modPagamento;
 	protected String metPagamento;
 	protected String tipologia;
@@ -32,8 +33,16 @@ public class Socio {
 
 	public Socio(String codice, String name, String surname, char sex, Date dateB, String placeB, String address,
 			String city, String postalCode, String mail, String tel, String profession, String socialStatus,
-			String spouse, Date dateAmmission, double taxAmmission, String modPay, String metPay, String type,
+			String spouse, Date dateAmmission, float taxAmmission, String modPay, String metPay, String type,
 			Figlio sons[]) {
+		this(codice, name, surname, sex, dateB, placeB, address, city, postalCode, mail, tel, profession, socialStatus,
+				spouse, dateAmmission, taxAmmission, modPay, metPay, type);
+		figli = sons;
+	}
+
+	public Socio(String codice, String name, String surname, char sex, Date dateB, String placeB, String address,
+			String city, String postalCode, String mail, String tel, String profession, String socialStatus,
+			String spouse, Date dateAmmission, float taxAmmission, String modPay, String metPay, String type) {
 		cf = codice;
 		nome = name;
 		cognome = surname;
@@ -53,12 +62,12 @@ public class Socio {
 		modPagamento = modPay;
 		metPagamento = metPay;
 		tipologia = type;
-		figli = sons;
+		figli = null;
 	}
 
 	public Socio() {
 		this(null, null, null, ' ', null, null, null, null, null, null, null, null, null, null, null, 0, null, null,
-				null, null);
+				null);
 	}
 
 	public String getCf() {
@@ -121,7 +130,7 @@ public class Socio {
 		return dataAmmissione;
 	}
 
-	public double getTassaAmmissione() {
+	public float getTassaAmmissione() {
 		return tassaAmmissione;
 	}
 
@@ -201,7 +210,7 @@ public class Socio {
 		dataAmmissione = dateA;
 	}
 
-	public void setTassaAmmissione(double taxA) {
+	public void setTassaAmmissione(float taxA) {
 		tassaAmmissione = taxA;
 	}
 
