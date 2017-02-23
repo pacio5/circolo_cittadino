@@ -7,11 +7,9 @@ import model.SocioModel;
 import view.AdminView;
 import view.InserisciSocioView;
 import java.sql.Date;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
-
 import entita.Socio;
 
 /**

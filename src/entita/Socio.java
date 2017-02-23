@@ -33,15 +33,6 @@ public class Socio {
 
 	public Socio(String codice, String name, String surname, char sex, Date dateB, String placeB, String address,
 			String city, String postalCode, String mail, String tel, String profession, String socialStatus,
-			String spouse, Date dateAmmission, float taxAmmission, String modPay, String metPay, String type,
-			Figlio sons[]) {
-		this(codice, name, surname, sex, dateB, placeB, address, city, postalCode, mail, tel, profession, socialStatus,
-				spouse, dateAmmission, taxAmmission, modPay, metPay, type);
-		figli = sons;
-	}
-
-	public Socio(String codice, String name, String surname, char sex, Date dateB, String placeB, String address,
-			String city, String postalCode, String mail, String tel, String profession, String socialStatus,
 			String spouse, Date dateAmmission, float taxAmmission, String modPay, String metPay, String type) {
 		cf = codice;
 		nome = name;
@@ -64,6 +55,16 @@ public class Socio {
 		tipologia = type;
 		figli = null;
 	}
+	
+	public Socio(String codice, String name, String surname, char sex, Date dateB, String placeB, String address,
+			String city, String postalCode, String mail, String tel, String profession, String socialStatus,
+			String spouse, Date dateAmmission, float taxAmmission, String modPay, String metPay, String type,
+			Figlio sons[]) {
+		this(codice, name, surname, sex, dateB, placeB, address, city, postalCode, mail, tel, profession, socialStatus,
+				spouse, dateAmmission, taxAmmission, modPay, metPay, type);
+		figli = sons;
+	}
+
 
 	public Socio() {
 		this(null, null, null, ' ', null, null, null, null, null, null, null, null, null, null, null, 0, null, null,
@@ -226,5 +227,4 @@ public class Socio {
 		return "Socio: " + cognome + " " + nome + ", risiede in " + indirizzo + ", " + citta + ", è nato il "
 				+ dataNascita + " a " + luogoNascita + ". La sua professione è: " + professione + ".";
 	}
-
 }
