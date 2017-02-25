@@ -26,7 +26,7 @@ public class InserisciSocioView {
 	private JTextField email;
 	private JTextField telefono;
 	private JTextField professione;
-	private JTextField statoSociale;
+	private JTextField statoCivile;
 	private JTextField coniuge;
 	private JTextField dataAmmissione;
 	private JTextField tassaAmmissione;
@@ -82,6 +82,7 @@ public class InserisciSocioView {
 
 		rdbtnUomo = new JRadioButton("Uomo");
 		rdbtnUomo.setBounds(138, 145, 69, 23);
+		rdbtnUomo.setSelected(true);
 		frame.getContentPane().add(rdbtnUomo);
 
 		rdbtnDonna = new JRadioButton("Donna");
@@ -164,14 +165,14 @@ public class InserisciSocioView {
 		professione.setBounds(503, 95, 130, 26);
 		frame.getContentPane().add(professione);
 
-		JLabel lblStatoSociale = new JLabel("Stato Sociale");
-		lblStatoSociale.setBounds(357, 125, 85, 16);
-		frame.getContentPane().add(lblStatoSociale);
+		JLabel lblStatoCivile = new JLabel("Stato Civile");
+		lblStatoCivile.setBounds(357, 125, 85, 16);
+		frame.getContentPane().add(lblStatoCivile);
 
-		statoSociale = new JTextField();
-		statoSociale.setColumns(10);
-		statoSociale.setBounds(503, 120, 130, 26);
-		frame.getContentPane().add(statoSociale);
+		statoCivile = new JTextField();
+		statoCivile.setColumns(10);
+		statoCivile.setBounds(503, 120, 130, 26);
+		frame.getContentPane().add(statoCivile);
 
 		JLabel lblConiuge = new JLabel("Coniuge");
 		lblConiuge.setBounds(357, 150, 85, 16);
@@ -314,7 +315,7 @@ public class InserisciSocioView {
 	}
 
 	public JTextField getStatoSociale() {
-		return statoSociale;
+		return statoCivile;
 	}
 
 	public JTextField getConiuge() {

@@ -29,7 +29,7 @@ public class SocioModel {
 		PreparedStatement st = null;
 		boolean esito = false;
 		String query = "INSERT INTO socio(cf, nome, cognome, sesso, data_nascita, luogo_nascita, indirizzo, citta, cap, email, telefono, "
-				+ "professione, stato_sociale, coniuge, data_ammissione, tassa_ammissione, mod_pagamento, met_pagamento, tipologia)"
+				+ "professione, stato_civile, coniuge, data_ammissione, tassa_ammissione, mod_pagamento, met_pagamento, tipologia)"
 				+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			st = db.getConn().prepareStatement(query);
@@ -95,7 +95,7 @@ public class SocioModel {
 		db.open();
 		PreparedStatement st = null;
 		String query = "UPDATE socio SET cf = ?, nome = ?, cognome = ?, sesso = ?, data_nascita = ?, luogo_nascita = ?, indirizzo = ?, citta = ?, cap = ?, email = ?, telefono = ?, "
-				+ "professione = ?, stato_sociale = ?, coniuge = ?, data_ammissione = ?, tassa_ammissione = ?, mod_pagamento = ?, met_pagamento = ?, tipologia = ? WHERE cf = ?;";
+				+ "professione = ?, stato_civile = ?, coniuge = ?, data_ammissione = ?, tassa_ammissione = ?, mod_pagamento = ?, met_pagamento = ?, tipologia = ? WHERE cf = ?;";
 		try {
 			st = db.getConn().prepareStatement(query);
 			st = db.getConn().prepareStatement(query);
@@ -156,7 +156,7 @@ public class SocioModel {
 						res.getString("email"), 
 						res.getString("telefono"), 
 						res.getString("professione"),
-						res.getString("stato_sociale"), 
+						res.getString("stato_civile"), 
 						res.getString("coniuge"), 
 						res.getDate("data_ammissione"),
 						res.getFloat("tassa_ammissione"), 
@@ -177,7 +177,7 @@ public class SocioModel {
 		db.open();
 		PreparedStatement st = null;
 		String query = "INSERT INTO exsocio(cf, nome, cognome, sesso, data_nascita, luogo_nascita, indirizzo, citta, cap, email, telefono, "
-				+ "professione, stato_sociale, coniuge, data_ammissione, tassa_ammissione, mod_pagamento, met_pagamento, tipologia)"
+				+ "professione, stato_civile, coniuge, data_ammissione, tassa_ammissione, mod_pagamento, met_pagamento, tipologia)"
 				+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			st = db.getConn().prepareStatement(query);
@@ -226,7 +226,7 @@ public class SocioModel {
 		db.open();
 		PreparedStatement st = null;
 		String query = "INSERT INTO socio(cf, nome, cognome, sesso, data_nascita, luogo_nascita, indirizzo, citta, cap, email, telefono, "
-				+ "professione, stato_sociale, coniuge, data_ammissione, tassa_ammissione, mod_pagamento, met_pagamento, tipologia)"
+				+ "professione, stato_civile, coniuge, data_ammissione, tassa_ammissione, mod_pagamento, met_pagamento, tipologia)"
 				+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			st = db.getConn().prepareStatement(query);
