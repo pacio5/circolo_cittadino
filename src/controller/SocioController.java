@@ -27,11 +27,11 @@ public class SocioController {
 
 	public SocioController() {
 		model = new SocioModel();
-		view = new InserisciSocioView();
-		view.getFrame().setVisible(true);
 	}
 
-	public void ControllaInserimento() {
+	public void Inserimento() {
+		view = new InserisciSocioView();
+		view.getFrame().setVisible(true);
 		view.getStatoCivile().addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				if (view.getStatoCivile().getSelectedItem().toString().equals("Coniugato"))
@@ -196,6 +196,8 @@ public class SocioController {
 
 	}
 
+	
+	
 	public void TornaAllaDashboard() {
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
