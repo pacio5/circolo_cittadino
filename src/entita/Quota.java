@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Quota {
 	private int id;
-	private double valore;
+	private float valore;
 	private String tipologia;
 	private Date dataInizio;
 	private Date dataFine;
@@ -13,7 +13,7 @@ public class Quota {
 		this(-1, 0, null, null, null);
 	}
 
-	public Quota(int cod, double value, String type, Date dataI, Date dataF) {
+	public Quota(int cod, float value, String type, Date dataI, Date dataF) {
 		id = cod;
 		valore = value;
 		tipologia = type;
@@ -36,7 +36,7 @@ public class Quota {
 		return id;
 	}
 
-	public double getValore() {
+	public float getValore() {
 		return valore;
 	}
 
@@ -57,7 +57,7 @@ public class Quota {
 		id = cod;
 	}
 
-	public void setValore(double value) {
+	public void setValore(float value) {
 		valore = value;
 	}
 

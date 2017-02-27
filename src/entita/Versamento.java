@@ -24,9 +24,16 @@ public class Versamento {
 		data = dataV;
 		descrizione = desc;
 	}
-	
+
 	public Versamento(int cod, float value, String member, Date dataV, String desc) {
 		id = cod;
+		importo = value;
+		socio = member;
+		data = dataV;
+		descrizione = desc;
+	}
+
+	public Versamento(float value, String member, Date dataV, String desc) {
 		importo = value;
 		socio = member;
 		data = dataV;
