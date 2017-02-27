@@ -50,5 +50,14 @@ public class AdminController {
 				adminView.getFrame().dispose();
 			}
 		});
+		
+		adminView.getBtnInserisciVersamento().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SpillController spillController = new SpillController();
+				spillController.MostraInserimentoVers();
+				adminView.getFrame().dispose();
+			}
+		});
 	}
 }
