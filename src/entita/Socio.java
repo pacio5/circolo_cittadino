@@ -22,7 +22,7 @@ public class Socio {
 	protected String email;
 	protected String telefono;
 	protected String professione;
-	protected String statoSociale;
+	protected String statoCivile;
 	protected String coniuge;
 	protected Date dataAmmissione;
 	protected float tassaAmmissione;
@@ -32,7 +32,7 @@ public class Socio {
 	protected Figlio figli[];
 
 	public Socio(String codice, String name, String surname, char sex, Date dateB, String placeB, String address,
-			String city, String postalCode, String mail, String tel, String profession, String socialStatus,
+			String city, String postalCode, String mail, String tel, String profession, String civilStatus,
 			String spouse, Date dateAmmission, float taxAmmission, String modPay, String metPay, String type) {
 		cf = codice;
 		nome = name;
@@ -46,7 +46,7 @@ public class Socio {
 		email = mail;
 		telefono = tel;
 		professione = profession;
-		statoSociale = socialStatus;
+		statoCivile = civilStatus;
 		coniuge = spouse;
 		dataAmmissione = dateAmmission;
 		tassaAmmissione = taxAmmission;
@@ -57,10 +57,10 @@ public class Socio {
 	}
 
 	public Socio(String codice, String name, String surname, char sex, Date dateB, String placeB, String address,
-			String city, String postalCode, String mail, String tel, String profession, String socialStatus,
+			String city, String postalCode, String mail, String tel, String profession, String civilStatus,
 			String spouse, Date dateAmmission, float taxAmmission, String modPay, String metPay, String type,
 			Figlio sons[]) {
-		this(codice, name, surname, sex, dateB, placeB, address, city, postalCode, mail, tel, profession, socialStatus,
+		this(codice, name, surname, sex, dateB, placeB, address, city, postalCode, mail, tel, profession, civilStatus,
 				spouse, dateAmmission, taxAmmission, modPay, metPay, type);
 		figli = sons;
 	}
@@ -118,8 +118,8 @@ public class Socio {
 		return professione;
 	}
 
-	public String getStatoSociale() {
-		return statoSociale;
+	public String getStatoCivile() {
+		return statoCivile;
 	}
 
 	public String getConiuge() {
@@ -198,8 +198,8 @@ public class Socio {
 		professione = profession;
 	}
 
-	public void setStatoSociale(String socialState) {
-		statoSociale = socialState;
+	public void setStatoCivile(String civilState) {
+		statoCivile = civilState;
 	}
 
 	public void setConiuge(String spouse) {

@@ -14,7 +14,7 @@ public class Validator {
 
 	public static boolean ValidaCf(String str) {
 		boolean esito = false;
-		Pattern patt = Pattern.compile("[A-Z]{6}+[0-9]{2}+[A-Z]{2}+[0-9]{2}+[A-Z]+[0-9]{3}[A-Z]");
+		Pattern patt = Pattern.compile("[A-Z]{6}+[0-9]{2}+[A-Z]{1}+[0-9]{2}+[A-Z]+[0-9]{3}[A-Z]");
 		Matcher match = patt.matcher(str);
 		if(match.matches()){
 			esito = true;
@@ -24,9 +24,9 @@ public class Validator {
 	
 	public static boolean ValidaEmail(String str){
 		boolean esito = false;
-		Pattern patt = Pattern.compile("[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}");
+		Pattern patt = Pattern.compile("[A-Z0-9._%-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}");
 		Matcher match = patt.matcher(str);
-		if(match.matches()){
+		if(match.matches() && str.length()<101){
 			esito = true;
 		}
 		return esito;
@@ -34,7 +34,7 @@ public class Validator {
 
 	public static boolean ValidaData(String str) {
 		boolean esito = false;
-		Pattern patt = Pattern.compile("(19|20)[0-9]{2}[- /.](0[1-9]|[12][0-9]|3[01])[-/.](0[1-9]|1[012])");
+		Pattern patt = Pattern.compile("(19|20)[0-9]{2}[- /.](0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])");
 		Matcher match = patt.matcher(str);
 		if(match.matches()){
 			esito = true;
@@ -64,16 +64,36 @@ public class Validator {
 
 	public static boolean ValidaImporto(String str) {
 		boolean esito = false;
-		Pattern patt = Pattern.compile("[0-9]*+[.,]+[0-9]{2}");
+		Pattern patt = Pattern.compile("[0-9]{1,3}+[.,]+[0-9]{2}");
 		Matcher match = patt.matcher(str);
 		if(match.matches()){
 			esito = true;
 		}else{
-			patt = Pattern.compile("[0-9]*");
+			patt = Pattern.compile("[0-9]{1,3}");
 			match = patt.matcher(str);
 			if(match.matches())
 				esito = true;
 		}
+		return esito;
+	}
+	
+	public static boolean ValidaAnagrafica(String str){
+		boolean esito = false;
+		Pattern patt = Pattern.compile("[A-Z\\s]+");
+		Matcher match = patt.matcher(str);
+		if (match.matches() && str.length()<21) {
+			esito = true;
+		}
+		
+		return esito;
+	}
+	
+	public static boolean ValidaIndirizzo(String str){
+		boolean esito = false;
+		Pattern patt = Pattern.compile("[A-Z\\s]*+[0-9]{4}");
+		Matcher match = patt.matcher(str);
+		if(match.matches() && str.length()<200)
+			esito = true;
 		return esito;
 	}
 

@@ -45,7 +45,7 @@ public class SocioModel {
 			st.setString(10, n.getEmail());
 			st.setString(11, n.getTelefono());
 			st.setString(12, n.getProfessione());
-			st.setString(13, n.getStatoSociale());
+			st.setString(13, n.getStatoCivile());
 			st.setString(14, n.getConiuge());
 			st.setDate(15, n.getDataAmmissione());
 			st.setFloat(16, n.getTassaAmmissione());
@@ -111,7 +111,7 @@ public class SocioModel {
 			st.setString(10, n.getEmail());
 			st.setString(11, n.getTelefono());
 			st.setString(12, n.getProfessione());
-			st.setString(13, n.getStatoSociale());
+			st.setString(13, n.getStatoCivile());
 			st.setString(14, n.getConiuge());
 			st.setDate(15, n.getDataAmmissione());
 			st.setFloat(16, n.getTassaAmmissione());
@@ -193,7 +193,7 @@ public class SocioModel {
 			st.setString(10, n.getEmail());
 			st.setString(11, n.getTelefono());
 			st.setString(12, n.getProfessione());
-			st.setString(13, n.getStatoSociale());
+			st.setString(13, n.getStatoCivile());
 			st.setString(14, n.getConiuge());
 			st.setDate(15, n.getDataAmmissione());
 			st.setFloat(16, n.getTassaAmmissione());
@@ -242,7 +242,7 @@ public class SocioModel {
 			st.setString(10, n.getEmail());
 			st.setString(11, n.getTelefono());
 			st.setString(12, n.getProfessione());
-			st.setString(13, n.getStatoSociale());
+			st.setString(13, n.getStatoCivile());
 			st.setString(14, n.getConiuge());
 			st.setDate(15, n.getDataAmmissione());
 			st.setFloat(16, n.getTassaAmmissione());

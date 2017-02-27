@@ -7,6 +7,8 @@ import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
+import java.awt.event.ItemListener;
+import java.awt.event.ItemEvent;
 
 public class InserisciSocioView {
 
@@ -26,7 +28,7 @@ public class InserisciSocioView {
 	private JTextField email;
 	private JTextField telefono;
 	private JTextField professione;
-	private JTextField statoCivile;
+	private JComboBox<String> statoCivile;
 	private JTextField coniuge;
 	private JTextField dataAmmissione;
 	private JTextField tassaAmmissione;
@@ -169,8 +171,9 @@ public class InserisciSocioView {
 		lblStatoCivile.setBounds(357, 125, 85, 16);
 		frame.getContentPane().add(lblStatoCivile);
 
-		statoCivile = new JTextField();
-		statoCivile.setColumns(10);
+		String[] state = {"Coniugato", "Celibe", "Nubile", "Vedovo"};
+		statoCivile = new JComboBox(state);
+		statoCivile.setSelectedIndex(2);
 		statoCivile.setBounds(503, 120, 130, 26);
 		frame.getContentPane().add(statoCivile);
 
@@ -179,7 +182,7 @@ public class InserisciSocioView {
 		frame.getContentPane().add(lblConiuge);
 
 		coniuge = new JTextField();
-		// coniuge.setEnabled(false);
+		coniuge.setEnabled(false);
 		coniuge.setColumns(10);
 		coniuge.setBounds(503, 145, 130, 26);
 		frame.getContentPane().add(coniuge);
@@ -207,7 +210,7 @@ public class InserisciSocioView {
 		frame.getContentPane().add(lblModPagamento);
 
 		String[] mod = { "Esattore", "Bonifico Bancario" };
-		modPagamento = new JComboBox<String>(mod);
+		modPagamento = new JComboBox(mod); // Manca <String>
 		modPagamento.setSelectedIndex(0);
 		modPagamento.setBounds(503, 220, 130, 27);
 		frame.getContentPane().add(modPagamento);
@@ -217,25 +220,24 @@ public class InserisciSocioView {
 		frame.getContentPane().add(lblMetPagamento);
 
 		String[] met = { "Mensile", "Trimestrale", "Semestrale", "Annuale" };
-		metPagamento = new JComboBox<String>(met);
+		metPagamento = new JComboBox(met);
 		metPagamento.setSelectedIndex(3);
 		metPagamento.setBounds(503, 245, 130, 27);
 		frame.getContentPane().add(metPagamento);
-
-		btnInserisci = new JButton("Inserisci");
-		btnInserisci.setBounds(280, 353, 117, 29);
-		// btnInserisci.setEnabled(false);
-		frame.getContentPane().add(btnInserisci);
 
 		JLabel lblTipologia = new JLabel("Tipologia");
 		lblTipologia.setBounds(357, 275, 130, 16);
 		frame.getContentPane().add(lblTipologia);
 
 		String[] tip = { "Ordinario", "Straordinario", "Benemerito", "Onorario" };
-		tipologia = new JComboBox<String>(tip);
+		tipologia = new JComboBox(tip);
 		tipologia.setSelectedIndex(0);
 		tipologia.setBounds(503, 271, 130, 27);
 		frame.getContentPane().add(tipologia);
+		
+		btnInserisci = new JButton("Inserisci");
+		btnInserisci.setBounds(280, 353, 117, 29);
+		frame.getContentPane().add(btnInserisci);
 
 		btnDashboard = new JButton("Dashboard");
 		btnDashboard.setBounds(569, 11, 97, 41);
@@ -314,7 +316,7 @@ public class InserisciSocioView {
 		return professione;
 	}
 
-	public JTextField getStatoSociale() {
+	public JComboBox<String> getStatoCivile() {
 		return statoCivile;
 	}
 
