@@ -6,24 +6,26 @@ import utility.MySql;
 import entita.Versamento;
 import entita.Quota;
 
-public class QuotaModel {	
-	
+public class QuotaModel {
+
 	MySql db;
 
 	public QuotaModel() {
 		db = new MySql();
 	}
 
-	
-
 	/* Operazioni quote */
 	public void insertQuota(Quota quo) {
+		String operation = "INSERT INTO Quota (DATA_INIZIO, DATA_FINE, VALORE, TIPOLOGIA) VALUES (?, ?, ?, ?)";
 		try {
 			db.open();
-			Statement command = db.getConn().createStatement();
-			command.executeUpdate(
-					"INSERT INTO Quota (DATA_INIZIO, DATA_FINE, VALORE, TIPOLOGIA) VALUES ('" + quo.getDataI() + "', '"
-							+ quo.getDataF() + "', '" + quo.getValore() + "', '" + quo.getTipologia() + "')");
+			PreparedStatement command = null;
+			command = db.getConn().prepareStatement(operation);
+			command.setDate(1, quo.getDataI());
+			command.setDate(2, quo.getDataF());
+			command.setFloat(3, quo.getValore());
+			command.setString(4, quo.getTipologia());
+			command.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -32,12 +34,17 @@ public class QuotaModel {
 	}
 
 	public void updateQuota(Quota quo) {
+		String operation = "UPDATE Quota SET DATA_INIZIO = ?, DATA_FINE = ?, VALORE = ?, TIPOLOGIA = ? WHERE ID = ?";
 		try {
 			db.open();
-			Statement command = db.getConn().createStatement();
-			command.executeUpdate("UPDATE Quota SET DATA_INIZIO = '" + quo.getDataI() + "', DATA_FINE = '"
-					+ quo.getDataF() + "', VALORE = '" + quo.getValore() + "', TIPOLOGIA = '" + quo.getTipologia()
-					+ "' WHERE ID = '" + quo.getId() + "'");
+			PreparedStatement command = null;
+			command = db.getConn().prepareStatement(operation);
+			command.setDate(1, quo.getDataI());
+			command.setDate(2, quo.getDataF());
+			command.setFloat(3, quo.getValore());
+			command.setString(4, quo.getTipologia());
+			command.setInt(5, quo.getId());
+			command.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -46,10 +53,13 @@ public class QuotaModel {
 	}
 
 	public void deleteQuota(int cod) {
+		String operation = "DELETE FROM Quota WHERE ID = ?";
 		try {
 			db.open();
-			Statement command = db.getConn().createStatement();
-			command.executeUpdate("DELETE FROM Quota WHERE ID = '" + cod + "'");
+			PreparedStatement command = null;
+			command = db.getConn().prepareStatement(operation);
+			command.setInt(1, cod);
+			command.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -77,34 +87,61 @@ public class QuotaModel {
 	}
 
 	/* Operazioni versamenti */
-	public void insertVersamento(Versamento spill) {
+	public boolean insertVersamento(Versamento spill) {
+		boolean esito = false;
+		String operationV = "INSERT INTO Versamento (DATA, IMPORTO, DESCRIZIONE, SOCIO) VALUES (?, ?, ?, ?)";
+		String operationM = "INSERT INTO Mese VALUES (?, (SELECT MAX(ID) FROM Versamento))";
 		try {
 			db.open();
-			Statement command = db.getConn().createStatement();
-			command.executeUpdate(
-					"INSERT INTO Versamento (DATA, IMPORTO, DESCRIZIONE, SOCIO) VALUES ('" + spill.getData() + "', '"
-							+ spill.getImporto() + "', '" + spill.getDescrizione() + "', '" + spill.getSocio() + "')");
+			PreparedStatement command = null;
+			command = db.getConn().prepareStatement(operationV);
+			command.setDate(1, spill.getData());
+			command.setFloat(2, spill.getImporto());
+			command.setString(3, spill.getDescrizione());
+			command.setString(4, spill.getSocio());
+			command.executeUpdate();
+			command = null;
 			String[] mesi;
 			mesi = (spill.getMesi().clone());
-			for (int i = 0; i < mesi.length; i++)
-				command.executeUpdate("INSERT INTO Mese VALUES ('" + mesi[i] + "', (SELECT MAX(ID) FROM Versamento))");
+			command = db.getConn().prepareStatement(operationM);
+			for (int i = 0; i < 12 && mesi[i] != null; i++)
+				command.setString(1, mesi[i]);
+				command.executeUpdate();
+			esito = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			db.close();
 		}
+		return esito;
 	}
 
 	public void updateVersamento(Versamento spill) {
+		String operationU = "UPDATE Versamento SET DATA = ?, IMPORTO = ?, DESCRIZIONE = ?, SOCIO = ? WHERE ID = ?";
+		String operationD = "DELETE FROM Mese WHERE VERSAMENTO = ?";
+		String operationM = "INSERT INTO Mese VALUES (?, ?)";
 		try {
 			db.open();
-			Statement command = db.getConn().createStatement();
-			command.executeUpdate("UPDATE Versamento SET DATA = '" + spill.getData() + "', IMPORTO = '"
-					+ spill.getImporto() + "', DESCRIZIONE = '" + spill.getDescrizione() + "', SOCIO = '"
-					+ spill.getSocio() + "' WHERE ID = '" + spill.getId() + "'");
-			command.executeUpdate("DELETE FROM Mese WHERE VERSAMENTO = '" + spill.getId() + "'");
+			PreparedStatement command = null;
+			command = db.getConn().prepareStatement(operationU);
+			command.setDate(1, spill.getData());
+			command.setFloat(2, spill.getImporto());
+			command.setString(3, spill.getDescrizione());
+			command.setString(4, spill.getSocio());
+			command.setInt(5, spill.getId());
+			command.executeUpdate();
+			command = null;
+			
+			command = db.getConn().prepareStatement(operationD);
+			command.setInt(1, spill.getId());
+			command.executeUpdate();
+			command = null;
+			
+			command = db.getConn().prepareStatement(operationM);
 			for (int i = 0; i < spill.getMesiLeng(); i++)
-				command.executeUpdate("INSERT INTO Mese VALUES ('" + spill.getMese(i) + "', '" + spill.getId() + "')");
+				command.setString(1, spill.getMese(i));
+				command.setInt(2, spill.getId());
+				command.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -113,10 +150,13 @@ public class QuotaModel {
 	}
 
 	public void deleteVersamento(int cod) {
+		String operation = "DELETE FROM Versamento WHERE ID = ?";
 		try {
 			db.open();
-			Statement command = db.getConn().createStatement();
-			command.executeUpdate("DELETE FROM Versamento WHERE ID = '" + cod + "'");
+			PreparedStatement command = null;
+			command = db.getConn().prepareStatement(operation);
+			command.setInt(1, cod);
+			command.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
