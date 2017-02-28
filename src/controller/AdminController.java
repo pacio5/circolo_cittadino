@@ -59,5 +59,15 @@ public class AdminController {
 				adminView.getFrame().dispose();
 			}
 		});
+
+		adminView.getBtnElencoSoci().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SocioController socioController = new SocioController();
+				socioController.Inserimento();;
+				adminView.getFrame().dispose();
+			}
+		});
 	}
+	
 }
