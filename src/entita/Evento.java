@@ -17,6 +17,20 @@ public class Evento {
 	private String luogo;
 	private double prezzo;
 	
+	public Evento(String identification, String name, Date date, String description, int seats, String location, double price){ 
+		id = identification;
+		nome = name;
+		data = date;
+		descrizione = description;
+		posti = seats;
+		luogo = location;
+		prezzo = price;		
+	}
+	
+	public Evento(){
+		this(null, null, null, null, 0, null, 0);
+	}
+	
 	public String getNome() {
 		return nome;
 	}
