@@ -90,7 +90,7 @@ public class Validator {
 	
 	public static boolean ValidaIndirizzo(String str){
 		boolean esito = false;
-		Pattern patt = Pattern.compile("[A-Z\\s]*+[0-9]{4}");
+		Pattern patt = Pattern.compile("[A-Z\\s]*+[0-9]{1,4}");
 		Matcher match = patt.matcher(str);
 		if(match.matches() && str.length()<200)
 			esito = true;

@@ -7,6 +7,7 @@ import model.SocioModel;
 import utility.Validator;
 import view.InserisciSocioView;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
@@ -15,6 +16,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import entita.Socio;
 import controller.AdminController;
+import view.VisualizzaSoci;
 
 /**
  * @author eliapacioni
@@ -23,14 +25,13 @@ import controller.AdminController;
 public class SocioController {
 
 	private SocioModel model;
-	private InserisciSocioView view;
 
 	public SocioController() {
 		model = new SocioModel();
 	}
 
 	public void Inserimento() {
-		view = new InserisciSocioView();
+		InserisciSocioView view = new InserisciSocioView();
 		view.getFrame().setVisible(true);
 		view.getStatoCivile().addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
@@ -62,16 +63,16 @@ public class SocioController {
 				String email = view.getEmail().getText().toUpperCase();
 				String telefono = view.getTelefono().getText();
 				String professione = view.getProfessione().getText().toUpperCase();
-				String statoCivile = view.getStatoCivile().getSelectedItem().toString();
+				String statoCivile = view.getStatoCivile().getSelectedItem().toString().toUpperCase();
 				String coniuge = null;
 				if (view.getConiuge().getText().length() > 0) {
 					coniuge = view.getConiuge().getText().toUpperCase();
 				}
 				String dataAmmissione = view.getDataAmmissione().getText();
 				String tassaAmmissione = view.getTassaAmmissione().getText();
-				String modPagamento = view.getModPagamento().getSelectedItem().toString();
-				String metPagamento = view.getMetPagamento().getSelectedItem().toString();
-				String tipologia = view.getTipologia().getSelectedItem().toString();
+				String modPagamento = view.getModPagamento().getSelectedItem().toString().toUpperCase();
+				String metPagamento = view.getMetPagamento().getSelectedItem().toString().toUpperCase();
+				String tipologia = view.getTipologia().getSelectedItem().toString().toUpperCase();
 
 				boolean validazione = true;
 				if (!Validator.ValidaCf(cf)) {
@@ -192,13 +193,6 @@ public class SocioController {
 			}
 		});
 
-		TornaAllaDashboard();
-
-	}
-
-	
-	
-	public void TornaAllaDashboard() {
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				AdminController adminController = new AdminController();
@@ -206,5 +200,19 @@ public class SocioController {
 				view.getFrame().dispose();
 			}
 		});
+
+	}
+	
+	public void Visualizza(){
+			ArrayList<Socio> soci = model.ElencoSoci();
+			VisualizzaSoci view = new VisualizzaSoci(soci);
+			view.getFrame().setVisible(true);
+	}
+	
+	public void Modifica(){
+	}
+	
+	public void Elimina(){
+		
 	}
 }

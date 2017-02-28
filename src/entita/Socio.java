@@ -117,11 +117,12 @@ public class Socio {
 	public String getProfessione() {
 		return professione;
 	}
-
+	/**
+	 * @return the statoCivile
+	 */
 	public String getStatoCivile() {
 		return statoCivile;
 	}
-
 	public String getConiuge() {
 		return coniuge;
 	}

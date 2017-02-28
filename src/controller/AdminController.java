@@ -64,7 +64,7 @@ public class AdminController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SocioController socioController = new SocioController();
-				socioController.Inserimento();;
+				socioController.Visualizza();;
 				adminView.getFrame().dispose();
 			}
 		});
