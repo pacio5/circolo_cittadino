@@ -337,7 +337,7 @@ public class PrenotazioneModel {
 						res.getString("nome"), 
 						res.getString("cognome"),
 						res.getString("sesso").charAt(0), 
-						res.getDate("dataNascita"),
+						res.getDate("data_nascita"),
 						res.getString("indirizzo"), 
 						res.getString("citta"), 
 						res.getString("cap"),
