@@ -56,6 +56,7 @@ public class AdminController {
 			public void mouseClicked(MouseEvent e) {
 				SpillController spillController = new SpillController();
 				spillController.MostraInserimentoVers();
+				adminView.getFrame().dispose();
 			}
 		});
 
@@ -63,7 +64,7 @@ public class AdminController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SocioController socioController = new SocioController();
-				socioController.Visualizza();
+				socioController.Inserimento();;
 				adminView.getFrame().dispose();
 			}
 		});
