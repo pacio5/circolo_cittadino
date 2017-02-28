@@ -56,8 +56,17 @@ public class AdminController {
 			public void mouseClicked(MouseEvent e) {
 				SpillController spillController = new SpillController();
 				spillController.MostraInserimentoVers();
+			}
+		});
+
+		adminView.getBtnElencoSoci().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SocioController socioController = new SocioController();
+				socioController.Visualizza();
 				adminView.getFrame().dispose();
 			}
 		});
 	}
+	
 }

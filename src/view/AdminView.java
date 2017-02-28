@@ -11,6 +11,8 @@ public class AdminView {
 	private JButton btnInserisciSocio;
 	private JButton btnInserisciVersamento;
 
+	private JButton btnElencoSoci;
+
 	/**
 	 * Create the frame.
 	 */
@@ -27,7 +29,7 @@ public class AdminView {
 		btnInserisciSocio.setBounds(24, 50, 152, 29);
 		
 		btnInserisciVersamento = new JButton("Inserisci Versamento");
-		btnInserisciVersamento.setBounds(24, 105, 152, 29);
+		btnInserisciVersamento.setBounds(199, 50, 152, 29);
 		
 		JLabel lblCircoloCittadinoDi = new JLabel("Circolo Cittadino di Ascoli Piceno");
 		lblCircoloCittadinoDi.setBounds(266, 11, 211, 16);
@@ -37,6 +39,10 @@ public class AdminView {
 		frame.getContentPane().add(btnInserisciSocio);
 		frame.getContentPane().add(btnInserisciVersamento);
 		frame.getContentPane().add(lblCircoloCittadinoDi);
+		
+		btnElencoSoci = new JButton("Elenco Soci");
+		btnElencoSoci.setBounds(24, 91, 152, 29);
+		frame.getContentPane().add(btnElencoSoci);
 		
 	}
 
@@ -54,5 +60,9 @@ public class AdminView {
 	
 	public JButton getBtnInserisciVersamento() {
 		return btnInserisciVersamento;
+	}
+	
+	public JButton getBtnElencoSoci() {
+		return btnElencoSoci;
 	}
 }
