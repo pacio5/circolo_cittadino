@@ -52,16 +52,16 @@ public class PrenotazioneView {
 		frame.getContentPane().add(txtFieldNomeEvento);
 
 		JLabel lblData = new JLabel("Data");
-		lblData.setBounds(25, 244, 97, 16);
+		lblData.setBounds(25, 170, 97, 16);
 		frame.getContentPane().add(lblData);
 
 		txtFieldDataEvento = new JTextField();
-		txtFieldDataEvento.setBounds(138, 239, 130, 26);
+		txtFieldDataEvento.setBounds(138, 165, 130, 26);
 		frame.getContentPane().add(txtFieldDataEvento);
 		txtFieldDataEvento.setColumns(10);
 
 		JLabel lblDescrizione = new JLabel("Descrizione");
-		lblDescrizione.setBounds(25, 282, 112, 16);
+		lblDescrizione.setBounds(25, 315, 112, 16);
 		frame.getContentPane().add(lblDescrizione);
 
 		txtAreaDescrizione = new JTextArea();
@@ -69,37 +69,37 @@ public class PrenotazioneView {
 		txtAreaDescrizione.setFont(new Font("Monospaced", Font.PLAIN, 11));
 		txtAreaDescrizione.setLineWrap(true);
 		txtAreaDescrizione.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-		txtAreaDescrizione.setBounds(138, 277, 130, 26);
+		txtAreaDescrizione.setBounds(138, 313, 130, 128);
 		frame.getContentPane().add(txtAreaDescrizione);
 
 		JLabel lblNposti = new JLabel("Numero Posti");
-		lblNposti.setBounds(25, 320, 112, 16);
+		lblNposti.setBounds(25, 207, 112, 16);
 		frame.getContentPane().add(lblNposti);
 
 		spnNPosti = new JSpinner();
-		spnNPosti.setBounds(138, 315, 130, 26);
+		spnNPosti.setBounds(138, 202, 130, 26);
 		frame.getContentPane().add(spnNPosti);
 
 		JLabel lblLuogo = new JLabel("Luogo");
-		lblLuogo.setBounds(25, 358, 112, 16);
+		lblLuogo.setBounds(25, 244, 112, 16);
 		frame.getContentPane().add(lblLuogo);
 
 		txtFieldLuogo = new JTextField();
 		txtFieldLuogo.setColumns(10);
-		txtFieldLuogo.setBounds(138, 353, 130, 26);
+		txtFieldLuogo.setBounds(138, 276, 130, 26);
 		frame.getContentPane().add(txtFieldLuogo);
 
 		JLabel lblPrezzo = new JLabel("Prezzo");
-		lblPrezzo.setBounds(25, 396, 37, 16);
+		lblPrezzo.setBounds(25, 281, 37, 16);
 		frame.getContentPane().add(lblPrezzo);
 
 		txtFieldPrezzo = new JTextField();
 		txtFieldPrezzo.setColumns(10);
-		txtFieldPrezzo.setBounds(138, 391, 130, 26);
+		txtFieldPrezzo.setBounds(138, 239, 130, 26);
 		frame.getContentPane().add(txtFieldPrezzo);
 		
 		btnInserisci = new JButton("Inserisci");
-		btnInserisci.setBounds(325, 543, 117, 29);
+		btnInserisci.setBounds(138, 511, 117, 29);
 		frame.getContentPane().add(btnInserisci);
 
 		btnDashboard = new JButton("Dashboard");

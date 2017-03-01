@@ -12,6 +12,7 @@ import java.sql.Date;
 import entita.Evento;
 import view.PrenotazioneView;
 
+
 public class PrenotazioneController {
 	
 	private PrenotazioneModel model;
@@ -101,5 +102,5 @@ public class PrenotazioneController {
 		});
 
 	}
-
+	
 }
