@@ -97,4 +97,14 @@ public class Validator {
 		return esito;
 	}
 
+	public static boolean ValidaMesi(int mesi, String metpagamento) {
+		boolean esito = false;
+		if ((metpagamento.equals("Mensile") && mesi == 1) 
+				|| (metpagamento.equals("Trimestrale") && mesi == 3)
+				|| (metpagamento.equals("Semestrale") && mesi == 6)
+				|| (metpagamento.equals("Annuale") && mesi == 12))
+			esito = true;
+		return esito;
+	}
+
 }

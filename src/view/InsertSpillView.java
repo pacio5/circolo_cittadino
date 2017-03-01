@@ -111,7 +111,7 @@ public class InsertSpillView {
 		txtFieldMetPagamento = new JTextField();
 		txtFieldMetPagamento.setEnabled(false);
 		txtFieldMetPagamento.setColumns(10);
-		txtFieldMetPagamento.setBounds(125, 182, 129, 17);
+		txtFieldMetPagamento.setBounds(125, 182, 86, 17);
 		txtFieldMetPagamento.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		txtFieldMetPagamento.setBackground(null);
 		txtFieldMetPagamento.setDisabledTextColor(Color.black);
@@ -347,6 +347,35 @@ public class InsertSpillView {
 
 	public JCheckBox getChckbxDicembre() {
 		return chckbxDicembre;
+	}
+	
+	public int getNumberChckbxChecked() {
+		int cont = 0;
+		if(chckbxGennaio.isSelected())
+			cont++;
+		if(chckbxFebbraio.isSelected())
+			cont++;
+		if(chckbxMarzo.isSelected())
+			cont++;
+		if(chckbxAprile.isSelected())
+			cont++;
+		if(chckbxMaggio.isSelected())
+			cont++;
+		if(chckbxGiugno.isSelected())
+			cont++;
+		if(chckbxLuglio.isSelected())
+			cont++;
+		if(chckbxAgosto.isSelected())
+			cont++;
+		if(chckbxSettembre.isSelected())
+			cont++;
+		if(chckbxOttobre.isSelected())
+			cont++;
+		if(chckbxNovembre.isSelected())
+			cont++;
+		if(chckbxDicembre.isSelected())
+			cont++;
+		return cont;
 	}
 
 	public JButton getBtnInserisci() {
