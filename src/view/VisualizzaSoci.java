@@ -47,6 +47,7 @@ public class VisualizzaSoci {
 	private JButton btnElimina;
 	private DefaultListModel<Socio> dlm;
 	private ScrollPane scrollPane;
+	private JButton btnAggiorna;
 
 	/**
 	 * Create the frame.
@@ -81,7 +82,7 @@ public class VisualizzaSoci {
 		cf = new JTextField();
 		cf.setBounds(362, 90, 130, 26);
 		cf.setColumns(10);
-		cf.setEditable(false);
+		cf.setEnabled(false);
 		frame.getContentPane().add(cf);
 		
 		
@@ -92,7 +93,7 @@ public class VisualizzaSoci {
 		nome = new JTextField();
 		nome.setColumns(10);
 		nome.setBounds(362, 128, 130, 26);
-		nome.setEditable(false);
+		nome.setEnabled(false);
 		frame.getContentPane().add(nome);
 		
 
@@ -103,7 +104,7 @@ public class VisualizzaSoci {
 		cognome = new JTextField();
 		cognome.setColumns(10);
 		cognome.setBounds(362, 166, 130, 26);
-		cognome.setEditable(false);
+		cognome.setEnabled(false);
 		frame.getContentPane().add(cognome);
 
 		JLabel lblSesso = new JLabel("Sesso");
@@ -132,7 +133,7 @@ public class VisualizzaSoci {
 		dataNascita = new JTextField();
 		dataNascita.setBounds(362, 239, 130, 26);
 		dataNascita.setColumns(10);
-		dataNascita.setEditable(false);
+		dataNascita.setEnabled(false);
 		frame.getContentPane().add(dataNascita);
 		
 
@@ -143,7 +144,7 @@ public class VisualizzaSoci {
 		luogoNascita = new JTextField();
 		luogoNascita.setColumns(10);
 		luogoNascita.setBounds(362, 277, 130, 26);
-		luogoNascita.setEditable(false);
+		luogoNascita.setEnabled(false);
 		frame.getContentPane().add(luogoNascita);
 
 		JLabel lblIndirizzo = new JLabel("Indirizzo");
@@ -153,7 +154,7 @@ public class VisualizzaSoci {
 		indirizzo = new JTextField();
 		indirizzo.setColumns(10);
 		indirizzo.setBounds(362, 315, 130, 26);
-		indirizzo.setEditable(false);
+		indirizzo.setEnabled(false);
 		frame.getContentPane().add(indirizzo);
 
 		JLabel lblCitta = new JLabel("Città");
@@ -163,7 +164,7 @@ public class VisualizzaSoci {
 		citta = new JTextField();
 		citta.setColumns(10);
 		citta.setBounds(362, 353, 130, 26);
-		citta.setEditable(false);
+		citta.setEnabled(false);
 		frame.getContentPane().add(citta);
 
 		JLabel lblCap = new JLabel("Cap");
@@ -173,7 +174,7 @@ public class VisualizzaSoci {
 		cap = new JTextField();
 		cap.setColumns(10);
 		cap.setBounds(362, 391, 130, 26);
-		cap.setEditable(false);
+		cap.setEnabled(false);
 		frame.getContentPane().add(cap);
 
 		JLabel lblEmail = new JLabel("E-mail");
@@ -183,7 +184,7 @@ public class VisualizzaSoci {
 		email = new JTextField();
 		email.setColumns(10);
 		email.setBounds(362, 429, 130, 26);
-		email.setEditable(false);
+		email.setEnabled(false);
 		frame.getContentPane().add(email);
 
 		JLabel lblTelefono = new JLabel("Telefono");
@@ -193,7 +194,7 @@ public class VisualizzaSoci {
 		telefono = new JTextField();
 		telefono.setColumns(10);
 		telefono.setBounds(661, 90, 130, 26);
-		telefono.setEditable(false);
+		telefono.setEnabled(false);
 		frame.getContentPane().add(telefono);
 
 		JLabel lblProfessione = new JLabel("Professione");
@@ -203,7 +204,7 @@ public class VisualizzaSoci {
 		professione = new JTextField();
 		professione.setColumns(10);
 		professione.setBounds(661, 128, 130, 26);
-		professione.setEditable(false);
+		professione.setEnabled(false);
 		frame.getContentPane().add(professione);
 
 		JLabel lblStatoCivile = new JLabel("Stato Civile");
@@ -234,7 +235,7 @@ public class VisualizzaSoci {
 		dataAmmissione = new JTextField();
 		dataAmmissione.setColumns(10);
 		dataAmmissione.setBounds(661, 239, 130, 26);
-		dataAmmissione.setEditable(false);
+		dataAmmissione.setEnabled(false);
 		frame.getContentPane().add(dataAmmissione);
 
 		JLabel lblTassaAmmissione = new JLabel("Tassa Ammissione");
@@ -244,7 +245,7 @@ public class VisualizzaSoci {
 		tassaAmmissione = new JTextField();
 		tassaAmmissione.setColumns(10);
 		tassaAmmissione.setBounds(661, 277, 130, 26);
-		tassaAmmissione.setEditable(false);
+		tassaAmmissione.setEnabled(false);
 		frame.getContentPane().add(tassaAmmissione);
 
 		JLabel lblModPagamento = new JLabel("Modalità Pagamento");
@@ -279,26 +280,34 @@ public class VisualizzaSoci {
 		tipologia.setBounds(661, 392, 130, 27);
 		tipologia.setEnabled(false);
 		frame.getContentPane().add(tipologia);
+		btnDashboard = new JButton("Dashboard");
+		btnDashboard.setBounds(694, 15, 97, 41);
+		frame.getContentPane().add(btnDashboard);
 		
 		btnModifica = new JButton("Modifica");
-		btnModifica.setBounds(259, 500, 117, 29);
+		btnModifica.setBounds(253, 500, 117, 29);
+		btnModifica.setEnabled(false);
 		frame.getContentPane().add(btnModifica);
 		
 		btnDiventaExsocio = new JButton("Diventa Ex-Socio");
 		btnDiventaExsocio.setBounds(375, 500, 153, 29);
+		btnDiventaExsocio.setEnabled(false);
 		frame.getContentPane().add(btnDiventaExsocio);
 		
 		btnEspelli = new JButton("Espelli");
 		btnEspelli.setBounds(528, 500, 117, 29);
+		btnEspelli.setEnabled(false);
 		frame.getContentPane().add(btnEspelli);
 		
 		btnElimina = new JButton("Elimina");
 		btnElimina.setBounds(645, 500, 117, 29);
+		btnElimina.setEnabled(false);
 		frame.getContentPane().add(btnElimina);
 		
-		btnDashboard = new JButton("Dashboard");
-		btnDashboard.setBounds(694, 15, 97, 41);
-		frame.getContentPane().add(btnDashboard);
+		btnAggiorna = new JButton("Aggiorna");
+		btnAggiorna.setBounds(253, 540, 117, 29);
+		frame.getContentPane().add(btnAggiorna);
+		btnAggiorna.setVisible(false);
 	}
 	
 	/**
@@ -479,6 +488,13 @@ public class VisualizzaSoci {
 	 */
 	public JButton getBtnModifica() {
 		return btnModifica;
+	}
+	
+	/**
+	 * @return the btnAggiorna
+	 */
+	public JButton getBtnAggiorna() {
+		return btnAggiorna;
 	}
 
 	/**

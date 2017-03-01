@@ -90,7 +90,7 @@ public class SocioModel {
 		return esito;
 	}
 
-	public boolean ModificaSocio(Socio n) {
+	public boolean ModificaSocio(Socio n, String cf) {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
@@ -118,7 +118,7 @@ public class SocioModel {
 			st.setString(17, n.getModPagamento());
 			st.setString(18, n.getMetPagamento());
 			st.setString(19, n.getTipologia());
-			st.setString(20, n.getCf());
+			st.setString(20, cf);
 
 			int res = st.executeUpdate();
 			if (res == 1)
