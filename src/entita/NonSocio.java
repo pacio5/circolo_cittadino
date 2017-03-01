@@ -21,7 +21,11 @@ public class NonSocio {
 	protected String cap;
 	protected String email;
 	protected String telefono;
-
+	
+	public NonSocio() {
+		this(null, null, null, ' ', null, null, null, null, null, null);
+	}
+	
 	public NonSocio(String codice, String name, String surname, char sex, Date dateB, String address, String city,
 			String postalCode, String mail, String tel) {
 		cf = codice;
@@ -34,10 +38,6 @@ public class NonSocio {
 		cap = postalCode;
 		email = mail;
 		telefono = tel;
-	}
-
-	public NonSocio() {
-		this(null, null, null, ' ', null, null, null, null, null, null);
 	}
 
 	public String getCf() {

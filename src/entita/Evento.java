@@ -17,6 +17,10 @@ public class Evento {
 	private String luogo;
 	private double prezzo;
 	
+	public Evento(){
+		this(null, null, null, null, 0, null, 0);
+	}
+	
 	public Evento(String identification, String name, Date date, String description, int seats, String location, double price){ 
 		id = identification;
 		nome = name;
@@ -25,10 +29,6 @@ public class Evento {
 		posti = seats;
 		luogo = location;
 		prezzo = price;		
-	}
-	
-	public Evento(){
-		this(null, null, null, null, 0, null, 0);
 	}
 	
 	public String getNome() {

@@ -14,6 +14,9 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
 import entita.Socio;
 import controller.AdminController;
 import view.VisualizzaSoci;
@@ -202,17 +205,44 @@ public class SocioController {
 		});
 
 	}
-	
-	public void Visualizza(){
-			ArrayList<Socio> soci = model.ElencoSoci();
-			VisualizzaSoci view = new VisualizzaSoci(soci);
-			view.getFrame().setVisible(true);
-	}
-	
-	public void Modifica(){
-	}
-	
-	public void Elimina(){
+
+	public void Visualizza() {
+		ArrayList<Socio> soci = model.ElencoSoci();
+		VisualizzaSoci view = new VisualizzaSoci(soci);
+		view.getFrame().setVisible(true);
+
+		view.getList().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				Socio n = view.getList().getSelectedValue();
+				view.getCf().setText(n.getCf());
+				view.getNome().setText(n.getNome());
+				view.getCognome().setText(n.getCognome());
+				if (n.getSesso() == 'M')
+					view.getRdbtnUomo().setSelected(true);
+				else
+					view.getRdbtnDonna().setSelected(true);
+				view.getDataNascita().setText(n.getDataNascita().toString());
+				view.getLuogoNascita().setText(n.getLuogoNascita());
+				view.getIndirizzo().setText(n.getIndirizzo());
+				view.getCitta().setText(n.getCitta());
+				view.getCap().setText(n.getCap());
+				view.getEmail().setText(n.getEmail());
+				view.getTelefono().setText(n.getTelefono());
+				view.getProfessione().setText(n.getProfessione());
+				view.getStatoCivile().setSelectedItem(n.getStatoCivile());
+				view.getConiuge().setText(n.getConiuge());
+				view.getDataAmmissione().setText(n.getDataAmmissione().toString());
+				view.getTassaAmmissione().setText(String.valueOf(n.getTassaAmmissione())); 
+			}
+		});
 		
+		
+	}
+
+	public void Modifica() {
+	}
+
+	public void Elimina() {
+
 	}
 }

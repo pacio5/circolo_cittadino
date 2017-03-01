@@ -224,7 +224,6 @@ public class Socio {
 	}
 
 	public String toString() {
-		return "Socio: " + cognome + " " + nome + ", risiede in " + indirizzo + ", " + citta + ", è nato il "
-				+ dataNascita + " a " + luogoNascita + ". La sua professione è: " + professione + ".";
+		return nome + " " + cognome + " "+ cf;
 	}
 }
