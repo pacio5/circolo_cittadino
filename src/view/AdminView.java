@@ -12,6 +12,7 @@ public class AdminView {
 	private JButton btnInserisciVersamento;
 	private JButton btnInserisciEvento;
 	private JButton btnElencoSoci;
+	private JButton btnInserisciFiglio;
 
 	/**
 	 * Create the frame.
@@ -48,6 +49,10 @@ public class AdminView {
 		btnElencoSoci.setBounds(24, 91, 152, 29);
 		frame.getContentPane().add(btnElencoSoci);
 		
+		btnInserisciFiglio = new JButton("Inserisci FIglio");
+		btnInserisciFiglio.setBounds(24, 132, 152, 29);
+		frame.getContentPane().add(btnInserisciFiglio);
+		
 	}
 
 	public JFrame getFrame() {
@@ -72,5 +77,9 @@ public class AdminView {
 	
 	public JButton getBtnInserisciEvento() {
 		return btnInserisciEvento;
+	}
+	
+	public JButton getBtnInserisciFiglio() {
+		return btnInserisciFiglio;
 	}
 }

@@ -5,6 +5,7 @@ package controller;
 
 import model.SocioModel;
 import utility.Validator;
+import view.InserisciFiglioView;
 import view.InserisciSocioView;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import entita.Figlio;
 import entita.Socio;
 import controller.AdminController;
 import view.VisualizzaSoci;
@@ -529,4 +531,65 @@ public class SocioController {
 			}
 		});
 	}
+
+	public void InserimentoFiglio(){
+		ArrayList<Socio> soci = model.ElencoSoci();
+		InserisciFiglioView view = new InserisciFiglioView(soci);
+		view.getFrame().setVisible(true);
+		view.getBtnInserisci().addMouseListener(new MouseAdapter(){
+			public void mouseClicked(MouseEvent e){
+				String cf = view.getCf().getText().toUpperCase();
+				String nome = view.getNome().getText().toUpperCase();
+				String dataNascita = view.getDataNascita().getText();
+				Socio genitore = (Socio)view.getSocio().getSelectedItem();
+				Boolean aCarico;
+				if(view.getRdbtnSi().isSelected())
+					aCarico = true;
+				else aCarico = false;
+				
+				Boolean validazione = true;
+				if (!Validator.ValidaCf(cf)) {
+					view.getCf().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getCf().getBackground() == Color.red)
+						view.getCf().setBackground(Color.white);
+				}
+				if (!Validator.ValidaAnagrafica(nome)) {
+					view.getNome().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getCf().getBackground() == Color.red)
+						view.getNome().setBackground(Color.white);
+				}
+				if (!Validator.ValidaData(dataNascita)) {
+					view.getDataNascita().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getDataNascita().getBackground() == Color.red)
+						view.getDataNascita().setBackground(Color.white);
+				}
+				if (validazione) {
+					boolean esito = model.InserisciFiglio(new Figlio(cf, nome, Date.valueOf(dataNascita), genitore, aCarico));
+
+					if (esito) {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
+						InserimentoFiglio();
+						view.getFrame().dispose();
+					} else {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Non Effettuato");
+					}
+
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
+							"Campi non validi, modificare i campi contrassegnati in rosso");
+				}
+				
+					
+			}
+		});
+		
+		
+	}
+	
 }
