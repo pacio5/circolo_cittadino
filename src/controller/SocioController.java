@@ -13,6 +13,9 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -203,7 +206,6 @@ public class SocioController {
 				view.getFrame().dispose();
 			}
 		});
-
 	}
 
 	public void Visualizza() {
@@ -232,17 +234,115 @@ public class SocioController {
 				view.getStatoCivile().setSelectedItem(n.getStatoCivile());
 				view.getConiuge().setText(n.getConiuge());
 				view.getDataAmmissione().setText(n.getDataAmmissione().toString());
-				view.getTassaAmmissione().setText(String.valueOf(n.getTassaAmmissione())); 
+				view.getTassaAmmissione().setText(String.valueOf(n.getTassaAmmissione()));
 			}
 		});
-		
-		
-	}
 
-	public void Modifica() {
-	}
+		view.getBtnDiventaExsocio().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				boolean esito = model.DiventaExSocio(view.getList().getSelectedValue(), false);
+				if (esito) {
+					ArrayList<Socio> nuovi = model.ElencoSoci();
+					DefaultListModel<Socio> dlm = new DefaultListModel<Socio>();
+					nuovi.stream().forEach((s) -> {
+						dlm.addElement(s);
+					});
+					view.getList().setModel(dlm);
+					view.getCf().setText(null);
+					view.getNome().setText(null);
+					view.getCognome().setText(null);
+					view.getRdbtnDonna().setSelected(false);
+					view.getRdbtnUomo().setSelected(false);
+					view.getDataNascita().setText(null);
+					view.getDataNascita().setText(null);
+					view.getIndirizzo().setText(null);
+					view.getCitta().setText(null);
+					view.getCap().setText(null);
+					view.getEmail().setText(null);
+					view.getTelefono().setText(null);
+					view.getProfessione().setText(null);
+					view.getConiuge().setText(null);
+					view.getDataAmmissione().setText(null);
+					view.getTassaAmmissione().setText(null);
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Passaggio Effettuato");
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Passaggio Non Effettuato");
+				}
+			}
+		});
 
-	public void Elimina() {
+		view.getBtnEspelli().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				boolean esito = model.DiventaExSocio(view.getList().getSelectedValue(), true);
+				if (esito) {
+					ArrayList<Socio> nuovi = model.ElencoSoci();
+					DefaultListModel<Socio> dlm = new DefaultListModel<Socio>();
+					nuovi.stream().forEach((s) -> {
+						dlm.addElement(s);
+					});
+					view.getList().setModel(dlm);
+					view.getCf().setText(null);
+					view.getNome().setText(null);
+					view.getCognome().setText(null);
+					view.getRdbtnDonna().setSelected(false);
+					view.getRdbtnUomo().setSelected(false);
+					view.getDataNascita().setText(null);
+					view.getDataNascita().setText(null);
+					view.getIndirizzo().setText(null);
+					view.getCitta().setText(null);
+					view.getCap().setText(null);
+					view.getEmail().setText(null);
+					view.getTelefono().setText(null);
+					view.getProfessione().setText(null);
+					view.getConiuge().setText(null);
+					view.getDataAmmissione().setText(null);
+					view.getTassaAmmissione().setText(null);
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Espulso correttamente");
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Espulsione non effettuata");
+				}
+			}
+		});
 
+		view.getBtnElimina().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				boolean esito = model.EliminaSocio(view.getList().getSelectedValue());
+				if (esito) {
+					ArrayList<Socio> nuovi = model.ElencoSoci();
+					DefaultListModel<Socio> dlm = new DefaultListModel<Socio>();
+					nuovi.stream().forEach((s) -> {
+						dlm.addElement(s);
+					});
+					view.getList().setModel(dlm);
+					view.getCf().setText(null);
+					view.getNome().setText(null);
+					view.getCognome().setText(null);
+					view.getRdbtnDonna().setSelected(false);
+					view.getRdbtnUomo().setSelected(false);
+					view.getDataNascita().setText(null);
+					view.getDataNascita().setText(null);
+					view.getIndirizzo().setText(null);
+					view.getCitta().setText(null);
+					view.getCap().setText(null);
+					view.getEmail().setText(null);
+					view.getTelefono().setText(null);
+					view.getProfessione().setText(null);
+					view.getConiuge().setText(null);
+					view.getDataAmmissione().setText(null);
+					view.getTassaAmmissione().setText(null);
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Eliminato correttamente");
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Eliminazione non effettuata");
+				}
+			}
+		});
+
+		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				AdminController adminController = new AdminController();
+				adminController.controlloEvento();
+				view.getFrame().dispose();
+			}
+		});
 	}
 }
