@@ -172,13 +172,13 @@ public class SocioModel {
 		return soci;
 	}
 
-	public boolean DiventaExSocio(Socio n) {
+	public boolean DiventaExSocio(Socio n, Boolean espulso) {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
 		String query = "INSERT INTO exsocio(cf, nome, cognome, sesso, data_nascita, luogo_nascita, indirizzo, citta, cap, email, telefono, "
-				+ "professione, stato_civile, coniuge, data_ammissione, tassa_ammissione, mod_pagamento, met_pagamento, tipologia)"
-				+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "professione, stato_civile, coniuge, data_ammissione, tassa_ammissione, mod_pagamento, met_pagamento, tipologia, espulso)"
+				+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			st = db.getConn().prepareStatement(query);
 			st.setString(1, n.getCf());
@@ -200,6 +200,7 @@ public class SocioModel {
 			st.setString(17, n.getModPagamento());
 			st.setString(18, n.getMetPagamento());
 			st.setString(19, n.getTipologia());
+			st.setBoolean(20, espulso);
 
 			int res = st.executeUpdate();
 			if (res == 1)

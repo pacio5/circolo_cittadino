@@ -45,6 +45,8 @@ public class VisualizzaSoci {
 	private JButton btnDiventaExsocio;
 	private JButton btnEspelli;
 	private JButton btnElimina;
+	private DefaultListModel<Socio> dlm;
+	private ScrollPane scrollPane;
 
 	/**
 	 * Create the frame.
@@ -61,16 +63,13 @@ public class VisualizzaSoci {
 		frame.getContentPane().add(lblElencoSoci);
 		
 		list = new JList<Socio>();
-		//list.setBounds(6, 54, 228, 518);
-		DefaultListModel<Socio> dlm = new DefaultListModel<Socio>();
+		dlm = new DefaultListModel<Socio>();
 		soci.stream().forEach((s)->{
 			dlm.addElement(s);
 		});
 		list.setModel(dlm);
-		//frame.getContentPane().add(list);
-		//list.setVisible(true);
 		
-		ScrollPane scrollPane = new ScrollPane();
+		scrollPane = new ScrollPane();
 		scrollPane.setBounds(6, 54, 228, 518);
 		frame.getContentPane().add(scrollPane);
 		scrollPane.add(list);
@@ -315,6 +314,12 @@ public class VisualizzaSoci {
 	public JList<Socio> getList() {
 		return list;
 	}
+	/**
+	 * @param list the list to set
+	 */
+	public void setList(JList<Socio> list) {
+		this.list = list;
+	}
 	
 	/**
 	 * @return the cf
@@ -469,5 +474,38 @@ public class VisualizzaSoci {
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}
-	
+	/**
+	 * @return the btnModifica
+	 */
+	public JButton getBtnModifica() {
+		return btnModifica;
+	}
+
+	/**
+	 * @return the btnDiventaExsocio
+	 */
+	public JButton getBtnDiventaExsocio() {
+		return btnDiventaExsocio;
+	}
+
+	/**
+	 * @return the btnEspelli
+	 */
+	public JButton getBtnEspelli() {
+		return btnEspelli;
+	}
+
+	/**
+	 * @return the btnElimina
+	 */
+	public JButton getBtnElimina() {
+		return btnElimina;
+	}
+
+	/**
+	 * @return the scrollPane
+	 */
+	public ScrollPane getScrollPane() {
+		return scrollPane;
+	}
 }
