@@ -31,6 +31,15 @@ public class Evento {
 		prezzo = price;		
 	}
 	
+	public Evento(String name, Date date, String description, int seats, String location, double price){
+		nome = name;
+		data = date;
+		descrizione = description;
+		posti = seats;
+		luogo = location;
+		prezzo = price;		
+	}
+	
 	public String getNome() {
 		return nome;
 	}

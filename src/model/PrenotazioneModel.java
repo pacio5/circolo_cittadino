@@ -28,17 +28,16 @@ public class PrenotazioneModel {
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
-		String query = "INSERT INTO Evento (ID, NOME, DATA, DESCRIZIONE, N_POSTI, LUOGO, PREZZO)"
-				+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "INSERT INTO Evento (NOME, DATA, DESCRIZIONE, N_POSTI, LUOGO, PREZZO)"
+				+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {	
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1,  e.getId() );
-			stm.setString(2, e.getNome());
-			stm.setDate(3,  e.getData());
-			stm.setString(4, e.getDescrizione());
-			stm.setInt(5, e.getPosti());
-			stm.setString(6, e.getLuogo());
-			stm.setDouble(7, e.getPrezzo());
+			stm.setString(1, e.getNome());
+			stm.setDate(2,  e.getData());
+			stm.setString(3, e.getDescrizione());
+			stm.setInt(4, e.getPosti());
+			stm.setString(5, e.getLuogo());
+			stm.setDouble(6, e.getPrezzo());
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
