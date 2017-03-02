@@ -24,7 +24,7 @@ import javax.swing.event.ListSelectionListener;
 import entita.Figlio;
 import entita.Socio;
 import controller.AdminController;
-import view.VisualizzaSoci;
+import view.VisualizzaSociView;
 
 /**
  * @author eliapacioni
@@ -212,7 +212,7 @@ public class SocioController {
 
 	public void Visualizza() {
 		ArrayList<Socio> soci = model.ElencoSoci();
-		VisualizzaSoci view = new VisualizzaSoci(soci);
+		VisualizzaSociView view = new VisualizzaSociView(soci);
 		view.getFrame().setVisible(true);
 
 		view.getList().addListSelectionListener(new ListSelectionListener() {

@@ -1,6 +1,7 @@
+/**
+ * 
+ */
 package view;
-
-import entita.Socio;
 
 import java.awt.ScrollPane;
 import java.util.ArrayList;
@@ -15,10 +16,16 @@ import javax.swing.JList;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class VisualizzaSoci {
+import entita.Figlio;
+
+/**
+ * @author eliapacioni
+ *
+ */
+public class VisualizzaFigliView {
 
 	private JFrame frame;
-	private JList<Socio> list;
+	private JList<Figlio> list;
 	private JTextField cf;
 	private JTextField nome;
 	private JTextField cognome;
@@ -45,14 +52,14 @@ public class VisualizzaSoci {
 	private JButton btnDiventaExsocio;
 	private JButton btnEspelli;
 	private JButton btnElimina;
-	private DefaultListModel<Socio> dlm;
+	private DefaultListModel<Figlio> dlm;
 	private ScrollPane scrollPane;
 	private JButton btnAggiorna;
 
 	/**
 	 * Create the frame.
 	 */
-	public VisualizzaSoci(ArrayList<Socio> soci) {
+	public VisualizzaFigli(ArrayList<Figlio> figli) {
 		frame = new JFrame("Elenco soci del Circolo Cittadino di Ascoli Piceno");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 800, 600);
@@ -63,9 +70,9 @@ public class VisualizzaSoci {
 		lblElencoSoci.setBounds(341, 20, 75, 16);
 		frame.getContentPane().add(lblElencoSoci);
 		
-		list = new JList<Socio>();
-		dlm = new DefaultListModel<Socio>();
-		soci.stream().forEach((s)->{
+		list = new JList<Figlio>();
+		dlm = new DefaultListModel<Figlio>();
+		figli.stream().forEach((s)->{
 			dlm.addElement(s);
 		});
 		list.setModel(dlm);
@@ -320,13 +327,13 @@ public class VisualizzaSoci {
 	/**
 	 * @return the list
 	 */
-	public JList<Socio> getList() {
+	public JList<Figlio> getList() {
 		return list;
 	}
 	/**
 	 * @param list the list to set
 	 */
-	public void setList(JList<Socio> list) {
+	public void setList(JList<Figlio> list) {
 		this.list = list;
 	}
 	
