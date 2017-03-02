@@ -52,10 +52,15 @@ public class Validator {
 		return match.matches();
 	}
 
-	public static boolean ValidaAnagrafica(String str) {
+	public static boolean ValidaTesto(String str){
 		Pattern patt = Pattern.compile("[A-Z\\s]+");
 		Matcher match = patt.matcher(str);
-		return (match.matches() && str.length() < 21);
+		return match.matches(); 
+	}
+	
+	public static boolean ValidaAnagrafica(String str) {
+		
+		return ( ValidaTesto(str) && str.length() < 21);
 	}
 
 	public static boolean ValidaIndirizzo(String str) {
@@ -64,6 +69,10 @@ public class Validator {
 		return (match.matches() && str.length() < 200);
 	}
 
+	public static boolean ValidaCitta(String str){
+		return (ValidaTesto(str) && str.length()<36);
+	}
+	
 	public static boolean ValidaMesi(int mesi, String metpagamento) {
 		return ((metpagamento.equals("Mensile") && mesi == 1) || (metpagamento.equals("Trimestrale") && mesi == 3)
 				|| (metpagamento.equals("Semestrale") && mesi == 6) || (metpagamento.equals("Annuale") && mesi == 12));
