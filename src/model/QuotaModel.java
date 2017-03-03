@@ -154,7 +154,8 @@ public class QuotaModel {
 		return esito;
 	}
 
-	public void deleteVersamento(int cod) {
+	public boolean deleteVersamento(int cod) {
+		boolean esito = false;
 		String operation = "DELETE FROM Versamento WHERE ID = ?";
 		try {
 			db.open();
@@ -162,11 +163,13 @@ public class QuotaModel {
 			command = db.getConn().prepareStatement(operation);
 			command.setInt(1, cod);
 			command.executeUpdate();
+			esito = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			db.close();
 		}
+		return esito;
 	}
 
 	public ArrayList<Versamento> getVersamenti() {
