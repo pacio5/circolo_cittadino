@@ -48,35 +48,51 @@ public class SpillController {
 		fillCmbbxSoci();
 		controlEventInsert();
 	}
-	
+
 	private void controlEventManagement() {
-		//Evento riempimento form
-		viewManagement.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-	        public void valueChanged(ListSelectionEvent event) {
-		        if(viewManagement.getTable().getSelectedRow() != -1){
-		        	azzeraFormManagement();
-		            viewManagement.getTxtFieldData().setText(spills.get(viewManagement.getTable().getSelectedRow()).getData().toString());
-		            viewManagement.getTxtFieldImporto().setText(String.valueOf(spills.get(viewManagement.getTable().getSelectedRow()).getImporto()));
-		            viewManagement.getTextAreaDescrizione().setText(spills.get(viewManagement.getTable().getSelectedRow()).getDescrizione());
-		            fillChckbxMesi();
-		        }
-	        }
-	    });
-		
-		//Evento modifica Versamento
+		// Evento riempimento form
+		viewManagement.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent event) {
+				if (viewManagement.getTable().getSelectedRow() != -1) {
+					azzeraFormManagement();
+					viewManagement.getTxtFieldData()
+							.setText(spills.get(viewManagement.getTable().getSelectedRow()).getData().toString());
+					viewManagement.getTxtFieldImporto().setText(
+							String.valueOf(spills.get(viewManagement.getTable().getSelectedRow()).getImporto()));
+					viewManagement.getTextAreaDescrizione()
+							.setText(spills.get(viewManagement.getTable().getSelectedRow()).getDescrizione());
+					fillChckbxMesi();
+				}
+			}
+		});
+
+		// Evento modifica Versamento
 		viewManagement.getBtnModifica().addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e){
-				if (validatorManagementForm()){
-					spills.get(viewManagement.getTable().getSelectedRow()).setData(Date.valueOf(viewManagement.getTxtFieldData().getText()));
-					spills.get(viewManagement.getTable().getSelectedRow()).setImporto(Float.valueOf(viewManagement.getTxtFieldImporto().getText()).floatValue());
-					spills.get(viewManagement.getTable().getSelectedRow()).setDescrizione(viewManagement.getTextAreaDescrizione().getText());
-					spills.get(viewManagement.getTable().getSelectedRow()).cloneSpill(insertMesiCheckedManagement(spills.get(viewManagement.getTable().getSelectedRow())));
-					boolean esito = modelVersamento.updateVersamento(spills.get(viewManagement.getTable().getSelectedRow()));
-					((DefaultTableModel)viewManagement.getTable().getModel()).setValueAt(spills.get(viewManagement.getTable().getSelectedRow()).getData(), viewManagement.getTable().getSelectedRow(), 1);
-					((DefaultTableModel)viewManagement.getTable().getModel()).setValueAt(spills.get(viewManagement.getTable().getSelectedRow()).getImporto(), viewManagement.getTable().getSelectedRow(), 2);
-					((DefaultTableModel)viewManagement.getTable().getModel()).setValueAt(spills.get(viewManagement.getTable().getSelectedRow()).getSocio(), viewManagement.getTable().getSelectedRow(), 3);
-					((DefaultTableModel)viewManagement.getTable().getModel()).setValueAt(spills.get(viewManagement.getTable().getSelectedRow()).getDescrizione(), viewManagement.getTable().getSelectedRow(), 4);
+			public void mouseClicked(MouseEvent e) {
+				if (validatorManagementForm()) {
+					spills.get(viewManagement.getTable().getSelectedRow())
+							.setData(Date.valueOf(viewManagement.getTxtFieldData().getText()));
+					spills.get(viewManagement.getTable().getSelectedRow())
+							.setImporto(Float.valueOf(viewManagement.getTxtFieldImporto().getText()).floatValue());
+					spills.get(viewManagement.getTable().getSelectedRow())
+							.setDescrizione(viewManagement.getTextAreaDescrizione().getText());
+					spills.get(viewManagement.getTable().getSelectedRow()).cloneSpill(
+							insertMesiCheckedManagement(spills.get(viewManagement.getTable().getSelectedRow())));
+					boolean esito = modelVersamento
+							.updateVersamento(spills.get(viewManagement.getTable().getSelectedRow()));
+					((DefaultTableModel) viewManagement.getTable().getModel()).setValueAt(
+							spills.get(viewManagement.getTable().getSelectedRow()).getData(),
+							viewManagement.getTable().getSelectedRow(), 1);
+					((DefaultTableModel) viewManagement.getTable().getModel()).setValueAt(
+							spills.get(viewManagement.getTable().getSelectedRow()).getImporto(),
+							viewManagement.getTable().getSelectedRow(), 2);
+					((DefaultTableModel) viewManagement.getTable().getModel()).setValueAt(
+							spills.get(viewManagement.getTable().getSelectedRow()).getSocio(),
+							viewManagement.getTable().getSelectedRow(), 3);
+					((DefaultTableModel) viewManagement.getTable().getModel()).setValueAt(
+							spills.get(viewManagement.getTable().getSelectedRow()).getDescrizione(),
+							viewManagement.getTable().getSelectedRow(), 4);
 					if (esito) {
 						JOptionPane.showMessageDialog(viewManagement.getFrameGestVersamento().getContentPane(),
 								"Versamento modificato");
@@ -91,26 +107,30 @@ public class SpillController {
 				}
 			}
 		});
-		
-		//Evento eliminazione Versamento
+
+		// Evento eliminazione Versamento
 		viewManagement.getBtnElimina().addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e){
-				if (JOptionPane.showConfirmDialog(null, "Eliminare il versamento?") == 0 && viewManagement.getTable().getSelectedRow() != -1){
-					boolean esito = modelVersamento.deleteVersamento(spills.get(viewManagement.getTable().getSelectedRow()).getId());
+			public void mouseClicked(MouseEvent e) {
+				if (JOptionPane.showConfirmDialog(null, "Eliminare il versamento?") == 0
+						&& viewManagement.getTable().getSelectedRow() != -1) {
+					boolean esito = modelVersamento
+							.deleteVersamento(spills.get(viewManagement.getTable().getSelectedRow()).getId());
 					spills.remove(viewManagement.getTable().getSelectedRow());
-					if(esito){
-						JOptionPane.showMessageDialog(viewManagement.getFrameGestVersamento().getContentPane(), "Versamento eliminato");
+					if (esito) {
+						JOptionPane.showMessageDialog(viewManagement.getFrameGestVersamento().getContentPane(),
+								"Versamento eliminato");
 						viewManagement.getFrameGestVersamento().dispose();
 						MostraGestioneVers();
 					} else {
-						JOptionPane.showMessageDialog(viewManagement.getFrameGestVersamento().getContentPane(), "Versamento non eliminato");
+						JOptionPane.showMessageDialog(viewManagement.getFrameGestVersamento().getContentPane(),
+								"Versamento non eliminato");
 					}
 				}
 			}
 		});
-		
-		//Evento ritorno all'AdminView
+
+		// Evento ritorno all'AdminView
 		viewManagement.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -122,7 +142,7 @@ public class SpillController {
 	}
 
 	private void controlEventInsert() {
-		//Evento inserimento
+		// Evento inserimento
 		viewInsert.getBtnInserisci().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -149,7 +169,7 @@ public class SpillController {
 			}
 		});
 
-		//Evento azzeramento form
+		// Evento azzeramento form
 		viewInsert.getBtnAzzera().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -157,7 +177,7 @@ public class SpillController {
 			}
 		});
 
-		//Evento riempimento informazioni Socio
+		// Evento riempimento informazioni Socio
 		viewInsert.getCmbbxSocio().addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
@@ -185,7 +205,7 @@ public class SpillController {
 			}
 		});
 
-		//Evento ritorno all'AdminView
+		// Evento ritorno all'AdminView
 		viewInsert.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -214,7 +234,7 @@ public class SpillController {
 		viewInsert.getChckbxNovembre().setSelected(false);
 		viewInsert.getChckbxDicembre().setSelected(false);
 	}
-	
+
 	private void azzeraFormManagement() {
 		viewManagement.getTxtFieldData().setText("");
 		viewManagement.getTxtFieldImporto().setText("");
@@ -260,7 +280,7 @@ public class SpillController {
 			spill.setMese(viewInsert.getChckbxDicembre().getText());
 		return spill;
 	}
-	
+
 	private Versamento insertMesiCheckedManagement(Versamento spill) {
 		spill.azzeraMesi();
 		if (viewManagement.getChckbxGennaio().isSelected())
@@ -289,32 +309,32 @@ public class SpillController {
 			spill.setMese(viewManagement.getChckbxDicembre().getText());
 		return spill;
 	}
-	
-	private void fillChckbxMesi (){
-		for(int i = 0; i < spills.get(viewManagement.getTable().getSelectedRow()).getMesiLeng(); i++){
-			if(spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Gennaio"))
+
+	private void fillChckbxMesi() {
+		for (int i = 0; i < spills.get(viewManagement.getTable().getSelectedRow()).getMesiLeng(); i++) {
+			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Gennaio"))
 				viewManagement.getChckbxGennaio().setSelected(true);
-			if(spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Febbraio"))
+			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Febbraio"))
 				viewManagement.getChckbxFebbraio().setSelected(true);
-			if(spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Marzo"))
+			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Marzo"))
 				viewManagement.getChckbxMarzo().setSelected(true);
-			if(spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Aprile"))
+			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Aprile"))
 				viewManagement.getChckbxAprile().setSelected(true);
-			if(spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Maggio"))
+			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Maggio"))
 				viewManagement.getChckbxMaggio().setSelected(true);
-			if(spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Giugno"))
+			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Giugno"))
 				viewManagement.getChckbxGiugno().setSelected(true);
-			if(spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Luglio"))
+			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Luglio"))
 				viewManagement.getChckbxLuglio().setSelected(true);
-			if(spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Agosto"))
+			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Agosto"))
 				viewManagement.getChckbxAgosto().setSelected(true);
-			if(spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Settembre"))
+			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Settembre"))
 				viewManagement.getChckbxSettembre().setSelected(true);
-			if(spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Ottobre"))
+			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Ottobre"))
 				viewManagement.getChckbxOttobre().setSelected(true);
-			if(spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Novembre"))
+			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Novembre"))
 				viewManagement.getChckbxNovembre().setSelected(true);
-			if(spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Dicembre"))
+			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Dicembre"))
 				viewManagement.getChckbxDicembre().setSelected(true);
 		}
 	}
@@ -331,15 +351,16 @@ public class SpillController {
 	private void fillTableSpill() {
 		String[] nameColumns = { "Id", "Data", "Importo", "Socio", "Descrizione" };
 		spills = new ArrayList<Versamento>(modelVersamento.getVersamenti());
-		
-		/* Istanza del TableModel con l'override di 
-		 * isCellEditable per rendere la tabella non modificabile
+
+		/*
+		 * Istanza del TableModel con l'override di isCellEditable per rendere
+		 * la tabella non modificabile
 		 */
-		DefaultTableModel dati = new DefaultTableModel(nameColumns, 0){
+		DefaultTableModel dati = new DefaultTableModel(nameColumns, 0) {
 			@Override
-		    public boolean isCellEditable(int row, int column) {
-		        return false;
-		    }
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
 		};
 		for (int j = 0; j < spills.size(); j++) {
 			dati.addRow(new Vector<>());
@@ -378,7 +399,7 @@ public class SpillController {
 		}
 		return validazione;
 	}
-	
+
 	private boolean validatorManagementForm() {
 		boolean validazione = true;
 		if (!Validator.ValidaData(viewManagement.getTxtFieldData().getText())) {

@@ -104,7 +104,7 @@ public class QuotaModel {
 			String[] mesi;
 			mesi = spill.getMesi().clone();
 			command = db.getConn().prepareStatement(operationM);
-			for (int i = 0; i < 12 && mesi[i] != null; i++){
+			for (int i = 0; i < 12 && mesi[i] != null; i++) {
 				command.setString(1, mesi[i]);
 				command.executeUpdate();
 			}
@@ -133,14 +133,14 @@ public class QuotaModel {
 			command.setInt(5, spill.getId());
 			command.executeUpdate();
 			command = null;
-			
+
 			command = db.getConn().prepareStatement(operationD);
 			command.setInt(1, spill.getId());
 			command.executeUpdate();
 			command = null;
-			
+
 			command = db.getConn().prepareStatement(operationM);
-			for (int i = 0; i < spill.getMesiLeng() && spill.getMese(i) != null; i++){
+			for (int i = 0; i < spill.getMesiLeng() && spill.getMese(i) != null; i++) {
 				command.setString(1, spill.getMese(i));
 				command.setInt(2, spill.getId());
 				command.executeUpdate();

@@ -348,32 +348,32 @@ public class InsertSpillView {
 	public JCheckBox getChckbxDicembre() {
 		return chckbxDicembre;
 	}
-	
+
 	public int getNumberChckbxChecked() {
 		int cont = 0;
-		if(chckbxGennaio.isSelected())
+		if (chckbxGennaio.isSelected())
 			cont++;
-		if(chckbxFebbraio.isSelected())
+		if (chckbxFebbraio.isSelected())
 			cont++;
-		if(chckbxMarzo.isSelected())
+		if (chckbxMarzo.isSelected())
 			cont++;
-		if(chckbxAprile.isSelected())
+		if (chckbxAprile.isSelected())
 			cont++;
-		if(chckbxMaggio.isSelected())
+		if (chckbxMaggio.isSelected())
 			cont++;
-		if(chckbxGiugno.isSelected())
+		if (chckbxGiugno.isSelected())
 			cont++;
-		if(chckbxLuglio.isSelected())
+		if (chckbxLuglio.isSelected())
 			cont++;
-		if(chckbxAgosto.isSelected())
+		if (chckbxAgosto.isSelected())
 			cont++;
-		if(chckbxSettembre.isSelected())
+		if (chckbxSettembre.isSelected())
 			cont++;
-		if(chckbxOttobre.isSelected())
+		if (chckbxOttobre.isSelected())
 			cont++;
-		if(chckbxNovembre.isSelected())
+		if (chckbxNovembre.isSelected())
 			cont++;
-		if(chckbxDicembre.isSelected())
+		if (chckbxDicembre.isSelected())
 			cont++;
 		return cont;
 	}
