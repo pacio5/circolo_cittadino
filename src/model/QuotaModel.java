@@ -102,11 +102,12 @@ public class QuotaModel {
 			command.executeUpdate();
 			command = null;
 			String[] mesi;
-			mesi = (spill.getMesi().clone());
+			mesi = spill.getMesi().clone();
 			command = db.getConn().prepareStatement(operationM);
-			for (int i = 0; i < 12 && mesi[i] != null; i++)
+			for (int i = 0; i < 12 && mesi[i] != null; i++) {
 				command.setString(1, mesi[i]);
 				command.executeUpdate();
+			}
 			esito = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -116,7 +117,8 @@ public class QuotaModel {
 		return esito;
 	}
 
-	public void updateVersamento(Versamento spill) {
+	public boolean updateVersamento(Versamento spill) {
+		boolean esito = false;
 		String operationU = "UPDATE Versamento SET DATA = ?, IMPORTO = ?, DESCRIZIONE = ?, SOCIO = ? WHERE ID = ?";
 		String operationD = "DELETE FROM Mese WHERE VERSAMENTO = ?";
 		String operationM = "INSERT INTO Mese VALUES (?, ?)";
@@ -131,25 +133,29 @@ public class QuotaModel {
 			command.setInt(5, spill.getId());
 			command.executeUpdate();
 			command = null;
-			
+
 			command = db.getConn().prepareStatement(operationD);
 			command.setInt(1, spill.getId());
 			command.executeUpdate();
 			command = null;
-			
+
 			command = db.getConn().prepareStatement(operationM);
-			for (int i = 0; i < spill.getMesiLeng(); i++)
+			for (int i = 0; i < spill.getMesiLeng() && spill.getMese(i) != null; i++) {
 				command.setString(1, spill.getMese(i));
 				command.setInt(2, spill.getId());
 				command.executeUpdate();
+			}
+			esito = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			db.close();
 		}
+		return esito;
 	}
 
-	public void deleteVersamento(int cod) {
+	public boolean deleteVersamento(int cod) {
+		boolean esito = false;
 		String operation = "DELETE FROM Versamento WHERE ID = ?";
 		try {
 			db.open();
@@ -157,11 +163,13 @@ public class QuotaModel {
 			command = db.getConn().prepareStatement(operation);
 			command.setInt(1, cod);
 			command.executeUpdate();
+			esito = true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			db.close();
 		}
+		return esito;
 	}
 
 	public ArrayList<Versamento> getVersamenti() {
@@ -174,11 +182,10 @@ public class QuotaModel {
 				spill.add(new Versamento(rs.getInt("ID"), rs.getFloat("IMPORTO"), rs.getString("SOCIO"),
 						rs.getDate("DATA"), rs.getString("DESCRIZIONE")));
 			}
-			rs = command.executeQuery("SELECT * FROM Mese");
+			rs = command.executeQuery("SELECT * FROM Mese ORDER BY VERSAMENTO");
 			rs.next();
 			for (int i = 0; i < spill.size(); i++) {
-				rs.first();
-				while (rs.getInt("VERSAMENTO") == spill.get(i).getId()) {
+				while (!rs.isAfterLast() && rs.getInt("VERSAMENTO") == spill.get(i).getId()) {
 					spill.get(i).setMese(rs.getString("DATA"));
 					rs.next();
 				}

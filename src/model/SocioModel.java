@@ -236,14 +236,15 @@ public class SocioModel {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
-		String query = "INSERT INTO figlio(cf, nome, data_nascita, genitore, acarico) VALUES(?,?,?,?,?);";
+		String query = "INSERT INTO figlio(cf, nome, sesso, data_nascita, genitore, acarico) VALUES(?,?,?,?,?,?);";
 		try {
 			st = db.getConn().prepareStatement(query);
 			st.setString(1, n.getCf());
 			st.setString(2, n.getNome());
-			st.setDate(3, n.getDataNascita());
-			st.setString(4, n.getGenitore().getCf());
-			st.setBoolean(5, n.getACarico());
+			st.setString(3, String.valueOf(n.getSesso()));
+			st.setDate(4, n.getDataNascita());
+			st.setString(5, n.getGenitore().getCf());
+			st.setBoolean(6, n.getACarico());
 			int res = st.executeUpdate();
 			if (res == 1)
 				esito = true;
@@ -280,18 +281,21 @@ public class SocioModel {
 		return esito;
 	}
 
-	public boolean ModificaFiglio(Figlio n) {
+	public boolean ModificaFiglio(Figlio n, String cf) {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
-		String query = "UPDATE figlio SET cf = ?, nome = ?, data_nascita = ?, genitore = ?, acarico = ? WHERE cf = ?;";
+		String query = "UPDATE figlio SET cf = ?, nome = ?, sesso = ?, data_nascita = ?, genitore = ?, acarico = ? WHERE cf = ?;";
 		try {
 			st = db.getConn().prepareStatement(query);
 			st.setString(1, n.getCf());
 			st.setString(2, n.getNome());
-			st.setDate(3, n.getDataNascita());
-			st.setString(4, n.getGenitore().getCf());
-			st.setBoolean(5, n.getACarico());
+			st.setString(3, String.valueOf(n.getSesso()));
+			st.setDate(4, n.getDataNascita());
+			st.setString(5, n.getGenitore().getCf());
+			st.setBoolean(6, n.getACarico());
+			st.setString(7, cf);
+
 			int res = st.executeUpdate();
 			if (res == 1)
 				esito = true;
@@ -334,17 +338,22 @@ public class SocioModel {
 		return socio;
 	}
 
-	public ArrayList<Figlio> ElencoFigli() {
+	public ArrayList<Figlio> ElencoFigli(String cf) {
 		ArrayList<Figlio> figli = new ArrayList<Figlio>();
 		Statement st;
 		try {
 			db.open();
+			String query;
 			st = db.getConn().createStatement();
-			String query = "SELECT * FROM figlio";
+			if (cf == null) {
+				query = "SELECT * FROM figlio";
+			}else{
+				query = "SELECT * FROM figlio WHERE genitore = '"+ cf + "';";
+			}
 			ResultSet res = st.executeQuery(query);
 			while (res.next()) {
-				figli.add(new Figlio(res.getString("cf"), res.getString("nome"), res.getDate("data_nascita"),
-						cercaSocio(res.getString("genitore")), res.getBoolean("acarico")));
+				figli.add(new Figlio(res.getString("cf"), res.getString("nome"), res.getString("sesso").charAt(0),
+						res.getDate("data_nascita"), cercaSocio(res.getString("genitore")), res.getBoolean("acarico")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

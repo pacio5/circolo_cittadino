@@ -12,20 +12,22 @@ import java.sql.Date;
 public class Figlio {
 	private String cf;
 	private String nome;
+	private char sesso;
 	private Date dataNascita;
 	private Socio genitore;
 	private boolean aCarico;
 	
-	public Figlio(String codice, String name, Date dateB, Socio parent, boolean carico){
+	public Figlio(){
+		this(null, null, ' ', null, null, false);
+	}
+	
+	public Figlio(String codice, String name, char sex, Date dateB, Socio parent, boolean carico){
 		cf = codice;
 		nome = name;
+		sesso = sex;
 		dataNascita = dateB;
 		genitore = parent;
 		aCarico = carico;
-	}
-	
-	public Figlio(){
-		this(null, null, null, null, false);
 	}
 	
 	public String getCf(){
@@ -34,6 +36,10 @@ public class Figlio {
 
 	public String getNome() {
 		return nome;
+	}
+	
+	public char getSesso(){
+		return sesso;
 	}
 	
 	public Date getDataNascita() {
@@ -49,6 +55,6 @@ public class Figlio {
 	}
 	
 	public String toString(){
-		return nome + " codice fiscale: " + cf + " nato a " + dataNascita + "figlio di: " + genitore.toString() + "a carico: " + aCarico;
+		return nome + " Genitore " + genitore.getNome() + " " + genitore.getCognome();
 	}
 }

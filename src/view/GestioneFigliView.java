@@ -28,6 +28,7 @@ public class GestioneFigliView {
 	private JList<Figlio> list;
 	private DefaultListModel<Figlio> dlm;
 	private ScrollPane scrollPane;
+	private JComboBox<Socio> filtro;
 	private JTextField cf;
 	private JTextField nome;
 	private JRadioButton rdbtnUomo;
@@ -65,7 +66,7 @@ public class GestioneFigliView {
 		list.setModel(dlm);
 		
 		scrollPane = new ScrollPane();
-		scrollPane.setBounds(6, 54, 228, 518);
+		scrollPane.setBounds(6, 54, 228, 470);
 		frame.getContentPane().add(scrollPane);
 		scrollPane.add(list);
 		
@@ -74,9 +75,8 @@ public class GestioneFigliView {
 		frame.getContentPane().add(lblCodiceFiscale);
 
 		cf = new JTextField();
-		cf.setBounds(362, 90, 130, 26);
+		cf.setBounds(362, 90, 170, 26);
 		cf.setColumns(10);
-		cf.setEnabled(false);
 		frame.getContentPane().add(cf);
 		
 		
@@ -86,8 +86,7 @@ public class GestioneFigliView {
 
 		nome = new JTextField();
 		nome.setColumns(10);
-		nome.setBounds(362, 128, 130, 26);
-		nome.setEnabled(false);
+		nome.setBounds(362, 128, 170, 26);
 		frame.getContentPane().add(nome);
 
 		JLabel lblSesso = new JLabel("Sesso");
@@ -97,12 +96,10 @@ public class GestioneFigliView {
 		rdbtnUomo = new JRadioButton("Uomo");
 		rdbtnUomo.setBounds(362, 167, 69, 23);
 		rdbtnUomo.setSelected(true);
-		rdbtnUomo.setEnabled(false);
 		frame.getContentPane().add(rdbtnUomo);
 
 		rdbtnDonna = new JRadioButton("Donna");
-		rdbtnDonna.setBounds(430, 167, 79, 23);
-		rdbtnDonna.setEnabled(false);
+		rdbtnDonna.setBounds(453, 167, 79, 23);
 		frame.getContentPane().add(rdbtnDonna);
 
 		sesso = new ButtonGroup();
@@ -114,9 +111,8 @@ public class GestioneFigliView {
 		frame.getContentPane().add(lblDataDiNascita);
 
 		dataNascita = new JTextField();
-		dataNascita.setBounds(362, 202, 130, 26);
+		dataNascita.setBounds(362, 202, 170, 26);
 		dataNascita.setColumns(10);
-		dataNascita.setEnabled(false);
 		frame.getContentPane().add(dataNascita);
 		
 		JLabel lblGenitore = new JLabel("Genitore");
@@ -127,7 +123,7 @@ public class GestioneFigliView {
 		genitori.stream().forEach((g)->{
 			genitore.addItem(g);
 		});
-		genitore.setBounds(362, 242, 130, 26);
+		genitore.setBounds(362, 242, 170, 26);
 		frame.getContentPane().add(genitore);
 		
 		
@@ -137,6 +133,7 @@ public class GestioneFigliView {
 		
 		rdbtnSi = new JRadioButton("Si");
 		rdbtnSi.setBounds(362, 283, 43, 26);
+		rdbtnSi.setSelected(true);
 		frame.getContentPane().add(rdbtnSi);
 		
 		rdbtnNo = new JRadioButton("No");
@@ -169,6 +166,20 @@ public class GestioneFigliView {
 		btnDashboard = new JButton("Dashboard");
 		btnDashboard.setBounds(697, 11, 97, 41);
 		frame.getContentPane().add(btnDashboard);
+		
+		JLabel lblFiltraPerGenitore = new JLabel("Filtra per genitore");
+		lblFiltraPerGenitore.setBounds(6, 534, 117, 16);
+		frame.getContentPane().add(lblFiltraPerGenitore);
+		
+		filtro = new JComboBox<Socio>();
+		filtro.addItem(null);
+		genitori.stream().forEach((g)->{
+			filtro.addItem(g);
+		});
+		
+		filtro.setBounds(119, 530, 130, 26);
+		filtro.setSelectedIndex(0);
+		frame.getContentPane().add(filtro);
 	}
 	/**
 	 * @return the frame
@@ -283,5 +294,11 @@ public class GestioneFigliView {
 	 */
 	public JButton getBtnInserisci() {
 		return btnInserisci;
+	}
+	/**
+	 * @return the filtro
+	 */
+	public JComboBox<Socio> getFiltro() {
+		return filtro;
 	}
 }

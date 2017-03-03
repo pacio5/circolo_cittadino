@@ -222,8 +222,10 @@ public class Socio {
 	public void setTipologia(String type) {
 		tipologia = type;
 	}
-
+	
+	@Override
 	public String toString() {
 		return nome + " " + cognome + " "+ cf;
 	}
+	
 }

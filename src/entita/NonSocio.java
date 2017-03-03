@@ -120,6 +120,7 @@ public class NonSocio {
 		telefono = tel;
 	}
 
+	@Override
 	public String toString() {
 		return "Il cliente: " + nome + " " + cognome + ", codice fiscale: " + cf;
 	}

@@ -23,11 +23,11 @@ public class AdminController {
 	 * adminModel;
 	 */
 
-	public AdminController(){
+	public AdminController() {
 		adminView = new AdminView();
 		adminView.getFrame().setVisible(true);
 	}
-	
+
 	public AdminController(AdminView view) {
 		adminView = view;
 	}
@@ -41,7 +41,7 @@ public class AdminController {
 				adminView.getFrame().dispose();
 			}
 		});
-		
+
 		adminView.getBtnInserisciSocio().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -50,7 +50,7 @@ public class AdminController {
 				adminView.getFrame().dispose();
 			}
 		});
-		
+
 		adminView.getBtnInserisciVersamento().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -68,7 +68,7 @@ public class AdminController {
 				adminView.getFrame().dispose();
 			}
 		});
-		
+
 		adminView.getBtnInserisciEvento().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -77,12 +77,21 @@ public class AdminController {
 				adminView.getFrame().dispose();
 			}
 		});
-		
-		adminView.getBtnGestioneFigli().addMouseListener(new MouseAdapter(){
+
+		adminView.getBtnGestioneFigli().addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e){
+			public void mouseClicked(MouseEvent e) {
 				SocioController socioController = new SocioController();
 				socioController.gestioneFigli();
+				adminView.getFrame().dispose();
+			}
+		});
+
+		adminView.getBtnGestioneVersamenti().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SpillController spillController = new SpillController();
+				spillController.MostraGestioneVers();
 				adminView.getFrame().dispose();
 			}
 		});

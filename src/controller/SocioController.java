@@ -15,6 +15,8 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -470,7 +472,7 @@ public class SocioController {
 	}
 
 	public void gestioneFigli() {
-		GestioneFigliView view = new GestioneFigliView(model.ElencoFigli(), model.ElencoSoci());
+		GestioneFigliView view = new GestioneFigliView(model.ElencoFigli(null), model.ElencoSoci());
 		view.getFrame().setVisible(true);
 
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
@@ -486,6 +488,12 @@ public class SocioController {
 			public void mouseClicked(MouseEvent e) {
 				String cf = view.getCf().getText().toUpperCase();
 				String nome = view.getNome().getText().toUpperCase();
+				char sesso;
+				if (view.getRdbtnUomo().isSelected()) {
+					sesso = 'M';
+				} else {
+					sesso = 'F';
+				}
 				String dataNascita = view.getDataNascita().getText();
 				Socio genitore = (Socio) view.getGenitore().getSelectedItem();
 				Boolean aCarico;
@@ -518,7 +526,7 @@ public class SocioController {
 				}
 				if (validazione) {
 					boolean esito = model
-							.InserisciFiglio(new Figlio(cf, nome, Date.valueOf(dataNascita), genitore, aCarico));
+							.InserisciFiglio(new Figlio(cf, nome, sesso, Date.valueOf(dataNascita), genitore, aCarico));
 
 					if (esito) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
@@ -534,5 +542,145 @@ public class SocioController {
 				}
 			}
 		});
+
+		view.getFiltro().addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if (view.getFiltro().getSelectedItem() != null) {
+					Socio genitore = (Socio) view.getFiltro().getSelectedItem();
+					ArrayList<Figlio> figli = model.ElencoFigli(genitore.getCf());
+					DefaultListModel<Figlio> dlm = new DefaultListModel<Figlio>();
+					figli.stream().forEach((f)->{
+						dlm.addElement(f);
+					});
+					view.getList().setModel(dlm);
+				}
+			}
+		});
+
+		view.getList().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				view.getCf().setEnabled(false);
+				view.getNome().setEnabled(false);
+				view.getRdbtnDonna().setEnabled(false);
+				view.getRdbtnUomo().setEnabled(false);
+				view.getDataNascita().setEnabled(false);
+				view.getGenitore().setEnabled(false);
+				view.getRdbtnSi().setEnabled(false);
+				view.getRdbtnNo().setEnabled(false);
+
+				Figlio figlio = view.getList().getSelectedValue();
+				view.getCf().setText(figlio.getCf());
+				view.getNome().setText(figlio.getNome());
+				if (figlio.getSesso() == 'M') {
+					view.getRdbtnUomo().setSelected(true);
+				} else {
+					view.getRdbtnDonna().setSelected(true);
+				}
+				view.getDataNascita().setText(figlio.getDataNascita().toString());
+				view.getGenitore().setSelectedItem(figlio.getGenitore());
+				if (figlio.getACarico()) {
+					view.getRdbtnSi().setSelected(true);
+				} else {
+					view.getRdbtnNo().setSelected(false);
+				}
+				view.getBtnElimina().setEnabled(true);
+				view.getBtnModifica().setEnabled(true);
+			}
+
+		});
+
+		view.getBtnElimina().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (model.EliminaFiglio(view.getList().getSelectedValue())) {
+					gestioneFigli();
+					view.getFrame().dispose();
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Eliminazione Effettuata");
+
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Eliminazione Non Effettuata");
+				}
+			}
+		});
+
+		view.getBtnModifica().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				view.getCf().setEnabled(true);
+				view.getNome().setEnabled(true);
+				view.getRdbtnDonna().setEnabled(true);
+				view.getRdbtnUomo().setEnabled(true);
+				view.getDataNascita().setEnabled(true);
+				view.getGenitore().setEnabled(true);
+				view.getRdbtnSi().setEnabled(true);
+				view.getRdbtnNo().setEnabled(true);
+				view.getBtnAggiorna().setVisible(true);
+				view.getBtnElimina().setVisible(false);
+				view.getBtnModifica().setVisible(false);
+				view.getBtnInserisci().setVisible(false);
+			}
+		});
+
+		view.getBtnAggiorna().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String cf = view.getCf().getText().toUpperCase();
+				String nome = view.getNome().getText().toUpperCase();
+				char sesso;
+				if (view.getRdbtnUomo().isSelected()) {
+					sesso = 'M';
+				} else {
+					sesso = 'F';
+				}
+				String dataNascita = view.getDataNascita().getText();
+				Socio genitore = (Socio) view.getGenitore().getSelectedItem();
+				Boolean aCarico;
+				if (view.getRdbtnSi().isSelected())
+					aCarico = true;
+				else
+					aCarico = false;
+
+				Boolean validazione = true;
+				if (!Validator.ValidaCf(cf)) {
+					view.getCf().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getCf().getBackground() == Color.red)
+						view.getCf().setBackground(Color.white);
+				}
+				if (!Validator.ValidaAnagrafica(nome)) {
+					view.getNome().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getCf().getBackground() == Color.red)
+						view.getNome().setBackground(Color.white);
+				}
+				if (!Validator.ValidaData(dataNascita)) {
+					view.getDataNascita().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getDataNascita().getBackground() == Color.red)
+						view.getDataNascita().setBackground(Color.white);
+				}
+				if (validazione) {
+					boolean esito = model.ModificaFiglio(
+							new Figlio(cf, nome, sesso, Date.valueOf(dataNascita), genitore, aCarico),
+							view.getList().getSelectedValue().getCf());
+
+					if (esito) {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Aggiornamento Effettuato");
+						gestioneFigli();
+						view.getFrame().dispose();
+					} else {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Aggiornamento Non Effettuato");
+					}
+
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
+							"Campi non validi, modificare i campi contrassegnati in rosso");
+				}
+			}
+		});
+
 	}
 }
