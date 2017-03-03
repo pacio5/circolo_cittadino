@@ -13,6 +13,7 @@ public class AdminView {
 	private JButton btnInserisciEvento;
 	private JButton btnElencoSoci;
 	private JButton btnGestioneFigli;
+	private JButton btnGestioneVersamenti;
 
 	/**
 	 * Create the frame.
@@ -33,26 +34,29 @@ public class AdminView {
 		btnInserisciVersamento.setBounds(199, 50, 152, 29);
 		
 		btnInserisciEvento = new JButton("Inserisci Evento");
-		btnInserisciEvento.setBounds(199, 91, 152, 29);
+		btnInserisciEvento.setBounds(199, 132, 152, 29);
 		
 		JLabel lblCircoloCittadinoDi = new JLabel("Circolo Cittadino di Ascoli Piceno");
 		lblCircoloCittadinoDi.setBounds(266, 11, 211, 16);
 
+		btnElencoSoci = new JButton("Elenco Soci");
+		btnElencoSoci.setBounds(24, 91, 152, 29);
+		
+		btnGestioneFigli = new JButton("Gestione Figli");
+		btnGestioneFigli.setBounds(24, 132, 152, 29);
+		
+		btnGestioneVersamenti = new JButton("Gestione Versamenti");
+		btnGestioneVersamenti.setBounds(199, 90, 152, 29);
+		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(btnLogout);
 		frame.getContentPane().add(btnInserisciSocio);
 		frame.getContentPane().add(btnInserisciVersamento);
 		frame.getContentPane().add(btnInserisciEvento);
 		frame.getContentPane().add(lblCircoloCittadinoDi);
-		
-		btnElencoSoci = new JButton("Elenco Soci");
-		btnElencoSoci.setBounds(24, 91, 152, 29);
 		frame.getContentPane().add(btnElencoSoci);
-		
-		btnGestioneFigli = new JButton("Gestione Figli");
-		btnGestioneFigli.setBounds(24, 132, 152, 29);
 		frame.getContentPane().add(btnGestioneFigli);
-		
+		frame.getContentPane().add(btnGestioneVersamenti);
 	}
 
 	public JFrame getFrame() {
@@ -81,5 +85,9 @@ public class AdminView {
 	
 	public JButton getBtnGestioneFigli() {
 		return btnGestioneFigli;
+	}
+	
+	public JButton getBtnGestioneVersamenti(){
+		return btnGestioneVersamenti;
 	}
 }
