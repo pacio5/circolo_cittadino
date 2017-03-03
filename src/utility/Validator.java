@@ -73,6 +73,9 @@ public class Validator {
 		return (ValidaTesto(str) && str.length()<36);
 	}
 	
+	public static boolean ValidaProfessione(String str){
+		return (ValidaTesto(str) && str.length()<31);
+	}
 	public static boolean ValidaMesi(int mesi, String metpagamento) {
 		return ((metpagamento.equals("Mensile") && mesi == 1) || (metpagamento.equals("Trimestrale") && mesi == 3)
 				|| (metpagamento.equals("Semestrale") && mesi == 6) || (metpagamento.equals("Annuale") && mesi == 12));

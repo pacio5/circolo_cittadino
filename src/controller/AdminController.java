@@ -46,7 +46,7 @@ public class AdminController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SocioController socioController = new SocioController();
-				socioController.Inserimento();
+				socioController.inserimentoSocio();
 				adminView.getFrame().dispose();
 			}
 		});
@@ -64,7 +64,7 @@ public class AdminController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SocioController socioController = new SocioController();
-				socioController.Visualizza();;
+				socioController.visualizzazioneSoci();
 				adminView.getFrame().dispose();
 			}
 		});
@@ -78,18 +78,11 @@ public class AdminController {
 			}
 		});
 		
-		adminView.getBtnInserisciFiglio().addMouseListener(new MouseAdapter(){
+		adminView.getBtnGestioneFigli().addMouseListener(new MouseAdapter(){
+			@Override
 			public void mouseClicked(MouseEvent e){
 				SocioController socioController = new SocioController();
-				socioController.InserimentoFiglio();
-				adminView.getFrame().dispose();
-			}
-		});
-		
-		adminView.getBtnVisualizzaFigli().addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				SocioController socioController = new SocioController();
-				socioController.VisualizzaFigli();
+				socioController.gestioneFigli();
 				adminView.getFrame().dispose();
 			}
 		});
