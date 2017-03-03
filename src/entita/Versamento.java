@@ -45,12 +45,23 @@ public class Versamento {
 				&& !data.after(x.data) && !data.before(x.data) && descrizione.equals(x.descrizione));
 	}
 
+	@Override
 	public String toString() {
 		return "Versamento [Id = " + id + ", Importo = " + importo + ", Socio = " + socio + ", Data = " + data
 				+ ", Descrizione = " + descrizione + "]";
 	}
+	
+	public void cloneSpill(Versamento x){
+		id = x.getId();
+		mesi = x.getMesi().clone();
+		lunghmesi = x.getMesiLeng();
+		importo = x.getImporto();
+		socio = x.getSocio();
+		data = x.getData();
+		descrizione = x.getDescrizione();
+	}
 
-	/* Lettura attributi */
+    //Lettura attributi 
 	public int getId() {
 		return id;
 	}
@@ -83,7 +94,7 @@ public class Versamento {
 		return descrizione;
 	}
 
-	/* Inserimento attributi */
+	//Inserimento attributi 
 	public void setId(int cod) {
 		id = cod;
 	}
@@ -111,5 +122,11 @@ public class Versamento {
 
 	public void setDescrizione(String desc) {
 		descrizione = desc;
+	}
+	
+	public void azzeraMesi(){
+		String[] mesivuoti = {null, null, null, null, null, null, null, null, null, null, null, null};
+		mesi = mesivuoti;
+		lunghmesi = 0;
 	}
 }
