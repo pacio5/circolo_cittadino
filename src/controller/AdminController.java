@@ -72,8 +72,8 @@ public class AdminController {
 		adminView.getBtnInserisciEvento().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				PrenotazioneController prenotazioneController = new PrenotazioneController();
-				prenotazioneController.Inserimento();
+				GestioneEventiController prenotazioneController = new GestioneEventiController();
+				prenotazioneController.Gestione();
 				adminView.getFrame().dispose();
 			}
 		});

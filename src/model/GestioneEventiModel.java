@@ -16,9 +16,9 @@ import java.util.ArrayList;
  *
  */
 
-public class PrenotazioneModel {
+public class GestioneEventiModel {
 	private MySql db;
-	public PrenotazioneModel(){
+	public GestioneEventiModel(){
 		db=new MySql();
 	}
 	
