@@ -24,7 +24,7 @@ public class InsertSpillView {
 	private JTextField txtFieldEmail;
 	private JTextField txtFieldData;
 	private JTextField txtFieldImporto;
-	private JTextArea txtFieldDescrizione;
+	private JTextArea txtAreaDescrizione;
 	private JCheckBox chckbxGennaio;
 	private JCheckBox chckbxFebbraio;
 	private JCheckBox chckbxMarzo;
@@ -166,12 +166,12 @@ public class InsertSpillView {
 		JLabel lblDescrizione = new JLabel("Descrizione");
 		lblDescrizione.setBounds(309, 247, 78, 14);
 
-		txtFieldDescrizione = new JTextArea();
-		txtFieldDescrizione.setWrapStyleWord(true);
-		txtFieldDescrizione.setFont(new Font("Monospaced", Font.PLAIN, 11));
-		txtFieldDescrizione.setLineWrap(true);
-		txtFieldDescrizione.setBounds(397, 244, 164, 132);
-		txtFieldDescrizione.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+		txtAreaDescrizione = new JTextArea();
+		txtAreaDescrizione.setWrapStyleWord(true);
+		txtAreaDescrizione.setFont(new Font("Monospaced", Font.PLAIN, 11));
+		txtAreaDescrizione.setLineWrap(true);
+		txtAreaDescrizione.setBounds(397, 244, 164, 132);
+		txtAreaDescrizione.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
 		chckbxGennaio = new JCheckBox("Gennaio");
 		chckbxGennaio.setBounds(309, 129, 73, 23);
@@ -239,7 +239,7 @@ public class InsertSpillView {
 		frameInsVersamento.getContentPane().add(lblImporto);
 		frameInsVersamento.getContentPane().add(txtFieldImporto);
 		frameInsVersamento.getContentPane().add(lblDescrizione);
-		frameInsVersamento.getContentPane().add(txtFieldDescrizione);
+		frameInsVersamento.getContentPane().add(txtAreaDescrizione);
 		frameInsVersamento.getContentPane().add(chckbxGennaio);
 		frameInsVersamento.getContentPane().add(chckbxFebbraio);
 		frameInsVersamento.getContentPane().add(chckbxMarzo);
@@ -298,7 +298,7 @@ public class InsertSpillView {
 	}
 
 	public JTextArea getTxtFieldDescrizione() {
-		return txtFieldDescrizione;
+		return txtAreaDescrizione;
 	}
 
 	public JCheckBox getChckbxGennaio() {
@@ -388,109 +388,5 @@ public class InsertSpillView {
 
 	public JButton getBtnDashboard() {
 		return btnDashboard;
-	}
-
-	public void setFrameInsVersamento(JFrame frameInsVersamento) {
-		this.frameInsVersamento = frameInsVersamento;
-	}
-
-	public void setCmbbxSocio(JComboBox<String> cmbbxSocio) {
-		this.cmbbxSocio = cmbbxSocio;
-	}
-
-	public void setTxtFieldCodFisc(JTextField txtFieldCodFisc) {
-		this.txtFieldCodFisc = txtFieldCodFisc;
-	}
-
-	public void setTxtFieldModPagamento(JTextField txtFieldModPagamento) {
-		this.txtFieldModPagamento = txtFieldModPagamento;
-	}
-
-	public void setTxtFieldMetPagamento(JTextField txtFieldMetPagamento) {
-		this.txtFieldMetPagamento = txtFieldMetPagamento;
-	}
-
-	public void setTxtFieldTipologia(JTextField txtFieldTipologia) {
-		this.txtFieldTipologia = txtFieldTipologia;
-	}
-
-	public void setTxtFieldTelefono(JTextField txtFieldTelefono) {
-		this.txtFieldTelefono = txtFieldTelefono;
-	}
-
-	public void setTxtFieldEmail(JTextField txtFieldEmail) {
-		this.txtFieldEmail = txtFieldEmail;
-	}
-
-	public void setTxtFieldData(JTextField txtFieldData) {
-		this.txtFieldData = txtFieldData;
-	}
-
-	public void setTxtFieldImporto(JTextField txtFieldImporto) {
-		this.txtFieldImporto = txtFieldImporto;
-	}
-
-	public void setTxtFieldDescrizione(JTextArea txtFieldDescrizione) {
-		this.txtFieldDescrizione = txtFieldDescrizione;
-	}
-
-	public void setChckbxGennaio(JCheckBox chckbxGennaio) {
-		this.chckbxGennaio = chckbxGennaio;
-	}
-
-	public void setChckbxFebbraio(JCheckBox chckbxFebbraio) {
-		this.chckbxFebbraio = chckbxFebbraio;
-	}
-
-	public void setChckbxMarzo(JCheckBox chckbxMarzo) {
-		this.chckbxMarzo = chckbxMarzo;
-	}
-
-	public void setChckbxAprile(JCheckBox chckbxAprile) {
-		this.chckbxAprile = chckbxAprile;
-	}
-
-	public void setChckbxMaggio(JCheckBox chckbxMaggio) {
-		this.chckbxMaggio = chckbxMaggio;
-	}
-
-	public void setChckbxGiugno(JCheckBox chckbxGiugno) {
-		this.chckbxGiugno = chckbxGiugno;
-	}
-
-	public void setChckbxLuglio(JCheckBox chckbxLuglio) {
-		this.chckbxLuglio = chckbxLuglio;
-	}
-
-	public void setChckbxAgosto(JCheckBox chckbxAgosto) {
-		this.chckbxAgosto = chckbxAgosto;
-	}
-
-	public void setChckbxSettembre(JCheckBox chckbxSettembre) {
-		this.chckbxSettembre = chckbxSettembre;
-	}
-
-	public void setChckbxOttobre(JCheckBox chckbxOttobre) {
-		this.chckbxOttobre = chckbxOttobre;
-	}
-
-	public void setChckbxNovembre(JCheckBox chckbxNovembre) {
-		this.chckbxNovembre = chckbxNovembre;
-	}
-
-	public void setChckbxDicembre(JCheckBox chckbxDicembre) {
-		this.chckbxDicembre = chckbxDicembre;
-	}
-
-	public void setBtnInserisci(JButton btnInserisci) {
-		this.btnInserisci = btnInserisci;
-	}
-
-	public void setBtnAzzera(JButton btnAzzera) {
-		this.btnAzzera = btnAzzera;
-	}
-
-	public void setBtnDashboard(JButton btnDashboard) {
-		this.btnDashboard = btnDashboard;
 	}
 }
