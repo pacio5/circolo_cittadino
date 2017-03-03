@@ -33,7 +33,7 @@ public class SpillManagementView {
 	private JButton btnModifica;
 	private JButton btnElimina;
 	private JButton btnDashboard;
-	
+
 	/**
 	 * Create the application.
 	 */
@@ -48,104 +48,102 @@ public class SpillManagementView {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		JLabel lblIntroduzione = new JLabel("descrizione");
 		lblIntroduzione.setBounds(10, 11, 571, 42);
-		
+
 		table = new JTable();
-		
+
 		table.setBackground(null);
 		table.setAutoResizeMode(4);
-		
+
 		JScrollPane scroll = new JScrollPane(table);
-		scroll.setBounds(10,64,764,129);
-		
+		scroll.setBounds(10, 64, 764, 129);
+
 		JLabel lblData = new JLabel("Data");
 		lblData.setBounds(10, 228, 46, 14);
-		
-		
+
 		JLabel lblImporto = new JLabel("Importo");
 		lblImporto.setBounds(10, 253, 46, 14);
-		
-		
+
 		JLabel lblDescrizione = new JLabel("Descrizione");
 		lblDescrizione.setBounds(10, 278, 59, 14);
-		
+
 		txtFieldData = new JTextField();
 		txtFieldData.setBounds(79, 225, 86, 20);
 		txtFieldData.setColumns(10);
-		
+
 		txtFieldImporto = new JTextField();
 		txtFieldImporto.setBounds(79, 250, 86, 20);
 		txtFieldImporto.setColumns(10);
-		
+
 		textAreaDescrizione = new JTextArea();
 		textAreaDescrizione.setBounds(79, 273, 157, 136);
 		textAreaDescrizione.setWrapStyleWord(true);
 		textAreaDescrizione.setFont(new Font("Monospaced", Font.PLAIN, 11));
 		textAreaDescrizione.setLineWrap(true);
 		textAreaDescrizione.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-		
+
 		JLabel lblMesi = new JLabel("Mesi");
 		lblMesi.setBounds(265, 226, 46, 20);
-		
+
 		chckbxGennaio = new JCheckBox("Gennaio");
 		chckbxGennaio.setBounds(312, 225, 73, 23);
 		frame.getContentPane().add(chckbxGennaio);
-		
+
 		chckbxFebbraio = new JCheckBox("Febbraio");
 		chckbxFebbraio.setBounds(396, 225, 91, 23);
 		frame.getContentPane().add(chckbxFebbraio);
-		
+
 		chckbxMarzo = new JCheckBox("Marzo");
 		chckbxMarzo.setBounds(484, 227, 73, 23);
 		frame.getContentPane().add(chckbxMarzo);
-		
+
 		chckbxAprile = new JCheckBox("Aprile");
 		chckbxAprile.setBounds(312, 250, 73, 23);
 		frame.getContentPane().add(chckbxAprile);
-		
+
 		chckbxMaggio = new JCheckBox("Maggio");
 		chckbxMaggio.setBounds(396, 250, 73, 23);
 		frame.getContentPane().add(chckbxMaggio);
-		
+
 		chckbxGiugno = new JCheckBox("Giugno");
 		chckbxGiugno.setBounds(484, 252, 73, 23);
 		frame.getContentPane().add(chckbxGiugno);
-		
+
 		chckbxLuglio = new JCheckBox("Luglio");
 		chckbxLuglio.setBounds(312, 275, 73, 23);
 		frame.getContentPane().add(chckbxLuglio);
-		
+
 		chckbxAgosto = new JCheckBox("Agosto");
 		chckbxAgosto.setBounds(396, 275, 73, 23);
 		frame.getContentPane().add(chckbxAgosto);
-		
+
 		chckbxSettembre = new JCheckBox("Settembre");
 		chckbxSettembre.setBounds(484, 275, 97, 23);
 		frame.getContentPane().add(chckbxSettembre);
-		
+
 		chckbxOttobre = new JCheckBox("Ottobre");
 		chckbxOttobre.setBounds(312, 300, 73, 23);
 		frame.getContentPane().add(chckbxOttobre);
-		
+
 		chckbxNovembre = new JCheckBox("Novembre");
 		chckbxNovembre.setBounds(396, 300, 91, 23);
 		frame.getContentPane().add(chckbxNovembre);
-		
+
 		chckbxDicembre = new JCheckBox("Dicembre");
 		chckbxDicembre.setBounds(484, 300, 97, 23);
 		frame.getContentPane().add(chckbxDicembre);
-		
+
 		btnModifica = new JButton("Modifica");
 		btnModifica.setBounds(79, 460, 89, 23);
-		
+
 		btnElimina = new JButton("Elimina");
 		btnElimina.setBounds(178, 460, 89, 23);
-		
+
 		btnDashboard = new JButton("Dashboard");
 		btnDashboard.setBounds(654, 11, 120, 33);
-		
+
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(lblIntroduzione);
 		frame.getContentPane().add(scroll);
@@ -171,14 +169,14 @@ public class SpillManagementView {
 		frame.getContentPane().add(btnModifica);
 		frame.getContentPane().add(btnElimina);
 		frame.getContentPane().add(btnDashboard);
-		
+
 	}
-	
-	public JFrame getFrameGestVersamento (){
+
+	public JFrame getFrameGestVersamento() {
 		return frame;
 	}
-	
-	public JTable getTable () {
+
+	public JTable getTable() {
 		return table;
 	}
 
@@ -241,15 +239,15 @@ public class SpillManagementView {
 	public JCheckBox getChckbxDicembre() {
 		return chckbxDicembre;
 	}
-	
+
 	public JButton getBtnModifica() {
 		return btnModifica;
 	}
-	
+
 	public JButton getBtnElimina() {
 		return btnElimina;
 	}
-	
+
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}
