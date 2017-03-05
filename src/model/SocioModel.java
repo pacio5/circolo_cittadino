@@ -5,6 +5,7 @@ package model;
 
 import entita.Socio;
 import entita.Figlio;
+import entita.NonSocio;
 import utility.MySql;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +25,7 @@ public class SocioModel {
 		db = new MySql();
 	}
 
-	public boolean InserisciSocio(Socio n) {
+	public boolean inserisciSocio(Socio n) {
 		db.open();
 		PreparedStatement st = null;
 		boolean esito = false;
@@ -66,7 +67,7 @@ public class SocioModel {
 		return esito;
 	}
 
-	public boolean EliminaSocio(Socio n) {
+	public boolean eliminaSocio(Socio n) {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
@@ -90,7 +91,7 @@ public class SocioModel {
 		return esito;
 	}
 
-	public boolean ModificaSocio(Socio n, String cf) {
+	public boolean modificaSocio(Socio n, String cf) {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
@@ -134,7 +135,7 @@ public class SocioModel {
 		return esito;
 	}
 
-	public ArrayList<Socio> ElencoSoci() {
+	public ArrayList<Socio> elencoSoci() {
 		ArrayList<Socio> soci = new ArrayList<Socio>();
 		Statement st;
 		try {
@@ -158,7 +159,7 @@ public class SocioModel {
 		return soci;
 	}
 
-	public boolean DiventaExSocio(Socio n, Boolean espulso) {
+	public boolean diventaExSocio(Socio n, Boolean espulso) {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
@@ -187,16 +188,39 @@ public class SocioModel {
 			st.setString(18, n.getMetPagamento());
 			st.setString(19, n.getTipologia());
 			st.setBoolean(20, espulso);
-
 			int res = st.executeUpdate();
-			if (res == 1)
-				esito = true;
-			query = "DELETE FROM socio WHERE cf = ?;";
-			st = db.getConn().prepareStatement(query);
-			st.setString(1, n.getCf());
-			res = st.executeUpdate();
-			if (res == 0)
-				esito = false;
+			if (res == 1) {
+				query = "SELECT * FROM figlio WHERE genitore = ?";
+				st = db.getConn().prepareStatement(query);
+				st.setString(1, n.getCf());
+
+				ResultSet rs = st.executeQuery();
+				while (rs.next()) {
+					query = "INSERT INTO figlioex(cf, nome, sesso, data_nascita, genitore, acarico) VALUES(?,?,?,?,?,?);";
+					st = db.getConn().prepareStatement(query);
+					st.setString(1, rs.getString("cf"));
+					st.setString(2, rs.getString("nome"));
+					st.setString(3, rs.getString("sesso"));
+					st.setDate(4, rs.getDate("data_nascita"));
+					st.setString(5, rs.getString("genitore"));
+					st.setBoolean(6, rs.getBoolean("acarico"));
+					res = st.executeUpdate();
+					if (res == 1)
+						esito = true;
+				}
+			}
+
+			if (esito) {
+				query = "DELETE FROM socio WHERE cf = ?;";
+				st = db.getConn().prepareStatement(query);
+				st.setString(1, n.getCf());
+				res = st.executeUpdate();
+				query = "DELETE FROM figlio WHERE genitore = ?;";
+				st = db.getConn().prepareStatement(query);
+				st.setString(1, n.getCf());
+				res = st.executeUpdate();
+			}
+
 			st.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -207,9 +231,33 @@ public class SocioModel {
 
 		return esito;
 	}
+	
+	public ArrayList<Socio> elencoExSoci() {
+		ArrayList<Socio> exSoci = new ArrayList<Socio>();
+		Statement st;
+		try {
+			db.open();
+			st = db.getConn().createStatement();
+			String query = "SELECT * FROM exsocio;";
+			ResultSet res = st.executeQuery(query);
+			while (res.next()) {
+				exSoci.add(new Socio(res.getString("cf"), res.getString("nome"), res.getString("cognome"),
+						res.getString("sesso").charAt(0), res.getDate("data_nascita"), res.getString("luogo_nascita"),
+						res.getString("indirizzo"), res.getString("citta"), res.getString("cap"),
+						res.getString("email"), res.getString("telefono"), res.getString("professione"),
+						res.getString("stato_civile"), res.getString("coniuge"), res.getDate("data_ammissione"),
+						res.getFloat("tassa_ammissione"), res.getString("mod_pagamento"),
+						res.getString("met_pagamento"), res.getString("tipologia")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return exSoci;
+	}
 
-	public boolean DiventaSocio(Socio n) {
-		boolean esito = InserisciSocio(n);
+	public boolean diventaSocio(Socio n) {
+		boolean esito = inserisciSocio(n);
 		try {
 			db.open();
 			PreparedStatement st = null;
@@ -232,7 +280,7 @@ public class SocioModel {
 		return esito;
 	}
 
-	public boolean InserisciFiglio(Figlio n) {
+	public boolean inserisciFiglio(Figlio n) {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
@@ -259,7 +307,7 @@ public class SocioModel {
 		return esito;
 	}
 
-	public boolean EliminaFiglio(Figlio n) {
+	public boolean eliminaFiglio(Figlio n) {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
@@ -281,7 +329,7 @@ public class SocioModel {
 		return esito;
 	}
 
-	public boolean ModificaFiglio(Figlio n, String cf) {
+	public boolean modificaFiglio(Figlio n, String cf) {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
@@ -338,7 +386,7 @@ public class SocioModel {
 		return socio;
 	}
 
-	public ArrayList<Figlio> ElencoFigli(String cf) {
+	public ArrayList<Figlio> elencoFigli(String cf) {
 		ArrayList<Figlio> figli = new ArrayList<Figlio>();
 		Statement st;
 		try {
@@ -347,8 +395,8 @@ public class SocioModel {
 			st = db.getConn().createStatement();
 			if (cf == null) {
 				query = "SELECT * FROM figlio";
-			}else{
-				query = "SELECT * FROM figlio WHERE genitore = '"+ cf + "';";
+			} else {
+				query = "SELECT * FROM figlio WHERE genitore = '" + cf + "';";
 			}
 			ResultSet res = st.executeQuery(query);
 			while (res.next()) {
@@ -362,5 +410,102 @@ public class SocioModel {
 			db.close();
 		}
 		return figli;
+	}
+
+	public boolean inserisciNonSocio(NonSocio n){
+		db.open();
+		PreparedStatement st = null;
+		boolean esito = false;
+		String query = "INSERT INTO nonsocio(cf, nome, cognome, sesso email, telefono) VALUES(?,?,?,?,?,?)";
+		try {
+			st = db.getConn().prepareStatement(query);
+			st.setString(1, n.getCf());
+			st.setString(2, n.getNome());
+			st.setString(3, n.getCognome());
+			st.setString(4, Character.toString(n.getSesso()));
+			st.setString(5, n.getEmail());
+			st.setString(6, n.getTelefono());
+			int res = st.executeUpdate();
+			if (res == 1)
+				esito = true;
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.close();
+		}
+		return esito;
+	}
+	
+	public boolean modificaNonSocio(NonSocio n, String cf){
+		boolean esito = false;
+		db.open();
+		PreparedStatement st = null;
+		String query = "UPDATE socio SET cf = ?, nome = ?, cognome = ?, sesso = ?, email = ?, telefono = ? WHERE cf = ?;";
+		try {
+			st = db.getConn().prepareStatement(query);
+			st = db.getConn().prepareStatement(query);
+			st.setString(1, n.getCf());
+			st.setString(2, n.getNome());
+			st.setString(3, n.getCognome());
+			st.setString(4, Character.toString(n.getSesso()));
+			st.setString(5, n.getEmail());
+			st.setString(6, n.getTelefono());
+			st.setString(7, cf);
+
+			int res = st.executeUpdate();
+			if (res == 1)
+				esito = true;
+			st.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.close();
+		}
+
+		return esito;
+	}
+
+	public boolean eliminaNonSocio(NonSocio n){
+		boolean esito = false;
+		db.open();
+		PreparedStatement st = null;
+		String query = "DELETE FROM socio WHERE cf = ?";
+		try {
+			st = db.getConn().prepareStatement(query);
+			st.setString(1, n.getCf());
+
+			int res = st.executeUpdate();
+			if (res == 1)
+				esito = true;
+			st.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.close();
+		}
+		return esito;
+	}
+
+	public ArrayList<NonSocio> elencoNonSoci(){
+		ArrayList<NonSocio> nonSoci = new ArrayList<NonSocio>();
+		Statement st;
+		try {
+			db.open();
+			st = db.getConn().createStatement();
+			String query = "SELECT * FROM nonsocio;";
+			ResultSet res = st.executeQuery(query);
+			while (res.next()) {
+				nonSoci.add(new NonSocio(res.getString("cf"), res.getString("nome"), res.getString("cognome"), res.getString("sesso").charAt(0), res.getString("email"), res.getString("telefono")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return nonSoci;
 	}
 }

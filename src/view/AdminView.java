@@ -14,6 +14,8 @@ public class AdminView {
 	private JButton btnElencoSoci;
 	private JButton btnGestioneFigli;
 	private JButton btnGestioneVersamenti;
+	private JButton btnGestioneNonSocio;
+	private JButton btnGestioneExSocio;
 
 	/**
 	 * Create the frame.
@@ -57,6 +59,14 @@ public class AdminView {
 		frame.getContentPane().add(btnElencoSoci);
 		frame.getContentPane().add(btnGestioneFigli);
 		frame.getContentPane().add(btnGestioneVersamenti);
+		
+		btnGestioneNonSocio = new JButton("Gestione Non Socio");
+		btnGestioneNonSocio.setBounds(24, 173, 152, 29);
+		frame.getContentPane().add(btnGestioneNonSocio);
+		
+		btnGestioneExSocio = new JButton("Gestione Ex Socio");
+		btnGestioneExSocio.setBounds(24, 214, 152, 29);
+		frame.getContentPane().add(btnGestioneExSocio);
 	}
 
 	public JFrame getFrame() {
@@ -90,4 +100,15 @@ public class AdminView {
 	public JButton getBtnGestioneVersamenti(){
 		return btnGestioneVersamenti;
 	}
+
+	public JButton getBtnGestioneNonSocio() {
+		return btnGestioneNonSocio;
+	}
+
+	public JButton getBtnGestioneExSocio() {
+		return btnGestioneExSocio;
+	}
+	
+	
+	
 }

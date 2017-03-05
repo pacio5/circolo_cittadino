@@ -95,6 +95,24 @@ public class AdminController {
 				adminView.getFrame().dispose();
 			}
 		});
+		
+		adminView.getBtnGestioneNonSocio().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SocioController socioController = new SocioController();
+				socioController.gestioneNonSocio();
+				adminView.getFrame().dispose();
+			}
+		});
+		
+		adminView.getBtnGestioneExSocio().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				SocioController socioController = new SocioController();
+				socioController.gestioneExSocio();
+				adminView.getFrame().dispose();
+			}
+		});
 	}
 	
 }

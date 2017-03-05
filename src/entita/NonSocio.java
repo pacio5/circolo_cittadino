@@ -23,19 +23,14 @@ public class NonSocio {
 	protected String telefono;
 	
 	public NonSocio() {
-		this(null, null, null, ' ', null, null, null, null, null, null);
+		this(null, null, null, ' ', null, null);
 	}
 	
-	public NonSocio(String codice, String name, String surname, char sex, Date dateB, String address, String city,
-			String postalCode, String mail, String tel) {
+	public NonSocio(String codice, String name, String surname, char sex, String mail, String tel) {
 		cf = codice;
 		nome = name;
 		cognome = surname;
 		sesso = sex;
-		dataNascita = dateB;
-		indirizzo = address;
-		citta = city;
-		cap = postalCode;
 		email = mail;
 		telefono = tel;
 	}
@@ -54,22 +49,6 @@ public class NonSocio {
 
 	public char getSesso() {
 		return sesso;
-	}
-
-	public Date getDataNascita() {
-		return dataNascita;
-	}
-
-	public String getIndirizzo() {
-		return indirizzo;
-	}
-
-	public String getCitta() {
-		return citta;
-	}
-
-	public String getCap() {
-		return cap;
 	}
 
 	public String getEmail() {
@@ -122,7 +101,7 @@ public class NonSocio {
 
 	@Override
 	public String toString() {
-		return "Il cliente: " + nome + " " + cognome + ", codice fiscale: " + cf;
+		return nome + " " + cognome + ", codice fiscale: " + cf;
 	}
 
 }
