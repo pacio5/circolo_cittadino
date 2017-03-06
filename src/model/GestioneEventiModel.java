@@ -335,11 +335,7 @@ public class GestioneEventiModel {
 						res.getString("cf"), 
 						res.getString("nome"), 
 						res.getString("cognome"),
-						res.getString("sesso").charAt(0), 
-						res.getDate("data_nascita"),
-						res.getString("indirizzo"), 
-						res.getString("citta"), 
-						res.getString("cap"),
+						res.getString("sesso").charAt(0),
 						res.getString("email"), 
 						res.getString("telefono"));
 				partecipantiNS.add(ns);
