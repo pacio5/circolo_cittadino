@@ -2,6 +2,7 @@ package controller;
 
 import model.PrenotazioneModel;
 import view.GestioneEventiView;
+import view.GestioneSaleView;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import utility.Validator;
 
 import entita.Evento;
+import entita.Sala;
 
 public class PrenotazioneController {
 	
@@ -25,7 +27,7 @@ public class PrenotazioneController {
 		model = new PrenotazioneModel();
 	}
 	
-	public void gestione() {
+	public void gestioneEventi() {
 		ArrayList<Evento> eventi = model.listaEventi();
 		GestioneEventiView view = new GestioneEventiView(eventi);
 		view.getFrame().setVisible(true);
@@ -216,7 +218,7 @@ public class PrenotazioneController {
 				boolean esito = model.deleteEvento(view.getList().getSelectedValue().getId());
 				if (esito) {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
-					gestione();
+					gestioneEventi();
 					view.getFrame().dispose();
 				} else {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellazione non effettuata");
@@ -226,7 +228,174 @@ public class PrenotazioneController {
 		
 		view.getBtnAnnullaModifiche().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				gestione();
+				gestioneEventi();
+				view.getFrame().dispose();
+			}
+		});
+		
+	}
+	
+	public void gestioneSale() {
+		ArrayList<Sala> sale = model.listaSale();
+		GestioneSaleView view = new GestioneSaleView(sale);
+		view.getFrame().setVisible(true);
+	
+		view.getList().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent lse) {
+				Sala s = view.getList().getSelectedValue();
+				view.getNomeSala().setText(s.getNome());
+				view.getDescrizione().setText(s.getDescrizione());
+				view.getCapienza().setValue(s.getCapienza());
+				view.getTariffa().setText(String.valueOf(s.getTariffa()));
+				view.getBtnModifica().setEnabled(true);
+				view.getBtnCancella().setEnabled(true);
+			}
+		});		
+		
+		view.getBtnInserisci().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				String nome = view.getNomeSala().getText().toUpperCase();
+				String descrizione = view.getDescrizione().getText().toUpperCase();
+				String capienza = view.getCapienza().toString();
+				String tariffa = view.getTariffa().getText();
+				
+				boolean validazione = true;
+				
+				if (!Validator.ValidaAnagrafica(nome)) {
+					view.getNomeSala().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getNomeSala().getBackground() == Color.red)
+						view.getNomeSala().setBackground(Color.white);
+				}
+								
+				if (!Validator.ValidaTesto(descrizione)) {
+					view.getDescrizione().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getDescrizione().getBackground() == Color.red)
+						view.getDescrizione().setBackground(Color.white);
+				}
+				
+				if (!Validator.ValidaImporto(tariffa)) {
+					view.getTariffa().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getTariffa().getBackground() == Color.red)
+						view.getTariffa().setBackground(Color.white);
+				}
+
+				if (validazione) {
+					boolean esito = model.insertSala(new Sala(nome, Integer.valueOf(capienza),	descrizione, Float.valueOf(tariffa)));
+					if (esito) {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
+						view.getFrame().dispose();
+						AdminController adminController = new AdminController();
+						adminController.controlloEvento();
+					} else {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Non Effettuato");
+					}
+
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
+							"Campi non validi, modificare i campi contrassegnati in rosso");
+				}
+			}
+		});
+
+		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				AdminController adminController = new AdminController();
+				adminController.controlloEvento();
+				view.getFrame().dispose();
+			}
+		});
+		
+		view.getBtnModifica().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				view.getBtnInserisci().setVisible(false);
+				view.getBtnCancella().setVisible(false);
+				view.getBtnModifica().setVisible(false);
+				view.getBtnAnnullaModifiche().setVisible(true);
+				view.getBtnSalvaModifiche().setVisible(true);
+				view.getNomeSala().setEnabled(true);;
+				view.getDescrizione().setEnabled(true);
+				view.getCapienza().setEnabled(true);
+				view.getTariffa().setEnabled(true);
+			}
+
+		});
+
+		view.getBtnSalvaModifiche().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				
+				String nome = view.getNomeSala().getText().toUpperCase();
+				String descrizione = view.getDescrizione().getText().toUpperCase();
+				String capienza = view.getCapienza().toString();
+				String tariffa = view.getTariffa().getText();
+
+				boolean validazione = true;
+				if (!Validator.ValidaAnagrafica(nome)) {
+					view.getNomeSala().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getNomeSala().getBackground() == Color.red)
+						view.getNomeSala().setBackground(Color.white);
+				}
+				
+				if (!Validator.ValidaTesto(descrizione)) {
+					view.getDescrizione().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getDescrizione().getBackground() == Color.red)
+						view.getDescrizione().setBackground(Color.white);
+				}
+										
+				if (!Validator.ValidaImporto(tariffa)) {
+					view.getTariffa().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getTariffa().getBackground() == Color.red)
+						view.getTariffa().setBackground(Color.white);
+				}
+
+				if (validazione) {
+					boolean esito = model.insertSala(new Sala(nome, Integer.valueOf(capienza), 	descrizione, Float.valueOf(tariffa)));
+
+					if (esito) {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Modifica Effettuata");
+						view.getFrame().dispose();
+						AdminController adminController = new AdminController();
+						adminController.controlloEvento();
+					} else {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Modifica Non Effettuata");
+					}
+
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
+							"Campi non validi, modificare i campi contrassegnati in rosso");
+				}
+			}
+		});
+		
+		view.getBtnCancella().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				boolean esito = model.deleteSala(view.getList().getSelectedValue().getNome());
+				if (esito) {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
+					gestioneSale();
+					view.getFrame().dispose();
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellazione non effettuata");
+				}
+			}
+		});
+		
+		view.getBtnAnnullaModifiche().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				gestioneSale();
 				view.getFrame().dispose();
 			}
 		});

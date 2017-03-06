@@ -13,7 +13,6 @@ import javax.swing.DefaultListModel;
 import entita.Sala;
 
 import java.util.ArrayList;
-import javax.swing.SwingConstants;
 
 public class GestioneSaleView {
 	

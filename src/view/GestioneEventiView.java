@@ -13,7 +13,6 @@ import javax.swing.DefaultListModel;
 import entita.Evento;
 
 import java.util.ArrayList;
-import javax.swing.SwingConstants;
 
 public class GestioneEventiView {
 	
