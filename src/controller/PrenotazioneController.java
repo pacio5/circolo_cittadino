@@ -1,6 +1,6 @@
 package controller;
 
-import model.GestioneEventiModel;
+import model.PrenotazioneModel;
 import view.GestioneEventiView;
 
 import java.awt.event.MouseAdapter;
@@ -19,10 +19,10 @@ import entita.Evento;
 
 public class PrenotazioneController {
 	
-	private GestioneEventiModel model;
+	private PrenotazioneModel model;
 	
 	public PrenotazioneController(){
-		model = new GestioneEventiModel();
+		model = new PrenotazioneModel();
 	}
 	
 	public void gestione() {
