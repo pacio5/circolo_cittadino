@@ -688,9 +688,8 @@ public class SocioController {
 	}
 
 	public void gestioneNonSocio(){
-		ArrayList<NonSocio> nonSoci = model.elencoNonSoci();
-		GestioneNonSocioView view = new GestioneNonSocioView(nonSoci);
-		
+		GestioneNonSocioView view = new GestioneNonSocioView(model.elencoNonSoci());
+		view.getFrame().setVisible(true);
 		view.getBtnInserisci().addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -908,14 +907,11 @@ public class SocioController {
 				view.getFrame().dispose();
 			}
 		});
-		
-		
-		
 	}
 
 	public void gestioneExSocio(){
 		GestioneExSocioView view = new GestioneExSocioView(model.elencoExSoci());
-	
+		view.getFrame().setVisible(true);
 		view.getList().addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				Socio n = view.getList().getSelectedValue();
@@ -944,7 +940,19 @@ public class SocioController {
 		
 		view.getBtnDiventaSocio().addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent e){
-				
+				if(model.diventaSocio(view.getList().getSelectedValue())){
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Aggiornamento Effettuato");
+					gestioneExSocio();
+					view.getFrame().dispose();
+				}
+			}
+		});
+		
+		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				AdminController adminController = new AdminController();
+				adminController.controlloEvento();
+				view.getFrame().dispose();
 			}
 		});
 	}

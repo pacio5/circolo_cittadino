@@ -231,7 +231,7 @@ public class SocioModel {
 
 		return esito;
 	}
-	
+
 	public ArrayList<Socio> elencoExSoci() {
 		ArrayList<Socio> exSoci = new ArrayList<Socio>();
 		Statement st;
@@ -257,7 +257,12 @@ public class SocioModel {
 	}
 
 	public boolean diventaSocio(Socio n) {
-		boolean esito = inserisciSocio(n);
+		Boolean esito = true;
+		inserisciSocio(n);
+		ArrayList<Figlio> figli = elencoFigliEx(n.getCf());
+		figli.stream().forEach((f) -> {
+			inserisciFiglio(f);
+		});
 		try {
 			db.open();
 			PreparedStatement st = null;
@@ -267,6 +272,15 @@ public class SocioModel {
 			int res = st.executeUpdate();
 			if (res == 0)
 				esito = false;
+			if(esito){
+				query = "DELETE FROM exfiglio WHERE cf = ?;";
+				st = db.getConn().prepareStatement(query);
+				st.setString(1, n.getCf());
+				res = st.executeUpdate();
+				if(res == 0){
+					esito = false;
+				}
+			}
 			st.close();
 		} catch (
 
@@ -411,8 +425,34 @@ public class SocioModel {
 		}
 		return figli;
 	}
-
-	public boolean inserisciNonSocio(NonSocio n){
+	
+	public ArrayList<Figlio> elencoFigliEx(String cf) {
+		ArrayList<Figlio> figli = new ArrayList<Figlio>();
+		Statement st;
+		try {
+			db.open();
+			String query;
+			st = db.getConn().createStatement();
+			if (cf == null) {
+				query = "SELECT * FROM figlioex";
+			} else {
+				query = "SELECT * FROM figlioex WHERE genitore = '" + cf + "';";
+			}
+			ResultSet res = st.executeQuery(query);
+			while (res.next()) {
+				figli.add(new Figlio(res.getString("cf"), res.getString("nome"), res.getString("sesso").charAt(0),
+						res.getDate("data_nascita"), cercaSocio(res.getString("genitore")), res.getBoolean("acarico")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.close();
+		}
+		return figli;
+	}
+	
+	public boolean inserisciNonSocio(NonSocio n) {
 		db.open();
 		PreparedStatement st = null;
 		boolean esito = false;
@@ -437,8 +477,8 @@ public class SocioModel {
 		}
 		return esito;
 	}
-	
-	public boolean modificaNonSocio(NonSocio n, String cf){
+
+	public boolean modificaNonSocio(NonSocio n, String cf) {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
@@ -468,7 +508,7 @@ public class SocioModel {
 		return esito;
 	}
 
-	public boolean eliminaNonSocio(NonSocio n){
+	public boolean eliminaNonSocio(NonSocio n) {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
@@ -491,7 +531,7 @@ public class SocioModel {
 		return esito;
 	}
 
-	public ArrayList<NonSocio> elencoNonSoci(){
+	public ArrayList<NonSocio> elencoNonSoci() {
 		ArrayList<NonSocio> nonSoci = new ArrayList<NonSocio>();
 		Statement st;
 		try {
@@ -500,7 +540,8 @@ public class SocioModel {
 			String query = "SELECT * FROM nonsocio;";
 			ResultSet res = st.executeQuery(query);
 			while (res.next()) {
-				nonSoci.add(new NonSocio(res.getString("cf"), res.getString("nome"), res.getString("cognome"), res.getString("sesso").charAt(0), res.getString("email"), res.getString("telefono")));
+				nonSoci.add(new NonSocio(res.getString("cf"), res.getString("nome"), res.getString("cognome"),
+						res.getString("sesso").charAt(0), res.getString("email"), res.getString("telefono")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
