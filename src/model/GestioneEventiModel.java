@@ -324,7 +324,7 @@ public class GestioneEventiModel {
 		ArrayList<NonSocio> partecipantiNS = new ArrayList<NonSocio>();
 		db.open();
 		PreparedStatement stm;
-		String query = "SELECT * FROM socio AS s INNER JOIN prenotazionen AS p ON s.cf = p.nonsocio"
+		String query = "SELECT * FROM nonsocio AS ns INNER JOIN prenotazionen AS p ON ns.cf = p.nonsocio"
 				+ " INNER JOIN evento AS e p.evento = e.id WHERE e.id = ?;";
 		try {
 			stm = db.getConn().prepareStatement(query);

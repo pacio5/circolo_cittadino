@@ -314,14 +314,14 @@ public class GestioneSaleModel {
 	}
 	
 	public ArrayList<NonSocio> affittuariNonSoci(Sala s) {
-		ArrayList<NonSocio> affituariNS = new ArrayList<NonSocio>();
+		ArrayList<NonSocio> affittuariNS = new ArrayList<NonSocio>();
 		db.open();
 		PreparedStatement stm;
-		String query = "SELECT * FROM socio AS s INNER JOIN prenotaziones AS p ON s.cf = p.socio"
-				+ " INNER JOIN evento AS e p.evento = e.id WHERE e.id = ?;";
+		String query = "SELECT * FROM nonsocio AS ns INNER JOIN affitton AS a ON ns.cf = a.nonsocio"
+				+ " INNER JOIN sala AS s a.sala = s.id WHERE s.id = ?;";
 		try {
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1, e.getId());
+			stm.setString(1, s.getId());
 			ResultSet res = stm.executeQuery(query);
 			while (res.next()) {
 				NonSocio ns = new NonSocio(
@@ -331,13 +331,13 @@ public class GestioneSaleModel {
 						res.getString("sesso").charAt(0),
 						res.getString("email"), 
 						res.getString("telefono"));
-				partecipantiNS.add(ns);
+				affittuariNS.add(ns);
 			}
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
 		}
-		return partecipantiNS;
+		return affittuariNS;
 	}
 		
 }
