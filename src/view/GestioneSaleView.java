@@ -17,8 +17,7 @@ import javax.swing.SwingConstants;
 
 public class GestioneSaleView {
 	
-	private JFrame frmCircoloCittadino;	
-	private JTextField txtFieldIdSala;
+	private JFrame frmCircoloCittadino;
 	private JTextField txtFieldNomeSala;
 	private JTextArea txtAreaDescrizione;
 	private JSpinner spnCapienza;
@@ -58,27 +57,18 @@ public class GestioneSaleView {
 		JLabel lblCompilaForm = new JLabel("Inserisci i dati relativi alla sala");
 		lblCompilaForm.setBounds(593, 76, 335, 16);
 		frmCircoloCittadino.getContentPane().add(lblCompilaForm);
-
-		JLabel lblId = new JLabel("Id");
-		lblId.setBounds(544, 133, 97, 16);
-		frmCircoloCittadino.getContentPane().add(lblId);
-
-		txtFieldIdSala = new JTextField();
-		txtFieldIdSala.setColumns(10);
-		txtFieldIdSala.setBounds(636, 128, 130, 26);
-		frmCircoloCittadino.getContentPane().add(txtFieldIdSala);
 		
 		JLabel lblNome = new JLabel("Nome");
-		lblNome.setBounds(544, 170, 97, 16);
+		lblNome.setBounds(544, 133, 97, 16);
 		frmCircoloCittadino.getContentPane().add(lblNome);
 
 		txtFieldNomeSala = new JTextField();
 		txtFieldNomeSala.setColumns(10);
-		txtFieldNomeSala.setBounds(636, 165, 130, 26);
+		txtFieldNomeSala.setBounds(636, 128, 130, 26);
 		frmCircoloCittadino.getContentPane().add(txtFieldNomeSala);
 
 		JLabel lblDescrizione = new JLabel("Descrizione");
-		lblDescrizione.setBounds(544, 278, 112, 16);
+		lblDescrizione.setBounds(544, 241, 112, 16);
 		frmCircoloCittadino.getContentPane().add(lblDescrizione);
 
 		txtAreaDescrizione = new JTextArea();
@@ -86,24 +76,24 @@ public class GestioneSaleView {
 		txtAreaDescrizione.setFont(new Font("Monospaced", Font.PLAIN, 11));
 		txtAreaDescrizione.setLineWrap(true);
 		txtAreaDescrizione.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-		txtAreaDescrizione.setBounds(636, 276, 130, 208);
+		txtAreaDescrizione.setBounds(636, 239, 130, 245);
 		frmCircoloCittadino.getContentPane().add(txtAreaDescrizione);
 
 		JLabel lblCapienza = new JLabel("Capienza");
-		lblCapienza.setBounds(544, 207, 112, 16);
+		lblCapienza.setBounds(544, 170, 112, 16);
 		frmCircoloCittadino.getContentPane().add(lblCapienza);
 
 		spnCapienza = new JSpinner();
-		spnCapienza.setBounds(636, 202, 130, 26);
+		spnCapienza.setBounds(636, 165, 130, 26);
 		frmCircoloCittadino.getContentPane().add(spnCapienza);
 
 		JLabel lblTariffa = new JLabel("Tariffa");
-		lblTariffa.setBounds(544, 241, 84, 23);
+		lblTariffa.setBounds(544, 204, 84, 23);
 		frmCircoloCittadino.getContentPane().add(lblTariffa);
 
 		txtFieldTariffa = new JTextField();
 		txtFieldTariffa.setColumns(10);
-		txtFieldTariffa.setBounds(636, 239, 130, 26);
+		txtFieldTariffa.setBounds(636, 202, 130, 26);
 		frmCircoloCittadino.getContentPane().add(txtFieldTariffa);
 		
 		btnInserisci = new JButton("Inserisci");
@@ -166,9 +156,9 @@ public class GestioneSaleView {
 	public void setBtnInserisci(JButton btnInserisci) {
 		this.btnInserisci = btnInserisci;
 	}
-
-	public JTextField getIdSala() {
-		return txtFieldIdSala;
+	
+	public JTextField getNomeSala() {
+		return txtFieldNomeSala;
 	}
 
 	public JTextArea getDescrizione() {

@@ -8,14 +8,12 @@ package entita;
  *
  */
 public class Sala {
-	private String id;
 	private String nome;
 	private int capienza;
 	private String descrizione;
 	private double tariffa;
 	
-	public Sala(String codice, String name, int posti, String desc, double prezzo){
-		id = codice;
+	public Sala(String name, int posti, String desc, double prezzo){
 		nome = name;
 		capienza = posti;
 		descrizione = desc;
@@ -23,13 +21,9 @@ public class Sala {
 	}
 	
 	public Sala(){
-		this(null,null,-1, null, 0);
+		this(null,-1, null, 0);
 	}
-	
-	public String getId(){
-		return id;
-	}
-	
+		
 	public String getNome(){
 		return nome;
 	}
@@ -59,6 +53,6 @@ public class Sala {
 	}
 	
 	public String toString(){
-		return "La sala: "+ id+ " " + nome + " ha una capienza di: " + capienza + ", la sua tariffa è: " + tariffa + ". Breve descrizione della sala: "+ descrizione;
+		return "La sala: "+ nome + " ha una capienza di: " + capienza + ", la sua tariffa è: " + tariffa + ". Breve descrizione della sala: "+ descrizione;
 	}
 }

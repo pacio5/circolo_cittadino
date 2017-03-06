@@ -354,14 +354,13 @@ public class PrenotazioneModel {
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
-		String query = "INSERT INTO Sala (ID, NOME, CAPIENZA, DESCRIZIONE)"
+		String query = "INSERT INTO Sala (NOME, CAPIENZA, DESCRIZIONE)"
 				+ " VALUES(?,?,?,?)";
 		try {	
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1, s.getId());
-			stm.setString(2,  s.getNome());
-			stm.setInt(3, s.getCapienza());
-			stm.setString(4, s.getDescrizione());
+			stm.setString(1,  s.getNome());
+			stm.setInt(2, s.getCapienza());
+			stm.setString(3, s.getDescrizione());
 		
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -379,14 +378,13 @@ public class PrenotazioneModel {
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
-		String query = "UPDATE Sala SET ID = ?, NOME = ?, CAPIENZA = ?, DESCRIZIONE = ?"
+		String query = "UPDATE Sala SET NOME = ?, CAPIENZA = ?, DESCRIZIONE = ?"
 				+ " WHERE ID = ?";
 		try {	
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1,  s.getId() );
-			stm.setString(2, s.getNome());
-			stm.setInt(3,  s.getCapienza());
-			stm.setString(4, s.getDescrizione());
+			stm.setString(1, s.getNome());
+			stm.setInt(2,  s.getCapienza());
+			stm.setString(3, s.getDescrizione());
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -425,14 +423,13 @@ public class PrenotazioneModel {
 		ArrayList<Sala> Sale = new ArrayList<Sala>();
 		db.open();
 		Statement stm;
-		String query = "SELECT S.id, S.nome, S.capienza, S.descrizione, T.prezzo FROM Sala AS S INNER JOIN "
+		String query = "SELECT S.nome, S.capienza, S.descrizione, T.prezzo FROM Sala AS S INNER JOIN "
 				+ "Tariffa ON S.id = T.sala;";
 		try {
 			stm = db.getConn().createStatement();
 			ResultSet res = stm.executeQuery(query);
 			while (res.next()) {
 				Sala s = new Sala(
-						res.getString("id"), 
 						res.getString("nome"), 
 						res.getInt("capienza"),
 						res.getString("descrizione"),
@@ -458,7 +455,7 @@ public class PrenotazioneModel {
 			stm = db.getConn().prepareStatement(query);
 			stm.setDate(1, dataAft);
 			stm.setString(2, ns.getCf());
-			stm.setString(3, s.getId());
+			stm.setString(3, s.getNome());
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -482,7 +479,7 @@ public class PrenotazioneModel {
 			stm = db.getConn().prepareStatement(query);
 			stm.setDate(1, dataAft);
 			stm.setString(2, sc.getCf());
-			stm.setString(3, s.getId());
+			stm.setString(3, s.getNome());
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -506,10 +503,10 @@ public class PrenotazioneModel {
 			stm = db.getConn().prepareStatement(query);
 			stm.setDate(1, dataAft);
 			stm.setString(2, ns.getCf());
-			stm.setString(3, s.getId());
+			stm.setString(3, s.getNome());
 			stm.setDate(4, dataAft);
 			stm.setString(5, ns.getCf());
-			stm.setString(6, s.getId());
+			stm.setString(6, s.getNome());
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -533,10 +530,10 @@ public class PrenotazioneModel {
 			stm = db.getConn().prepareStatement(query);
 			stm.setDate(1, dataAft);
 			stm.setString(2, sc.getCf());
-			stm.setString(3, s.getId());
+			stm.setString(3, s.getNome());
 			stm.setDate(4, dataAft);
 			stm.setString(5, sc.getCf());
-			stm.setString(6, s.getId());
+			stm.setString(6, s.getNome());
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -604,10 +601,10 @@ public class PrenotazioneModel {
 		db.open();
 		PreparedStatement stm;
 		String query = "SELECT * FROM socio AS sc INNER JOIN affittos AS a ON sc.cf = a.socio"
-				+ " INNER JOIN sala AS s A a.sala = s.id WHERE s.id = ?;";
+				+ " INNER JOIN sala AS s A a.sala = s.nome WHERE s.nome = ?;";
 		try {
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1, s.getId());
+			stm.setString(1, s.getNome());
 			ResultSet res = stm.executeQuery(query);
 			while (res.next()) {
 				Socio sc = new Socio(
@@ -644,10 +641,10 @@ public class PrenotazioneModel {
 		db.open();
 		PreparedStatement stm;
 		String query = "SELECT * FROM nonsocio AS ns INNER JOIN affitton AS a ON ns.cf = a.nonsocio"
-				+ " INNER JOIN sala AS s a.sala = s.id WHERE s.id = ?;";
+				+ " INNER JOIN sala AS s a.sala = s.nome WHERE s.nome = ?;";
 		try {
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1, s.getId());
+			stm.setString(1, s.getNome());
 			ResultSet res = stm.executeQuery(query);
 			while (res.next()) {
 				NonSocio ns = new NonSocio(
