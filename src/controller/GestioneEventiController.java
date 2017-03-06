@@ -25,7 +25,7 @@ public class GestioneEventiController {
 		model = new GestioneEventiModel();
 	}
 	
-	public void Gestione() {
+	public void gestione() {
 		ArrayList<Evento> eventi = model.ListaEventi();
 		GestioneEventiView view = new GestioneEventiView(eventi);
 		view.getFrame().setVisible(true);
@@ -128,6 +128,7 @@ public class GestioneEventiController {
 				view.getBtnInserisci().setVisible(false);
 				view.getBtnCancella().setVisible(false);
 				view.getBtnModifica().setVisible(false);
+				view.getBtnAnnullaModifiche().setVisible(true);
 				view.getBtnSalvaModifiche().setVisible(true);
 				view.getNomeEvento().setEnabled(true);
 				view.getData().setEnabled(true);
@@ -215,11 +216,18 @@ public class GestioneEventiController {
 				boolean esito = model.deleteEvento(view.getList().getSelectedValue().getId());
 				if (esito) {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
-					Gestione();
+					gestione();
 					view.getFrame().dispose();
 				} else {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellazione non effettuata");
 				}
+			}
+		});
+		
+		view.getBtnAnnullaModifiche().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				gestione();
+				view.getFrame().dispose();
 			}
 		});
 		

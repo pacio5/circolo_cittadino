@@ -13,6 +13,7 @@ import javax.swing.DefaultListModel;
 import entita.Evento;
 
 import java.util.ArrayList;
+import javax.swing.SwingConstants;
 
 public class GestioneEventiView {
 	
@@ -28,6 +29,7 @@ public class GestioneEventiView {
 	private JButton btnModifica;
 	private JButton btnCancella;
 	private JButton btnSalvaModifiche;
+	private JButton btnAnnullaModifiche;
 	private JList<Evento> lstEventi;
 	private DefaultListModel<Evento> dlme;
 	private ScrollPane scrollPane;
@@ -134,9 +136,13 @@ public class GestioneEventiView {
 		btnCancella.setBounds(524, 513, 117, 29);
 		frmCircoloCittadino.getContentPane().add(btnCancella);
 		
-		btnSalvaModifiche = new JButton("Salva Modifiche");
+		btnSalvaModifiche = new JButton("Salva");
 		btnSalvaModifiche.setBounds(357, 513, 117, 29);
 		frmCircoloCittadino.getContentPane().add(btnSalvaModifiche);
+		
+		btnAnnullaModifiche = new JButton("Annulla");
+		btnAnnullaModifiche.setBounds(524, 513, 117, 29);
+		frmCircoloCittadino.getContentPane().add(btnAnnullaModifiche);
 	}
 	
 	public JButton getBtnDashboard() {
@@ -158,8 +164,13 @@ public class GestioneEventiView {
 	public JButton getBtnCancella(){
 		return btnCancella;
 	}
+	
 	public JButton getBtnSalvaModifiche(){
 		return btnSalvaModifiche;
+	}
+	
+	public JButton getBtnAnnullaModifiche(){
+		return btnAnnullaModifiche;
 	}
 
 	public void setBtnInserisci(JButton btnInserisci) {
