@@ -35,14 +35,14 @@ public class SpillController {
 		modelVersamento = new QuotaModel();
 	}
 
-	public void MostraGestioneVers() {
+	public void mostraGestioneVers() {
 		viewManagement = new SpillManagementView();
 		fillTableSpill();
 		viewManagement.getFrameGestVersamento().setVisible(true);
 		controlEventManagement();
 	}
 
-	public void MostraInserimentoVers() {
+	public void mostraInserimentoVers() {
 		viewInsert = new InsertSpillView();
 		viewInsert.getFrameInsVersamento().setVisible(true);
 		fillCmbbxSoci();
@@ -121,7 +121,7 @@ public class SpillController {
 						JOptionPane.showMessageDialog(viewManagement.getFrameGestVersamento().getContentPane(),
 								"Versamento eliminato");
 						viewManagement.getFrameGestVersamento().dispose();
-						MostraGestioneVers();
+						mostraGestioneVers();
 					} else {
 						JOptionPane.showMessageDialog(viewManagement.getFrameGestVersamento().getContentPane(),
 								"Versamento non eliminato");

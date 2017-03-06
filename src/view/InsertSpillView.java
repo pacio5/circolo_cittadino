@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -42,22 +40,6 @@ public class InsertSpillView {
 	private JButton btnDashboard;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					InsertSpillView window = new InsertSpillView();
-					window.frameInsVersamento.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the application.
 	 */
 	public InsertSpillView() {
@@ -69,145 +51,145 @@ public class InsertSpillView {
 	 */
 	private void initialize() {
 		frameInsVersamento = new JFrame();
-		frameInsVersamento.setBounds(100, 100, 600, 450);
+		frameInsVersamento.setBounds(100, 100, 800, 600);
 		frameInsVersamento.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameInsVersamento.getContentPane().setLayout(null);
 
 		JLabel lblIntroduzione = new JLabel("descrizione");
-		lblIntroduzione.setBounds(44, 22, 440, 42);
+		lblIntroduzione.setBounds(10, 11, 633, 82);
 
 		JLabel lblSocio = new JLabel("Socio");
-		lblSocio.setBounds(25, 75, 46, 14);
+		lblSocio.setBounds(10, 109, 46, 14);
 
 		cmbbxSocio = new JComboBox<String>();
-		cmbbxSocio.setBounds(64, 72, 233, 20);
+		cmbbxSocio.setBounds(49, 106, 233, 20);
 		cmbbxSocio.setSelectedIndex(-1);
 
 		JLabel lblCodFiscale = new JLabel("Cod. Fiscale:");
-		lblCodFiscale.setBounds(25, 133, 72, 14);
+		lblCodFiscale.setBounds(10, 167, 72, 14);
 
 		txtFieldCodFisc = new JTextField();
 		txtFieldCodFisc.setEnabled(false);
-		txtFieldCodFisc.setBounds(100, 132, 134, 17);
+		txtFieldCodFisc.setBounds(85, 166, 134, 17);
 		txtFieldCodFisc.setColumns(10);
 		txtFieldCodFisc.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		txtFieldCodFisc.setBackground(null);
 		txtFieldCodFisc.setDisabledTextColor(Color.black);
 
 		JLabel lblModalitaPagamento = new JLabel("Modal. pagamento:");
-		lblModalitaPagamento.setBounds(25, 158, 107, 14);
+		lblModalitaPagamento.setBounds(10, 192, 107, 14);
 
 		txtFieldModPagamento = new JTextField();
 		txtFieldModPagamento.setEnabled(false);
-		txtFieldModPagamento.setBounds(134, 157, 120, 17);
+		txtFieldModPagamento.setBounds(119, 191, 120, 17);
 		txtFieldModPagamento.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		txtFieldModPagamento.setColumns(10);
 		txtFieldModPagamento.setBackground(null);
 		txtFieldModPagamento.setDisabledTextColor(Color.black);
 
 		JLabel lblMetodoPagamento = new JLabel("Met. pagamento:");
-		lblMetodoPagamento.setBounds(25, 183, 107, 14);
+		lblMetodoPagamento.setBounds(10, 217, 107, 14);
 
 		txtFieldMetPagamento = new JTextField();
 		txtFieldMetPagamento.setEnabled(false);
 		txtFieldMetPagamento.setColumns(10);
-		txtFieldMetPagamento.setBounds(125, 182, 86, 17);
+		txtFieldMetPagamento.setBounds(110, 216, 86, 17);
 		txtFieldMetPagamento.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		txtFieldMetPagamento.setBackground(null);
 		txtFieldMetPagamento.setDisabledTextColor(Color.black);
 
 		JLabel lblTipologia = new JLabel("Tipologia:");
-		lblTipologia.setBounds(25, 208, 54, 14);
+		lblTipologia.setBounds(10, 242, 54, 14);
 
 		txtFieldTipologia = new JTextField();
 		txtFieldTipologia.setEnabled(false);
 		txtFieldTipologia.setColumns(10);
-		txtFieldTipologia.setBounds(81, 207, 153, 17);
+		txtFieldTipologia.setBounds(66, 241, 153, 17);
 		txtFieldTipologia.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		txtFieldTipologia.setBackground(null);
 		txtFieldTipologia.setDisabledTextColor(Color.black);
 
 		JLabel lblTelefono = new JLabel("Telefono:");
-		lblTelefono.setBounds(25, 233, 54, 14);
+		lblTelefono.setBounds(10, 267, 54, 14);
 
 		txtFieldTelefono = new JTextField();
 		txtFieldTelefono.setEnabled(false);
 		txtFieldTelefono.setColumns(10);
-		txtFieldTelefono.setBounds(81, 232, 153, 17);
+		txtFieldTelefono.setBounds(66, 266, 153, 17);
 		txtFieldTelefono.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		txtFieldTelefono.setBackground(null);
 		txtFieldTelefono.setDisabledTextColor(Color.black);
 
 		JLabel lblEmail = new JLabel("Email:");
-		lblEmail.setBounds(25, 258, 46, 14);
+		lblEmail.setBounds(10, 292, 46, 14);
 
 		txtFieldEmail = new JTextField();
 		txtFieldEmail.setEnabled(false);
 		txtFieldEmail.setColumns(10);
-		txtFieldEmail.setBounds(64, 256, 170, 17);
+		txtFieldEmail.setBounds(49, 290, 170, 17);
 		txtFieldEmail.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		txtFieldEmail.setBackground(null);
 		txtFieldEmail.setDisabledTextColor(Color.black);
 
 		JLabel lblData = new JLabel("Data");
-		lblData.setBounds(333, 77, 54, 14);
+		lblData.setBounds(415, 106, 54, 14);
 
 		txtFieldData = new JTextField();
 		txtFieldData.setColumns(10);
-		txtFieldData.setBounds(393, 75, 86, 17);
+		txtFieldData.setBounds(475, 104, 86, 17);
 
 		JLabel lblImporto = new JLabel("Importo");
-		lblImporto.setBounds(333, 107, 54, 14);
+		lblImporto.setBounds(415, 136, 54, 14);
 
 		txtFieldImporto = new JTextField();
 		txtFieldImporto.setColumns(10);
-		txtFieldImporto.setBounds(393, 105, 86, 17);
+		txtFieldImporto.setBounds(475, 134, 86, 17);
 
 		JLabel lblDescrizione = new JLabel("Descrizione");
-		lblDescrizione.setBounds(309, 247, 78, 14);
+		lblDescrizione.setBounds(391, 276, 78, 14);
 
 		txtAreaDescrizione = new JTextArea();
 		txtAreaDescrizione.setWrapStyleWord(true);
 		txtAreaDescrizione.setFont(new Font("Monospaced", Font.PLAIN, 11));
 		txtAreaDescrizione.setLineWrap(true);
-		txtAreaDescrizione.setBounds(397, 244, 164, 132);
+		txtAreaDescrizione.setBounds(479, 273, 164, 132);
 		txtAreaDescrizione.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
 		chckbxGennaio = new JCheckBox("Gennaio");
-		chckbxGennaio.setBounds(309, 129, 73, 23);
+		chckbxGennaio.setBounds(391, 158, 73, 23);
 
 		chckbxFebbraio = new JCheckBox("Febbraio");
-		chckbxFebbraio.setBounds(393, 129, 91, 23);
+		chckbxFebbraio.setBounds(475, 158, 91, 23);
 
 		chckbxMarzo = new JCheckBox("Marzo");
-		chckbxMarzo.setBounds(481, 131, 73, 23);
+		chckbxMarzo.setBounds(563, 160, 73, 23);
 
 		chckbxAprile = new JCheckBox("Aprile");
-		chckbxAprile.setBounds(309, 154, 73, 23);
+		chckbxAprile.setBounds(391, 183, 73, 23);
 
 		chckbxMaggio = new JCheckBox("Maggio");
-		chckbxMaggio.setBounds(393, 154, 73, 23);
+		chckbxMaggio.setBounds(475, 183, 73, 23);
 
 		chckbxGiugno = new JCheckBox("Giugno");
-		chckbxGiugno.setBounds(481, 156, 73, 23);
+		chckbxGiugno.setBounds(563, 185, 73, 23);
 
 		chckbxLuglio = new JCheckBox("Luglio");
-		chckbxLuglio.setBounds(309, 179, 73, 23);
+		chckbxLuglio.setBounds(391, 208, 73, 23);
 
 		chckbxAgosto = new JCheckBox("Agosto");
-		chckbxAgosto.setBounds(393, 179, 73, 23);
+		chckbxAgosto.setBounds(475, 208, 73, 23);
 
 		chckbxSettembre = new JCheckBox("Settembre");
-		chckbxSettembre.setBounds(481, 179, 97, 23);
+		chckbxSettembre.setBounds(563, 208, 97, 23);
 
 		chckbxOttobre = new JCheckBox("Ottobre");
-		chckbxOttobre.setBounds(309, 204, 73, 23);
+		chckbxOttobre.setBounds(391, 233, 73, 23);
 
 		chckbxNovembre = new JCheckBox("Novembre");
-		chckbxNovembre.setBounds(393, 204, 91, 23);
+		chckbxNovembre.setBounds(475, 233, 91, 23);
 
 		chckbxDicembre = new JCheckBox("Dicembre");
-		chckbxDicembre.setBounds(481, 204, 97, 23);
+		chckbxDicembre.setBounds(563, 233, 97, 23);
 
 		btnInserisci = new JButton("Inserisci");
 		btnInserisci.setBounds(54, 332, 89, 23);
@@ -216,7 +198,7 @@ public class InsertSpillView {
 		btnAzzera.setBounds(165, 332, 89, 23);
 
 		btnDashboard = new JButton("Dashboard");
-		btnDashboard.setBounds(458, 11, 120, 33);
+		btnDashboard.setBounds(654, 11, 120, 33);
 
 		frameInsVersamento.getContentPane().setLayout(null);
 		frameInsVersamento.getContentPane().add(lblIntroduzione);

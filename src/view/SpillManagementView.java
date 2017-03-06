@@ -50,10 +50,9 @@ public class SpillManagementView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JLabel lblIntroduzione = new JLabel("descrizione");
-		lblIntroduzione.setBounds(10, 11, 571, 42);
+		lblIntroduzione.setBounds(10, 11, 634, 42);
 
 		table = new JTable();
-
 		table.setBackground(null);
 		table.setAutoResizeMode(4);
 
