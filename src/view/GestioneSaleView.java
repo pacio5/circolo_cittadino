@@ -104,7 +104,7 @@ public class GestioneSaleView {
 		frmCircoloCittadino.getContentPane().add(btnDashboard);
 						
 		JLabel lblElencoSale = new JLabel("Elenco Sale");
-		lblElencoSale.setBounds(186, 77, 61, 14);
+		lblElencoSale.setBounds(186, 77, 76, 14);
 		frmCircoloCittadino.getContentPane().add(lblElencoSale);
 		
 		btnModifica = new JButton("Modifica");

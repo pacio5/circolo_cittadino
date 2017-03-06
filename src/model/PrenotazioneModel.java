@@ -52,7 +52,7 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public boolean updateEvento(Evento e) {
+	public boolean updateEvento(Evento e, String idvecchio) {
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
@@ -67,7 +67,7 @@ public class PrenotazioneModel {
 			stm.setInt(5, e.getPosti());
 			stm.setString(6, e.getLuogo());
 			stm.setDouble(7, e.getPrezzo());
-			stm.setString(8, e.getId());
+			stm.setString(8, idvecchio);
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -180,7 +180,7 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public boolean updatePrenotazioneN(NonSocio ns, int NumB, Evento e, Date dataAcq){
+	public boolean updatePrenotazioneN(String cfns, int NumB, String idevento, Date dataAcq, String cfvns, String ideventov){
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
@@ -190,10 +190,10 @@ public class PrenotazioneModel {
 			stm = db.getConn().prepareStatement(query);
 			stm.setInt(1, NumB);
 			stm.setDate(2, dataAcq);
-			stm.setString(3, ns.getCf());
-			stm.setString(4, e.getId());
-			stm.setString(5, ns.getCf());
-			stm.setString(6, e.getId());
+			stm.setString(3, cfns);
+			stm.setString(4, idevento);
+			stm.setString(5, cfvns);
+			stm.setString(6, ideventov);
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -207,7 +207,7 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public boolean updatePrenotazioneS(Socio s, int NumB, Evento e, Date dataAcq){
+	public boolean updatePrenotazioneS(String cfs, int NumB, String idevento, Date dataAcq, String cfvs, String ideventov){
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
@@ -217,10 +217,10 @@ public class PrenotazioneModel {
 			stm = db.getConn().prepareStatement(query);
 			stm.setInt(1, NumB);
 			stm.setDate(2, dataAcq);
-			stm.setString(3, s.getCf());
-			stm.setString(4, e.getId());
-			stm.setString(5, s.getCf());
-			stm.setString(6, e.getId());
+			stm.setString(3, cfs);
+			stm.setString(4, idevento);
+			stm.setString(5, cfvs);
+			stm.setString(6, ideventov);
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -374,17 +374,18 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public boolean updateSala(Sala s) {
+	public boolean updateSala(Sala s, String nomevs) {
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
 		String query = "UPDATE Sala SET NOME = ?, CAPIENZA = ?, DESCRIZIONE = ?"
-				+ " WHERE ID = ?";
+				+ " WHERE NOME = ?";
 		try {	
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, s.getNome());
 			stm.setInt(2,  s.getCapienza());
 			stm.setString(3, s.getDescrizione());
+			stm.setString(3, nomevs);
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -398,14 +399,14 @@ public class PrenotazioneModel {
 		return esito;
 	}
 
-	public boolean deleteSala(String id) {
+	public boolean deleteSala(String nome) {
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
-		String query = "DELETE FROM Sala WHERE ID = ?";
+		String query = "DELETE FROM Sala WHERE NOME = ?";
 		try {
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1, id);
+			stm.setString(1, nome);
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -423,8 +424,7 @@ public class PrenotazioneModel {
 		ArrayList<Sala> Sale = new ArrayList<Sala>();
 		db.open();
 		Statement stm;
-		String query = "SELECT S.nome, S.capienza, S.descrizione, T.prezzo FROM Sala AS S INNER JOIN "
-				+ "Tariffa ON S.id = T.sala;";
+		String query = "SELECT * FROM Sala;";
 		try {
 			stm = db.getConn().createStatement();
 			ResultSet res = stm.executeQuery(query);
@@ -493,7 +493,7 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public boolean updateAffittoN(NonSocio ns, Sala s, Date dataAft){
+	public boolean updateAffittoN(NonSocio ns, Sala s, Date dataAft, Date dataAftPrecedente, String cfns, String nomevs){
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
@@ -504,9 +504,9 @@ public class PrenotazioneModel {
 			stm.setDate(1, dataAft);
 			stm.setString(2, ns.getCf());
 			stm.setString(3, s.getNome());
-			stm.setDate(4, dataAft);
-			stm.setString(5, ns.getCf());
-			stm.setString(6, s.getNome());
+			stm.setDate(4, dataAftPrecedente);
+			stm.setString(5, cfns);
+			stm.setString(6, nomevs);
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -520,7 +520,7 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public boolean updateAffittoS(Socio sc, Sala s, Date dataAft){
+	public boolean updateAffittoS(Socio sc, Sala s, Date dataAft, Date dataAftPrecedente, String cfs, String nomevs){
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
@@ -531,9 +531,9 @@ public class PrenotazioneModel {
 			stm.setDate(1, dataAft);
 			stm.setString(2, sc.getCf());
 			stm.setString(3, s.getNome());
-			stm.setDate(4, dataAft);
-			stm.setString(5, sc.getCf());
-			stm.setString(6, s.getNome());
+			stm.setDate(4, dataAftPrecedente);
+			stm.setString(5, cfs);
+			stm.setString(6, nomevs);
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
