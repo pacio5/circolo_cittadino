@@ -26,7 +26,7 @@ public class GestioneEventiController {
 	}
 	
 	public void gestione() {
-		ArrayList<Evento> eventi = model.ListaEventi();
+		ArrayList<Evento> eventi = model.listaEventi();
 		GestioneEventiView view = new GestioneEventiView(eventi);
 		view.getFrame().setVisible(true);
 	
