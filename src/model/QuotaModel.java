@@ -118,12 +118,13 @@ public class QuotaModel {
 	
 	public Quota getQuotaPrecendente(String tipo) {
 		Quota quote = null;
-		String operation = "SELECT * FROM Quota WHERE DATA_INIZIO = (SELECT MAX(DATA_INIZIO) FROM Quota WHERE TIPOLOGIA = ?);";
+		String operation = "SELECT * FROM Quota WHERE DATA_INIZIO = (SELECT MAX(DATA_INIZIO) FROM Quota WHERE TIPOLOGIA = ?) AND TIPOLOGIA = ?";
 		try {
 			db.open();
 			PreparedStatement command = null;
 			command = db.getConn().prepareStatement(operation);
 			command.setString(1, tipo);
+			command.setString(2, tipo);
 			ResultSet rs = command.executeQuery();
 			if(rs.next()){
 				quote = new Quota(rs.getInt("ID"), rs.getFloat("VALORE"), rs.getString("TIPOLOGIA"),
@@ -253,16 +254,18 @@ public class QuotaModel {
 	
 	public float getImportoMese(String tipo, Date data) {
 		float valore = 0;
-		String operation = "SELECT VALORE FROM Quota WHERE TIPOLOGIA = ? AND (? BETWEEN DATA_INIZIO AND  DATA_FINE)";
+		String operation = "SELECT VALORE FROM Quota WHERE TIPOLOGIA = ? AND DATA_INIZIO = (SELECT MAX(DATA_INIZIO) FROM Quota WHERE DATA_INIZIO <= ? AND TIPOLOGIA = ?)";
 		try {
 			db.open();
 			PreparedStatement command = null;
 			command = db.getConn().prepareStatement(operation);
 			command.setString(1, tipo);
 			command.setDate(2, data);
+			command.setString(3, tipo);
 			ResultSet rs = command.executeQuery();
 			if(rs.next())
 				valore = rs.getFloat("VALORE");
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

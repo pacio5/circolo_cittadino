@@ -183,6 +183,21 @@ public class SpillController {
 		viewInsert.getCmbbxSocio().addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
+				viewInsert.getTxtFieldData().setText("");
+				viewInsert.getTxtFieldImporto().setText("0.0");
+				viewInsert.getTxtFieldDescrizione().setText("");
+				viewInsert.getChckbxGennaio().setSelected(false);
+				viewInsert.getChckbxFebbraio().setSelected(false);
+				viewInsert.getChckbxMarzo().setSelected(false);
+				viewInsert.getChckbxAprile().setSelected(false);
+				viewInsert.getChckbxMaggio().setSelected(false);
+				viewInsert.getChckbxGiugno().setSelected(false);
+				viewInsert.getChckbxLuglio().setSelected(false);
+				viewInsert.getChckbxAgosto().setSelected(false);
+				viewInsert.getChckbxSettembre().setSelected(false);
+				viewInsert.getChckbxOttobre().setSelected(false);
+				viewInsert.getChckbxNovembre().setSelected(false);
+				viewInsert.getChckbxDicembre().setSelected(false);
 				if (viewInsert.getCmbbxSocio().getSelectedIndex() != -1) {
 					viewInsert.getTxtFieldCodFisc()
 							.setText(soci.get(viewInsert.getCmbbxSocio().getSelectedIndex()).getCf());
@@ -390,7 +405,7 @@ public class SpillController {
 	private void azzeraFormInsert() {
 		viewInsert.getCmbbxSocio().setSelectedIndex(-1);
 		viewInsert.getTxtFieldData().setText("");
-		viewInsert.getTxtFieldImporto().setText("");
+		viewInsert.getTxtFieldImporto().setText("0.0");
 		viewInsert.getTxtFieldDescrizione().setText("");
 		viewInsert.getChckbxGennaio().setSelected(false);
 		viewInsert.getChckbxFebbraio().setSelected(false);
