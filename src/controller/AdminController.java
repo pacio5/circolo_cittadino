@@ -55,7 +55,7 @@ public class AdminController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SpillController spillController = new SpillController();
-				spillController.MostraInserimentoVers();
+				spillController.mostraInserimentoVers();
 				adminView.getFrame().dispose();
 			}
 		});
@@ -91,7 +91,7 @@ public class AdminController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				SpillController spillController = new SpillController();
-				spillController.MostraGestioneVers();
+				spillController.mostraGestioneVers();
 				adminView.getFrame().dispose();
 			}
 		});
@@ -110,6 +110,24 @@ public class AdminController {
 			public void mouseClicked(MouseEvent e) {
 				SocioController socioController = new SocioController();
 				socioController.gestioneExSocio();
+				adminView.getFrame().dispose();
+			}
+		});
+		
+		adminView.getBtnInserisciQuota().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				QuoteController quoteController = new QuoteController();
+				quoteController.mostraInserimentoQuote();
+				adminView.getFrame().dispose();
+			}
+		});
+		
+		adminView.getBtnVisualizzazioneQuote().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				QuoteController quoteController = new QuoteController();
+				quoteController.mostraGestioneQuote();
 				adminView.getFrame().dispose();
 			}
 		});

@@ -21,6 +21,13 @@ public class Quota {
 		dataFine = dataF;
 	}
 
+	public Quota(float value, String type, Date dataI, Date dataF) {
+		valore = value;
+		tipologia = type;
+		dataInizio = dataI;
+		dataFine = dataF;
+	}
+
 	@Override
 	public String toString() {
 		return "Quota[Id = " + id + ", Valore = " + valore + ", Tipologia = " + tipologia + ", Data Inizio = "

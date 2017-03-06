@@ -16,6 +16,8 @@ public class AdminView {
 	private JButton btnGestioneVersamenti;
 	private JButton btnGestioneNonSocio;
 	private JButton btnGestioneExSocio;
+	private JButton btnInserisciQuota;
+	private JButton btnVisualizzazioneQuote;
 
 	/**
 	 * Create the frame.
@@ -36,7 +38,7 @@ public class AdminView {
 		btnInserisciVersamento.setBounds(199, 50, 152, 29);
 		
 		btnInserisciEvento = new JButton("Inserisci Evento");
-		btnInserisciEvento.setBounds(199, 132, 152, 29);
+		btnInserisciEvento.setBounds(199, 214, 152, 29);
 		
 		JLabel lblCircoloCittadinoDi = new JLabel("Circolo Cittadino di Ascoli Piceno");
 		lblCircoloCittadinoDi.setBounds(266, 11, 211, 16);
@@ -50,6 +52,18 @@ public class AdminView {
 		btnGestioneVersamenti = new JButton("Gestione Versamenti");
 		btnGestioneVersamenti.setBounds(199, 90, 152, 29);
 		
+		btnGestioneNonSocio = new JButton("Gestione Non Socio");
+		btnGestioneNonSocio.setBounds(24, 173, 152, 29);
+		
+		btnGestioneExSocio = new JButton("Gestione Ex Socio");
+		btnGestioneExSocio.setBounds(24, 214, 152, 29);
+		
+		btnInserisciQuota = new JButton("Inserimento Quota");
+		btnInserisciQuota.setBounds(199, 132, 152, 29);
+		
+		btnVisualizzazioneQuote = new JButton("Visualizzazione Quote");
+		btnVisualizzazioneQuote.setBounds(199, 172, 152, 29);
+		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(btnLogout);
 		frame.getContentPane().add(btnInserisciSocio);
@@ -59,14 +73,12 @@ public class AdminView {
 		frame.getContentPane().add(btnElencoSoci);
 		frame.getContentPane().add(btnGestioneFigli);
 		frame.getContentPane().add(btnGestioneVersamenti);
-		
-		btnGestioneNonSocio = new JButton("Gestione Non Socio");
-		btnGestioneNonSocio.setBounds(24, 173, 152, 29);
 		frame.getContentPane().add(btnGestioneNonSocio);
-		
-		btnGestioneExSocio = new JButton("Gestione Ex Socio");
-		btnGestioneExSocio.setBounds(24, 214, 152, 29);
 		frame.getContentPane().add(btnGestioneExSocio);
+		frame.getContentPane().add(btnInserisciQuota);
+		frame.getContentPane().add(btnVisualizzazioneQuote);
+		
+		
 	}
 
 	public JFrame getFrame() {
@@ -108,7 +120,12 @@ public class AdminView {
 	public JButton getBtnGestioneExSocio() {
 		return btnGestioneExSocio;
 	}
-	
-	
-	
+
+	public JButton getBtnInserisciQuota() {
+		return btnInserisciQuota;
+	}
+
+	public JButton getBtnVisualizzazioneQuote() {
+		return btnVisualizzazioneQuote;
+	}
 }

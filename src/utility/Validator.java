@@ -5,6 +5,7 @@ package utility;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.sql.Date;
 
 /**
  * @author eliapacioni
@@ -30,6 +31,18 @@ public class Validator {
 
 	public static boolean ValidaData(String str) {
 		Pattern patt = Pattern.compile("(19|20)[0-9]{2}[- /.](0[1-9]|1[012])[-/.](0[1-9]|[12][0-9]|3[01])");
+		Matcher match = patt.matcher(str);
+		return match.matches();
+	}
+	
+	public static boolean ValidaDataInizio(String str) {
+		Pattern patt = Pattern.compile("(19|20)[0-9]{2}[- /.](0[1-9]|1[012])[-/.](01)");
+		Matcher match = patt.matcher(str);
+		return match.matches();
+	}
+	
+	public static boolean ValidaDataFine(String str) {
+		Pattern patt = Pattern.compile("(19|20)[0-9]{2}[- /.](0[1-9]|1[012])[-/.](2[89]|3[01])");
 		Matcher match = patt.matcher(str);
 		return match.matches();
 	}
@@ -76,9 +89,14 @@ public class Validator {
 	public static boolean ValidaProfessione(String str){
 		return (ValidaTesto(str) && str.length()<31);
 	}
+	
 	public static boolean ValidaMesi(int mesi, String metpagamento) {
 		return ((metpagamento.equals("Mensile") && mesi == 1) || (metpagamento.equals("Trimestrale") && mesi == 3)
 				|| (metpagamento.equals("Semestrale") && mesi == 6) || (metpagamento.equals("Annuale") && mesi == 12));
+	}
+	
+	public static boolean ValidaDataMaggiore(Date dataPre, Date data){
+		return (dataPre.before(data));
 	}
 
 }
