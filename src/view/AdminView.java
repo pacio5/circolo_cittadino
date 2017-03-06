@@ -18,6 +18,7 @@ public class AdminView {
 	private JButton btnGestioneExSocio;
 	private JButton btnInserisciQuota;
 	private JButton btnVisualizzazioneQuote;
+	private JButton btnInserisciSala;
 
 	/**
 	 * Create the frame.
@@ -78,6 +79,10 @@ public class AdminView {
 		frame.getContentPane().add(btnInserisciQuota);
 		frame.getContentPane().add(btnVisualizzazioneQuote);
 		
+		btnInserisciSala = new JButton("Inserisci Sala");
+		btnInserisciSala.setBounds(199, 254, 152, 29);
+		frame.getContentPane().add(btnInserisciSala);
+		
 		
 	}
 
@@ -127,5 +132,9 @@ public class AdminView {
 
 	public JButton getBtnVisualizzazioneQuote() {
 		return btnVisualizzazioneQuote;
+	}
+	
+	public JButton getBtnInserisciSala() {
+		return btnInserisciSala;
 	}
 }
