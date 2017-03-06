@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import java.lang.Float;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Vector;
 import java.sql.Date;
 
@@ -27,12 +28,13 @@ import utility.Validator;
 public class SpillController {
 	private InsertSpillView viewInsert;
 	private SpillManagementView viewManagement;
-	private QuotaModel modelVersamento;
+	private QuotaModel model;
 	private ArrayList<Socio> soci;
 	private ArrayList<Versamento> spills;
+	private float importo;
 
 	public SpillController() {
-		modelVersamento = new QuotaModel();
+		model = new QuotaModel();
 	}
 
 	public void mostraGestioneVers() {
@@ -79,7 +81,7 @@ public class SpillController {
 							.setDescrizione(viewManagement.getTextAreaDescrizione().getText());
 					spills.get(viewManagement.getTable().getSelectedRow()).cloneSpill(
 							insertMesiCheckedManagement(spills.get(viewManagement.getTable().getSelectedRow())));
-					boolean esito = modelVersamento
+					boolean esito = model
 							.updateVersamento(spills.get(viewManagement.getTable().getSelectedRow()));
 					((DefaultTableModel) viewManagement.getTable().getModel()).setValueAt(
 							spills.get(viewManagement.getTable().getSelectedRow()).getData(),
@@ -114,7 +116,7 @@ public class SpillController {
 			public void mouseClicked(MouseEvent e) {
 				if (JOptionPane.showConfirmDialog(null, "Eliminare il versamento?") == 0
 						&& viewManagement.getTable().getSelectedRow() != -1) {
-					boolean esito = modelVersamento
+					boolean esito = model
 							.deleteVersamento(spills.get(viewManagement.getTable().getSelectedRow()).getId());
 					spills.remove(viewManagement.getTable().getSelectedRow());
 					if (esito) {
@@ -153,7 +155,7 @@ public class SpillController {
 							Date.valueOf(viewInsert.getTxtFieldData().getText()),
 							viewInsert.getTxtFieldDescrizione().getText().toUpperCase());
 					insertMesiCheckedInsert(spill);
-					boolean esito = modelVersamento.insertVersamento(spill);
+					boolean esito = model.insertVersamento(spill);
 					if (esito) {
 						JOptionPane.showMessageDialog(viewInsert.getFrameInsVersamento().getContentPane(),
 								"Versamento inserito");
@@ -202,6 +204,175 @@ public class SpillController {
 					viewInsert.getTxtFieldTelefono().setText("");
 					viewInsert.getTxtFieldEmail().setText("");
 				}
+			}
+		});
+		
+		// Evento calcolo importo
+		viewInsert.getChckbxGennaio().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-01-01");
+				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
+				if (viewInsert.getChckbxGennaio().isSelected())
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() + importo));
+				else
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
+			}
+		});
+
+		viewInsert.getChckbxFebbraio().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-02-01");
+				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
+				if (viewInsert.getChckbxFebbraio().isSelected())
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() + importo));
+				else
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
+			}
+		});
+		
+		viewInsert.getChckbxMarzo().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-03-01");
+				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
+				if (viewInsert.getChckbxMarzo().isSelected())
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() + importo));
+				else
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
+			}
+		});
+		
+		viewInsert.getChckbxAprile().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-04-01");
+				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
+				if (viewInsert.getChckbxAprile().isSelected())
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() + importo));
+				else
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
+			}
+		});
+		
+		viewInsert.getChckbxMaggio().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-05-01");
+				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
+				if (viewInsert.getChckbxMaggio().isSelected())
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() + importo));
+				else
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
+			}
+		});
+		
+		viewInsert.getChckbxGiugno().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-06-01");
+				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
+				if (viewInsert.getChckbxGiugno().isSelected())
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() + importo));
+				else
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
+			}
+		});
+		
+		viewInsert.getChckbxLuglio().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-07-01");
+				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
+				if (viewInsert.getChckbxLuglio().isSelected())
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() + importo));
+				else
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
+			}
+		});
+		
+		viewInsert.getChckbxAgosto().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-08-01");
+				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
+				if (viewInsert.getChckbxAgosto().isSelected())
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() + importo));
+				else
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
+			}
+		});
+		
+		viewInsert.getChckbxSettembre().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-09-01");
+				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
+				if (viewInsert.getChckbxSettembre().isSelected())
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() + importo));
+				else
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
+			}
+		});
+		
+		viewInsert.getChckbxOttobre().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-10-01");
+				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
+				if (viewInsert.getChckbxOttobre().isSelected())
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() + importo));
+				else
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
+			}
+		});
+		
+		viewInsert.getChckbxNovembre().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-11-01");
+				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
+				if (viewInsert.getChckbxNovembre().isSelected())
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() + importo));
+				else
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
+			}
+		});
+		
+		viewInsert.getChckbxDicembre().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-12-01");
+				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
+				if (viewInsert.getChckbxDicembre().isSelected())
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() + importo));
+				else
+					viewInsert.getTxtFieldImporto().setText(String
+							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
 			}
 		});
 
@@ -341,7 +512,7 @@ public class SpillController {
 
 	private void fillCmbbxSoci() {
 		SocioModel modelSocio = new SocioModel();
-		soci = new ArrayList<Socio>(modelSocio.ElencoSoci());
+		soci = new ArrayList<Socio>(modelSocio.elencoSoci());
 		for (int i = 0; i < soci.size(); i++)
 			viewInsert.getCmbbxSocio()
 					.addItem(soci.get(i).getNome() + " " + soci.get(i).getCognome() + " - " + soci.get(i).getCf());
@@ -350,7 +521,7 @@ public class SpillController {
 
 	private void fillTableSpill() {
 		String[] nameColumns = { "Id", "Data", "Importo", "Socio", "Descrizione" };
-		spills = new ArrayList<Versamento>(modelVersamento.getVersamenti());
+		spills = new ArrayList<Versamento>(model.getVersamenti());
 
 		/*
 		 * Istanza del TableModel con l'override di isCellEditable per rendere
