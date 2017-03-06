@@ -17,11 +17,11 @@ import utility.Validator;
 
 import entita.Evento;
 
-public class GestioneEventiController {
+public class PrenotazioneController {
 	
 	private GestioneEventiModel model;
 	
-	public GestioneEventiController(){
+	public PrenotazioneController(){
 		model = new GestioneEventiModel();
 	}
 	
