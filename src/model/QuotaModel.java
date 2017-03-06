@@ -2,6 +2,7 @@ package model;
 
 import java.util.*;
 import java.sql.*;
+import java.sql.Date;
 
 import utility.MySql;
 import entita.Versamento;
@@ -248,5 +249,25 @@ public class QuotaModel {
 			db.close();
 		}
 		return spill;
+	}
+	
+	public float getImportoMese(String tipo, Date data) {
+		float valore = 0;
+		String operation = "SELECT VALORE FROM Quota WHERE TIPOLOGIA = ? AND (? BETWEEN DATA_INIZIO AND  DATA_FINE)";
+		try {
+			db.open();
+			PreparedStatement command = null;
+			command = db.getConn().prepareStatement(operation);
+			command.setString(1, tipo);
+			command.setDate(2, data);
+			ResultSet rs = command.executeQuery();
+			if(rs.next())
+				valore = rs.getFloat("VALORE");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.close();
+		}
+		return valore;
 	}
 }

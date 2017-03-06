@@ -139,11 +139,14 @@ public class InsertSpillView {
 		txtFieldData.setBounds(475, 104, 86, 17);
 
 		JLabel lblImporto = new JLabel("Importo");
-		lblImporto.setBounds(415, 136, 54, 14);
+		lblImporto.setBounds(415, 241, 54, 14);
 
 		txtFieldImporto = new JTextField();
+		txtFieldImporto.setEnabled(false);
 		txtFieldImporto.setColumns(10);
-		txtFieldImporto.setBounds(475, 134, 86, 17);
+		txtFieldImporto.setBounds(475, 239, 86, 17);
+		txtFieldImporto.setDisabledTextColor(Color.black);
+		txtFieldImporto.setText("0.0");
 
 		JLabel lblDescrizione = new JLabel("Descrizione");
 		lblDescrizione.setBounds(391, 276, 78, 14);
@@ -156,40 +159,40 @@ public class InsertSpillView {
 		txtAreaDescrizione.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
 		chckbxGennaio = new JCheckBox("Gennaio");
-		chckbxGennaio.setBounds(391, 158, 73, 23);
+		chckbxGennaio.setBounds(412, 127, 73, 23);
 
 		chckbxFebbraio = new JCheckBox("Febbraio");
-		chckbxFebbraio.setBounds(475, 158, 91, 23);
+		chckbxFebbraio.setBounds(496, 127, 91, 23);
 
 		chckbxMarzo = new JCheckBox("Marzo");
-		chckbxMarzo.setBounds(563, 160, 73, 23);
+		chckbxMarzo.setBounds(584, 129, 73, 23);
 
 		chckbxAprile = new JCheckBox("Aprile");
-		chckbxAprile.setBounds(391, 183, 73, 23);
+		chckbxAprile.setBounds(412, 152, 73, 23);
 
 		chckbxMaggio = new JCheckBox("Maggio");
-		chckbxMaggio.setBounds(475, 183, 73, 23);
+		chckbxMaggio.setBounds(496, 152, 73, 23);
 
 		chckbxGiugno = new JCheckBox("Giugno");
-		chckbxGiugno.setBounds(563, 185, 73, 23);
+		chckbxGiugno.setBounds(584, 154, 73, 23);
 
 		chckbxLuglio = new JCheckBox("Luglio");
-		chckbxLuglio.setBounds(391, 208, 73, 23);
+		chckbxLuglio.setBounds(412, 177, 73, 23);
 
 		chckbxAgosto = new JCheckBox("Agosto");
-		chckbxAgosto.setBounds(475, 208, 73, 23);
+		chckbxAgosto.setBounds(496, 177, 73, 23);
 
 		chckbxSettembre = new JCheckBox("Settembre");
-		chckbxSettembre.setBounds(563, 208, 97, 23);
+		chckbxSettembre.setBounds(584, 177, 97, 23);
 
 		chckbxOttobre = new JCheckBox("Ottobre");
-		chckbxOttobre.setBounds(391, 233, 73, 23);
+		chckbxOttobre.setBounds(412, 202, 73, 23);
 
 		chckbxNovembre = new JCheckBox("Novembre");
-		chckbxNovembre.setBounds(475, 233, 91, 23);
+		chckbxNovembre.setBounds(496, 202, 91, 23);
 
 		chckbxDicembre = new JCheckBox("Dicembre");
-		chckbxDicembre.setBounds(563, 233, 97, 23);
+		chckbxDicembre.setBounds(584, 202, 97, 23);
 
 		btnInserisci = new JButton("Inserisci");
 		btnInserisci.setBounds(54, 332, 89, 23);
