@@ -421,7 +421,7 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public ArrayList<Sala> ListaSale() {
+	public ArrayList<Sala> listaSale() {
 		ArrayList<Sala> Sale = new ArrayList<Sala>();
 		db.open();
 		Statement stm;

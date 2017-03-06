@@ -73,7 +73,7 @@ public class AdminController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				PrenotazioneController prenotazioneController = new PrenotazioneController();
-				prenotazioneController.gestione();
+				prenotazioneController.gestioneEventi();
 				adminView.getFrame().dispose();
 			}
 		});
