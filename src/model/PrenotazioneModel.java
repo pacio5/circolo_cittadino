@@ -348,7 +348,7 @@ public class PrenotazioneModel {
 		return partecipantiNS;
 	}
 	
-* Operazioni Sale */
+ /* Operazioni Sale */
 	
 	public boolean insertSala(Sala s) {
 		db.open();
@@ -523,20 +523,20 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public boolean updatePrenotazioneS(Socio s, int NumB, Evento e, Date dataAcq){
+	public boolean updateAffittoS(Socio sc, Sala s, Date dataAft){
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
-		String query = "UPDATE PrenotazioneS SET N_BIGLIETTI = ?, DATA_ACQUISTO = ?, SOCIO = ?, EVENTO = ? "
-				+ "WHERE SOCIO = ? && EVENTO = ?";
+		String query = "UPDATE AFFITTOS SET DATA = ?, SOCIO = ?, SALA = ? "
+				+ "WHERE DATA = ? && SOCIO = ? && SALA = ?";
 		try{
 			stm = db.getConn().prepareStatement(query);
-			stm.setInt(1, NumB);
-			stm.setDate(2, dataAcq);
-			stm.setString(3, s.getCf());
-			stm.setString(4, e.getId());
-			stm.setString(5, s.getCf());
-			stm.setString(6, e.getId());
+			stm.setDate(1, dataAft);
+			stm.setString(2, sc.getCf());
+			stm.setString(3, s.getId());
+			stm.setDate(4, dataAft);
+			stm.setString(5, sc.getCf());
+			stm.setString(6, s.getId());
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
