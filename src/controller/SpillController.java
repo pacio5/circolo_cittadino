@@ -6,8 +6,6 @@ import java.awt.event.ItemListener;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import java.lang.Float;
@@ -52,63 +50,6 @@ public class SpillController {
 	}
 
 	private void controlEventManagement() {
-		// Evento riempimento form
-		viewManagement.getTable().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent event) {
-				if (viewManagement.getTable().getSelectedRow() != -1) {
-					azzeraFormManagement();
-					viewManagement.getTxtFieldData()
-							.setText(spills.get(viewManagement.getTable().getSelectedRow()).getData().toString());
-					viewManagement.getTxtFieldImporto().setText(
-							String.valueOf(spills.get(viewManagement.getTable().getSelectedRow()).getImporto()));
-					viewManagement.getTextAreaDescrizione()
-							.setText(spills.get(viewManagement.getTable().getSelectedRow()).getDescrizione());
-					fillChckbxMesi();
-				}
-			}
-		});
-
-		// Evento modifica Versamento
-		viewManagement.getBtnModifica().addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (validatorManagementForm()) {
-					spills.get(viewManagement.getTable().getSelectedRow())
-							.setData(Date.valueOf(viewManagement.getTxtFieldData().getText()));
-					spills.get(viewManagement.getTable().getSelectedRow())
-							.setImporto(Float.valueOf(viewManagement.getTxtFieldImporto().getText()).floatValue());
-					spills.get(viewManagement.getTable().getSelectedRow())
-							.setDescrizione(viewManagement.getTextAreaDescrizione().getText());
-					spills.get(viewManagement.getTable().getSelectedRow()).cloneSpill(
-							insertMesiCheckedManagement(spills.get(viewManagement.getTable().getSelectedRow())));
-					boolean esito = model.updateVersamento(spills.get(viewManagement.getTable().getSelectedRow()));
-					((DefaultTableModel) viewManagement.getTable().getModel()).setValueAt(
-							spills.get(viewManagement.getTable().getSelectedRow()).getData(),
-							viewManagement.getTable().getSelectedRow(), 1);
-					((DefaultTableModel) viewManagement.getTable().getModel()).setValueAt(
-							spills.get(viewManagement.getTable().getSelectedRow()).getImporto(),
-							viewManagement.getTable().getSelectedRow(), 2);
-					((DefaultTableModel) viewManagement.getTable().getModel()).setValueAt(
-							spills.get(viewManagement.getTable().getSelectedRow()).getSocio(),
-							viewManagement.getTable().getSelectedRow(), 3);
-					((DefaultTableModel) viewManagement.getTable().getModel()).setValueAt(
-							spills.get(viewManagement.getTable().getSelectedRow()).getDescrizione(),
-							viewManagement.getTable().getSelectedRow(), 4);
-					if (esito) {
-						JOptionPane.showMessageDialog(viewManagement.getFrameGestVersamento().getContentPane(),
-								"Versamento modificato");
-						azzeraFormManagement();
-					} else {
-						JOptionPane.showMessageDialog(viewManagement.getFrameGestVersamento().getContentPane(),
-								"Aggiornamento non effettuato");
-					}
-				} else {
-					JOptionPane.showMessageDialog(viewManagement.getFrameGestVersamento().getContentPane(),
-							"Campi non validi, modificare i campi contrassegnati in rosso");
-				}
-			}
-		});
-
 		// Evento eliminazione Versamento
 		viewManagement.getBtnElimina().addMouseListener(new MouseAdapter() {
 			@Override
@@ -420,24 +361,6 @@ public class SpillController {
 		viewInsert.getChckbxDicembre().setSelected(false);
 	}
 
-	private void azzeraFormManagement() {
-		viewManagement.getTxtFieldData().setText("");
-		viewManagement.getTxtFieldImporto().setText("");
-		viewManagement.getTextAreaDescrizione().setText("");
-		viewManagement.getChckbxGennaio().setSelected(false);
-		viewManagement.getChckbxFebbraio().setSelected(false);
-		viewManagement.getChckbxMarzo().setSelected(false);
-		viewManagement.getChckbxAprile().setSelected(false);
-		viewManagement.getChckbxMaggio().setSelected(false);
-		viewManagement.getChckbxGiugno().setSelected(false);
-		viewManagement.getChckbxLuglio().setSelected(false);
-		viewManagement.getChckbxAgosto().setSelected(false);
-		viewManagement.getChckbxSettembre().setSelected(false);
-		viewManagement.getChckbxOttobre().setSelected(false);
-		viewManagement.getChckbxNovembre().setSelected(false);
-		viewManagement.getChckbxDicembre().setSelected(false);
-	}
-
 	private Versamento insertMesiCheckedInsert(Versamento spill) {
 		if (viewInsert.getChckbxGennaio().isSelected())
 			spill.setMese(viewInsert.getChckbxGennaio().getText());
@@ -464,64 +387,6 @@ public class SpillController {
 		if (viewInsert.getChckbxDicembre().isSelected())
 			spill.setMese(viewInsert.getChckbxDicembre().getText());
 		return spill;
-	}
-
-	private Versamento insertMesiCheckedManagement(Versamento spill) {
-		spill.azzeraMesi();
-		if (viewManagement.getChckbxGennaio().isSelected())
-			spill.setMese(viewManagement.getChckbxGennaio().getText());
-		if (viewManagement.getChckbxFebbraio().isSelected())
-			spill.setMese(viewManagement.getChckbxFebbraio().getText());
-		if (viewManagement.getChckbxMarzo().isSelected())
-			spill.setMese(viewManagement.getChckbxMarzo().getText());
-		if (viewManagement.getChckbxAprile().isSelected())
-			spill.setMese(viewManagement.getChckbxAprile().getText());
-		if (viewManagement.getChckbxMaggio().isSelected())
-			spill.setMese(viewManagement.getChckbxMaggio().getText());
-		if (viewManagement.getChckbxGiugno().isSelected())
-			spill.setMese(viewManagement.getChckbxGiugno().getText());
-		if (viewManagement.getChckbxLuglio().isSelected())
-			spill.setMese(viewManagement.getChckbxLuglio().getText());
-		if (viewManagement.getChckbxAgosto().isSelected())
-			spill.setMese(viewManagement.getChckbxAgosto().getText());
-		if (viewManagement.getChckbxSettembre().isSelected())
-			spill.setMese(viewManagement.getChckbxSettembre().getText());
-		if (viewManagement.getChckbxOttobre().isSelected())
-			spill.setMese(viewManagement.getChckbxOttobre().getText());
-		if (viewManagement.getChckbxNovembre().isSelected())
-			spill.setMese(viewManagement.getChckbxNovembre().getText());
-		if (viewManagement.getChckbxDicembre().isSelected())
-			spill.setMese(viewManagement.getChckbxDicembre().getText());
-		return spill;
-	}
-
-	private void fillChckbxMesi() {
-		for (int i = 0; i < spills.get(viewManagement.getTable().getSelectedRow()).getMesiLeng(); i++) {
-			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Gennaio"))
-				viewManagement.getChckbxGennaio().setSelected(true);
-			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Febbraio"))
-				viewManagement.getChckbxFebbraio().setSelected(true);
-			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Marzo"))
-				viewManagement.getChckbxMarzo().setSelected(true);
-			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Aprile"))
-				viewManagement.getChckbxAprile().setSelected(true);
-			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Maggio"))
-				viewManagement.getChckbxMaggio().setSelected(true);
-			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Giugno"))
-				viewManagement.getChckbxGiugno().setSelected(true);
-			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Luglio"))
-				viewManagement.getChckbxLuglio().setSelected(true);
-			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Agosto"))
-				viewManagement.getChckbxAgosto().setSelected(true);
-			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Settembre"))
-				viewManagement.getChckbxSettembre().setSelected(true);
-			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Ottobre"))
-				viewManagement.getChckbxOttobre().setSelected(true);
-			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Novembre"))
-				viewManagement.getChckbxNovembre().setSelected(true);
-			if (spills.get(viewManagement.getTable().getSelectedRow()).getMese(i).equals("Dicembre"))
-				viewManagement.getChckbxDicembre().setSelected(true);
-		}
 	}
 
 	private void fillCmbbxSoci() {
@@ -575,31 +440,12 @@ public class SpillController {
 				viewInsert.getTxtFieldImporto().setBackground(Color.white);
 		}
 		if (!Validator.ValidaMesi(viewInsert.getNumberChckbxChecked(),
-				viewInsert.getTxtFieldMetPagamento().getText())) {
-			viewInsert.getTxtFieldMetPagamento().setBackground(Color.red);
+				viewInsert.getTxtFieldModPagamento().getText())) {
+			viewInsert.getTxtFieldModPagamento().setBackground(Color.red);
 			validazione = false;
 		} else {
-			if (viewInsert.getTxtFieldMetPagamento().getBackground() == Color.red)
-				viewInsert.getTxtFieldMetPagamento().setBackground(null);
-		}
-		return validazione;
-	}
-
-	private boolean validatorManagementForm() {
-		boolean validazione = true;
-		if (!Validator.ValidaData(viewManagement.getTxtFieldData().getText())) {
-			viewManagement.getTxtFieldData().setBackground(Color.red);
-			validazione = false;
-		} else {
-			if (viewManagement.getTxtFieldData().getBackground() == Color.red)
-				viewManagement.getTxtFieldData().setBackground(Color.white);
-		}
-		if (!Validator.ValidaImporto(viewManagement.getTxtFieldImporto().getText())) {
-			viewManagement.getTxtFieldImporto().setBackground(Color.red);
-			validazione = false;
-		} else {
-			if (viewManagement.getTxtFieldImporto().getBackground() == Color.red)
-				viewManagement.getTxtFieldImporto().setBackground(Color.white);
+			if (viewInsert.getTxtFieldModPagamento().getBackground() == Color.red)
+				viewInsert.getTxtFieldModPagamento().setBackground(null);
 		}
 		return validazione;
 	}
