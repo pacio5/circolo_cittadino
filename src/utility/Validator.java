@@ -85,8 +85,8 @@ public class Validator {
 	}
 	
 	public static boolean ValidaMesi(int mesi, String metpagamento) {
-		return ((metpagamento.equals("Mensile") && mesi == 1) || (metpagamento.equals("Trimestrale") && mesi == 3)
-				|| (metpagamento.equals("Semestrale") && mesi == 6) || (metpagamento.equals("Annuale") && mesi == 12));
+		return ((metpagamento.equals("MENSILE") && mesi == 1) || (metpagamento.equals("TRIMESTRALE") && mesi == 3)
+				|| (metpagamento.equals("SEMESTRALE") && mesi == 6) || (metpagamento.equals("ANNUALE") && mesi == 12));
 	}
 	
 	public static boolean ValidaDataMaggiore(Date dataPre, Date data){

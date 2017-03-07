@@ -81,7 +81,8 @@ public class QuotaModel {
 		try {
 			db.open();
 			Statement command = db.getConn().createStatement();
-			ResultSet rs = command.executeQuery("SELECT * FROM Quota");
+			ResultSet rs = command
+					.executeQuery("SELECT * FROM Quota ORDER BY DATA_INIZIO DESC, TIPOLOGIA DESC");
 			while (rs.next()) {
 				quote.add(new Quota(rs.getInt("ID"), rs.getFloat("VALORE"), rs.getString("TIPOLOGIA"),
 						rs.getDate("DATA_INIZIO")));

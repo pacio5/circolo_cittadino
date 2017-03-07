@@ -101,7 +101,7 @@ public class InsertQuoteView {
 		btnDashboard.setBounds(654, 11, 120, 33);
 
 		JLabel lblFormatoData = new JLabel("aaaa/mm");
-		lblFormatoData.setBounds(515, 168, 46, 14);
+		lblFormatoData.setBounds(515, 168, 72, 14);
 
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(lblIntroduzione);
