@@ -3,8 +3,12 @@
  */
 package utility;
 
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import entita.Versamento;
+
 import java.sql.Date;
 
 /**
@@ -90,7 +94,10 @@ public class Validator {
 	}
 	
 	public static boolean ValidaDataMaggiore(Date dataPre, Date data){
-		return (dataPre.before(data));
+		return dataPre.before(data);
 	}
-
+	
+	public static boolean ValidaMesiPagati(String mese, ArrayList<String> mesipagati) {
+		return !mesipagati.contains(mese);
+	}
 }

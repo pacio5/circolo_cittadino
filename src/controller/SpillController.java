@@ -4,6 +4,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ItemListener;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -163,9 +165,9 @@ public class SpillController {
 		});
 
 		// Evento calcolo importo
-		viewInsert.getChckbxGennaio().addMouseListener(new MouseAdapter() {
+		viewInsert.getChckbxGennaio().addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+		    public void actionPerformed(ActionEvent actionEvent) {
 				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-01-01");
 				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
 				if (viewInsert.getChckbxGennaio().isSelected())
@@ -177,9 +179,9 @@ public class SpillController {
 			}
 		});
 
-		viewInsert.getChckbxFebbraio().addMouseListener(new MouseAdapter() {
+		viewInsert.getChckbxFebbraio().addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+		    public void actionPerformed(ActionEvent actionEvent) {
 				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-02-01");
 				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
 				if (viewInsert.getChckbxFebbraio().isSelected())
@@ -191,9 +193,9 @@ public class SpillController {
 			}
 		});
 
-		viewInsert.getChckbxMarzo().addMouseListener(new MouseAdapter() {
+		viewInsert.getChckbxMarzo().addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+		    public void actionPerformed(ActionEvent actionEvent) {
 				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-03-01");
 				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
 				if (viewInsert.getChckbxMarzo().isSelected())
@@ -205,9 +207,9 @@ public class SpillController {
 			}
 		});
 
-		viewInsert.getChckbxAprile().addMouseListener(new MouseAdapter() {
+		viewInsert.getChckbxAprile().addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+		    public void actionPerformed(ActionEvent actionEvent) {
 				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-04-01");
 				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
 				if (viewInsert.getChckbxAprile().isSelected())
@@ -219,9 +221,9 @@ public class SpillController {
 			}
 		});
 
-		viewInsert.getChckbxMaggio().addMouseListener(new MouseAdapter() {
+		viewInsert.getChckbxMaggio().addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+		    public void actionPerformed(ActionEvent actionEvent) {
 				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-05-01");
 				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
 				if (viewInsert.getChckbxMaggio().isSelected())
@@ -233,9 +235,9 @@ public class SpillController {
 			}
 		});
 
-		viewInsert.getChckbxGiugno().addMouseListener(new MouseAdapter() {
+		viewInsert.getChckbxGiugno().addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+		    public void actionPerformed(ActionEvent actionEvent) {
 				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-06-01");
 				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
 				if (viewInsert.getChckbxGiugno().isSelected())
@@ -247,9 +249,9 @@ public class SpillController {
 			}
 		});
 
-		viewInsert.getChckbxLuglio().addMouseListener(new MouseAdapter() {
+		viewInsert.getChckbxLuglio().addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+		    public void actionPerformed(ActionEvent actionEvent) {
 				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-07-01");
 				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
 				if (viewInsert.getChckbxLuglio().isSelected())
@@ -261,9 +263,9 @@ public class SpillController {
 			}
 		});
 
-		viewInsert.getChckbxAgosto().addMouseListener(new MouseAdapter() {
+		viewInsert.getChckbxAgosto().addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+		    public void actionPerformed(ActionEvent actionEvent) {
 				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-08-01");
 				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
 				if (viewInsert.getChckbxAgosto().isSelected())
@@ -275,9 +277,9 @@ public class SpillController {
 			}
 		});
 
-		viewInsert.getChckbxSettembre().addMouseListener(new MouseAdapter() {
+		viewInsert.getChckbxSettembre().addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+		    public void actionPerformed(ActionEvent actionEvent) {
 				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-09-01");
 				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
 				if (viewInsert.getChckbxSettembre().isSelected())
@@ -289,9 +291,9 @@ public class SpillController {
 			}
 		});
 
-		viewInsert.getChckbxOttobre().addMouseListener(new MouseAdapter() {
+		viewInsert.getChckbxOttobre().addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+		    public void actionPerformed(ActionEvent actionEvent) {
 				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-10-01");
 				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
 				if (viewInsert.getChckbxOttobre().isSelected())
@@ -303,9 +305,9 @@ public class SpillController {
 			}
 		});
 
-		viewInsert.getChckbxNovembre().addMouseListener(new MouseAdapter() {
+		viewInsert.getChckbxNovembre().addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+		    public void actionPerformed(ActionEvent actionEvent) {
 				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-11-01");
 				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
 				if (viewInsert.getChckbxNovembre().isSelected())
@@ -317,9 +319,9 @@ public class SpillController {
 			}
 		});
 
-		viewInsert.getChckbxDicembre().addMouseListener(new MouseAdapter() {
+		viewInsert.getChckbxDicembre().addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+		    public void actionPerformed(ActionEvent actionEvent) {
 				Date mensilita = Date.valueOf(String.valueOf(Calendar.getInstance().get(Calendar.YEAR)) + "-12-01");
 				importo = model.getImportoMese(viewInsert.getTxtFieldTipologia().getText(), mensilita);
 				if (viewInsert.getChckbxDicembre().isSelected())
@@ -447,6 +449,94 @@ public class SpillController {
 			if (viewInsert.getTxtFieldModPagamento().getBackground() == Color.red)
 				viewInsert.getTxtFieldModPagamento().setBackground(null);
 		}
+		if (viewInsert.getCmbbxSocio().getSelectedIndex() != -1){
+			ArrayList<String> mesipagati = model.getMesiPagati(soci.get(viewInsert.getCmbbxSocio().getSelectedIndex()).getCf());
+			if (!Validator.ValidaMesiPagati("Gennaio", mesipagati) && viewInsert.getChckbxGennaio().isSelected()){
+				viewInsert.getChckbxGennaio().setBackground(Color.red);
+				validazione = false;
+			} else {
+				if (viewInsert.getChckbxGennaio().getBackground() == Color.red)
+					viewInsert.getChckbxGennaio().setBackground(null);
+			}
+			if (!Validator.ValidaMesiPagati("Febbraio", mesipagati) && viewInsert.getChckbxFebbraio().isSelected()){
+				viewInsert.getChckbxFebbraio().setBackground(Color.red);
+				validazione = false;
+			} else {
+				if (viewInsert.getChckbxFebbraio().getBackground() == Color.red)
+					viewInsert.getChckbxFebbraio().setBackground(null);
+			}
+			if (!Validator.ValidaMesiPagati("Marzo", mesipagati) && viewInsert.getChckbxMarzo().isSelected()){
+				viewInsert.getChckbxMarzo().setBackground(Color.red);
+				validazione = false;
+			} else {
+				if (viewInsert.getChckbxMarzo().getBackground() == Color.red)
+					viewInsert.getChckbxMarzo().setBackground(null);
+			}
+			if (!Validator.ValidaMesiPagati("Aprile", mesipagati) && viewInsert.getChckbxAprile().isSelected()){
+				viewInsert.getChckbxAprile().setBackground(Color.red);
+				validazione = false;
+			} else {
+				if (viewInsert.getChckbxAprile().getBackground() == Color.red)
+					viewInsert.getChckbxAprile().setBackground(null);
+			}
+			if (!Validator.ValidaMesiPagati("Maggio", mesipagati) && viewInsert.getChckbxMaggio().isSelected()){
+				viewInsert.getChckbxMaggio().setBackground(Color.red);
+				validazione = false;
+			} else {
+				if (viewInsert.getChckbxMaggio().getBackground() == Color.red)
+					viewInsert.getChckbxMaggio().setBackground(null);
+			}
+			if (!Validator.ValidaMesiPagati("Giugno", mesipagati) && viewInsert.getChckbxGiugno().isSelected()){
+				viewInsert.getChckbxGiugno().setBackground(Color.red);
+				validazione = false;
+			} else {
+				if (viewInsert.getChckbxGiugno().getBackground() == Color.red)
+					viewInsert.getChckbxGiugno().setBackground(null);
+			}
+			if (!Validator.ValidaMesiPagati("Luglio", mesipagati) && viewInsert.getChckbxLuglio().isSelected()){
+				viewInsert.getChckbxLuglio().setBackground(Color.red);
+				validazione = false;
+			} else {
+				if (viewInsert.getChckbxLuglio().getBackground() == Color.red)
+					viewInsert.getChckbxLuglio().setBackground(null);
+			}
+			if (!Validator.ValidaMesiPagati("Agosto", mesipagati) && viewInsert.getChckbxAgosto().isSelected()){
+				viewInsert.getChckbxAgosto().setBackground(Color.red);
+				validazione = false;
+			} else {
+				if (viewInsert.getChckbxAgosto().getBackground() == Color.red)
+					viewInsert.getChckbxAgosto().setBackground(null);
+			}
+			if (!Validator.ValidaMesiPagati("Settembre", mesipagati) && viewInsert.getChckbxSettembre().isSelected()){
+				viewInsert.getChckbxSettembre().setBackground(Color.red);
+				validazione = false;
+			} else {
+				if (viewInsert.getChckbxSettembre().getBackground() == Color.red)
+					viewInsert.getChckbxSettembre().setBackground(null);
+			}
+			if (!Validator.ValidaMesiPagati("Ottobre", mesipagati) && viewInsert.getChckbxOttobre().isSelected()){
+				viewInsert.getChckbxOttobre().setBackground(Color.red);
+				validazione = false;
+			} else {
+				if (viewInsert.getChckbxOttobre().getBackground() == Color.red)
+					viewInsert.getChckbxOttobre().setBackground(null);
+			}
+			if (!Validator.ValidaMesiPagati("Novembre", mesipagati) && viewInsert.getChckbxNovembre().isSelected()){
+				viewInsert.getChckbxNovembre().setBackground(Color.red);
+				validazione = false;
+			} else {
+				if (viewInsert.getChckbxNovembre().getBackground() == Color.red)
+					viewInsert.getChckbxNovembre().setBackground(null);
+			}
+			if (!Validator.ValidaMesiPagati("Dicembre", mesipagati) && viewInsert.getChckbxDicembre().isSelected()){
+				viewInsert.getChckbxDicembre().setBackground(Color.red);
+				validazione = false;
+			} else {
+				if (viewInsert.getChckbxDicembre().getBackground() == Color.red)
+					viewInsert.getChckbxDicembre().setBackground(null);
+			}
+		} else
+			validazione = false;			
 		return validazione;
 	}
 }

@@ -118,6 +118,26 @@ public class QuotaModel {
 		}
 		return quote;
 	}
+	
+	public ArrayList<String> getMesiPagati(String cf) {
+		ArrayList<String> mesipagati = new ArrayList<String>();
+		String operation = "SELECT Mese.DATA as Mesi FROM Mese, Versamento WHERE Mese.VERSAMENTO = Versamento.ID AND Versamento.SOCIO = ? AND YEAR(Versamento.DATA) = YEAR(curdate())";
+		try {
+			db.open();
+			PreparedStatement command = null;
+			command = db.getConn().prepareStatement(operation);
+			command.setString(1, cf);
+			ResultSet rs = command.executeQuery();
+			while(rs.next())
+				mesipagati.add(rs.getString("Mesi"));
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.close();
+		}
+		return mesipagati;
+	}
 
 	/* Operazioni versamenti */
 	public boolean insertVersamento(Versamento spill) {
