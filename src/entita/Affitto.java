@@ -45,11 +45,10 @@ public class Affitto {
 		sala = nomeSala;
 	}
 	
-//	@Override
-	/*public String toString() {
-		return "Sala [nome=" + nome + ", data=" + data + ", descrizione=" + descrizione + ", posti="
-				+ posti + ", luogo=" + luogo + ", prezzo=" + prezzo + "]";
-	}*/
+	@Override
+	public String toString() {
+		return "La Sala=" + sala + ", in data=" + data + ", risulta prenotata da cf=" + cf;
+	}
 	
 	
 	
