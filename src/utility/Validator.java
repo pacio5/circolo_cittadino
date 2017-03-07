@@ -36,13 +36,7 @@ public class Validator {
 	}
 	
 	public static boolean ValidaDataInizio(String str) {
-		Pattern patt = Pattern.compile("(19|20)[0-9]{2}[- /.](0[1-9]|1[012])[-/.](01)");
-		Matcher match = patt.matcher(str);
-		return match.matches();
-	}
-	
-	public static boolean ValidaDataFine(String str) {
-		Pattern patt = Pattern.compile("(19|20)[0-9]{2}[- /.](0[1-9]|1[012])[-/.](2[89]|3[01])");
+		Pattern patt = Pattern.compile("(19|20)[0-9]{2}[- /.](0[1-9]|1[012])");
 		Matcher match = patt.matcher(str);
 		return match.matches();
 	}

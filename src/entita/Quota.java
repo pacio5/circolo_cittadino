@@ -7,36 +7,33 @@ public class Quota {
 	private float valore;
 	private String tipologia;
 	private Date dataInizio;
-	private Date dataFine;
 
 	public Quota() {
-		this(-1, 0, null, null, null);
+		this(-1, 0, null, null);
 	}
 
-	public Quota(int cod, float value, String type, Date dataI, Date dataF) {
+	public Quota(int cod, float value, String type, Date dataI) {
 		id = cod;
 		valore = value;
 		tipologia = type;
 		dataInizio = dataI;
-		dataFine = dataF;
 	}
 
-	public Quota(float value, String type, Date dataI, Date dataF) {
+	public Quota(float value, String type, Date dataI) {
 		valore = value;
 		tipologia = type;
 		dataInizio = dataI;
-		dataFine = dataF;
 	}
 
 	@Override
 	public String toString() {
 		return "Quota[Id = " + id + ", Valore = " + valore + ", Tipologia = " + tipologia + ", Data Inizio = "
-				+ dataInizio + ", Data Fine = " + dataFine + "]";
+				+ dataInizio + "]";
 	}
 
 	public boolean equals(Quota x) {
 		return (id == x.id && valore == x.valore && tipologia.equals(x.tipologia) && !dataInizio.after(x.dataInizio)
-				&& !dataInizio.before(x.dataInizio) && !dataFine.after(x.dataFine) && !dataFine.before(x.dataFine));
+				&& !dataInizio.before(x.dataInizio));
 	}
 
 	/* Lettura attributi */
@@ -56,10 +53,6 @@ public class Quota {
 		return dataInizio;
 	}
 
-	public Date getDataF() {
-		return dataFine;
-	}
-
 	/* Inserimento attributi */
 	public void setId(int cod) {
 		id = cod;
@@ -75,9 +68,5 @@ public class Quota {
 
 	public void setDataI(Date dataI) {
 		dataInizio = dataI;
-	}
-
-	public void setDataF(Date dataF) {
-		dataFine = dataF;
 	}
 }

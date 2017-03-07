@@ -19,34 +19,14 @@ public class QuotaModel {
 	/* Operazioni quote */
 	public boolean insertQuota(Quota quo) {
 		boolean esito = false;
-		String operation = "INSERT INTO Quota (DATA_INIZIO, DATA_FINE, VALORE, TIPOLOGIA) VALUES (?, ?, ?, ?)";
+		String operation = "INSERT INTO Quota (DATA_INIZIO, VALORE, TIPOLOGIA) VALUES (?, ?, ?)";
 		try {
 			db.open();
 			PreparedStatement command = null;
 			command = db.getConn().prepareStatement(operation);
 			command.setDate(1, quo.getDataI());
-			command.setDate(2, quo.getDataF());
-			command.setFloat(3, quo.getValore());
-			command.setString(4, quo.getTipologia());
-			command.executeUpdate();
-			esito = true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			db.close();
-		}
-		return esito;
-	}
-	
-	public boolean insertDataFine(Quota quota, Quota quotapre) {
-		boolean esito = false;
-		String operation = "UPDATE Quota SET DATA_FINE = DATE_ADD(?, INTERVAL -1 DAY) WHERE ID = ?;";
-		try {
-			db.open();
-			PreparedStatement command = null;
-			command = db.getConn().prepareStatement(operation);
-			command.setDate(1, quota.getDataI());
-			command.setInt(2, quotapre.getId());
+			command.setFloat(2, quo.getValore());
+			command.setString(3, quo.getTipologia());
 			command.executeUpdate();
 			esito = true;
 		} catch (SQLException e) {
@@ -59,16 +39,15 @@ public class QuotaModel {
 
 	public boolean updateQuota(Quota quo) {
 		boolean esito = false;
-		String operation = "UPDATE Quota SET DATA_INIZIO = ?, DATA_FINE = ?, VALORE = ?, TIPOLOGIA = ? WHERE ID = ?";
+		String operation = "UPDATE Quota SET DATA_INIZIO = ?,  VALORE = ?, TIPOLOGIA = ? WHERE ID = ?";
 		try {
 			db.open();
 			PreparedStatement command = null;
 			command = db.getConn().prepareStatement(operation);
 			command.setDate(1, quo.getDataI());
-			command.setDate(2, quo.getDataF());
-			command.setFloat(3, quo.getValore());
-			command.setString(4, quo.getTipologia());
-			command.setInt(5, quo.getId());
+			command.setFloat(2, quo.getValore());
+			command.setString(3, quo.getTipologia());
+			command.setInt(4, quo.getId());
 			command.executeUpdate();
 			esito = true;
 		} catch (SQLException e) {
@@ -105,7 +84,7 @@ public class QuotaModel {
 			ResultSet rs = command.executeQuery("SELECT * FROM Quota");
 			while (rs.next()) {
 				quote.add(new Quota(rs.getInt("ID"), rs.getFloat("VALORE"), rs.getString("TIPOLOGIA"),
-						rs.getDate("DATA_INIZIO"), rs.getDate("DATA_FINE")));
+						rs.getDate("DATA_INIZIO")));
 			}
 			rs.close();
 		} catch (SQLException e) {
@@ -115,7 +94,7 @@ public class QuotaModel {
 		}
 		return quote;
 	}
-	
+
 	public Quota getQuotaPrecendente(String tipo) {
 		Quota quote = null;
 		String operation = "SELECT * FROM Quota WHERE DATA_INIZIO = (SELECT MAX(DATA_INIZIO) FROM Quota WHERE TIPOLOGIA = ?) AND TIPOLOGIA = ?";
@@ -126,10 +105,10 @@ public class QuotaModel {
 			command.setString(1, tipo);
 			command.setString(2, tipo);
 			ResultSet rs = command.executeQuery();
-			if(rs.next()){
+			if (rs.next()) {
 				quote = new Quota(rs.getInt("ID"), rs.getFloat("VALORE"), rs.getString("TIPOLOGIA"),
-						rs.getDate("DATA_INIZIO"), rs.getDate("DATA_FINE"));
-			} 
+						rs.getDate("DATA_INIZIO"));
+			}
 			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -251,7 +230,7 @@ public class QuotaModel {
 		}
 		return spill;
 	}
-	
+
 	public float getImportoMese(String tipo, Date data) {
 		float valore = 0;
 		String operation = "SELECT VALORE FROM Quota WHERE TIPOLOGIA = ? AND DATA_INIZIO = (SELECT MAX(DATA_INIZIO) FROM Quota WHERE DATA_INIZIO <= ? AND TIPOLOGIA = ?)";
@@ -263,7 +242,7 @@ public class QuotaModel {
 			command.setDate(2, data);
 			command.setString(3, tipo);
 			ResultSet rs = command.executeQuery();
-			if(rs.next())
+			if (rs.next())
 				valore = rs.getFloat("VALORE");
 			rs.close();
 		} catch (SQLException e) {

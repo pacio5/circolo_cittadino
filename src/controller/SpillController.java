@@ -81,8 +81,7 @@ public class SpillController {
 							.setDescrizione(viewManagement.getTextAreaDescrizione().getText());
 					spills.get(viewManagement.getTable().getSelectedRow()).cloneSpill(
 							insertMesiCheckedManagement(spills.get(viewManagement.getTable().getSelectedRow())));
-					boolean esito = model
-							.updateVersamento(spills.get(viewManagement.getTable().getSelectedRow()));
+					boolean esito = model.updateVersamento(spills.get(viewManagement.getTable().getSelectedRow()));
 					((DefaultTableModel) viewManagement.getTable().getModel()).setValueAt(
 							spills.get(viewManagement.getTable().getSelectedRow()).getData(),
 							viewManagement.getTable().getSelectedRow(), 1);
@@ -221,7 +220,7 @@ public class SpillController {
 				}
 			}
 		});
-		
+
 		// Evento calcolo importo
 		viewInsert.getChckbxGennaio().addMouseListener(new MouseAdapter() {
 			@Override
@@ -250,7 +249,7 @@ public class SpillController {
 							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
 			}
 		});
-		
+
 		viewInsert.getChckbxMarzo().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -264,7 +263,7 @@ public class SpillController {
 							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
 			}
 		});
-		
+
 		viewInsert.getChckbxAprile().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -278,7 +277,7 @@ public class SpillController {
 							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
 			}
 		});
-		
+
 		viewInsert.getChckbxMaggio().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -292,7 +291,7 @@ public class SpillController {
 							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
 			}
 		});
-		
+
 		viewInsert.getChckbxGiugno().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -306,7 +305,7 @@ public class SpillController {
 							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
 			}
 		});
-		
+
 		viewInsert.getChckbxLuglio().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -320,7 +319,7 @@ public class SpillController {
 							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
 			}
 		});
-		
+
 		viewInsert.getChckbxAgosto().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -334,7 +333,7 @@ public class SpillController {
 							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
 			}
 		});
-		
+
 		viewInsert.getChckbxSettembre().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -348,7 +347,7 @@ public class SpillController {
 							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
 			}
 		});
-		
+
 		viewInsert.getChckbxOttobre().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -362,7 +361,7 @@ public class SpillController {
 							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
 			}
 		});
-		
+
 		viewInsert.getChckbxNovembre().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -376,7 +375,7 @@ public class SpillController {
 							.valueOf(Float.valueOf(viewInsert.getTxtFieldImporto().getText()).floatValue() - importo));
 			}
 		});
-		
+
 		viewInsert.getChckbxDicembre().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
