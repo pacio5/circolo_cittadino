@@ -11,7 +11,7 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.JButton;
 
-public class InsertQuoteView {
+public class InserimentoQuoteView {
 
 	private JFrame frame;
 	private JTextField txtFieldDataIPre;
@@ -26,7 +26,7 @@ public class InsertQuoteView {
 	/**
 	 * Create the application.
 	 */
-	public InsertQuoteView() {
+	public InserimentoQuoteView() {
 		initialize();
 	}
 

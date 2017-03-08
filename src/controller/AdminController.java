@@ -54,8 +54,8 @@ public class AdminController {
 		adminView.getBtnInserisciVersamento().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				SpillController spillController = new SpillController();
-				spillController.mostraInserimentoVers();
+				VersamentoController versamentoController = new VersamentoController();
+				versamentoController.mostraInserimentoVers();
 				adminView.getFrame().dispose();
 			}
 		});
@@ -90,8 +90,8 @@ public class AdminController {
 		adminView.getBtnGestioneVersamenti().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				SpillController spillController = new SpillController();
-				spillController.mostraGestioneVers();
+				VersamentoController versamentoController = new VersamentoController();
+				versamentoController.mostraGestioneVers();
 				adminView.getFrame().dispose();
 			}
 		});
@@ -117,8 +117,8 @@ public class AdminController {
 		adminView.getBtnInserisciQuota().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				QuoteController quoteController = new QuoteController();
-				quoteController.mostraInserimentoQuote();
+				QuotaController quotaController = new QuotaController();
+				quotaController.mostraInserimentoQuote();
 				adminView.getFrame().dispose();
 			}
 		});
@@ -126,8 +126,8 @@ public class AdminController {
 		adminView.getBtnVisualizzazioneQuote().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				QuoteController quoteController = new QuoteController();
-				quoteController.mostraGestioneQuote();
+				QuotaController quotaController = new QuotaController();
+				quotaController.mostraGestioneQuote();
 				adminView.getFrame().dispose();
 			}
 		});

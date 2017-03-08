@@ -11,7 +11,7 @@ import javax.swing.JTextArea;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
-public class SpillManagementView {
+public class GestioneVersamentiView {
 
 	private JFrame frame;
 	private JTable table;
@@ -21,7 +21,7 @@ public class SpillManagementView {
 	/**
 	 * Create the application.
 	 */
-	public SpillManagementView() {
+	public GestioneVersamentiView() {
 		initialize();
 	}
 

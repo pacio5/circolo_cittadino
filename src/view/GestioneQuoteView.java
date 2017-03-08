@@ -6,7 +6,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 
-public class QuoteManagementView {
+public class GestioneQuoteView {
 
 	private JFrame frame;
 	private JTable table;
@@ -16,7 +16,7 @@ public class QuoteManagementView {
 	/**
 	 * Create the application.
 	 */
-	public QuoteManagementView() {
+	public GestioneQuoteView() {
 		initialize();
 	}
 

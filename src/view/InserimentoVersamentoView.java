@@ -10,7 +10,7 @@ import javax.swing.JCheckBox;
 import java.awt.Font;
 import java.awt.Color;
 
-public class InsertSpillView {
+public class InserimentoVersamentoView {
 
 	private JFrame frameInsVersamento;
 	private JComboBox<String> cmbbxSocio;
@@ -42,7 +42,7 @@ public class InsertSpillView {
 	/**
 	 * Create the application.
 	 */
-	public InsertSpillView() {
+	public InserimentoVersamentoView() {
 		initialize();
 	}
 
