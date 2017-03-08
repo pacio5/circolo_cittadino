@@ -14,25 +14,30 @@ import entita.Sala;
 import entita.Socio;
 import entita.NonSocio;
 import entita.Affitto;
+import entita.Evento;
 
 import java.util.ArrayList;
+import javax.swing.JRadioButton;
 
 public class AffittaSalaView {
 	
 	private JFrame frmCircoloCittadino;
-	private JTextField txtFieldNomeSala;
-	private JTextArea txtAreaDescrizione;
-	private JSpinner spnCapienza;
-	private JTextField txtFieldTariffa;
 	private JButton btnInserisci;
 	private JButton btnDashboard;
 	private JButton btnModifica;
 	private JButton btnCancella;
 	private JButton btnSalvaModifiche;
 	private JButton btnAnnullaModifiche;
+	private JLabel lblElencoSale;
+	private JLabel lblAft;
 	private JList<Sala> lstSale;
+	private JList lstAft;
 	private DefaultListModel<Sala> dlms;
 	private ScrollPane scrollPane;
+	private ScrollPane scrollPaneAft;
+	private JRadioButton rdbtnExsocio;
+	private JRadioButton rdbtnNonSocio;
+	private JRadioButton rdbtnSocio;
 	
 
 	
@@ -43,56 +48,28 @@ public class AffittaSalaView {
 		frmCircoloCittadino.setResizable(false);
 		frmCircoloCittadino.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCircoloCittadino.getContentPane().setLayout(null);
+		
+		lstSale = new JList<Sala>();
 		dlms = new DefaultListModel<Sala>();
 		sale.stream().forEach((s)->{
 			dlms.addElement(s);
 		});
+		lstSale.setModel(dlms);
+								
+		lstAft = new JList<>();
 
+		
 		scrollPane = new ScrollPane();
-		scrollPane.setBounds(357, 128, 177, 352);
+		scrollPane.setBounds(425, 115, 359, 352);
 		frmCircoloCittadino.getContentPane().add(scrollPane);
+		scrollPane.add(lstSale);
+		scrollPane.setVisible(true);
 		
-		JLabel lblCompilaForm = new JLabel("Inserisci i dati relativi alla sala");
-		lblCompilaForm.setBounds(593, 76, 335, 16);
-		frmCircoloCittadino.getContentPane().add(lblCompilaForm);
-		
-		JLabel lblNome = new JLabel("Nome");
-		lblNome.setBounds(544, 133, 97, 16);
-		frmCircoloCittadino.getContentPane().add(lblNome);
-
-		txtFieldNomeSala = new JTextField();
-		txtFieldNomeSala.setColumns(10);
-		txtFieldNomeSala.setBounds(636, 128, 130, 26);
-		frmCircoloCittadino.getContentPane().add(txtFieldNomeSala);
-
-		JLabel lblDescrizione = new JLabel("Descrizione");
-		lblDescrizione.setBounds(544, 241, 112, 16);
-		frmCircoloCittadino.getContentPane().add(lblDescrizione);
-
-		txtAreaDescrizione = new JTextArea();
-		txtAreaDescrizione.setWrapStyleWord(true);
-		txtAreaDescrizione.setFont(new Font("Monospaced", Font.PLAIN, 11));
-		txtAreaDescrizione.setLineWrap(true);
-		txtAreaDescrizione.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-		txtAreaDescrizione.setBounds(636, 239, 130, 245);
-		frmCircoloCittadino.getContentPane().add(txtAreaDescrizione);
-
-		JLabel lblCapienza = new JLabel("Capienza");
-		lblCapienza.setBounds(544, 170, 112, 16);
-		frmCircoloCittadino.getContentPane().add(lblCapienza);
-
-		spnCapienza = new JSpinner();
-		spnCapienza.setBounds(636, 165, 130, 26);
-		frmCircoloCittadino.getContentPane().add(spnCapienza);
-
-		JLabel lblTariffa = new JLabel("Tariffa");
-		lblTariffa.setBounds(544, 204, 84, 23);
-		frmCircoloCittadino.getContentPane().add(lblTariffa);
-
-		txtFieldTariffa = new JTextField();
-		txtFieldTariffa.setColumns(10);
-		txtFieldTariffa.setBounds(636, 202, 130, 26);
-		frmCircoloCittadino.getContentPane().add(txtFieldTariffa);
+		scrollPaneAft = new ScrollPane();
+		scrollPaneAft.setBounds(10,115, 359, 352);
+		frmCircoloCittadino.getContentPane().add(scrollPaneAft);
+		scrollPaneAft.add(lstAft);
+		scrollPaneAft.setVisible(true);
 		
 		btnInserisci = new JButton("Inserisci");
 		btnInserisci.setBounds(186, 513, 117, 29);
@@ -102,8 +79,8 @@ public class AffittaSalaView {
 		btnDashboard.setBounds(697, 11, 97, 41);
 		frmCircoloCittadino.getContentPane().add(btnDashboard);
 						
-		JLabel lblElencoSale = new JLabel("Elenco Sale");
-		lblElencoSale.setBounds(186, 77, 76, 14);
+		lblElencoSale = new JLabel("Elenco Sale Libere");
+		lblElencoSale.setBounds(524, 77, 129, 14);
 		frmCircoloCittadino.getContentPane().add(lblElencoSale);
 		
 		btnModifica = new JButton("Modifica");
@@ -122,10 +99,21 @@ public class AffittaSalaView {
 		btnAnnullaModifiche.setBounds(524, 513, 117, 29);
 		frmCircoloCittadino.getContentPane().add(btnAnnullaModifiche);
 		
-		lstSale = new JList<Sala>();
-		lstSale.setBounds(357, 128, 177, 352);
-		frmCircoloCittadino.getContentPane().add(lstSale);
-		lstSale.setModel(dlms);
+		rdbtnExsocio = new JRadioButton("Ex-Socio");
+		rdbtnExsocio.setBounds(260, 39, 109, 23);
+		frmCircoloCittadino.getContentPane().add(rdbtnExsocio);
+		
+		rdbtnSocio = new JRadioButton("Socio");
+		rdbtnSocio.setBounds(150, 39, 109, 23);
+		frmCircoloCittadino.getContentPane().add(rdbtnSocio);
+		
+		rdbtnNonSocio = new JRadioButton("Non Socio");
+		rdbtnNonSocio.setBounds(39, 39, 109, 23);
+		frmCircoloCittadino.getContentPane().add(rdbtnNonSocio);
+		
+		lblAft = new JLabel("Elenco Affittuari");
+		lblAft.setBounds(130, 77, 129, 14);
+		frmCircoloCittadino.getContentPane().add(lblAft);
 	}
 	
 	public JButton getBtnDashboard() {
@@ -140,40 +128,36 @@ public class AffittaSalaView {
 		return btnInserisci;
 	}
 	
-	public JButton getBtnModifica(){
+	public JButton getBtnModifica() {
 		return btnModifica;
 	}
 	
-	public JButton getBtnCancella(){
+	public JButton getBtnCancella() {
 		return btnCancella;
 	}
 	
-	public JButton getBtnSalvaModifiche(){
+	public JButton getBtnSalvaModifiche() {
 		return btnSalvaModifiche;
 	}
 	
-	public JButton getBtnAnnullaModifiche(){
+	public JButton getBtnAnnullaModifiche() {
 		return btnAnnullaModifiche;
+	}
+	
+	public JRadioButton getRdbtnExsocio() {
+		return rdbtnExsocio;
+	}
+	
+	public JRadioButton getRdbtnNonSocio() {
+		return rdbtnNonSocio;
+	}
+	
+	public JRadioButton getRbtnSocio() {
+		return rdbtnSocio;
 	}
 
 	public void setBtnInserisci(JButton btnInserisci) {
 		this.btnInserisci = btnInserisci;
-	}
-	
-	public JTextField getNomeSala() {
-		return txtFieldNomeSala;
-	}
-
-	public JTextArea getDescrizione() {
-		return txtAreaDescrizione;
-	}
-
-	public JSpinner getCapienza() {
-		return spnCapienza;
-	}
-
-	public JTextField getTariffa() {
-		return txtFieldTariffa;
 	}
 
 	public void setFrame(JFrame frame) {
