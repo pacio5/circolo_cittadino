@@ -1,8 +1,10 @@
 package controller;
 
 import model.PrenotazioneModel;
+import model.SocioModel;
 import view.GestioneEventiView;
 import view.GestioneSaleView;
+import view.AffittaSalaView;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -18,10 +20,14 @@ import utility.Validator;
 
 import entita.Evento;
 import entita.Sala;
+import entita.Socio;
+import entita.NonSocio;
+import entita.Affitto;
 
 public class PrenotazioneController {
 	
 	private PrenotazioneModel model;
+	private SocioModel modelS;
 	
 	public PrenotazioneController(){
 		model = new PrenotazioneModel();
@@ -399,6 +405,19 @@ public class PrenotazioneController {
 				view.getFrame().dispose();
 			}
 		});
+		
+	}
+	
+	public void affittaSale() {
+		ArrayList<Sala> sale = model.listaSale();
+		ArrayList<Affitto> affitti = model.afittuari();
+		ArrayList<Socio> soci = modelS.elencoSoci();
+		ArrayList<NonSocio> nsoci = modelS.elencoNonSoci();
+		
+		AffittaSalaView view = new AffittaSalaView(sale, soci, nsoci, affitti);
+		view.getFrame().setVisible(true);
+	
+		//view.get
 		
 	}
 	

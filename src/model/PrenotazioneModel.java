@@ -6,6 +6,7 @@ import entita.Evento;
 import entita.NonSocio;
 import entita.Sala;
 import entita.Socio;
+import entita.Affitto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -596,12 +597,35 @@ public class PrenotazioneModel {
 	
 	/* Operazioni sui Partecipanti agli Eventi */
 	
+	public ArrayList<Affitto> afittuari() {
+		ArrayList<Affitto> affittuari = new ArrayList<Affitto>();
+		db.open();
+		PreparedStatement stm;
+		String query = "SELECT * FROM affittos, affitton WHERE data>CURDATE;";
+		try{		
+			stm = db.getConn().prepareStatement(query);
+			ResultSet res = stm.executeQuery(query);
+			while (res.next()) {
+				Affitto aft = new Affitto(
+						res.getDate("data"), 
+						res.getString("cf"), 
+						res.getString("sala"));
+				affittuari.add(aft);
+			}
+			
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+						ex.printStackTrace();
+		}
+		return affittuari;
+	}
+	
 	public ArrayList<Socio> affituariSoci(Sala s) {
 		ArrayList<Socio> affittuariS = new ArrayList<Socio>();
 		db.open();
 		PreparedStatement stm;
 		String query = "SELECT * FROM socio AS sc INNER JOIN affittos AS a ON sc.cf = a.socio"
-				+ " INNER JOIN sala AS s A a.sala = s.nome WHERE s.nome = ?;";
+				+ " INNER JOIN sala AS s A a.sala = s.nome WHERE s.nome = ? && a.data>CURDATE;";
 		try {
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, s.getNome());
@@ -641,7 +665,7 @@ public class PrenotazioneModel {
 		db.open();
 		PreparedStatement stm;
 		String query = "SELECT * FROM nonsocio AS ns INNER JOIN affitton AS a ON ns.cf = a.nonsocio"
-				+ " INNER JOIN sala AS s a.sala = s.nome WHERE s.nome = ?;";
+				+ " INNER JOIN sala AS s a.sala = s.nome WHERE s.nome = ? && a.data>CURDATE;";
 		try {
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, s.getNome());
