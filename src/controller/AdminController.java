@@ -149,6 +149,16 @@ public class AdminController {
 				adminView.getFrame().dispose();
 			}
 		});
+		
+		adminView.getBtnPrenotaEvento().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PrenotazioneController prenotazioneController = new PrenotazioneController();
+				prenotazioneController.prenotaEvento();
+				adminView.getFrame().dispose();
+			}
+		});
+
 	}
 	
 }

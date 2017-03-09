@@ -20,6 +20,7 @@ public class AdminView {
 	private JButton btnVisualizzazioneQuote;
 	private JButton btnInserisciSala;
 	private JButton btnPrenotaSala;
+	private JButton btnPrenotaEvento;
 
 	/**
 	 * Create the frame.
@@ -40,7 +41,7 @@ public class AdminView {
 		btnInserisciVersamento.setBounds(199, 50, 152, 29);
 		
 		btnInserisciEvento = new JButton("Inserisci Evento");
-		btnInserisciEvento.setBounds(199, 214, 152, 29);
+		btnInserisciEvento.setBounds(24, 254, 152, 29);
 		
 		JLabel lblCircoloCittadinoDi = new JLabel("Circolo Cittadino di Ascoli Piceno");
 		lblCircoloCittadinoDi.setBounds(266, 11, 211, 16);
@@ -72,6 +73,9 @@ public class AdminView {
 		btnPrenotaSala = new JButton("Prenota Sala");
 		btnPrenotaSala.setBounds(199, 294, 152, 29);
 		
+		btnPrenotaEvento = new JButton("Prenota Evento");
+		btnPrenotaEvento.setBounds(24, 294, 152, 29);
+		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(btnLogout);
 		frame.getContentPane().add(btnInserisciSocio);
@@ -87,6 +91,7 @@ public class AdminView {
 		frame.getContentPane().add(btnVisualizzazioneQuote);
 		frame.getContentPane().add(btnInserisciSala);
 		frame.getContentPane().add(btnPrenotaSala);
+		frame.getContentPane().add(btnPrenotaEvento);
 		
 		
 	}
@@ -145,5 +150,9 @@ public class AdminView {
 	
 	public JButton getBtnPrenotaSala() {
 		return btnPrenotaSala;
+	}
+	
+	public JButton getBtnPrenotaEvento() {
+		return btnPrenotaEvento;
 	}
 }

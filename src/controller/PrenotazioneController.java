@@ -5,6 +5,7 @@ import model.SocioModel;
 import view.GestioneEventiView;
 import view.GestioneSaleView;
 import view.AffittaSalaView;
+import view.PrenotaEventoView;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -425,6 +426,27 @@ public class PrenotazioneController {
 	
 		view.get
 		*/
+		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				AdminController adminController = new AdminController();
+				adminController.controlloEvento();
+				view.getFrame().dispose();
+			}
+		});
+		
+	}
+	
+	public void prenotaEvento() {
+		PrenotaEventoView view = new PrenotaEventoView();
+		view.getFrame().setVisible(true);
+		
+		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				AdminController adminController = new AdminController();
+				adminController.controlloEvento();
+				view.getFrame().dispose();
+			}
+		});
 	}
 	
 }

@@ -42,7 +42,7 @@ public class AffittaSalaView {
 		frmCircoloCittadino.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmCircoloCittadino.getContentPane().setLayout(null);
 		
-		lstSale = new JList<Sala>();
+		/*lstSale = new JList<Sala>();
 		dlms = new DefaultListModel<Sala>();
 		sale.stream().forEach((s)->{
 			dlms.addElement(s);
@@ -66,7 +66,7 @@ public class AffittaSalaView {
 		frmCircoloCittadino.getContentPane().add(scrollPaneSal);
 		scrollPaneSal.add(lstSale);
 		scrollPaneSal.setVisible(true);
-		
+	
 		scrollPaneAft = new ScrollPane();
 		scrollPaneAft.setBounds(10,115, 255, 375);
 		frmCircoloCittadino.getContentPane().add(scrollPaneAft);
@@ -81,13 +81,13 @@ public class AffittaSalaView {
 		
 		btnInserisci = new JButton("Inserisci");
 		btnInserisci.setBounds(207, 513, 117, 29);
-		frmCircoloCittadino.getContentPane().add(btnInserisci);
+		frmCircoloCittadino.getContentPane().add(btnInserisci);*/
 
 		btnDashboard = new JButton("Dashboard");
 		btnDashboard.setBounds(697, 11, 97, 41);
 		frmCircoloCittadino.getContentPane().add(btnDashboard);
 						
-		lblElencoSale = new JLabel("Elenco Sale Libere");
+		/*lblElencoSale = new JLabel("Elenco Sale Libere");
 		lblElencoSale.setBounds(347, 77, 129, 14);
 		frmCircoloCittadino.getContentPane().add(lblElencoSale);
 		
@@ -110,7 +110,7 @@ public class AffittaSalaView {
 		
 		JLabel lblElencoPrenotazioni = new JLabel("Elenco Prenotazioni");
 		lblElencoPrenotazioni.setBounds(607, 77, 129, 14);
-		frmCircoloCittadino.getContentPane().add(lblElencoPrenotazioni);
+		frmCircoloCittadino.getContentPane().add(lblElencoPrenotazioni);*/
 	}
 	
 	public JButton getBtnDashboard() {
@@ -120,7 +120,7 @@ public class AffittaSalaView {
 	public JFrame getFrame() {
 		return frmCircoloCittadino;
 	}
-
+/*
 	public JButton getBtnInserisci() {
 		return btnInserisci;
 	}
@@ -151,5 +151,5 @@ public class AffittaSalaView {
 	
 	public JList<Sala> getList() {
 		return lstSale;
-	}
+	}*/
 }
