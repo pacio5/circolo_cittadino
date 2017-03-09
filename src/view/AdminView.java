@@ -70,7 +70,7 @@ public class AdminView {
 		btnInserisciSala.setBounds(199, 254, 152, 29);
 		
 		btnPrenotaSala = new JButton("Prenota Sala");
-		btnPrenotaSala.setBounds(199, 288, 152, 29);
+		btnPrenotaSala.setBounds(199, 294, 152, 29);
 		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(btnLogout);
@@ -144,6 +144,6 @@ public class AdminView {
 	}
 	
 	public JButton getBtnPrenotaSala() {
-		return btnInserisciSala;
+		return btnPrenotaSala;
 	}
 }

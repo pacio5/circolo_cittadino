@@ -418,12 +418,13 @@ public class PrenotazioneController {
 		AffittaSalaView view = new AffittaSalaView(sale, soci, affitti);
 		view.getFrame().setVisible(true);
 		
-		//view.getRdbtnNonSocio().addChangeListener(new ChangeListener() {
+		/*
+		view.getRdbtnNonSocio().addChangeListener(new ChangeListener() {
 			
-		//});
+		});
 	
-		//view.get
-		
+		view.get
+		*/
 	}
 	
 }
