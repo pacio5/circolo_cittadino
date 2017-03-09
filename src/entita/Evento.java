@@ -21,7 +21,7 @@ public class Evento {
 		this(null, null, null, null, 0, null, 0);
 	}
 	
-	public Evento(String identification, String name, Date date, String description, int seats, String location, double price){ 
+	public Evento(String identification, String name, Date date, String description, int seats, String location, float price){ 
 		id = identification;
 		nome = name;
 		data = date;
@@ -31,7 +31,7 @@ public class Evento {
 		prezzo = price;		
 	}
 	
-	public Evento(String name, Date date, String description, int seats, String location, double price){
+	public Evento(String name, Date date, String description, int seats, String location, float price){
 		nome = name;
 		data = date;
 		descrizione = description;

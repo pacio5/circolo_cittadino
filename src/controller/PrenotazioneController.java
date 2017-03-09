@@ -420,13 +420,11 @@ public class PrenotazioneController {
 		AffittaSalaView view = new AffittaSalaView(sale, soci, affitti);
 		view.getFrame().setVisible(true);
 		
-		/*
-		view.getRdbtnNonSocio().addChangeListener(new ChangeListener() {
+		
+		if(view.getTipo().toString()=="Non Socio") {
 			
-		});
+		}
 	
-		view.get
-		*/
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				AdminController adminController = new AdminController();
@@ -438,7 +436,8 @@ public class PrenotazioneController {
 	}
 	
 	public void prenotaEvento() {
-		PrenotaEventoView view = new PrenotaEventoView();
+		ArrayList<Evento> eventi = model.listaEventiValidi();
+		PrenotaEventoView view = new PrenotaEventoView(eventi);
 		view.getFrame().setVisible(true);
 		
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {

@@ -119,7 +119,33 @@ public class PrenotazioneModel {
 						res.getString("descrizione"), 
 						res.getInt("posti"), 
 						res.getString("luogo"),
-						res.getDouble("prezzo"));
+						res.getFloat("prezzo"));
+				Eventi.add(e);
+			}
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		}
+		return Eventi;
+	}
+	
+	public ArrayList<Evento> listaEventiValidi() {
+		ArrayList<Evento> Eventi = new ArrayList<Evento>();
+		db.open();
+		Statement stm;
+		String query = "SELECT * FROM evento WHERE data>CURDATE;";
+		try {
+			stm = db.getConn().createStatement();
+			ResultSet res = stm.executeQuery(query);
+			while (res.next()) {
+				Evento e = new Evento(
+						res.getString("id"), 
+						res.getString("nome"), 
+						res.getDate("data"),
+						res.getString("descrizione"), 
+						res.getInt("posti"), 
+						res.getString("luogo"),
+						res.getFloat("prezzo"));
 				Eventi.add(e);
 			}
 		} catch (SQLException ex) {

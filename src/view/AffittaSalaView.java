@@ -160,7 +160,15 @@ public class AffittaSalaView {
 		this.lstSale = list;
 	}
 	
-	public JList<Sala> getList() {
+	public JList<Sala> getListSala() {
 		return lstSale;
+	}
+	
+	public JList getListAffittuari() {
+		return lstAft;
+	}
+	
+	public JList<Affitto> getList() {
+		return lst;
 	}
 }
