@@ -33,6 +33,7 @@ public class PrenotazioneController {
 	
 	public PrenotazioneController(){
 		model = new PrenotazioneModel();
+		modelS = new SocioModel();
 	}
 	
 	public void gestioneEventi() {
