@@ -140,6 +140,15 @@ public class AdminController {
 				adminView.getFrame().dispose();
 			}
 		});
+		
+		adminView.getBtnPrenotaSala().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PrenotazioneController prenotazioneController = new PrenotazioneController();
+				prenotazioneController.affittaSale();
+				adminView.getFrame().dispose();
+			}
+		});
 	}
 	
 }

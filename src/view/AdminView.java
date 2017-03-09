@@ -19,6 +19,7 @@ public class AdminView {
 	private JButton btnInserisciQuota;
 	private JButton btnVisualizzazioneQuote;
 	private JButton btnInserisciSala;
+	private JButton btnPrenotaSala;
 
 	/**
 	 * Create the frame.
@@ -65,6 +66,12 @@ public class AdminView {
 		btnVisualizzazioneQuote = new JButton("Visualizzazione Quote");
 		btnVisualizzazioneQuote.setBounds(199, 172, 152, 29);
 		
+		btnInserisciSala = new JButton("Inserisci Sala");
+		btnInserisciSala.setBounds(199, 254, 152, 29);
+		
+		btnPrenotaSala = new JButton("Prenota Sala");
+		btnPrenotaSala.setBounds(199, 288, 152, 29);
+		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(btnLogout);
 		frame.getContentPane().add(btnInserisciSocio);
@@ -78,10 +85,8 @@ public class AdminView {
 		frame.getContentPane().add(btnGestioneExSocio);
 		frame.getContentPane().add(btnInserisciQuota);
 		frame.getContentPane().add(btnVisualizzazioneQuote);
-		
-		btnInserisciSala = new JButton("Inserisci Sala");
-		btnInserisciSala.setBounds(199, 254, 152, 29);
 		frame.getContentPane().add(btnInserisciSala);
+		frame.getContentPane().add(btnPrenotaSala);
 		
 		
 	}
@@ -135,6 +140,10 @@ public class AdminView {
 	}
 	
 	public JButton getBtnInserisciSala() {
+		return btnInserisciSala;
+	}
+	
+	public JButton getBtnPrenotaSala() {
 		return btnInserisciSala;
 	}
 }
