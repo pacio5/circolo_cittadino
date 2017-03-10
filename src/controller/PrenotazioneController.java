@@ -439,6 +439,7 @@ public class PrenotazioneController {
 	public void prenotaEvento() {
 		ArrayList<Evento> eventi = model.listaEventiValidi();
 		ArrayList<Prenotazione> prenotazioni = model.listaPrenotazioni(2);
+		
 		PrenotaEventoView view = new PrenotaEventoView(eventi, prenotazioni);
 		view.getFrame().setVisible(true);
 		

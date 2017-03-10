@@ -78,13 +78,13 @@ public class PrenotaEventoView {
 		});
 		
 		scrollPaneEvt = new ScrollPane();
-		scrollPaneEvt.setBounds(261, 115, 245, 329);
+		scrollPaneEvt.setBounds(10, 115, 245, 329);
 		frmCircoloCittadino.getContentPane().add(scrollPaneEvt);
 		scrollPaneEvt.add(lstEvt);
 		scrollPaneEvt.setVisible(true);
 	
 		scrollPanePrs = new ScrollPane();
-		scrollPanePrs.setBounds(10,115, 245, 329);
+		scrollPanePrs.setBounds(261,115, 245, 329);
 		frmCircoloCittadino.getContentPane().add(scrollPanePrs);
 		scrollPanePrs.add(lstPrs);
 		scrollPanePrs.setVisible(true);
@@ -98,13 +98,9 @@ public class PrenotaEventoView {
 		btnInserisci = new JButton("Inserisci");
 		btnInserisci.setBounds(199, 513, 117, 29);
 		frmCircoloCittadino.getContentPane().add(btnInserisci);
-
-		btnDashboard = new JButton("Dashboard");
-		btnDashboard.setBounds(697, 11, 97, 41);
-		frmCircoloCittadino.getContentPane().add(btnDashboard);
 						
 		lblElencoEventi = new JLabel("Elenco Eventi");
-		lblElencoEventi.setBounds(329, 77, 129, 14);
+		lblElencoEventi.setBounds(89, 77, 129, 14);
 		frmCircoloCittadino.getContentPane().add(lblElencoEventi);
 		
 		btnCancella = new JButton("Cancella");
@@ -125,7 +121,7 @@ public class PrenotaEventoView {
 		tipo.add(rdbtnNonSocio);
 		
 		lblElencoPersone = new JLabel("Elenco Persone");
-		lblElencoPersone.setBounds(87, 77, 129, 14);
+		lblElencoPersone.setBounds(324, 77, 129, 14);
 		frmCircoloCittadino.getContentPane().add(lblElencoPersone);
 		
 		lblElencoPrenotazioni = new JLabel("Elenco Prenotazioni");
