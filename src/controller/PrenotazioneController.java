@@ -25,6 +25,7 @@ import entita.Sala;
 import entita.Socio;
 import entita.NonSocio;
 import entita.Affitto;
+import entita.Prenotazione;
 
 public class PrenotazioneController {
 	
@@ -437,7 +438,8 @@ public class PrenotazioneController {
 	
 	public void prenotaEvento() {
 		ArrayList<Evento> eventi = model.listaEventiValidi();
-		PrenotaEventoView view = new PrenotaEventoView(eventi);
+		ArrayList<Prenotazione> prenotazioni = model.listaPrenotazioni(2);
+		PrenotaEventoView view = new PrenotaEventoView(eventi, prenotazioni);
 		view.getFrame().setVisible(true);
 		
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {

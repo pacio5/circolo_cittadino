@@ -8,6 +8,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 
 import entita.Evento;
+import entita.Prenotazione;
 
 import java.awt.ScrollPane;
 import java.util.ArrayList;
@@ -28,9 +29,9 @@ public class PrenotaEventoView {
 	private JSpinner SpNumeroBiglietti;
 	private JList<Evento> lstEvt;
 	private JList lstPrs;
-	private JList lstPrenotazioni;
+	private JList<Prenotazione> lstPrenotazioni;
 	private DefaultListModel<Evento> dlme;
-	private DefaultListModel dlmp;
+	private DefaultListModel<Prenotazione> dlmp;
 	private DefaultListModel dlm;
 	private ScrollPane scrollPane;
 	private ScrollPane scrollPanePrs;
@@ -45,7 +46,7 @@ public class PrenotaEventoView {
 	/**
 	 * Create the frame.
 	 */
-	public PrenotaEventoView(ArrayList<Evento> eventi) {
+	public PrenotaEventoView(ArrayList<Evento> eventi, ArrayList<Prenotazione> prenotazioni) {
 		frmCircoloCittadino = new JFrame("Circolo Cittadino - Prenota Sala");
 		frmCircoloCittadino.setTitle("Circolo Cittadino - Prenotazione Sale");
 		frmCircoloCittadino.setBounds(100, 100, 800, 600);
@@ -70,11 +71,11 @@ public class PrenotaEventoView {
 			//dlm.addElement(o);
 		//});
 		
-		lstPrenotazioni = new JList<>();
-		dlmp = new DefaultListModel<>();
-		//prenotazioni.stream().forEach((a)->{
-			//dlma.addElement(a);
-		//});
+		lstPrenotazioni = new JList<Prenotazione>();
+		dlmp = new DefaultListModel<Prenotazione>();
+		prenotazioni.stream().forEach((p)->{
+			dlmp.addElement(p);
+		});
 		
 		scrollPaneEvt = new ScrollPane();
 		scrollPaneEvt.setBounds(261, 115, 245, 329);

@@ -6,6 +6,7 @@ import entita.Evento;
 import entita.NonSocio;
 import entita.Sala;
 import entita.Socio;
+import entita.Prenotazione;
 import entita.Affitto;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -207,7 +208,7 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public boolean updatePrenotazioneN(String cfns, int NumB, String idevento, Date dataAcq, String cfvns, String ideventov){
+	public boolean updatePrenotazioneN(String cfns, int NumB, int idevento, Date dataAcq, String cfvns, int ideventov){
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
@@ -218,9 +219,9 @@ public class PrenotazioneModel {
 			stm.setInt(1, NumB);
 			stm.setDate(2, dataAcq);
 			stm.setString(3, cfns);
-			stm.setString(4, idevento);
+			stm.setInt(4, idevento);
 			stm.setString(5, cfvns);
-			stm.setString(6, ideventov);
+			stm.setInt(6, ideventov);
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -234,7 +235,7 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public boolean updatePrenotazioneS(String cfs, int NumB, String idevento, Date dataAcq, String cfvs, String ideventov){
+	public boolean updatePrenotazioneS(String cfs, int NumB, int idevento, Date dataAcq, String cfvs, int ideventov){
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
@@ -245,9 +246,9 @@ public class PrenotazioneModel {
 			stm.setInt(1, NumB);
 			stm.setDate(2, dataAcq);
 			stm.setString(3, cfs);
-			stm.setString(4, idevento);
+			stm.setInt(4, idevento);
 			stm.setString(5, cfvs);
-			stm.setString(6, ideventov);
+			stm.setInt(6, ideventov);
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -261,7 +262,7 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public boolean deletePrenotazioneN(String cfNs, String idEvento) {
+	public boolean deletePrenotazioneN(String cfNs, int idEvento) {
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
@@ -269,7 +270,7 @@ public class PrenotazioneModel {
 		try {
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, cfNs);
-			stm.setString(2, idEvento);
+			stm.setInt(2, idEvento);
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -283,7 +284,7 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public boolean deletePrenotazioneS(String cfS, String idEvento) {
+	public boolean deletePrenotazioneS(String cfS, int idEvento) {
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
@@ -291,7 +292,7 @@ public class PrenotazioneModel {
 		try {
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, cfS);
-			stm.setString(2, idEvento);
+			stm.setInt(2, idEvento);
 			
 			
 			int res = stm.executeUpdate();
@@ -305,6 +306,32 @@ public class PrenotazioneModel {
 		}
 		return esito;
 	}
+	
+	public ArrayList<Prenotazione> listaPrenotazioni(int idEvento) {
+		ArrayList<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
+		db.open();
+		PreparedStatement stm;
+		String query = "SELECT * FROM prenotazionen, prenotaziones WHERE id=?;";
+		try {
+			stm = db.getConn().prepareStatement(query);
+			stm.setInt(1, idEvento);
+			
+			ResultSet res = stm.executeQuery(query);
+			while (res.next()) {
+				Prenotazione p = new Prenotazione(
+						res.getDate("data_acquisto"), 
+						res.getString("cf"), 
+						res.getInt("evento"),
+						res.getInt("n_biglietti"));
+				prenotazioni.add(p);
+			}
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		}
+		return prenotazioni;
+	}
+	
 	
 	/* Operazioni sui Partecipanti agli Eventi */
 	
