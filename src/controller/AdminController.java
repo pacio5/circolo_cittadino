@@ -158,6 +158,15 @@ public class AdminController {
 				adminView.getFrame().dispose();
 			}
 		});
+		
+		adminView.getBtnChiusuraAnnuale().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				VersamentoController versamentoController = new VersamentoController();
+				versamentoController.mostraChiusuraAnnuale();;
+				adminView.getFrame().dispose();
+			}
+		});
 
 	}
 	

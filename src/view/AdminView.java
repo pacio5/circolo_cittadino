@@ -21,6 +21,7 @@ public class AdminView {
 	private JButton btnInserisciSala;
 	private JButton btnPrenotaSala;
 	private JButton btnPrenotaEvento;
+	private JButton btnChiusuraAnnuale;
 
 	/**
 	 * Create the frame.
@@ -76,6 +77,9 @@ public class AdminView {
 		btnPrenotaEvento = new JButton("Prenota Evento");
 		btnPrenotaEvento.setBounds(24, 294, 152, 29);
 		
+		btnChiusuraAnnuale = new JButton("Chiusura annuale");
+		btnChiusuraAnnuale.setBounds(199, 214, 152, 29);
+		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(btnLogout);
 		frame.getContentPane().add(btnInserisciSocio);
@@ -92,6 +96,7 @@ public class AdminView {
 		frame.getContentPane().add(btnInserisciSala);
 		frame.getContentPane().add(btnPrenotaSala);
 		frame.getContentPane().add(btnPrenotaEvento);
+		frame.getContentPane().add(btnChiusuraAnnuale);
 		
 		
 	}
@@ -154,5 +159,9 @@ public class AdminView {
 	
 	public JButton getBtnPrenotaEvento() {
 		return btnPrenotaEvento;
+	}
+	
+	public JButton getBtnChiusuraAnnuale() {
+		return btnChiusuraAnnuale;
 	}
 }

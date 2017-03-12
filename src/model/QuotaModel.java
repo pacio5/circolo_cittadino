@@ -7,6 +7,7 @@ import java.sql.Date;
 import utility.MySql;
 import entita.Versamento;
 import entita.Quota;
+import entita.Socio;
 
 public class QuotaModel {
 
@@ -81,8 +82,7 @@ public class QuotaModel {
 		try {
 			db.open();
 			Statement command = db.getConn().createStatement();
-			ResultSet rs = command
-					.executeQuery("SELECT * FROM Quota ORDER BY DATA_INIZIO DESC, TIPOLOGIA DESC");
+			ResultSet rs = command.executeQuery("SELECT * FROM Quota ORDER BY DATA_INIZIO DESC, TIPOLOGIA DESC");
 			while (rs.next()) {
 				quote.add(new Quota(rs.getInt("ID"), rs.getFloat("VALORE"), rs.getString("TIPOLOGIA"),
 						rs.getDate("DATA_INIZIO")));
@@ -118,7 +118,77 @@ public class QuotaModel {
 		}
 		return quote;
 	}
-	
+
+	public float getCreditoDebito(Socio socio) {
+		ArrayList<Date> datainizio = new ArrayList<Date>();
+		ArrayList<Float> importo = new ArrayList<Float>();
+		float creditodebito = 0;
+		String operationq = "SELECT DISTINCT VALORE, DATA_INIZIO FROM Quota WHERE YEAR(DATA_INIZIO) = (YEAR(curdate())-1) AND TIPOLOGIA = ?";
+		String operationv = "SELECT SUM(IMPORTO) as IMPORTO FROM Versamento WHERE SOCIO = ? AND (YEAR(DATA) = YEAR(curdate())-1 OR (YEAR(DATA) = YEAR(curdate()) AND DESCRIZIONE = ?))";
+		try {
+			db.open();
+			PreparedStatement command = null;
+			command = db.getConn().prepareStatement(operationq);
+			command.setString(1, socio.getTipologia());
+			ResultSet rsq = command.executeQuery();
+			while (rsq.next()) {
+				datainizio.add(rsq.getDate("DATA_INIZIO"));
+				importo.add(rsq.getFloat("VALORE"));
+			}
+			rsq.close();
+			if (!datainizio.isEmpty()) {
+				// Modificare dio cane ladro
+				for (int i = 0; i < datainizio.size(); i++) {
+					if (datainizio.size() - 1 == i)
+						creditodebito += (float) (importo.get(i)
+								* (13 - Integer.valueOf(datainizio.get(i).toString().substring(5, 7))));
+					if (!datainizio.get(i).toString().substring(5, 7).equals("01"))
+						creditodebito += (float) (getValoreQuotaPrecedente(socio.getTipologia())
+								* (Integer.valueOf(datainizio.get(i).toString().substring(5, 7)) - 1));
+					else
+						creditodebito += (float) (importo.get(i)
+								* (Integer.valueOf(datainizio.get(i + 1).toString().substring(5, 7))
+										- Integer.valueOf(datainizio.get(i).toString().substring(5, 7))));
+				}
+				db.open();
+				command = null;
+				command = db.getConn().prepareStatement(operationv);
+				command.setString(1, socio.getCf());
+				command.setString(2, "ChiusuraAnnuale"
+						+ String.valueOf(Integer.valueOf(Calendar.getInstance().get(Calendar.YEAR)) - 1));
+				ResultSet rsv = command.executeQuery();
+				if (rsv.next())
+					creditodebito = rsv.getFloat("IMPORTO") - creditodebito;
+				rsv.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.close();
+		}
+		return creditodebito;
+	}
+
+	private float getValoreQuotaPrecedente(String tipologia) {
+		float importo = 0;
+		String operation = "SELECT VALORE FROM Quota WHERE TIPOLOGIA = ? AND DATA_INIZIO = (SELECT MAX(DATA_INIZIO) FROM Quota WHERE YEAR(DATA_INIZIO) = (YEAR(curdate())-2))";
+		try {
+			db.open();
+			PreparedStatement command = null;
+			command = db.getConn().prepareStatement(operation);
+			command.setString(1, tipologia);
+			ResultSet rs = command.executeQuery();
+			if (rs.next())
+				importo = rs.getFloat("VALORE");
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.close();
+		}
+		return importo;
+	}
+
 	public ArrayList<String> getMesiPagati(String cf) {
 		ArrayList<String> mesipagati = new ArrayList<String>();
 		String operation = "SELECT Mese.DATA as Mesi FROM Mese, Versamento WHERE Mese.VERSAMENTO = Versamento.ID AND Versamento.SOCIO = ? AND YEAR(Versamento.DATA) = YEAR(curdate())";

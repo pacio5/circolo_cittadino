@@ -15,10 +15,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Vector;
 import java.sql.Date;
+import java.time.LocalDate;
 
 import entita.Versamento;
 import entita.Socio;
 import view.InserimentoVersamentoView;
+import view.ChiusuraAnnualeView;
 import view.GestioneVersamentiView;
 import model.QuotaModel;
 import model.SocioModel;
@@ -28,6 +30,7 @@ import utility.Validator;
 public class VersamentoController {
 	private InserimentoVersamentoView viewInserimento;
 	private GestioneVersamentiView viewGestione;
+	private ChiusuraAnnualeView viewChiusura;
 	private QuotaModel model;
 	private ArrayList<Socio> soci;
 	private ArrayList<Versamento> versamenti;
@@ -49,6 +52,13 @@ public class VersamentoController {
 		viewInserimento.getFrameInsVersamento().setVisible(true);
 		riempimentoCmbbxSoci();
 		controlloEventiInserimento();
+	}
+	
+	public void mostraChiusuraAnnuale() {
+		viewChiusura = new ChiusuraAnnualeView();
+		viewChiusura.getFrame().setVisible(true);
+		riempimentoTableChiusura();
+		controlloEventiChiusura();
 	}
 
 	private void controlloEventiGestione() {
@@ -343,6 +353,40 @@ public class VersamentoController {
 			}
 		});
 	}
+	
+	public void controlloEventiChiusura() {
+		// Evento versamento chiusura annuale
+		viewChiusura.getBtnSalda().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Calendar.getInstance();
+				boolean esito = model.insertVersamento(new Versamento(
+						Float.valueOf(viewChiusura.getTable().getModel()
+								.getValueAt(viewChiusura.getTable().getSelectedRow(), 3).toString()).floatValue(),
+						(String) viewChiusura.getTable().getModel().getValueAt(viewChiusura.getTable().getSelectedRow(),
+								0),
+						Date.valueOf(LocalDate.now()), "ChiusuraAnnuale"
+								+ String.valueOf(Integer.valueOf(Calendar.getInstance().get(Calendar.YEAR)) - 1)));
+				if (esito) {
+					JOptionPane.showMessageDialog(viewChiusura.getFrame().getContentPane(), "Versamento inserito");
+					viewChiusura.getFrame().dispose();
+					mostraChiusuraAnnuale();
+				} else
+					JOptionPane.showMessageDialog(viewChiusura.getFrame().getContentPane(),
+							"Inserimento non effettuato");
+			}
+		});
+
+		// Evento ritorno all'AdminView
+		viewChiusura.getBtnDashboard().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				AdminController adminController = new AdminController();
+				adminController.controlloEvento();
+				viewChiusura.getFrame().dispose();
+			}
+		});
+	}
 
 	private void azzeraFormInsert() {
 		viewInserimento.getCmbbxSocio().setSelectedIndex(-1);
@@ -423,6 +467,37 @@ public class VersamentoController {
 			dati.setValueAt(versamenti.get(j).getDescrizione(), j, 4);
 		}
 		viewGestione.getTable().setModel(dati);
+	}
+	
+	private void riempimentoTableChiusura() {
+		String[] nameColumns = { "Socio", "Tipologia", "Modalità di pagamento", "Credito/Debito"};
+		SocioModel modelSocio = new SocioModel();
+		ArrayList<Socio> socichiusura = modelSocio.elencoSoci();
+
+		/*
+		 * Istanza del TableModel con l'override di isCellEditable per rendere
+		 * la tabella non modificabile
+		 */
+		DefaultTableModel dati = new DefaultTableModel(nameColumns, 0) {
+			@Override
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
+		if(!socichiusura.isEmpty()){
+			int i = 0;
+			for (int j = 0; j < socichiusura.size(); j++) {
+				if(model.getCreditoDebito(socichiusura.get(j)) != 0){
+					dati.addRow(new Vector<>());
+					dati.setValueAt(socichiusura.get(j).getCf(), i, 0);
+					dati.setValueAt(socichiusura.get(j).getTipologia(), i, 1);
+					dati.setValueAt(socichiusura.get(j).getModPagamento(), i, 2);
+					dati.setValueAt(model.getCreditoDebito(socichiusura.get(j)), i, 3);
+					i++;
+				}
+			}
+			viewChiusura.getTable().setModel(dati);
+		}
 	}
 
 	private boolean validatorForm() {

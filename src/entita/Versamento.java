@@ -19,7 +19,10 @@ public class Versamento {
 		id = cod;
 		mesi = month.clone();
 		lunghmesi = length;
-		importo = value;
+		if(value < 0)
+			importo = -value;
+		else
+			importo = value;
 		socio = member;
 		data = dataV;
 		descrizione = desc;
@@ -27,14 +30,20 @@ public class Versamento {
 
 	public Versamento(int cod, float value, String member, Date dataV, String desc) {
 		id = cod;
-		importo = value;
+		if(value < 0)
+			importo = -value;
+		else
+			importo = value;
 		socio = member;
 		data = dataV;
 		descrizione = desc;
 	}
 
 	public Versamento(float value, String member, Date dataV, String desc) {
-		importo = value;
+		if(value < 0)
+			importo = -value;
+		else
+			importo = value;
 		socio = member;
 		data = dataV;
 		descrizione = desc;
