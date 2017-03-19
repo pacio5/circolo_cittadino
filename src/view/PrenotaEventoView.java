@@ -186,7 +186,7 @@ public class PrenotaEventoView {
 		this.lstEvt = list;
 	}
 	
-	public JList getListPrenotazioni() {
+	public JList<Prenotazione> getListPrenotazioni() {
 		return lstPrenotazioni;
 	}
 	
