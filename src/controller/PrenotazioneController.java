@@ -13,6 +13,7 @@ import java.awt.Color;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -419,22 +420,17 @@ public class PrenotazioneController {
 		ArrayList<Affitto> affitti = model.afittuari();
 		ArrayList<Socio> soci = modelS.elencoSoci();
 		ArrayList<NonSocio> nsoci = modelS.elencoNonSoci();
-		DefaultListModel<NonSocio> dlm;
 		
-		AffittaSalaView view = new AffittaSalaView(sale, soci, affitti);
+		AffittaSalaView view = new AffittaSalaView(sale, soci, nsoci, affitti);
 		view.getFrame().setVisible(true);
 		
-		
-		if(view.getTipo().toString()=="Non Socio") {
-			dlm = new DefaultListModel<NonSocio>();
-			nsoci.stream().forEach((ns)->{
-				dlm.addElement(ns);
-				
-			});			
-			view.getListAffittuari().setModel(dlm);
-			affittaSale();
-			view.getFrame().dispose();
-		}
+		view.getRbtnSocio().addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent ce) {
+				view.getPaneSoci().setVisible(false);
+				view.getPaneNonSoci().setVisible(true);
+			}
+		});
 	
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -444,20 +440,115 @@ public class PrenotazioneController {
 			}
 		});
 		
+		view.getBtnInserisci().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String data = view.getData().getText();
+				Socio socio = view.getListSoci().getSelectedValue();
+				NonSocio nsocio = view.getListNonSoci().getSelectedValue();
+				Sala sala = view.getListSala().getSelectedValue();
+				boolean esito;
+				if(view.getListSoci().isVisible()){
+					esito = model.insertAffittoS(socio, sala, Date.valueOf(data));
+				} else esito = model.insertAffittoN(nsocio, sala, Date.valueOf(data));
+				if (esito) {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
+						view.getFrame().dispose();
+						AdminController adminController = new AdminController();
+						adminController.controlloEvento();
+				} else JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Non Effettuato");
+			
+			}
+		});
+		
+		view.getBtnCancella().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				Affitto a = view.getList().getSelectedValue();
+				boolean esito = model.deleteAffitto(a);
+				if (esito) {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
+					gestioneSale();
+					view.getFrame().dispose();
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellazione non effettuata");
+				}
+			}
+		});
 	}
 	
 	public void prenotaEvento() {
 		ArrayList<Evento> eventi = model.listaEventiValidi();
+		ArrayList<Socio> soci = modelS.elencoSoci();
+		ArrayList<NonSocio> nsoci = modelS.elencoNonSoci();
 		ArrayList<Prenotazione> prenotazioni = model.listaPrenotazioni(2); //passare id evento
 		
-		PrenotaEventoView view = new PrenotaEventoView(eventi, prenotazioni);
+		PrenotaEventoView view = new PrenotaEventoView(eventi, prenotazioni, soci, nsoci);
 		view.getFrame().setVisible(true);
+		
+		view.getRbtnSocio().addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent ce) {
+				view.getPaneNonSoci().setVisible(true);
+				view.getPaneSoci().setVisible(false);
+			}
+		});
 		
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				AdminController adminController = new AdminController();
 				adminController.controlloEvento();
 				view.getFrame().dispose();
+			}
+		});
+		
+		view.getBtnInserisci().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				String data = view.getData().getText();
+				int nBiglietti = Integer.valueOf(view.getNumBiglietti().toString());
+				Socio socio = view.getListSoci().getSelectedValue();
+				NonSocio nsocio = view.getListNonSoci().getSelectedValue();
+				Evento evento = view.getListEventi().getSelectedValue();
+				boolean validazione = true;
+				
+				if (!Validator.ValidaData(data)) {
+					view.getData().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getData().getBackground() == Color.red)
+						view.getData().setBackground(Color.white);
+				}
+				
+				if (validazione) {
+					boolean esito;
+					if(view.getListSoci().isVisible()){
+						esito = model.insertPrenotazioneS(socio, nBiglietti, evento, Date.valueOf(data));
+					} else esito = model.insertPrenotazioneN(nsocio, nBiglietti, evento, Date.valueOf(data));
+					if (esito) {
+							JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
+							view.getFrame().dispose();
+							AdminController adminController = new AdminController();
+							adminController.controlloEvento();
+						} else JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Non Effettuato");
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
+							"Campi non validi, modificare i campi contrassegnati in rosso");
+				}
+			}
+		});
+		
+		view.getBtnCancella().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				Prenotazione p = view.getListPrenotazioni().getSelectedValue();
+				boolean esito = model.deletePrenotazione(p);
+				if (esito) {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
+					gestioneSale();
+					view.getFrame().dispose();
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellazione non effettuata");
+				}
 			}
 		});
 	}

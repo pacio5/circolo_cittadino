@@ -262,41 +262,25 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public boolean deletePrenotazioneN(String cfNs, int idEvento) {
+	public boolean deletePrenotazione(Prenotazione p) {
 		db.open();
 		PreparedStatement stm = null;
+		PreparedStatement stm2 = null;		
 		boolean esito = false;
 		String query = "DELETE FROM PrenotazioneN WHERE NONSOCIO = ? && EVENTO = ?";
+		String query2 = "DELETE FROM PrenotazioneS WHERE SOCIO = ? && EVENTO = ?";
 		try {
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1, cfNs);
-			stm.setInt(2, idEvento);
+			stm.setString(1, p.getCf());
+			stm.setInt(2, p.getEvento());
+			
+			stm2 = db.getConn().prepareStatement(query2);
+			stm2.setString(1, p.getCf());
+			stm2.setInt(2, p.getEvento());
 			
 			int res = stm.executeUpdate();
-			if (res == 1)
-				esito = true;
-			stm.close();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			db.close();
-		}
-		return esito;
-	}
-	
-	public boolean deletePrenotazioneS(String cfS, int idEvento) {
-		db.open();
-		PreparedStatement stm = null;
-		boolean esito = false;
-		String query = "DELETE FROM PrenotazioneS WHERE SOCIO = ? && EVENTO = ?";
-		try {
-			stm = db.getConn().prepareStatement(query);
-			stm.setString(1, cfS);
-			stm.setInt(2, idEvento);
-			
-			
-			int res = stm.executeUpdate();
-			if (res == 1)
+			int res2 = stm.executeUpdate();
+			if (res == 1 || res2 == 1)
 				esito = true;
 			stm.close();
 		} catch (SQLException ex) {
@@ -601,43 +585,27 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public boolean deleteAffittoN(String cfns, String idSala, Date dataAft) {
+	public boolean deleteAffitto(Affitto a) {
 		db.open();
 		PreparedStatement stm = null;
+		PreparedStatement stm2 = null;
 		boolean esito = false;
-		String query = "DELETE FROM AffittoN WHERE NONSOCIO = ? && EVENTO = ? && DATA = ?";
+		String query = "DELETE FROM affitton WHERE NONSOCIO = ? && EVENTO = ? && DATA = ?";
+		String query2 = "DELETE FROM affittos WHERE SOCIO = ? && EVENTO = ? && DATA = ?";
 		try {
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1, cfns);
-			stm.setString(2, idSala);
-			stm.setDate(3, dataAft);
+			stm.setString(1, a.getCf());
+			stm.setString(2, a.getSala());
+			stm.setDate(3, a.getData());
+			
+			stm2 = db.getConn().prepareStatement(query2);
+			stm2.setString(1, a.getCf());
+			stm2.setString(2, a.getSala());
+			stm2.setDate(3, a.getData());
 			
 			int res = stm.executeUpdate();
-			if (res == 1)
-				esito = true;
-			stm.close();
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			db.close();
-		}
-		return esito;
-	}
-	
-	public boolean deletePrenotazioneS(String cfs, String idSala, Date dataAft) {
-		db.open();
-		PreparedStatement stm = null;
-		boolean esito = false;
-		String query = "DELETE FROM Prenotazione WHERE NONSOCIO = ? && EVENTO = ? && DATA = ?";
-		try {
-			stm = db.getConn().prepareStatement(query);
-			stm.setString(1, cfs);
-			stm.setString(2, idSala);
-			stm.setDate(3, dataAft);
-			
-			
-			int res = stm.executeUpdate();
-			if (res == 1)
+			int res2 = stm2.executeUpdate();
+			if (res == 1 || res2 == 1)
 				esito = true;
 			stm.close();
 		} catch (SQLException ex) {

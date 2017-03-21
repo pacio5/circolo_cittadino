@@ -9,6 +9,8 @@ import javax.swing.DefaultListModel;
 
 import entita.Evento;
 import entita.Prenotazione;
+import entita.Socio;
+import entita.NonSocio;
 
 import java.awt.ScrollPane;
 import java.util.ArrayList;
@@ -28,13 +30,16 @@ public class PrenotaEventoView {
 	private JLabel lblData;
 	private JSpinner SpNumeroBiglietti;
 	private JList<Evento> lstEvt;
-	private JList lstPrs;
+	private JList<Socio> lstSocio;
+	private JList<NonSocio> lstNonSocio;
 	private JList<Prenotazione> lstPrenotazioni;
 	private DefaultListModel<Evento> dlme;
 	private DefaultListModel<Prenotazione> dlmp;
-	private DefaultListModel dlm;
+	private DefaultListModel<Socio> dlms;
+	private DefaultListModel<NonSocio> dlmns;
 	private ScrollPane scrollPane;
-	private ScrollPane scrollPanePrs;
+	private ScrollPane scrollPaneS;
+	private ScrollPane scrollPaneNS;
 	private ScrollPane scrollPaneEvt;
 	private JRadioButton rdbtnNonSocio;
 	private JRadioButton rdbtnSocio;
@@ -46,9 +51,9 @@ public class PrenotaEventoView {
 	/**
 	 * Create the frame.
 	 */
-	public PrenotaEventoView(ArrayList<Evento> eventi, ArrayList<Prenotazione> prenotazioni) {
-		frmCircoloCittadino = new JFrame("Circolo Cittadino - Prenota Sala");
-		frmCircoloCittadino.setTitle("Circolo Cittadino - Prenotazione Sale");
+	public PrenotaEventoView(ArrayList<Evento> eventi, ArrayList<Prenotazione> prenotazioni, ArrayList<Socio> affittuariS, ArrayList<NonSocio> affittuariNS) {
+		frmCircoloCittadino = new JFrame("Circolo Cittadino - Prenota Evento");
+		frmCircoloCittadino.setTitle("Circolo Cittadino - Prenotazione Eventi");
 		frmCircoloCittadino.setBounds(100, 100, 800, 600);
 		frmCircoloCittadino.setResizable(false);
 		frmCircoloCittadino.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,12 +69,20 @@ public class PrenotaEventoView {
 			dlme.addElement(e);
 		});
 		lstEvt.setModel(dlme);
-								
-		lstPrs = new JList<>();
-		dlm = new DefaultListModel<>();
-		//affittuari.stream().forEach((o)->{
-			//dlm.addElement(o);
-		//});
+			
+		lstSocio = new JList<Socio>();
+		dlms = new DefaultListModel<Socio>();
+		affittuariS.stream().forEach((s)->{
+			dlms.addElement(s);
+		});
+		lstSocio.setModel(dlms);
+		
+		lstNonSocio = new JList<NonSocio>();
+		dlmns = new DefaultListModel<NonSocio>();
+		affittuariNS.stream().forEach((ns)->{
+			dlmns.addElement(ns);
+		});
+		lstNonSocio.setModel(dlmns);
 		
 		lstPrenotazioni = new JList<Prenotazione>();
 		dlmp = new DefaultListModel<Prenotazione>();
@@ -83,11 +96,17 @@ public class PrenotaEventoView {
 		scrollPaneEvt.add(lstEvt);
 		scrollPaneEvt.setVisible(true);
 	
-		scrollPanePrs = new ScrollPane();
-		scrollPanePrs.setBounds(261,115, 245, 329);
-		frmCircoloCittadino.getContentPane().add(scrollPanePrs);
-		scrollPanePrs.add(lstPrs);
-		scrollPanePrs.setVisible(true);
+		scrollPaneS = new ScrollPane();
+		scrollPaneS.setBounds(261,115, 245, 329);
+		frmCircoloCittadino.getContentPane().add(scrollPaneS);
+		scrollPaneS.add(lstSocio);
+		scrollPaneS.setVisible(true);
+		
+		scrollPaneNS = new ScrollPane();
+		scrollPaneNS.setBounds(261,115, 245, 329);
+		frmCircoloCittadino.getContentPane().add(scrollPaneNS);
+		scrollPaneNS.add(lstNonSocio);
+		scrollPaneNS.setVisible(false);
 		
 		scrollPane = new ScrollPane();
 		scrollPane.setBounds(539,115, 245, 375);
@@ -142,7 +161,7 @@ public class PrenotaEventoView {
 		frmCircoloCittadino.getContentPane().add(lblData);
 		
 		lblNumeroBiglietti = new JLabel("Numero Biglietti");
-		lblNumeroBiglietti.setBounds(324, 465, 106, 14);
+		lblNumeroBiglietti.setBounds(312, 465, 106, 14);
 		frmCircoloCittadino.getContentPane().add(lblNumeroBiglietti);
 	}
 		
@@ -173,6 +192,14 @@ public class PrenotaEventoView {
 	public ButtonGroup getTipo() {
 		return tipo;
 	}
+	
+	public JTextField getData(){
+		return textFieldData;
+	}
+
+	public JSpinner getNumBiglietti(){
+		return SpNumeroBiglietti;
+	}
 
 	public void setBtnInserisci(JButton btnInserisci) {
 		this.btnInserisci = btnInserisci;
@@ -182,16 +209,44 @@ public class PrenotaEventoView {
 		this.frmCircoloCittadino = frame;
 	}
 	
-	public void setListEvento(JList<Evento> list) {
-		this.lstEvt = list;
+	public void setListPrenotazioni(JList<Prenotazione> list) {
+		this.lstPrenotazioni = list;
 	}
 	
 	public JList<Prenotazione> getListPrenotazioni() {
 		return lstPrenotazioni;
 	}
 	
-	public JList getListPrs() {
-		return lstPrs;
+	public void setListEvento(JList<Evento> list) {
+		this.lstEvt = list;
+	}
+	
+	public JList<Evento> getListEventi() {
+		return lstEvt;
+	}
+	
+	public JList<Socio> getListSoci() {
+		return lstSocio;
+	}
+	
+	public void setListSoci(JList<Socio> list) {
+		this.lstSocio = list;
+	}
+	
+	public JList<NonSocio> getListNonSoci() {
+		return lstNonSocio;
+	}
+	
+	public void setListNonSoci(JList<NonSocio> list) {
+		this.lstNonSocio = list;
+	}
+	
+	public ScrollPane getPaneSoci() {
+		return scrollPaneS;
+	}
+	
+	public ScrollPane getPaneNonSoci() {
+		return scrollPaneNS;
 	}
 	
 }

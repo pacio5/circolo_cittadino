@@ -9,10 +9,12 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import entita.Sala;
 import entita.Affitto;
+import entita.NonSocio;
 import entita.Socio;
 
 import java.util.ArrayList;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
 public class AffittaSalaView {
 	
@@ -24,21 +26,25 @@ public class AffittaSalaView {
 	private JLabel lblAft;
 	private JLabel lblElencoPrenotazioni;
 	private JList<Sala> lstSale;
-	private JList lstAft;
+	private JList<Socio> lstS;
+	private JList<NonSocio> lstNS;
 	private JList<Affitto> lst;
 	private DefaultListModel<Sala> dlms;
 	private DefaultListModel<Affitto> dlma;
 	private DefaultListModel<Socio> dlm;
+	private DefaultListModel<NonSocio> dlmns;
 	private ScrollPane scrollPane;
-	private ScrollPane scrollPaneAft;
+	private ScrollPane scrollPaneS;
+	private ScrollPane scrollPaneNS;
 	private ScrollPane scrollPaneSal;
 	private JRadioButton rdbtnNonSocio;
 	private JRadioButton rdbtnSocio;
 	private ButtonGroup tipo;
+	private JTextField textFieldData;
 	
 
 	
-	public AffittaSalaView(ArrayList<Sala> sale, ArrayList<Socio> affittuari, ArrayList<Affitto> prenotazioni) {
+	public AffittaSalaView(ArrayList<Sala> sale, ArrayList<Socio> soci, ArrayList<NonSocio> nsoci, ArrayList<Affitto> prenotazioni) {
 		frmCircoloCittadino = new JFrame("Circolo Cittadino - Prenota Sala");
 		frmCircoloCittadino.setTitle("Circolo Cittadino - Prenotazione Sale");
 		frmCircoloCittadino.setBounds(100, 100, 800, 600);
@@ -53,11 +59,19 @@ public class AffittaSalaView {
 		});
 		lstSale.setModel(dlms);
 								
-		lstAft = new JList<Socio>();
+		lstS = new JList<Socio>();
 		dlm = new DefaultListModel<Socio>();
-		affittuari.stream().forEach((p)->{
+		soci.stream().forEach((p)->{
 			dlm.addElement(p);
 		});
+		lstS.setModel(dlm);
+		
+		lstNS = new JList<NonSocio>();
+		dlmns = new DefaultListModel<NonSocio>();
+		nsoci.stream().forEach((p)->{
+			dlmns.addElement(p);
+		});
+		lstNS.setModel(dlmns);
 		
 		lst = new JList<Affitto>();
 		dlma = new DefaultListModel<Affitto>();
@@ -66,25 +80,31 @@ public class AffittaSalaView {
 		});
 		
 		scrollPaneSal = new ScrollPane();
-		scrollPaneSal.setBounds(261, 115, 245, 375);
+		scrollPaneSal.setBounds(261, 103, 245, 375);
 		frmCircoloCittadino.getContentPane().add(scrollPaneSal);
 		scrollPaneSal.add(lstSale);
 		scrollPaneSal.setVisible(true);
 	
-		scrollPaneAft = new ScrollPane();
-		scrollPaneAft.setBounds(10,115, 245, 375);
-		frmCircoloCittadino.getContentPane().add(scrollPaneAft);
-		scrollPaneAft.add(lstAft);
-		scrollPaneAft.setVisible(true);
+		scrollPaneS = new ScrollPane();
+		scrollPaneS.setBounds(10,103, 245, 375);
+		frmCircoloCittadino.getContentPane().add(scrollPaneS);
+		scrollPaneS.add(lstS);
+		scrollPaneS.setVisible(true);
+		
+		scrollPaneNS = new ScrollPane();
+		scrollPaneNS.setBounds(10,103, 245, 375);
+		frmCircoloCittadino.getContentPane().add(scrollPaneNS);
+		scrollPaneNS.add(lstNS);
+		scrollPaneNS.setVisible(false);
 		
 		scrollPane = new ScrollPane();
-		scrollPane.setBounds(539,115, 245, 375);
+		scrollPane.setBounds(539,103, 245, 375);
 		frmCircoloCittadino.getContentPane().add(scrollPane);
 		scrollPane.add(lst);
 		scrollPane.setVisible(true);
 		
 		btnInserisci = new JButton("Inserisci");
-		btnInserisci.setBounds(199, 513, 117, 29);
+		btnInserisci.setBounds(198, 513, 117, 29);
 		frmCircoloCittadino.getContentPane().add(btnInserisci);
 
 		btnDashboard = new JButton("Dashboard");
@@ -119,6 +139,19 @@ public class AffittaSalaView {
 		lblElencoPrenotazioni = new JLabel("Elenco Prenotazioni");
 		lblElencoPrenotazioni.setBounds(607, 77, 129, 14);
 		frmCircoloCittadino.getContentPane().add(lblElencoPrenotazioni);
+		
+		textFieldData = new JTextField();
+		textFieldData.setBounds(138, 484, 117, 20);
+		frmCircoloCittadino.getContentPane().add(textFieldData);
+		textFieldData.setColumns(10);
+		
+		JLabel lblDataPrenotazione = new JLabel("Data Prenotazione");
+		lblDataPrenotazione.setBounds(10, 487, 153, 14);
+		frmCircoloCittadino.getContentPane().add(lblDataPrenotazione);
+	}
+	
+	public JTextField getData() {
+		return textFieldData;
 	}
 	
 	public JButton getBtnDashboard() {
@@ -165,11 +198,23 @@ public class AffittaSalaView {
 		return lstSale;
 	}
 	
-	public JList getListAffittuari() {
-		return lstAft;
+	public JList<Socio> getListSoci() {
+		return lstS;
+	}
+	
+	public JList<NonSocio> getListNonSoci() {
+		return lstNS;
 	}
 	
 	public JList<Affitto> getList() {
 		return lst;
+	}
+	
+	public ScrollPane getPaneSoci() {
+		return scrollPaneS;
+	}
+	
+	public ScrollPane getPaneNonSoci() {
+		return scrollPaneNS;
 	}
 }
