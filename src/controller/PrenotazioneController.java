@@ -7,6 +7,8 @@ import view.GestioneSaleView;
 import view.AffittaSalaView;
 import view.PrenotaEventoView;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
@@ -424,9 +426,17 @@ public class PrenotazioneController {
 		AffittaSalaView view = new AffittaSalaView(sale, soci, nsoci, affitti);
 		view.getFrame().setVisible(true);
 		
-		view.getRbtnSocio().addChangeListener(new ChangeListener() {
+		view.getRbtnSocio().addActionListener(new ActionListener() {
 			@Override
-			public void stateChanged(ChangeEvent ce) {
+		    public void actionPerformed(ActionEvent actionEvent) {
+				view.getPaneSoci().setVisible(true);
+				view.getPaneNonSoci().setVisible(false);
+			}
+		});
+		
+		view.getRdbtnNonSocio().addActionListener(new ActionListener() {
+			@Override
+		    public void actionPerformed(ActionEvent actionEvent) {
 				view.getPaneSoci().setVisible(false);
 				view.getPaneNonSoci().setVisible(true);
 			}
@@ -485,11 +495,19 @@ public class PrenotazioneController {
 		PrenotaEventoView view = new PrenotaEventoView(eventi, prenotazioni, soci, nsoci);
 		view.getFrame().setVisible(true);
 		
-		view.getRbtnSocio().addChangeListener(new ChangeListener() {
+		view.getRbtnSocio().addActionListener(new ActionListener() {
 			@Override
-			public void stateChanged(ChangeEvent ce) {
-				view.getPaneNonSoci().setVisible(true);
+		    public void actionPerformed(ActionEvent actionEvent) {
+				view.getPaneNonSoci().setVisible(false);
+				view.getPaneSoci().setVisible(true);
+			}
+		});
+		
+		view.getRdbtnNonSocio().addActionListener(new ActionListener() {
+			@Override
+		    public void actionPerformed(ActionEvent actionEvent) {
 				view.getPaneSoci().setVisible(false);
+				view.getPaneNonSoci().setVisible(true);
 			}
 		});
 		
