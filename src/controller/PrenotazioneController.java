@@ -10,6 +10,8 @@ import view.PrenotaEventoView;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
@@ -417,13 +419,21 @@ public class PrenotazioneController {
 		ArrayList<Affitto> affitti = model.afittuari();
 		ArrayList<Socio> soci = modelS.elencoSoci();
 		ArrayList<NonSocio> nsoci = modelS.elencoNonSoci();
+		DefaultListModel<NonSocio> dlm;
 		
 		AffittaSalaView view = new AffittaSalaView(sale, soci, affitti);
 		view.getFrame().setVisible(true);
 		
 		
 		if(view.getTipo().toString()=="Non Socio") {
-			
+			dlm = new DefaultListModel<NonSocio>();
+			nsoci.stream().forEach((ns)->{
+				dlm.addElement(ns);
+				
+			});			
+			view.getListAffittuari().setModel(dlm);
+			affittaSale();
+			view.getFrame().dispose();
 		}
 	
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {

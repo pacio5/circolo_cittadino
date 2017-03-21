@@ -9,6 +9,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import entita.Sala;
 import entita.Affitto;
+import entita.Socio;
 
 import java.util.ArrayList;
 import javax.swing.JRadioButton;
@@ -27,7 +28,7 @@ public class AffittaSalaView {
 	private JList<Affitto> lst;
 	private DefaultListModel<Sala> dlms;
 	private DefaultListModel<Affitto> dlma;
-	private DefaultListModel dlm;
+	private DefaultListModel<Socio> dlm;
 	private ScrollPane scrollPane;
 	private ScrollPane scrollPaneAft;
 	private ScrollPane scrollPaneSal;
@@ -37,7 +38,7 @@ public class AffittaSalaView {
 	
 
 	
-	public AffittaSalaView(ArrayList<Sala> sale, ArrayList affittuari, ArrayList<Affitto> prenotazioni) {
+	public AffittaSalaView(ArrayList<Sala> sale, ArrayList<Socio> affittuari, ArrayList<Affitto> prenotazioni) {
 		frmCircoloCittadino = new JFrame("Circolo Cittadino - Prenota Sala");
 		frmCircoloCittadino.setTitle("Circolo Cittadino - Prenotazione Sale");
 		frmCircoloCittadino.setBounds(100, 100, 800, 600);
@@ -52,10 +53,10 @@ public class AffittaSalaView {
 		});
 		lstSale.setModel(dlms);
 								
-		lstAft = new JList<>();
-		dlm = new DefaultListModel();
-		affittuari.stream().forEach((o)->{
-			dlm.addElement(o);
+		lstAft = new JList<Socio>();
+		dlm = new DefaultListModel<Socio>();
+		affittuari.stream().forEach((p)->{
+			dlm.addElement(p);
 		});
 		
 		lst = new JList<Affitto>();
