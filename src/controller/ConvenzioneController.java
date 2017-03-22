@@ -33,6 +33,7 @@ public class ConvenzioneController {
 				view.getTextFieldIndirizzo().setEnabled(false);
 				view.getTextAreaDescrizione().setEnabled(false);
 				view.getTextFieldSconto().setEnabled(false);
+				view.getBtnAnnullaModifiche().setVisible(true);
 
 				Convenzione c = view.getList().getSelectedValue();
 				view.getTextFieldRagioneSociale().setText(c.getRagioneSociale());
@@ -50,8 +51,16 @@ public class ConvenzioneController {
 				String indirizzo = view.getTextFieldIndirizzo().getText().toUpperCase();
 				String descrizione = view.getTextAreaDescrizione().getText().toUpperCase();
 				String sconto = view.getTextFieldSconto().getText();
-
+				
 				Boolean validazione = true;
+				if(ragioneSociale.isEmpty()){
+					view.getTextFieldRagioneSociale().setBackground(Color.red);
+					validazione = false;
+				} 
+				else{
+					if(view.getTextFieldRagioneSociale().getBackground() == Color.red)
+						view.getTextFieldRagioneSociale().setBackground(Color.white);
+				}
 				if (!Validator.ValidaIndirizzo(indirizzo)) {
 					view.getTextFieldIndirizzo().setBackground(Color.red);
 					validazione = false;
@@ -118,8 +127,15 @@ public class ConvenzioneController {
 				String indirizzo = view.getTextFieldIndirizzo().getText().toUpperCase();
 				String descrizione = view.getTextAreaDescrizione().getText().toUpperCase();
 				String sconto = view.getTextFieldSconto().getText();
-
 				Boolean validazione = true;
+				if(ragioneSociale.isEmpty()){
+					view.getTextFieldRagioneSociale().setBackground(Color.red);
+					validazione = false;
+				} 
+				else{
+					if(view.getTextFieldRagioneSociale().getBackground() == Color.red)
+						view.getTextFieldRagioneSociale().setBackground(Color.white);
+				}
 				if (!Validator.ValidaIndirizzo(indirizzo)) {
 					view.getTextFieldIndirizzo().setBackground(Color.red);
 					validazione = false;
@@ -148,6 +164,14 @@ public class ConvenzioneController {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
 							"Campi non validi, modificare i campi contrassegnati in rosso");
 				}
+			}
+		});
+		
+		view.getBtnAnnullaModifiche().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				gestioneConvenzione();
+				view.getFrame().dispose();
 			}
 		});
 

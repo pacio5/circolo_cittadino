@@ -19,14 +19,15 @@ public class GestioneConvenzioniView{
 	private JTextArea textAreaDescrizione;
 	private JTextField textFieldRagioneSociale;
 	private JTextField textFieldSconto;
+	private JList<Convenzione> list;
+	private DefaultListModel<Convenzione> dlm;
+	private ScrollPane scrollPane;
 	private JButton btnInserisci;
 	private JButton btnDashboard;
 	private JButton btnModifica;
 	private JButton btnCancella;
 	private JButton btnSalvaModifiche;
-	private JList<Convenzione> list;
-	private DefaultListModel<Convenzione> dlm;
-	private ScrollPane scrollPane;
+	private JButton btnAnnullaModifiche;
 	
 	public GestioneConvenzioniView(ArrayList<Convenzione> conv){
 		frame = new JFrame("Circolo Cittadino - Gestisci Convenzioni");
@@ -86,7 +87,7 @@ public class GestioneConvenzioniView{
 		frame.getContentPane().add(lblSconto);
 		
 		textFieldSconto = new JTextField();
-		textFieldSconto.setBounds(633, 468, 127, 17);
+		textFieldSconto.setBounds(605, 467, 127, 17);
 		frame.getContentPane().add(textFieldSconto);
 		
 		btnInserisci = new JButton("Inserisci");
@@ -94,23 +95,32 @@ public class GestioneConvenzioniView{
 		frame.getContentPane().add(btnInserisci);
 		
 		btnModifica = new JButton("Modifica");
-		btnModifica.setBounds(186, 516, 117, 29);
+		btnModifica.setBounds(170, 516, 117, 29);
 		btnModifica.setVisible(false);
 		frame.getContentPane().add(btnModifica);
 		
 		btnCancella = new JButton("Cancella");
-		btnCancella.setBounds(357, 516, 117, 29);
+		btnCancella.setBounds(319, 516, 117, 29);
 		btnCancella.setVisible(false);
 		frame.getContentPane().add(btnCancella);
 		
 		btnSalvaModifiche = new JButton("Salva");
-		btnSalvaModifiche.setBounds(525, 516, 117, 29);
+		btnSalvaModifiche.setBounds(465, 516, 117, 29);
 		btnSalvaModifiche.setVisible(false);
 		frame.getContentPane().add(btnSalvaModifiche);
+		
+		btnAnnullaModifiche = new JButton("Annulla");
+		btnAnnullaModifiche.setBounds(605, 516, 117, 29);
+		btnAnnullaModifiche.setVisible(false);
+		frame.getContentPane().add(btnAnnullaModifiche);
 		
 		btnDashboard = new JButton("Dashboard");
 		btnDashboard.setBounds(689, 6, 109, 44);
 		frame.getContentPane().add(btnDashboard);
+		
+		JLabel label = new JLabel("%");
+		label.setBounds(747, 468, 47, 16);
+		frame.getContentPane().add(label);
 	}
 
 	public JFrame getFrame() {
@@ -164,4 +174,9 @@ public class GestioneConvenzioniView{
 	public ScrollPane getScrollPane() {
 		return scrollPane;
 	}
+
+	public JButton getBtnAnnullaModifiche() {
+		return btnAnnullaModifiche;
+	}
+
 }

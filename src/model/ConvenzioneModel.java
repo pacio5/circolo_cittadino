@@ -27,8 +27,7 @@ public class ConvenzioneModel {
 			stm.setString(3, c.getDescrizione());
 			stm.setDouble(4, c.getSconto());
 
-			int res = stm.executeUpdate();
-			if (res == 1)
+			if (stm.executeUpdate() == 1)
 				esito = true;
 			stm.close();
 		} catch (SQLException ex) {
@@ -52,8 +51,7 @@ public class ConvenzioneModel {
 			stm.setDouble(4, c.getSconto());
 			stm.setInt(5, c.getId());
 
-			int res = stm.executeUpdate();
-			if (res == 1)
+			if (stm.executeUpdate() == 1)
 				esito = true;
 			stm.close();
 		} catch (SQLException ex) {
@@ -73,8 +71,7 @@ public class ConvenzioneModel {
 			stm = db.getConn().prepareStatement(query);
 			stm.setInt(1, c.getId());
 
-			int res = stm.executeUpdate();
-			if (res == 1)
+			if (stm.executeUpdate() == 1)
 				esito = true;
 			stm.close();
 		} catch (SQLException ex) {
@@ -104,5 +101,4 @@ public class ConvenzioneModel {
 		}
 		return convenzione;
 	}
-
 }
