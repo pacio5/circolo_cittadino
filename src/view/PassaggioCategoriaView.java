@@ -23,9 +23,10 @@ public class PassaggioCategoriaView {
 	
 	private JFrame frame;
 	private JList<Socio> list;
-	private JButton btnEffettua;
 	private DefaultListModel<Socio> dlm;
 	private ScrollPane scrollPane;
+	private JButton btnEffettua;
+	private JButton btnDashboard;
 	
 	/**
 	 * Create the frame
@@ -56,6 +57,10 @@ public class PassaggioCategoriaView {
 		btnEffettua = new JButton("Effettua");
 		btnEffettua.setBounds(523, 295, 117, 29);
 		frame.getContentPane().add(btnEffettua);
+		
+		btnDashboard = new JButton("Dashboard");
+		btnDashboard.setBounds(697, 9, 97, 41);
+		frame.getContentPane().add(btnDashboard);
 		btnEffettua.setVisible(true);
 	}
 
@@ -78,7 +83,9 @@ public class PassaggioCategoriaView {
 	public ScrollPane getScrollPane() {
 		return scrollPane;
 	}
-	
-	
+
+	public JButton getBtnDashboard() {
+		return btnDashboard;
+	}
 	
 }
