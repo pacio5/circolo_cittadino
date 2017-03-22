@@ -166,11 +166,10 @@ public class SocioController {
 						view.getProfessione().setBackground(Color.white);
 				}
 				if (coniuge != null) {
-					if (!Validator.ValidaAnagrafica(coniuge) || coniuge.length() > 20){
+					if (!Validator.ValidaAnagrafica(coniuge) || coniuge.length() > 20) {
 						view.getConiuge().setBackground(Color.red);
 						validazione = false;
-					}
-					else {
+					} else {
 						if (view.getConiuge().getBackground() == Color.red)
 							view.getConiuge().setBackground(Color.white);
 					}
@@ -198,9 +197,8 @@ public class SocioController {
 
 					if (esito) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
+						inserimentoSocio();
 						view.getFrame().dispose();
-						AdminController adminController = new AdminController();
-						adminController.controlloEvento();
 					} else {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Non Effettuato");
 					}
@@ -235,6 +233,7 @@ public class SocioController {
 					view.getRdbtnUomo().setSelected(true);
 				else
 					view.getRdbtnDonna().setSelected(true);
+
 				view.getDataNascita().setText(n.getDataNascita().toString());
 				view.getLuogoNascita().setText(n.getLuogoNascita());
 				view.getIndirizzo().setText(n.getIndirizzo());
@@ -397,11 +396,10 @@ public class SocioController {
 						view.getProfessione().setBackground(Color.white);
 				}
 				if (coniuge != null) {
-					if (!Validator.ValidaAnagrafica(coniuge)){
+					if (!Validator.ValidaAnagrafica(coniuge)) {
 						view.getConiuge().setBackground(Color.red);
 						validazione = false;
-					}
-					else {
+					} else {
 						if (view.getConiuge().getBackground() == Color.red)
 							view.getConiuge().setBackground(Color.white);
 					}
@@ -421,12 +419,10 @@ public class SocioController {
 						view.getTassaAmmissione().setBackground(Color.white);
 				}
 				if (validazione) {
-					boolean esito = model.modificaSocio(new Socio(cf, nome, cognome, sex, Date.valueOf(dataNascita),
-							luogoNascita, indirizzo, citta, cap, email, telefono, professione, statoCivile, coniuge,
+					if (model.modificaSocio(new Socio(cf, nome, cognome, sex, Date.valueOf(dataNascita), luogoNascita,
+							indirizzo, citta, cap, email, telefono, professione, statoCivile, coniuge,
 							Date.valueOf(dataAmmissione), Float.valueOf(tassaAmmissione), modPagamento, metPagamento,
-							tipologia), view.getList().getSelectedValue().getCf());
-
-					if (esito) {
+							tipologia), view.getList().getSelectedValue().getCf())) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Socio Aggiornato");
 						visualizzazioneSoci();
 						view.getFrame().dispose();
@@ -449,9 +445,7 @@ public class SocioController {
 				do {
 					data = JOptionPane.showInputDialog("Inserisci la data di dimissione");
 				} while (!Validator.ValidaData(data));
-				boolean esito = model
-						.diventaExSocio(new ExSocio(view.getList().getSelectedValue(), Date.valueOf(data), false));
-				if (esito) {
+				if (model.diventaExSocio(new ExSocio(view.getList().getSelectedValue(), Date.valueOf(data), false))) {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Passaggio Effettuato");
 					visualizzazioneSoci();
 					view.getFrame().dispose();
@@ -467,9 +461,7 @@ public class SocioController {
 				do {
 					data = JOptionPane.showInputDialog("Inserisci la data di espulsione");
 				} while (!Validator.ValidaData(data));
-				boolean esito = model
-						.diventaExSocio(new ExSocio(view.getList().getSelectedValue(), Date.valueOf(data), true));
-				if (esito) {
+				if (model.diventaExSocio(new ExSocio(view.getList().getSelectedValue(), Date.valueOf(data), true))) {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Espulsione Effettuata");
 					visualizzazioneSoci();
 					view.getFrame().dispose();
@@ -481,8 +473,7 @@ public class SocioController {
 
 		view.getBtnElimina().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				boolean esito = model.eliminaSocio(view.getList().getSelectedValue());
-				if (esito) {
+				if (model.eliminaSocio(view.getList().getSelectedValue())) {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Eliminato correttamente");
 					visualizzazioneSoci();
 					view.getFrame().dispose();
@@ -555,7 +546,8 @@ public class SocioController {
 						view.getDataNascita().setBackground(Color.white);
 				}
 				if (validazione) {
-					if (model.inserisciFiglio(new Figlio(cf, nome, sesso, Date.valueOf(dataNascita), genitore, aCarico))) {
+					if (model.inserisciFiglio(
+							new Figlio(cf, nome, sesso, Date.valueOf(dataNascita), genitore, aCarico))) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
 						gestioneFigli();
 						view.getFrame().dispose();
@@ -690,11 +682,8 @@ public class SocioController {
 						view.getDataNascita().setBackground(Color.white);
 				}
 				if (validazione) {
-					boolean esito = model.modificaFiglio(
-							new Figlio(cf, nome, sesso, Date.valueOf(dataNascita), genitore, aCarico),
-							view.getList().getSelectedValue().getCf());
-
-					if (esito) {
+					if (model.modificaFiglio(new Figlio(cf, nome, sesso, Date.valueOf(dataNascita), genitore, aCarico),
+							view.getList().getSelectedValue().getCf())) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Aggiornamento Effettuato");
 						gestioneFigli();
 						view.getFrame().dispose();
@@ -770,16 +759,13 @@ public class SocioController {
 				}
 
 				if (validazione) {
-					boolean esito = model.inserisciNonSocio(new NonSocio(cf, nome, cognome, sesso, email, telefono));
-
-					if (esito) {
+					if (model.inserisciNonSocio(new NonSocio(cf, nome, cognome, sesso, email, telefono))) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
 						gestioneNonSocio();
 						view.getFrame().dispose();
 					} else {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Non Effettuato");
 					}
-
 				} else {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
 							"Campi non validi, modificare i campi contrassegnati in rosso");
@@ -889,10 +875,8 @@ public class SocioController {
 				}
 
 				if (validazione) {
-					boolean esito = model.modificaNonSocio(new NonSocio(cf, nome, cognome, sesso, email, telefono),
-							view.getList().getSelectedValue().getCf());
-
-					if (esito) {
+					if (model.modificaNonSocio(new NonSocio(cf, nome, cognome, sesso, email, telefono),
+							view.getList().getSelectedValue().getCf())) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
 						gestioneNonSocio();
 						view.getFrame().dispose();
@@ -997,7 +981,7 @@ public class SocioController {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
 							"C'è stato qualche problema, riprova");
 				}
-
+				
 				passaggiCategoria();
 				view.getFrame().dispose();
 			}

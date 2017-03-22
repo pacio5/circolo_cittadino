@@ -27,11 +27,7 @@ public class AdminController {
 		adminView = new AdminView();
 		adminView.getFrame().setVisible(true);
 	}
-
-	public AdminController(AdminView view) {
-		adminView = view;
-	}
-
+	
 	public void controlloEvento() {
 		adminView.getBtnLogout().addMouseListener(new MouseAdapter() {
 			@Override
@@ -185,7 +181,5 @@ public class AdminController {
 				adminView.getFrame().dispose();
 			}
 		});
-
-	}
-	
+	}	
 }

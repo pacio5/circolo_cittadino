@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
 import view.LoginView;
-import view.AdminView;
 import model.LoginModel;
 
 /**
@@ -34,20 +33,15 @@ public class LoginController {
 				String user, password;
 				user = loginView.getTextFieldUsername().getText();
 				password = loginView.getTextFieldPassword().getText();
-				boolean esito = loginModel.accedi(user, password);
-				if(esito){
-					JOptionPane.showMessageDialog(loginView.getFrame().getContentPane(), "Benvenuto "+ user);
-					AdminView adminView = new AdminView();
-					adminView.getFrame().setVisible(true);
-					AdminController adminController  = new AdminController(adminView);
+				if (loginModel.accedi(user, password)) {
+					JOptionPane.showMessageDialog(loginView.getFrame().getContentPane(), "Benvenuto " + user);
+					AdminController adminController = new AdminController();
 					adminController.controlloEvento();
 					loginView.getFrame().dispose();
-				}else{
+				} else {
 					JOptionPane.showMessageDialog(loginView.getFrame().getContentPane(), "Credenziali errate");
-					
 				}
 			}
 		});
 	}
-
 }

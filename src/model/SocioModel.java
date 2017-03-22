@@ -58,8 +58,8 @@ public class SocioModel {
 			st.setString(18, n.getMetPagamento());
 			st.setString(19, n.getTipologia());
 
-			int res = st.executeUpdate();
-			if (res == 1)
+			
+			if (st.executeUpdate() == 1)
 				esito = true;
 			st.close();
 		} catch (SQLException e) {
@@ -80,8 +80,7 @@ public class SocioModel {
 			st = db.getConn().prepareStatement(query);
 			st.setString(1, n.getCf());
 
-			int res = st.executeUpdate();
-			if (res == 1)
+			if (st.executeUpdate() == 1)
 				esito = true;
 			st.close();
 
@@ -124,8 +123,7 @@ public class SocioModel {
 			st.setString(19, n.getTipologia());
 			st.setString(20, cf);
 
-			int res = st.executeUpdate();
-			if (res == 1)
+			if (st.executeUpdate() == 1)
 				esito = true;
 			st.close();
 		} catch (SQLException e) {
@@ -156,7 +154,7 @@ public class SocioModel {
 						res.getString("met_pagamento"), res.getString("tipologia")));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return soci;
@@ -192,8 +190,7 @@ public class SocioModel {
 			st.setString(19, n.getTipologia());
 			st.setDate(20, n.getDataDimissione());
 			st.setBoolean(21, n.getEspulso());
-			int res = st.executeUpdate();
-			if (res == 1) {
+			if (st.executeUpdate() == 1) {
 				query = "SELECT * FROM figlio WHERE genitore = ?";
 				st = db.getConn().prepareStatement(query);
 				st.setString(1, n.getCf());
@@ -208,7 +205,7 @@ public class SocioModel {
 					st.setDate(4, rs.getDate("data_nascita"));
 					st.setString(5, rs.getString("genitore"));
 					st.setBoolean(6, rs.getBoolean("acarico"));
-					res = st.executeUpdate();
+					st.executeUpdate();
 				}
 				esito = true;
 			}
@@ -217,15 +214,15 @@ public class SocioModel {
 				query = "DELETE FROM socio WHERE cf = ?;";
 				st = db.getConn().prepareStatement(query);
 				st.setString(1, n.getCf());
-				res = st.executeUpdate();
+				st.executeUpdate();
 				query = "DELETE FROM passaggio WHERE socio = ?";
 				st = db.getConn().prepareStatement(query);
 				st.setString(1, n.getCf());
-				res = st.executeUpdate();
+				st.executeUpdate();
 				query = "DELETE FROM figlio WHERE genitore = ?;";
 				st = db.getConn().prepareStatement(query);
 				st.setString(1, n.getCf());
-				res = st.executeUpdate();
+				st.executeUpdate();
 			}
 
 			st.close();
@@ -288,7 +285,6 @@ public class SocioModel {
 		} catch (
 
 		SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.close();
@@ -310,8 +306,7 @@ public class SocioModel {
 			st.setDate(4, n.getDataNascita());
 			st.setString(5, n.getGenitore().getCf());
 			st.setBoolean(6, n.getACarico());
-			int res = st.executeUpdate();
-			if (res == 1)
+			if (st.executeUpdate() == 1)
 				esito = true;
 			st.close();
 		} catch (SQLException e) {
@@ -332,12 +327,10 @@ public class SocioModel {
 		try {
 			st = db.getConn().prepareStatement(query);
 			st.setString(1, n.getCf());
-			int res = st.executeUpdate();
-			if (res == 1)
+			if (st.executeUpdate() == 1)
 				esito = true;
 			st.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.close();
@@ -361,12 +354,10 @@ public class SocioModel {
 			st.setBoolean(6, n.getACarico());
 			st.setString(7, cf);
 
-			int res = st.executeUpdate();
-			if (res == 1)
+			if (st.executeUpdate() == 1)
 				esito = true;
 			st.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.close();
@@ -394,7 +385,6 @@ public class SocioModel {
 						res.getString("met_pagamento"), res.getString("tipologia"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.close();
@@ -422,7 +412,6 @@ public class SocioModel {
 						res.getDate("data_nascita"), cercaSocio(res.getString("genitore")), res.getBoolean("acarico")));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.close();
@@ -448,7 +437,6 @@ public class SocioModel {
 						res.getDate("data_nascita"), cercaSocio(res.getString("genitore")), res.getBoolean("acarico")));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.close();
@@ -469,12 +457,11 @@ public class SocioModel {
 			st.setString(4, Character.toString(n.getSesso()));
 			st.setString(5, n.getEmail());
 			st.setString(6, n.getTelefono());
-			int res = st.executeUpdate();
-			if (res == 1)
+			
+			if (st.executeUpdate() == 1)
 				esito = true;
 			st.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.close();
@@ -497,12 +484,10 @@ public class SocioModel {
 			st.setString(6, n.getTelefono());
 			st.setString(7, cf);
 
-			int res = st.executeUpdate();
-			if (res == 1)
+			if (st.executeUpdate() == 1)
 				esito = true;
 			st.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.close();
@@ -520,13 +505,11 @@ public class SocioModel {
 			st = db.getConn().prepareStatement(query);
 			st.setString(1, n.getCf());
 
-			int res = st.executeUpdate();
-			if (res == 1)
+			if (st.executeUpdate() == 1)
 				esito = true;
 			st.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.close();
@@ -547,7 +530,6 @@ public class SocioModel {
 						res.getString("sesso").charAt(0), res.getString("email"), res.getString("telefono")));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.close();
@@ -573,7 +555,6 @@ public class SocioModel {
 						res.getString("met_pagamento"), res.getString("tipologia")));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			db.close();
@@ -591,8 +572,7 @@ public class SocioModel {
 			st = db.getConn().prepareStatement(query);
 			st.setString(1, n.getCf());
 
-			int res = st.executeUpdate();
-			if (res == 1) {
+			if (st.executeUpdate() == 1) {
 				esito = true;
 				query = "INSERT INTO passaggio VALUES(?,?,?);";
 				st = db.getConn().prepareStatement(query);
