@@ -22,6 +22,8 @@ public class AdminView {
 	private JButton btnPrenotaSala;
 	private JButton btnPrenotaEvento;
 	private JButton btnChiusuraAnnuale;
+	private JButton btnPassaggioCategoria;
+	private JButton btnGestioneConvenzioni;
 
 	/**
 	 * Create the frame.
@@ -98,6 +100,14 @@ public class AdminView {
 		frame.getContentPane().add(btnPrenotaEvento);
 		frame.getContentPane().add(btnChiusuraAnnuale);
 		
+		btnPassaggioCategoria = new JButton("Passaggio Categoria");
+		btnPassaggioCategoria.setBounds(363, 50, 152, 29);
+		frame.getContentPane().add(btnPassaggioCategoria);
+		
+		btnGestioneConvenzioni = new JButton("Gestione Convenzioni");
+		btnGestioneConvenzioni.setBounds(363, 91, 152, 29);
+		frame.getContentPane().add(btnGestioneConvenzioni);
+		
 		
 	}
 
@@ -163,5 +173,13 @@ public class AdminView {
 	
 	public JButton getBtnChiusuraAnnuale() {
 		return btnChiusuraAnnuale;
+	}
+
+	public JButton getBtnPassaggioCategoria() {
+		return btnPassaggioCategoria;
+	}
+
+	public JButton getBtnGestioneConvenzioni() {
+		return btnGestioneConvenzioni;
 	}
 }

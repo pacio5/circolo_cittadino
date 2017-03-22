@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import entita.Versamento;
-
 import java.sql.Date;
 
 /**

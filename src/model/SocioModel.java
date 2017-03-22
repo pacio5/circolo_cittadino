@@ -4,13 +4,17 @@
 package model;
 
 import entita.Socio;
+import entita.ExSocio;
 import entita.Figlio;
 import entita.NonSocio;
 import utility.MySql;
+
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -99,7 +103,6 @@ public class SocioModel {
 				+ "professione = ?, stato_civile = ?, coniuge = ?, data_ammissione = ?, tassa_ammissione = ?, mod_pagamento = ?, met_pagamento = ?, tipologia = ? WHERE cf = ?;";
 		try {
 			st = db.getConn().prepareStatement(query);
-			st = db.getConn().prepareStatement(query);
 			st.setString(1, n.getCf());
 			st.setString(2, n.getNome());
 			st.setString(3, n.getCognome());
@@ -159,13 +162,13 @@ public class SocioModel {
 		return soci;
 	}
 
-	public boolean diventaExSocio(Socio n, Boolean espulso) {
+	public boolean diventaExSocio(ExSocio n) {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
 		String query = "INSERT INTO exsocio(cf, nome, cognome, sesso, data_nascita, luogo_nascita, indirizzo, citta, cap, email, telefono, "
-				+ "professione, stato_civile, coniuge, data_ammissione, tassa_ammissione, mod_pagamento, met_pagamento, tipologia, espulso)"
-				+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "professione, stato_civile, coniuge, data_ammissione, tassa_ammissione, mod_pagamento, met_pagamento, tipologia, data_dimissione, espulso)"
+				+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		try {
 			st = db.getConn().prepareStatement(query);
 			st.setString(1, n.getCf());
@@ -187,7 +190,8 @@ public class SocioModel {
 			st.setString(17, n.getModPagamento());
 			st.setString(18, n.getMetPagamento());
 			st.setString(19, n.getTipologia());
-			st.setBoolean(20, espulso);
+			st.setDate(20, n.getDataDimissione());
+			st.setBoolean(21, n.getEspulso());
 			int res = st.executeUpdate();
 			if (res == 1) {
 				query = "SELECT * FROM figlio WHERE genitore = ?";
@@ -205,13 +209,16 @@ public class SocioModel {
 					st.setString(5, rs.getString("genitore"));
 					st.setBoolean(6, rs.getBoolean("acarico"));
 					res = st.executeUpdate();
-					if (res == 1)
-						esito = true;
 				}
+				esito = true;
 			}
 
 			if (esito) {
 				query = "DELETE FROM socio WHERE cf = ?;";
+				st = db.getConn().prepareStatement(query);
+				st.setString(1, n.getCf());
+				res = st.executeUpdate();
+				query = "DELETE FROM passaggio WHERE socio = ?";
 				st = db.getConn().prepareStatement(query);
 				st.setString(1, n.getCf());
 				res = st.executeUpdate();
@@ -232,8 +239,8 @@ public class SocioModel {
 		return esito;
 	}
 
-	public ArrayList<Socio> elencoExSoci() {
-		ArrayList<Socio> exSoci = new ArrayList<Socio>();
+	public ArrayList<ExSocio> elencoExSoci() {
+		ArrayList<ExSocio> exSoci = new ArrayList<ExSocio>();
 		Statement st;
 		try {
 			db.open();
@@ -241,24 +248,27 @@ public class SocioModel {
 			String query = "SELECT * FROM exsocio;";
 			ResultSet res = st.executeQuery(query);
 			while (res.next()) {
-				exSoci.add(new Socio(res.getString("cf"), res.getString("nome"), res.getString("cognome"),
+				exSoci.add(new ExSocio(res.getString("cf"), res.getString("nome"), res.getString("cognome"),
 						res.getString("sesso").charAt(0), res.getDate("data_nascita"), res.getString("luogo_nascita"),
 						res.getString("indirizzo"), res.getString("citta"), res.getString("cap"),
 						res.getString("email"), res.getString("telefono"), res.getString("professione"),
 						res.getString("stato_civile"), res.getString("coniuge"), res.getDate("data_ammissione"),
 						res.getFloat("tassa_ammissione"), res.getString("mod_pagamento"),
-						res.getString("met_pagamento"), res.getString("tipologia")));
+						res.getString("met_pagamento"), res.getString("tipologia"), res.getDate("data_dimissione"),
+						res.getBoolean("espulso")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			db.close();
 		}
 		return exSoci;
 	}
 
 	public boolean diventaSocio(Socio n) {
 		Boolean esito = true;
-		inserisciSocio(n);
+		esito = inserisciSocio(n);
 		ArrayList<Figlio> figli = elencoFigliEx(n.getCf());
 		figli.stream().forEach((f) -> {
 			inserisciFiglio(f);
@@ -269,18 +279,11 @@ public class SocioModel {
 			String query = "DELETE FROM exsocio WHERE cf = ?;";
 			st = db.getConn().prepareStatement(query);
 			st.setString(1, n.getCf());
-			int res = st.executeUpdate();
-			if (res == 0)
-				esito = false;
-			if(esito){
-				query = "DELETE FROM exfiglio WHERE cf = ?;";
-				st = db.getConn().prepareStatement(query);
-				st.setString(1, n.getCf());
-				res = st.executeUpdate();
-				if(res == 0){
-					esito = false;
-				}
-			}
+			st.executeUpdate();
+			query = "DELETE FROM figlioex WHERE cf = ?;";
+			st = db.getConn().prepareStatement(query);
+			st.setString(1, n.getCf());
+			st.executeUpdate();
 			st.close();
 		} catch (
 
@@ -400,6 +403,7 @@ public class SocioModel {
 		return socio;
 	}
 
+	// Cercare di unire i due metodi parametrizzando la query
 	public ArrayList<Figlio> elencoFigli(String cf) {
 		ArrayList<Figlio> figli = new ArrayList<Figlio>();
 		Statement st;
@@ -425,7 +429,7 @@ public class SocioModel {
 		}
 		return figli;
 	}
-	
+
 	public ArrayList<Figlio> elencoFigliEx(String cf) {
 		ArrayList<Figlio> figli = new ArrayList<Figlio>();
 		Statement st;
@@ -451,12 +455,12 @@ public class SocioModel {
 		}
 		return figli;
 	}
-	
+
 	public boolean inserisciNonSocio(NonSocio n) {
 		db.open();
 		PreparedStatement st = null;
 		boolean esito = false;
-		String query = "INSERT INTO nonsocio(cf, nome, cognome, sesso email, telefono) VALUES(?,?,?,?,?,?)";
+		String query = "INSERT INTO nonsocio(cf, nome, cognome, sesso, email, telefono) VALUES(?,?,?,?,?,?)";
 		try {
 			st = db.getConn().prepareStatement(query);
 			st.setString(1, n.getCf());
@@ -482,9 +486,8 @@ public class SocioModel {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
-		String query = "UPDATE socio SET cf = ?, nome = ?, cognome = ?, sesso = ?, email = ?, telefono = ? WHERE cf = ?;";
+		String query = "UPDATE nonsocio SET cf = ?, nome = ?, cognome = ?, sesso = ?, email = ?, telefono = ? WHERE cf = ?;";
 		try {
-			st = db.getConn().prepareStatement(query);
 			st = db.getConn().prepareStatement(query);
 			st.setString(1, n.getCf());
 			st.setString(2, n.getNome());
@@ -512,7 +515,7 @@ public class SocioModel {
 		boolean esito = false;
 		db.open();
 		PreparedStatement st = null;
-		String query = "DELETE FROM socio WHERE cf = ?";
+		String query = "DELETE FROM nonsocio WHERE cf = ?";
 		try {
 			st = db.getConn().prepareStatement(query);
 			st.setString(1, n.getCf());
@@ -546,7 +549,64 @@ public class SocioModel {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			db.close();
 		}
 		return nonSoci;
+	}
+
+	public ArrayList<Socio> passaggioCategoria() {
+		ArrayList<Socio> soci = new ArrayList<Socio>();
+		Statement st;
+		try {
+			db.open();
+			st = db.getConn().createStatement();
+			String query = "SELECT * FROM socio WHERE DATEDIFF(NOW(), data_ammissione)>=18250 AND tipologia = 'ORDINARIO' OR tipologia = 'STRAORDINARIO';";
+			ResultSet res = st.executeQuery(query);
+			while (res.next()) {
+				soci.add(new Socio(res.getString("cf"), res.getString("nome"), res.getString("cognome"),
+						res.getString("sesso").charAt(0), res.getDate("data_nascita"), res.getString("luogo_nascita"),
+						res.getString("indirizzo"), res.getString("citta"), res.getString("cap"),
+						res.getString("email"), res.getString("telefono"), res.getString("professione"),
+						res.getString("stato_civile"), res.getString("coniuge"), res.getDate("data_ammissione"),
+						res.getFloat("tassa_ammissione"), res.getString("mod_pagamento"),
+						res.getString("met_pagamento"), res.getString("tipologia")));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			db.close();
+		}
+
+		return soci;
+	}
+
+	public boolean effettuaPassaggioCategoria(Socio n) {
+		boolean esito = false;
+		PreparedStatement st;
+		try {
+			db.open();
+			String query = "UPDATE socio SET tipologia = 'BENEMERITO' WHERE cf = ? ";
+			st = db.getConn().prepareStatement(query);
+			st.setString(1, n.getCf());
+
+			int res = st.executeUpdate();
+			if (res == 1) {
+				esito = true;
+				query = "INSERT INTO passaggio VALUES(?,?,?);";
+				st = db.getConn().prepareStatement(query);
+				st.setDate(1, Date.valueOf(LocalDate.now()));
+				st.setString(2, n.getTipologia());
+				st.setString(3, n.getCf());
+			}
+			st.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.close();
+		}
+
+		return esito;
 	}
 }

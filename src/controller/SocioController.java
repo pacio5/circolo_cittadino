@@ -6,6 +6,7 @@ package controller;
 import model.SocioModel;
 import utility.Validator;
 import view.InserisciSocioView;
+import view.PassaggioCategoriaView;
 import view.GestioneExSocioView;
 import view.GestioneFigliView;
 import view.GestioneNonSocioView;
@@ -26,6 +27,7 @@ import javax.swing.event.ListSelectionListener;
 import entita.Figlio;
 import entita.NonSocio;
 import entita.Socio;
+import entita.ExSocio;
 import controller.AdminController;
 import view.VisualizzaSociView;
 
@@ -97,14 +99,14 @@ public class SocioController {
 					view.getNome().setBackground(Color.red);
 					validazione = false;
 				} else {
-					if (view.getCf().getBackground() == Color.red)
+					if (view.getNome().getBackground() == Color.red)
 						view.getNome().setBackground(Color.white);
 				}
 				if (!Validator.ValidaAnagrafica(cognome)) {
 					view.getCognome().setBackground(Color.red);
 					validazione = false;
 				} else {
-					if (view.getCf().getBackground() == Color.red)
+					if (view.getCognome().getBackground() == Color.red)
 						view.getCognome().setBackground(Color.white);
 				}
 				if (!Validator.ValidaData(dataNascita)) {
@@ -116,18 +118,21 @@ public class SocioController {
 				}
 				if (!Validator.ValidaAnagrafica(luogoNascita) || luogoNascita.length() > 35) {
 					view.getLuogoNascita().setBackground(Color.red);
+					validazione = false;
 				} else {
 					if (view.getLuogoNascita().getBackground() == Color.red)
 						view.getLuogoNascita().setBackground(Color.white);
 				}
 				if (!Validator.ValidaIndirizzo(indirizzo)) {
 					view.getIndirizzo().setBackground(Color.red);
+					validazione = false;
 				} else {
 					if (view.getIndirizzo().getBackground() == Color.red)
-						view.getDataNascita().setBackground(Color.white);
+						view.getIndirizzo().setBackground(Color.white);
 				}
 				if (!Validator.ValidaAnagrafica(citta) || citta.length() > 35) {
 					view.getCitta().setBackground(Color.red);
+					validazione = false;
 				} else {
 					if (view.getCitta().getBackground() == Color.red)
 						view.getCitta().setBackground(Color.white);
@@ -155,13 +160,16 @@ public class SocioController {
 				}
 				if (!Validator.ValidaAnagrafica(professione) || professione.length() > 30) {
 					view.getProfessione().setBackground(Color.red);
+					validazione = false;
 				} else {
 					if (view.getProfessione().getBackground() == Color.red)
 						view.getProfessione().setBackground(Color.white);
 				}
 				if (coniuge != null) {
-					if (!Validator.ValidaAnagrafica(coniuge) || coniuge.length() > 20)
+					if (!Validator.ValidaAnagrafica(coniuge) || coniuge.length() > 20){
 						view.getConiuge().setBackground(Color.red);
+						validazione = false;
+					}
 					else {
 						if (view.getConiuge().getBackground() == Color.red)
 							view.getConiuge().setBackground(Color.white);
@@ -239,6 +247,9 @@ public class SocioController {
 				view.getConiuge().setText(n.getConiuge());
 				view.getDataAmmissione().setText(n.getDataAmmissione().toString());
 				view.getTassaAmmissione().setText(String.valueOf(n.getTassaAmmissione()));
+				view.getModPagamento().setSelectedItem(n.getModPagamento());
+				view.getMetPagamento().setSelectedItem(n.getMetPagamento());
+				view.getTipologia().setSelectedItem(n.getTipologia());
 				view.getBtnModifica().setEnabled(true);
 				view.getBtnDiventaExsocio().setEnabled(true);
 				view.getBtnElimina().setEnabled(true);
@@ -319,14 +330,14 @@ public class SocioController {
 					view.getNome().setBackground(Color.red);
 					validazione = false;
 				} else {
-					if (view.getCf().getBackground() == Color.red)
+					if (view.getNome().getBackground() == Color.red)
 						view.getNome().setBackground(Color.white);
 				}
 				if (!Validator.ValidaAnagrafica(cognome)) {
 					view.getCognome().setBackground(Color.red);
 					validazione = false;
 				} else {
-					if (view.getCf().getBackground() == Color.red)
+					if (view.getCognome().getBackground() == Color.red)
 						view.getCognome().setBackground(Color.white);
 				}
 				if (!Validator.ValidaData(dataNascita)) {
@@ -338,18 +349,21 @@ public class SocioController {
 				}
 				if (!Validator.ValidaCitta(luogoNascita)) {
 					view.getLuogoNascita().setBackground(Color.red);
+					validazione = false;
 				} else {
 					if (view.getLuogoNascita().getBackground() == Color.red)
 						view.getLuogoNascita().setBackground(Color.white);
 				}
 				if (!Validator.ValidaIndirizzo(indirizzo)) {
 					view.getIndirizzo().setBackground(Color.red);
+					validazione = false;
 				} else {
 					if (view.getIndirizzo().getBackground() == Color.red)
-						view.getDataNascita().setBackground(Color.white);
+						view.getIndirizzo().setBackground(Color.white);
 				}
 				if (!Validator.ValidaCitta(citta)) {
 					view.getCitta().setBackground(Color.red);
+					validazione = false;
 				} else {
 					if (view.getCitta().getBackground() == Color.red)
 						view.getCitta().setBackground(Color.white);
@@ -377,13 +391,16 @@ public class SocioController {
 				}
 				if (!Validator.ValidaProfessione(professione)) {
 					view.getProfessione().setBackground(Color.red);
+					validazione = false;
 				} else {
 					if (view.getProfessione().getBackground() == Color.red)
 						view.getProfessione().setBackground(Color.white);
 				}
 				if (coniuge != null) {
-					if (!Validator.ValidaAnagrafica(coniuge))
+					if (!Validator.ValidaAnagrafica(coniuge)){
 						view.getConiuge().setBackground(Color.red);
+						validazione = false;
+					}
 					else {
 						if (view.getConiuge().getBackground() == Color.red)
 							view.getConiuge().setBackground(Color.white);
@@ -425,10 +442,15 @@ public class SocioController {
 
 			}
 		});
-		
+
 		view.getBtnDiventaExsocio().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				boolean esito = model.diventaExSocio(view.getList().getSelectedValue(), false);
+				String data;
+				do {
+					data = JOptionPane.showInputDialog("Inserisci la data di dimissione");
+				} while (!Validator.ValidaData(data));
+				boolean esito = model
+						.diventaExSocio(new ExSocio(view.getList().getSelectedValue(), Date.valueOf(data), false));
 				if (esito) {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Passaggio Effettuato");
 					visualizzazioneSoci();
@@ -441,13 +463,18 @@ public class SocioController {
 
 		view.getBtnEspelli().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				boolean esito = model.diventaExSocio(view.getList().getSelectedValue(), true);
+				String data;
+				do {
+					data = JOptionPane.showInputDialog("Inserisci la data di espulsione");
+				} while (!Validator.ValidaData(data));
+				boolean esito = model
+						.diventaExSocio(new ExSocio(view.getList().getSelectedValue(), Date.valueOf(data), true));
 				if (esito) {
-					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Espulso correttamente");
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Espulsione Effettuata");
 					visualizzazioneSoci();
 					view.getFrame().dispose();
 				} else {
-					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Espulsione non effettuata");
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Espulsione Non Effettuata");
 				}
 			}
 		});
@@ -528,10 +555,7 @@ public class SocioController {
 						view.getDataNascita().setBackground(Color.white);
 				}
 				if (validazione) {
-					boolean esito = model
-							.inserisciFiglio(new Figlio(cf, nome, sesso, Date.valueOf(dataNascita), genitore, aCarico));
-
-					if (esito) {
+					if (model.inserisciFiglio(new Figlio(cf, nome, sesso, Date.valueOf(dataNascita), genitore, aCarico))) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
 						gestioneFigli();
 						view.getFrame().dispose();
@@ -552,7 +576,7 @@ public class SocioController {
 					Socio genitore = (Socio) view.getFiltro().getSelectedItem();
 					ArrayList<Figlio> figli = model.elencoFigli(genitore.getCf());
 					DefaultListModel<Figlio> dlm = new DefaultListModel<Figlio>();
-					figli.stream().forEach((f)->{
+					figli.stream().forEach((f) -> {
 						dlm.addElement(f);
 					});
 					view.getList().setModel(dlm);
@@ -687,10 +711,10 @@ public class SocioController {
 
 	}
 
-	public void gestioneNonSocio(){
+	public void gestioneNonSocio() {
 		GestioneNonSocioView view = new GestioneNonSocioView(model.elencoNonSoci());
 		view.getFrame().setVisible(true);
-		view.getBtnInserisci().addMouseListener(new MouseAdapter(){
+		view.getBtnInserisci().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String cf = view.getCf().getText().toUpperCase();
@@ -720,7 +744,7 @@ public class SocioController {
 					if (view.getNome().getBackground() == Color.red)
 						view.getNome().setBackground(Color.white);
 				}
-				
+
 				if (!Validator.ValidaAnagrafica(cognome)) {
 					view.getCognome().setBackground(Color.red);
 					validazione = false;
@@ -728,7 +752,7 @@ public class SocioController {
 					if (view.getCognome().getBackground() == Color.red)
 						view.getCognome().setBackground(Color.white);
 				}
-				
+
 				if (!Validator.ValidaEmail(email)) {
 					view.getEmail().setBackground(Color.red);
 					validazione = false;
@@ -736,7 +760,7 @@ public class SocioController {
 					if (view.getEmail().getBackground() == Color.red)
 						view.getEmail().setBackground(Color.white);
 				}
-				
+
 				if (!Validator.ValidaTel(telefono)) {
 					view.getTelefono().setBackground(Color.red);
 					validazione = false;
@@ -744,9 +768,9 @@ public class SocioController {
 					if (view.getTelefono().getBackground() == Color.red)
 						view.getTelefono().setBackground(Color.white);
 				}
-				
+
 				if (validazione) {
-					boolean esito = model.inserisciNonSocio(new NonSocio(cf,nome,cognome,sesso,email,telefono));
+					boolean esito = model.inserisciNonSocio(new NonSocio(cf, nome, cognome, sesso, email, telefono));
 
 					if (esito) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
@@ -762,7 +786,7 @@ public class SocioController {
 				}
 			}
 		});
-		
+
 		view.getList().addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
 				view.getCf().setEnabled(false);
@@ -772,7 +796,6 @@ public class SocioController {
 				view.getRdbtnUomo().setEnabled(false);
 				view.getEmail().setEnabled(false);
 				view.getTelefono().setEnabled(false);
-				
 
 				NonSocio nonSocio = view.getList().getSelectedValue();
 				view.getCf().setText(nonSocio.getCf());
@@ -785,16 +808,14 @@ public class SocioController {
 				}
 				view.getEmail().setText(nonSocio.getEmail());
 				view.getTelefono().setText(nonSocio.getTelefono());
-				
+
 				view.getBtnElimina().setEnabled(true);
 				view.getBtnModifica().setEnabled(true);
 			}
 
 		});
 
-
-		
-		view.getBtnModifica().addMouseListener(new MouseAdapter(){
+		view.getBtnModifica().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				view.getCf().setEnabled(true);
@@ -804,15 +825,15 @@ public class SocioController {
 				view.getRdbtnUomo().setEnabled(true);
 				view.getEmail().setEnabled(true);
 				view.getTelefono().setEnabled(true);
-				
+
 				view.getBtnAggiorna().setVisible(true);
 				view.getBtnElimina().setVisible(false);
 				view.getBtnModifica().setVisible(false);
 				view.getBtnInserisci().setVisible(false);
 			}
 		});
-		
-		view.getBtnAggiorna().addMouseListener(new MouseAdapter(){
+
+		view.getBtnAggiorna().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String cf = view.getCf().getText().toUpperCase();
@@ -842,7 +863,7 @@ public class SocioController {
 					if (view.getNome().getBackground() == Color.red)
 						view.getNome().setBackground(Color.white);
 				}
-				
+
 				if (!Validator.ValidaAnagrafica(cognome)) {
 					view.getCognome().setBackground(Color.red);
 					validazione = false;
@@ -850,7 +871,7 @@ public class SocioController {
 					if (view.getCognome().getBackground() == Color.red)
 						view.getCognome().setBackground(Color.white);
 				}
-				
+
 				if (!Validator.ValidaEmail(email)) {
 					view.getEmail().setBackground(Color.red);
 					validazione = false;
@@ -858,7 +879,7 @@ public class SocioController {
 					if (view.getEmail().getBackground() == Color.red)
 						view.getEmail().setBackground(Color.white);
 				}
-				
+
 				if (!Validator.ValidaTel(telefono)) {
 					view.getTelefono().setBackground(Color.red);
 					validazione = false;
@@ -866,9 +887,10 @@ public class SocioController {
 					if (view.getTelefono().getBackground() == Color.red)
 						view.getTelefono().setBackground(Color.white);
 				}
-				
+
 				if (validazione) {
-					boolean esito = model.modificaNonSocio(new NonSocio(cf,nome,cognome,sesso,email,telefono), view.getList().getSelectedValue().getCf());
+					boolean esito = model.modificaNonSocio(new NonSocio(cf, nome, cognome, sesso, email, telefono),
+							view.getList().getSelectedValue().getCf());
 
 					if (esito) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
@@ -883,10 +905,10 @@ public class SocioController {
 							"Campi non validi, modificare i campi contrassegnati in rosso");
 				}
 			}
-			
+
 		});
-		
-		view.getBtnElimina().addMouseListener(new MouseAdapter(){
+
+		view.getBtnElimina().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (model.eliminaNonSocio(view.getList().getSelectedValue())) {
@@ -899,7 +921,7 @@ public class SocioController {
 				}
 			}
 		});
-		
+
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				AdminController adminController = new AdminController();
@@ -909,7 +931,7 @@ public class SocioController {
 		});
 	}
 
-	public void gestioneExSocio(){
+	public void gestioneExSocio() {
 		GestioneExSocioView view = new GestioneExSocioView(model.elencoExSoci());
 		view.getFrame().setVisible(true);
 		view.getList().addListSelectionListener(new ListSelectionListener() {
@@ -937,21 +959,46 @@ public class SocioController {
 				view.getBtnDiventaSocio().setEnabled(true);
 			}
 		});
-		
-		view.getBtnDiventaSocio().addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				if(model.diventaSocio(view.getList().getSelectedValue())){
-					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Aggiornamento Effettuato");
-					gestioneExSocio();
-					view.getFrame().dispose();
+
+		view.getBtnDiventaSocio().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				if (view.getList().getSelectedValue().getEspulso()) {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
+							"La persona selezionata è stata espulsa e non può essere riammessa.");
+				} else {
+					if (model.diventaSocio(view.getList().getSelectedValue())) {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Aggiornamento Effettuato");
+						gestioneExSocio();
+						view.getFrame().dispose();
+					}
 				}
 			}
 		});
-		
+
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				AdminController adminController = new AdminController();
 				adminController.controlloEvento();
+				view.getFrame().dispose();
+			}
+		});
+	}
+
+	public void passaggiCategoria() {
+		PassaggioCategoriaView view = new PassaggioCategoriaView(model.passaggioCategoria());
+		view.getFrame().setVisible(true);
+
+		view.getBtnEffettua().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if (model.effettuaPassaggioCategoria(view.getList().getSelectedValue())) {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Passaggio Effettuato");
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
+							"C'è stato qualche problema, riprova");
+				}
+
+				passaggiCategoria();
 				view.getFrame().dispose();
 			}
 		});

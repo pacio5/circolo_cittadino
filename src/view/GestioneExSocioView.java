@@ -1,6 +1,6 @@
 package view;
 
-import entita.Socio;
+import entita.ExSocio;
 
 import java.awt.ScrollPane;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 public class GestioneExSocioView {
 
 	private JFrame frame;
-	private JList<Socio> list;
+	private JList<ExSocio> list;
 	private JTextField cf;
 	private JTextField nome;
 	private JTextField cognome;
@@ -42,13 +42,13 @@ public class GestioneExSocioView {
 	private JComboBox<String> tipologia;
 	private JButton btnDashboard;
 	private JButton btnDiventaSocio;
-	private DefaultListModel<Socio> dlm;
+	private DefaultListModel<ExSocio> dlm;
 	private ScrollPane scrollPane;
 
 	/**
 	 * Create the frame.
 	 */
-	public GestioneExSocioView(ArrayList<Socio> soci) {
+	public GestioneExSocioView(ArrayList<ExSocio> soci) {
 		frame = new JFrame("Circolo Cittadino Ascoli Piceno");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 800, 600);
@@ -56,11 +56,11 @@ public class GestioneExSocioView {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblElencoSoci = new JLabel("Elenco Ex Soci ");
-		lblElencoSoci.setBounds(341, 20, 75, 16);
+		lblElencoSoci.setBounds(341, 20, 105, 16);
 		frame.getContentPane().add(lblElencoSoci);
 		
-		list = new JList<Socio>();
-		dlm = new DefaultListModel<Socio>();
+		list = new JList<ExSocio>();
+		dlm = new DefaultListModel<ExSocio>();
 		soci.stream().forEach((s)->{
 			dlm.addElement(s);
 		});
@@ -296,7 +296,7 @@ public class GestioneExSocioView {
 	/**
 	 * @return the list
 	 */
-	public JList<Socio> getList() {
+	public JList<ExSocio> getList() {
 		return list;
 	}
 

@@ -29,7 +29,6 @@ public class Socio {
 	protected String modPagamento;
 	protected String metPagamento;
 	protected String tipologia;
-	protected Figlio figli[];
 
 	public Socio(String codice, String name, String surname, char sex, Date dateB, String placeB, String address,
 			String city, String postalCode, String mail, String tel, String profession, String civilStatus,
@@ -53,16 +52,6 @@ public class Socio {
 		modPagamento = modPay;
 		metPagamento = metPay;
 		tipologia = type;
-		figli = null;
-	}
-
-	public Socio(String codice, String name, String surname, char sex, Date dateB, String placeB, String address,
-			String city, String postalCode, String mail, String tel, String profession, String civilStatus,
-			String spouse, Date dateAmmission, float taxAmmission, String modPay, String metPay, String type,
-			Figlio sons[]) {
-		this(codice, name, surname, sex, dateB, placeB, address, city, postalCode, mail, tel, profession, civilStatus,
-				spouse, dateAmmission, taxAmmission, modPay, metPay, type);
-		figli = sons;
 	}
 
 	public Socio() {
@@ -145,10 +134,6 @@ public class Socio {
 
 	public String getTipologia() {
 		return tipologia;
-	}
-
-	public Figlio[] getFigli() {
-		return figli;
 	}
 
 	public void setCf(String codice) {

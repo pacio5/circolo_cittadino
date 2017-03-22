@@ -167,6 +167,24 @@ public class AdminController {
 				adminView.getFrame().dispose();
 			}
 		});
+		
+		adminView.getBtnPassaggioCategoria().addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e){
+				SocioController socioController = new SocioController();
+				socioController.passaggiCategoria();
+				adminView.getFrame().dispose();
+			}
+		});
+		
+		adminView.getBtnGestioneConvenzioni().addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e){
+				ConvenzioneController convenzioneController = new ConvenzioneController();
+				convenzioneController.gestioneConvenzione();
+				adminView.getFrame().dispose();
+			}
+		});
 
 	}
 	
