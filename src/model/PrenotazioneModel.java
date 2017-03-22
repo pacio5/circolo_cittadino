@@ -126,6 +126,8 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
+		} finally {
+			db.close();
 		}
 		return Eventi;
 	}
@@ -152,8 +154,30 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
+		} finally {
+			db.close();
 		}
 		return Eventi;
+	}
+	
+	public int postiDisponibili(Evento e) {
+		db.open();
+		int po = 0;
+		PreparedStatement stm = null;
+		String query = "SELECT Count(*) FROM da finire";
+		try {
+			stm = db.getConn().prepareStatement(query);
+			stm.setString(1, e.getId());
+			
+			ResultSet res = stm.executeQuery(query);
+			po = res.getInt(query);
+			
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} finally {
+			db.close();
+		}
+		return e.getPosti()-po;
 	}
 	
 	/* Operazioni sulle Prenotazioni degli Eventi */
@@ -312,6 +336,8 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
+		} finally {
+			db.close();
 		}
 		return prenotazioni;
 	}
@@ -355,6 +381,8 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
+		} finally {
+			db.close();
 		}
 		return partecipantiS;
 	}
@@ -382,6 +410,8 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
+		} finally {
+			db.close();
 		}
 		return partecipantiNS;
 	}
@@ -477,6 +507,8 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
+		} finally {
+			db.close();
 		}
 		return Sale;
 	}
@@ -637,6 +669,8 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 						ex.printStackTrace();
+		} finally {
+			db.close();
 		}
 		return affittuari;
 	}
@@ -677,6 +711,8 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
+		} finally {
+			db.close();
 		}
 		return affittuariS;
 	}
@@ -704,6 +740,8 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
+		} finally {
+			db.close();
 		}
 		return affittuariNS;
 	}
