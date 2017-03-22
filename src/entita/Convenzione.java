@@ -1,62 +1,55 @@
 package entita;
 
 public class Convenzione {
-	private String id;
-	private String ragione_sociale;
+	private int id;
+	private String ragioneSociale;
 	private String indirizzo;
 	private String descrizione;
 	private double sconto;
 	
+	public Convenzione(){
+		this(-1, null, null, null, 0);
+	}
 	
-	public String getId(){
-		
+	public Convenzione(int ident, String azienda, String address, String desc, double percent){
+		id = ident;
+		ragioneSociale = azienda;
+		indirizzo = address;
+		descrizione = desc;
+		sconto = percent;
+	}
+	
+	public Convenzione(String azienda, String address, String desc, double percent){
+		id = -1;
+		ragioneSociale = azienda;
+		indirizzo = address;
+		descrizione = desc;
+		sconto = percent;
+	}
+
+	public int getId() {
 		return id;
 	}
-	
-	public String getRagione_sociale(){
-		
-		return ragione_sociale;
+
+	public String getRagioneSociale() {
+		return ragioneSociale;
 	}
-	
-	public void setRagione_sociale(String ragSoc){
-		
-		ragione_sociale = ragSoc;
-	}
-	
-	public String getIndirizzo(){
-		
+
+	public String getIndirizzo() {
 		return indirizzo;
 	}
-	
-	public void setIndirizzo(String ind){
 
-		indirizzo = ind;
-	}
-	
-	public String getDescrizione(){
-	
+	public String getDescrizione() {
 		return descrizione;
 	}
-	
-	public void setDescrizione(String descr){
-		
-		descrizione=descr;
-	}
-	
-	public double getSconto(){
-		
+
+	public double getSconto() {
 		return sconto;
-		
 	}
 	
-	public void setSconto(double scnt){
-		
-		sconto = scnt;
+	@Override
+	public String toString(){
+		return ragioneSociale + " " + String.valueOf(sconto);
 	}
 	
-	public String toString() {
-		return "Convenzione [id=" + id + ", ragione_sociale=" + ragione_sociale + ","
-				+ " indirizzo=" + indirizzo + ", descrizione=" + descrizione + ", "
-						+ "sconto=" + sconto + "]"; 
-	}
 }
