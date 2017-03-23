@@ -380,4 +380,25 @@ public class QuotaModel {
 		}
 		return valore;
 	}
+	
+	public boolean insertChiusuraAnnuale(Versamento spill) {
+		boolean esito = false;
+		String operationV = "INSERT INTO Versamento (DATA, IMPORTO, DESCRIZIONE, SOCIO) VALUES (?, ?, ?, ?)";
+		try {
+			db.open();
+			PreparedStatement command = null;
+			command = db.getConn().prepareStatement(operationV);
+			command.setDate(1, spill.getData());
+			command.setFloat(2, spill.getImporto());
+			command.setString(3, spill.getDescrizione());
+			command.setString(4, spill.getSocio());
+			command.executeUpdate();
+			esito = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.close();
+		}
+		return esito;
+	}
 }

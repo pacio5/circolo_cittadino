@@ -360,8 +360,8 @@ public class VersamentoController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Calendar.getInstance();
-				boolean esito = model.insertVersamento(new Versamento(
-						Float.valueOf(viewChiusura.getTable().getModel()
+				boolean esito = model.insertChiusuraAnnuale(new Versamento(
+						-Float.valueOf(viewChiusura.getTable().getModel()
 								.getValueAt(viewChiusura.getTable().getSelectedRow(), 3).toString()).floatValue(),
 						(String) viewChiusura.getTable().getModel().getValueAt(viewChiusura.getTable().getSelectedRow(),
 								0),
