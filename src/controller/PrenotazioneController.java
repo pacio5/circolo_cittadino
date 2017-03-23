@@ -418,7 +418,7 @@ public class PrenotazioneController {
 	}
 	
 	public void affittaSale() {
-		ArrayList<Sala> sale = model.listaSale();
+		ArrayList<Sala> sale = model.listaSaleDisponibili();
 		ArrayList<Affitto> affitti = model.afittuari();
 		ArrayList<Socio> soci = modelS.elencoSoci();
 		ArrayList<NonSocio> nsoci = modelS.elencoNonSoci();

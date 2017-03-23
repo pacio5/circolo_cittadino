@@ -491,19 +491,43 @@ public class PrenotazioneModel {
 	
 	public ArrayList<Sala> listaSale() {
 		ArrayList<Sala> Sale = new ArrayList<Sala>();
+		Statement stm;
+		try {
+			db.open();
+			String query = "SELECT * FROM Sala;";
+			stm = db.getConn().createStatement();
+			ResultSet res = stm.executeQuery(query);
+			while (res.next()) {
+				Sale.add(new Sala(
+						res.getString("nome"), 
+						res.getInt("capienza"),
+						res.getString("descrizione"),
+						res.getFloat("prezzo")));
+			}
+		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		} finally {
+			db.close();
+		}
+		return Sale;
+	}
+	
+	public ArrayList<Sala> listaSaleDisponibili() {
+		ArrayList<Sala> Sale = new ArrayList<Sala>();
 		db.open();
 		Statement stm;
-		String query = "SELECT * FROM Sala;";
+		String query = "SELECT * FROM sala WHERE sala.nome NOT IN (SELECT * FROM sala INNER JOIN affittos ON sala.nome = affittos.sala INNER JOIN "
+				+ "affitton.sala = sala.nome WHERE affittos.data>CURDATE && affitton.data>CURDATE;);";
 		try {
 			stm = db.getConn().createStatement();
 			ResultSet res = stm.executeQuery(query);
 			while (res.next()) {
-				Sala s = new Sala(
+				Sale.add(new Sala(
 						res.getString("nome"), 
 						res.getInt("capienza"),
 						res.getString("descrizione"),
-						res.getFloat("prezzo"));
-				Sale.add(s);
+						res.getFloat("prezzo")));
 			}
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
