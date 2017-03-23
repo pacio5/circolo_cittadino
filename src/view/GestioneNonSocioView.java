@@ -32,8 +32,9 @@ public class GestioneNonSocioView {
 	private JButton btnElimina;
 	private JButton btnModifica;
 	private JButton btnAggiorna;
+	private JButton btnAnnulla;
 	private JButton btnDashboard;
-
+	
 	public GestioneNonSocioView(ArrayList<NonSocio> nonSoci) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 600);
@@ -119,12 +120,12 @@ public class GestioneNonSocioView {
 		frame.getContentPane().add(btnInserisci);
 
 		btnElimina = new JButton("Elimina");
-		btnElimina.setEnabled(false);
+		btnElimina.setVisible(false);
 		btnElimina.setBounds(362, 501, 117, 29);
 		frame.getContentPane().add(btnElimina);
 
 		btnModifica = new JButton("Modifica");
-		btnModifica.setEnabled(false);
+		btnModifica.setVisible(false);
 		btnModifica.setBounds(477, 501, 117, 29);
 		frame.getContentPane().add(btnModifica);
 
@@ -132,6 +133,11 @@ public class GestioneNonSocioView {
 		btnAggiorna.setBounds(592, 501, 117, 29);
 		btnAggiorna.setVisible(false);
 		frame.getContentPane().add(btnAggiorna);
+		
+		btnAnnulla = new JButton("Annulla");
+		btnAnnulla.setBounds(240, 530, 117, 29);
+		btnAnnulla.setVisible(false);
+		frame.getContentPane().add(btnAnnulla);
 
 		btnDashboard = new JButton("Dashboard");
 		btnDashboard.setBounds(697, 6, 97, 41);
@@ -196,6 +202,10 @@ public class GestioneNonSocioView {
 
 	public JButton getBtnAggiorna() {
 		return btnAggiorna;
+	}
+	
+	public JButton getBtnAnnulla() {
+		return btnAnnulla;
 	}
 
 	public JButton getBtnDashboard() {

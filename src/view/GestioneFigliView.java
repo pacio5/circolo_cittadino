@@ -44,6 +44,8 @@ public class GestioneFigliView {
 	private JButton btnElimina;
 	private JButton btnAggiorna;
 	private JButton btnInserisci;
+	private JButton btnAnnulla;
+	
 	/**
 	 * Create the frame.
 	 */
@@ -150,18 +152,23 @@ public class GestioneFigliView {
 		
 		btnModifica = new JButton("Modifica");
 		btnModifica.setBounds(504, 500, 117, 29);
-		btnModifica.setEnabled(false);
+		btnModifica.setVisible(false);
 		frame.getContentPane().add(btnModifica);
 		
 		btnElimina = new JButton("Elimina");
 		btnElimina.setBounds(375, 500, 117, 29);
-		btnElimina.setEnabled(false);
+		btnElimina.setVisible(false);
 		frame.getContentPane().add(btnElimina);
 		
 		btnAggiorna = new JButton("Aggiorna");
 		btnAggiorna.setBounds(633, 500, 117, 29);
 		btnAggiorna.setVisible(false);
 		frame.getContentPane().add(btnAggiorna);
+		
+		btnAnnulla = new JButton("Annulla");
+		btnAnnulla.setBounds(253, 531, 117, 26);
+		btnAnnulla.setVisible(false);
+		frame.getContentPane().add(btnAnnulla);
 		
 		btnDashboard = new JButton("Dashboard");
 		btnDashboard.setBounds(697, 11, 97, 41);
@@ -288,6 +295,12 @@ public class GestioneFigliView {
 	 */
 	public JButton getBtnAggiorna() {
 		return btnAggiorna;
+	}
+	/**
+	 * @return the btnAnnulla
+	 */
+	public JButton getBtnAnnulla() {
+		return btnAnnulla;
 	}
 	/**
 	 * @return the btnInserisci

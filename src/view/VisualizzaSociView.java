@@ -48,6 +48,7 @@ public class VisualizzaSociView {
 	private DefaultListModel<Socio> dlm;
 	private ScrollPane scrollPane;
 	private JButton btnAggiorna;
+	private JButton btnAnnulla;
 
 	/**
 	 * Create the frame.
@@ -286,28 +287,33 @@ public class VisualizzaSociView {
 		
 		btnModifica = new JButton("Modifica");
 		btnModifica.setBounds(253, 500, 117, 29);
-		btnModifica.setEnabled(false);
+		btnModifica.setVisible(false);
 		frame.getContentPane().add(btnModifica);
 		
 		btnDiventaExsocio = new JButton("Diventa Ex-Socio");
 		btnDiventaExsocio.setBounds(375, 500, 153, 29);
-		btnDiventaExsocio.setEnabled(false);
+		btnDiventaExsocio.setVisible(false);
 		frame.getContentPane().add(btnDiventaExsocio);
 		
 		btnEspelli = new JButton("Espelli");
 		btnEspelli.setBounds(528, 500, 117, 29);
-		btnEspelli.setEnabled(false);
+		btnEspelli.setVisible(false);
 		frame.getContentPane().add(btnEspelli);
 		
 		btnElimina = new JButton("Elimina");
 		btnElimina.setBounds(645, 500, 117, 29);
-		btnElimina.setEnabled(false);
+		btnElimina.setVisible(false);
 		frame.getContentPane().add(btnElimina);
 		
 		btnAggiorna = new JButton("Aggiorna");
 		btnAggiorna.setBounds(253, 540, 117, 29);
 		frame.getContentPane().add(btnAggiorna);
 		btnAggiorna.setVisible(false);
+		
+		btnAnnulla = new JButton("Annulla");
+		btnAnnulla.setBounds(375, 541, 117, 29);
+		frame.getContentPane().add(btnAnnulla);
+		btnAnnulla.setVisible(false);
 	}
 	
 	/**
@@ -516,6 +522,13 @@ public class VisualizzaSociView {
 	 */
 	public JButton getBtnElimina() {
 		return btnElimina;
+	}
+	
+	/**
+	 * @return the btnElimina
+	 */
+	public JButton getBtnAnnulla() {
+		return btnAnnulla;
 	}
 
 	/**

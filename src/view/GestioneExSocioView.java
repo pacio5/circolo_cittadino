@@ -276,13 +276,14 @@ public class GestioneExSocioView {
 		tipologia.setBounds(661, 392, 130, 27);
 		tipologia.setEnabled(false);
 		frame.getContentPane().add(tipologia);
+		
 		btnDashboard = new JButton("Dashboard");
 		btnDashboard.setBounds(694, 15, 97, 41);
 		frame.getContentPane().add(btnDashboard);
 		
 		btnDiventaSocio = new JButton("Diventa Socio");
 		btnDiventaSocio.setBounds(253, 500, 117, 29);
-		btnDiventaSocio.setEnabled(false);
+		btnDiventaSocio.setVisible(false);
 		frame.getContentPane().add(btnDiventaSocio);
 	}
 	

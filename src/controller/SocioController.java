@@ -249,10 +249,11 @@ public class SocioController {
 				view.getModPagamento().setSelectedItem(n.getModPagamento());
 				view.getMetPagamento().setSelectedItem(n.getMetPagamento());
 				view.getTipologia().setSelectedItem(n.getTipologia());
-				view.getBtnModifica().setEnabled(true);
-				view.getBtnDiventaExsocio().setEnabled(true);
-				view.getBtnElimina().setEnabled(true);
-				view.getBtnEspelli().setEnabled(true);
+				view.getBtnModifica().setVisible(true);
+				view.getBtnDiventaExsocio().setVisible(true);
+				view.getBtnElimina().setVisible(true);
+				view.getBtnEspelli().setVisible(true);
+				view.getBtnAnnulla().setVisible(true);
 			}
 		});
 
@@ -482,6 +483,13 @@ public class SocioController {
 				}
 			}
 		});
+		
+		view.getBtnAnnulla().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				visualizzazioneSoci();
+				view.getFrame().dispose();
+			}
+		});
 
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -602,8 +610,9 @@ public class SocioController {
 				} else {
 					view.getRdbtnNo().setSelected(false);
 				}
-				view.getBtnElimina().setEnabled(true);
-				view.getBtnModifica().setEnabled(true);
+				view.getBtnElimina().setVisible(true);
+				view.getBtnModifica().setVisible(true);
+				view.getBtnAnnulla().setVisible(true);
 			}
 
 		});
@@ -695,6 +704,13 @@ public class SocioController {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
 							"Campi non validi, modificare i campi contrassegnati in rosso");
 				}
+			}
+		});
+		
+		view.getBtnAnnulla().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				gestioneFigli();
+				view.getFrame().dispose();
 			}
 		});
 
@@ -795,10 +811,18 @@ public class SocioController {
 				view.getEmail().setText(nonSocio.getEmail());
 				view.getTelefono().setText(nonSocio.getTelefono());
 
-				view.getBtnElimina().setEnabled(true);
-				view.getBtnModifica().setEnabled(true);
+				view.getBtnElimina().setVisible(true);
+				view.getBtnModifica().setVisible(true);
+				view.getBtnAnnulla().setVisible(true);
 			}
 
+		});
+		
+		view.getBtnAnnulla().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				gestioneNonSocio();
+				view.getFrame().dispose();
+			}
 		});
 
 		view.getBtnModifica().addMouseListener(new MouseAdapter() {
@@ -940,7 +964,7 @@ public class SocioController {
 				view.getConiuge().setText(n.getConiuge());
 				view.getDataAmmissione().setText(n.getDataAmmissione().toString());
 				view.getTassaAmmissione().setText(String.valueOf(n.getTassaAmmissione()));
-				view.getBtnDiventaSocio().setEnabled(true);
+				view.getBtnDiventaSocio().setVisible(true);
 			}
 		});
 
