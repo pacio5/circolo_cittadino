@@ -255,7 +255,7 @@ public class GestioneExSocioView {
 		modPagamento.setEnabled(false);
 		frame.getContentPane().add(modPagamento);
 
-		JLabel lblMetPagamento = new JLabel("Modalità Pagamento");
+		JLabel lblMetPagamento = new JLabel("Metodo Pagamento");
 		lblMetPagamento.setBounds(531, 358, 130, 16);
 		frame.getContentPane().add(lblMetPagamento);
 

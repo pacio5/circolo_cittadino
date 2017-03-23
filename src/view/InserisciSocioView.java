@@ -214,7 +214,7 @@ public class InserisciSocioView {
 		modPagamento.setBounds(503, 316, 130, 27);
 		frame.getContentPane().add(modPagamento);
 
-		JLabel lblMetPagamento = new JLabel("Modalità Pagamento");
+		JLabel lblMetPagamento = new JLabel("Metodo Pagamento");
 		lblMetPagamento.setBounds(357, 358, 130, 16);
 		frame.getContentPane().add(lblMetPagamento);
 
