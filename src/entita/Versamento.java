@@ -5,24 +5,21 @@ import java.sql.Date;
 public class Versamento {
 	private int id;
 	private float importo;
-	private String[] mesi = new String[12];
+	private String[] mesi;
 	private int lunghmesi;
 	private String socio;
 	private Date data;
 	private String descrizione = new String();
 
 	public Versamento() {
-
+		this(0, new String[12], 0, (float)0.0, null, null, null);
 	}
 
 	public Versamento(int cod, String[] month, int length, float value, String member, Date dataV, String desc) {
 		id = cod;
 		mesi = month.clone();
 		lunghmesi = length;
-		if(value < 0)
-			importo = -value;
-		else
-			importo = value;
+		importo = controlloImporto(value);
 		socio = member;
 		data = dataV;
 		descrizione = desc;
@@ -30,10 +27,7 @@ public class Versamento {
 
 	public Versamento(int cod, float value, String member, Date dataV, String desc) {
 		id = cod;
-		if(value < 0)
-			importo = -value;
-		else
-			importo = value;
+		importo = controlloImporto(value);
 		socio = member;
 		data = dataV;
 		descrizione = desc;
@@ -41,12 +35,16 @@ public class Versamento {
 
 	public Versamento(float value, String member, Date dataV, String desc) {
 		if(value < 0)
-			importo = -value;
-		else
-			importo = value;
+		importo = controlloImporto(value);
 		socio = member;
 		data = dataV;
 		descrizione = desc;
+	}
+	
+	private float controlloImporto(float value) {
+		if (value < 0)
+			value = -value;
+		return value;
 	}
 
 	public boolean equals(Versamento x) {
