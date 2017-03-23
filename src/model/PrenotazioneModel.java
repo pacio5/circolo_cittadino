@@ -164,13 +164,14 @@ public class PrenotazioneModel {
 		db.open();
 		int po = 0;
 		PreparedStatement stm = null;
-		String query = "SELECT Count(*) FROM da finire";
+		String query = "SELECT SUM(n_biglietti) AS n FROM prenotaziones AS ps INNER JOIN evento AS e ON ps.evento=e.id INNER JOIN"
+				+ " prenotazionen AS pn ON pn.evento=e.id WHERE e.id=?"; //query giusta?
 		try {
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, e.getId());
 			
 			ResultSet res = stm.executeQuery(query);
-			po = res.getInt(query);
+			po = res.getInt("n");
 			
 		} catch (SQLException ex) {
 			ex.printStackTrace();

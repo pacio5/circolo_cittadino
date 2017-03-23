@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
 
 public class PrenotaEventoView {
 
@@ -48,6 +49,7 @@ public class PrenotaEventoView {
 	private ButtonGroup tipo;
 	private JTextField textFieldData;
 	private JButton btnInfo;
+	private JTextArea textArea;
 	
 	
 
@@ -151,20 +153,20 @@ public class PrenotaEventoView {
 		frmCircoloCittadino.getContentPane().add(lblElencoPrenotazioni);
 		
 		textFieldData = new JTextField();
-		textFieldData.setBounds(126, 462, 129, 20);
+		textFieldData.setBounds(126, 450, 129, 20);
 		frmCircoloCittadino.getContentPane().add(textFieldData);
 		textFieldData.setColumns(10);
 		
 		SpNumeroBiglietti = new JSpinner();
-		SpNumeroBiglietti.setBounds(409, 462, 97, 20);
+		SpNumeroBiglietti.setBounds(409, 450, 97, 20);
 		frmCircoloCittadino.getContentPane().add(SpNumeroBiglietti);
 		
 		lblData = new JLabel("Data Acquisto");
-		lblData.setBounds(42, 465, 106, 14);
+		lblData.setBounds(39, 453, 106, 14);
 		frmCircoloCittadino.getContentPane().add(lblData);
 		
 		lblNumeroBiglietti = new JLabel("Numero Biglietti");
-		lblNumeroBiglietti.setBounds(312, 465, 106, 14);
+		lblNumeroBiglietti.setBounds(302, 453, 106, 14);
 		frmCircoloCittadino.getContentPane().add(lblNumeroBiglietti);
 		
 		btnInfo = new JButton("Informazioni");
@@ -174,6 +176,22 @@ public class PrenotaEventoView {
 		});
 		btnInfo.setBounds(39, 513, 117, 29);
 		frmCircoloCittadino.getContentPane().add(btnInfo);
+		
+		JLabel lblBigliettiDisponibili = new JLabel("Biglietti Disponibili");
+		lblBigliettiDisponibili.setBounds(302, 486, 109, 14);
+		frmCircoloCittadino.getContentPane().add(lblBigliettiDisponibili);
+		
+		textArea = new JTextArea();
+		textArea.setBounds(409, 481, 97, 20);
+		frmCircoloCittadino.getContentPane().add(textArea);
+	}
+	
+	public JTextArea getTxtAreaPD() {
+		return textArea;
+	}
+	
+	public void setTxtAreaPD(int pd) {
+		textArea.setText(String.valueOf(pd));
 	}
 		
 	public JFrame getFrame() {
@@ -263,5 +281,4 @@ public class PrenotaEventoView {
 	public ScrollPane getPaneNonSoci() {
 		return scrollPaneNS;
 	}
-	
 }

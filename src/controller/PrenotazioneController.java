@@ -501,9 +501,12 @@ public class PrenotazioneController {
 		view.getListEventi().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent lse) {
-				ArrayList<Prenotazione> prenotazioni = model.listaPrenotazioni(view.getListEventi().getSelectedValue().getId());
+				Evento e = view.getListEventi().getSelectedValue();
+				int pd = model.postiDisponibili(e);
+				ArrayList<Prenotazione> prenotazioni = model.listaPrenotazioni(e.getId());
 				PrenotaEventoView view = new PrenotaEventoView(eventi, prenotazioni, soci, nsoci);
 				view.getFrame().dispose();
+				view.setTxtAreaPD(pd);
 				//non so se si fa cosi
 			}
 		});
@@ -620,6 +623,8 @@ public class PrenotazioneController {
 					} else esito = model.insertPrenotazioneN(nsocio, nBiglietti, evento, Date.valueOf(data));
 					if (esito) {
 							JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
+							int pd = Integer.valueOf(view.getTxtAreaPD().getText());
+							view.setTxtAreaPD(pd-nBiglietti); //sotto e' corretto?
 							view.getFrame().dispose();
 							AdminController adminController = new AdminController();
 							adminController.controlloEvento();
@@ -637,6 +642,8 @@ public class PrenotazioneController {
 				boolean esito = model.deletePrenotazione(p);
 				if (esito) {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
+					int pd = Integer.valueOf(view.getTxtAreaPD().getText());
+					view.setTxtAreaPD(pd+p.getNumBiglietti());
 					gestioneSale();
 					view.getFrame().dispose();
 				} else {
