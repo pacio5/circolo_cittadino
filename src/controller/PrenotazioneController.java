@@ -484,6 +484,52 @@ public class PrenotazioneController {
 				}
 			}
 		});
+		
+		view.getBtnInfo().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				frame = new JFrame("Circolo Cittadino - Prenota Evento");
+				frame.setTitle("Circolo Cittadino - Prenotazione Eventi");
+				frame.setBounds(100, 100, 800, 600);
+				frame.setResizable(false);
+				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				frame.getContentPane().setLayout(null);
+				
+				//i valori del posizionamento sono casuali
+				Sala sala = view.getListSala().getSelectedValue();
+				
+				JLabel lblNome = new JLabel("Nome");
+				lblNome.setBounds(253, 95, 97, 16);
+				frame.getContentPane().add(lblNome);
+				
+				JLabel lblName = new JLabel(sala.getNome());
+				lblName.setBounds(253, 111, 27, 46);
+				frame.getContentPane().add(lblName);
+				
+				JLabel lblCap = new JLabel("Capienza");
+				lblCap.setBounds(253, 95, 97, 16);
+				frame.getContentPane().add(lblCap);
+				
+				JLabel lblDate = new JLabel(String.valueOf(sala.getCapienza()));
+				lblDate.setBounds(253, 123, 22, 34);
+				frame.getContentPane().add(lblDate);
+				
+				JLabel lblDescrizione= new JLabel("Descrizione");
+				lblDescrizione.setBounds(123, 23, 14, 25);
+				frame.getContentPane().add(lblDescrizione);
+				
+				JLabel lblDescription = new JLabel(sala.getDescrizione());
+				lblDescription.setBounds(124, 26, 97, 16);
+				frame.getContentPane().add(lblDescription);
+				
+				JLabel lblPrezzo = new JLabel("Tariffa");
+				lblPrezzo.setBounds(113, 125, 117, 116);
+				frame.getContentPane().add(lblPrezzo);
+				
+				JLabel lblPrice = new JLabel(String.valueOf(sala.getTariffa()));
+				lblPrice.setBounds(153, 115, 141, 116);
+				frame.getContentPane().add(lblPrice);
+			}
+		});
 	}
 	
 	/**

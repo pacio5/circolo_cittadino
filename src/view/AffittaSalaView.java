@@ -1,6 +1,9 @@
 package view;
 
 import java.awt.ScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -41,6 +44,7 @@ public class AffittaSalaView {
 	private JRadioButton rdbtnSocio;
 	private ButtonGroup tipo;
 	private JTextField textFieldData;
+	private JButton btnInfo;
 	
 
 	
@@ -148,10 +152,22 @@ public class AffittaSalaView {
 		JLabel lblDataPrenotazione = new JLabel("Data Prenotazione");
 		lblDataPrenotazione.setBounds(10, 487, 153, 14);
 		frmCircoloCittadino.getContentPane().add(lblDataPrenotazione);
+		
+		btnInfo = new JButton("Informazioni");
+		btnInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnInfo.setBounds(325, 513, 117, 29);
+		frmCircoloCittadino.getContentPane().add(btnInfo);
 	}
 	
 	public JTextField getData() {
 		return textFieldData;
+	}
+	
+	public JButton getBtnInfo() {
+		return btnInfo;
 	}
 	
 	public JButton getBtnDashboard() {
