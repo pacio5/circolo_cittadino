@@ -101,7 +101,7 @@ public class NonSocio {
 
 	@Override
 	public String toString() {
-		return nome + " " + cognome + ", codice fiscale: " + cf;
+		return nome + " " + cognome + " " + cf;
 	}
 
 }

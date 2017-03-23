@@ -315,14 +315,14 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public ArrayList<Prenotazione> listaPrenotazioni(int idEvento) {
+	public ArrayList<Prenotazione> listaPrenotazioni(String IdEvento) {
 		ArrayList<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
 		db.open();
 		PreparedStatement stm;
 		String query = "SELECT * FROM prenotazionen, prenotaziones WHERE id=?;";
 		try {
 			stm = db.getConn().prepareStatement(query);
-			stm.setInt(1, idEvento);
+			stm.setInt(1, Integer.valueOf(IdEvento));
 			
 			ResultSet res = stm.executeQuery(query);
 			while (res.next()) {

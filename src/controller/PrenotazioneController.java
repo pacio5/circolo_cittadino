@@ -493,10 +493,20 @@ public class PrenotazioneController {
 		ArrayList<Evento> eventi = model.listaEventiValidi();
 		ArrayList<Socio> soci = modelS.elencoSoci();
 		ArrayList<NonSocio> nsoci = modelS.elencoNonSoci();
-		ArrayList<Prenotazione> prenotazioni = model.listaPrenotazioni(2); //passare id evento
+		ArrayList<Prenotazione> prenotazioni = model.listaPrenotazioni("0");
 		
 		PrenotaEventoView view = new PrenotaEventoView(eventi, prenotazioni, soci, nsoci);
 		view.getFrame().setVisible(true);
+		
+		view.getListEventi().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent lse) {
+				ArrayList<Prenotazione> prenotazioni = model.listaPrenotazioni(view.getListEventi().getSelectedValue().getId());
+				PrenotaEventoView view = new PrenotaEventoView(eventi, prenotazioni, soci, nsoci);
+				view.getFrame().dispose();
+				//non so se si fa cosi
+			}
+		});
 		
 		view.getRbtnSocio().addActionListener(new ActionListener() {
 			@Override
