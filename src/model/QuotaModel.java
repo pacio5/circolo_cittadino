@@ -123,13 +123,27 @@ public class QuotaModel {
 		ArrayList<Date> datainizio = new ArrayList<Date>();
 		ArrayList<Float> importo = new ArrayList<Float>();
 		float creditodebito = 0;
+		boolean passaggio = false;
+		String operations = "SELECT * FROM Passaggio WHERE YEAR(DATA_PASSAGGIO) = YEAR(curdate()) AND SOCIO = ?";
 		String operationq = "SELECT DISTINCT VALORE, DATA_INIZIO FROM Quota WHERE YEAR(DATA_INIZIO) = (YEAR(curdate())-1) AND TIPOLOGIA = ?";
 		String operationv = "SELECT SUM(IMPORTO) as IMPORTO FROM Versamento WHERE SOCIO = ? AND (YEAR(DATA) = YEAR(curdate())-1 OR (YEAR(DATA) = YEAR(curdate()) AND DESCRIZIONE = ?))";
 		try {
 			db.open();
 			PreparedStatement command = null;
-			command = db.getConn().prepareStatement(operationq);
-			command.setString(1, socio.getTipologia());
+			command = db.getConn().prepareStatement(operations);
+			command.setString(1, socio.getCf());
+			ResultSet rss = command.executeQuery();
+			if(rss.next())
+				passaggio = true;
+			if(passaggio){
+				command = null;
+				command = db.getConn().prepareStatement(operationq);
+				command.setString(1, rss.getString("TIPOLOGIA_PRECEDENTE"));
+			} else {
+				command = null;
+				command = db.getConn().prepareStatement(operationq);
+				command.setString(1, socio.getTipologia());
+			}
 			ResultSet rsq = command.executeQuery();
 			while (rsq.next()) {
 				datainizio.add(rsq.getDate("DATA_INIZIO"));
@@ -137,19 +151,42 @@ public class QuotaModel {
 			}
 			rsq.close();
 			if (!datainizio.isEmpty()) {
-				// Modificare dio cane ladro
-				for (int i = 0; i < datainizio.size(); i++) {
-					if (datainizio.size() - 1 == i)
-						creditodebito += (float) (importo.get(i)
-								* (13 - Integer.valueOf(datainizio.get(i).toString().substring(5, 7))));
-					if (!datainizio.get(i).toString().substring(5, 7).equals("01"))
-						creditodebito += (float) (getValoreQuotaPrecedente(socio.getTipologia())
-								* (Integer.valueOf(datainizio.get(i).toString().substring(5, 7)) - 1));
-					else
-						creditodebito += (float) (importo.get(i)
-								* (Integer.valueOf(datainizio.get(i + 1).toString().substring(5, 7))
-										- Integer.valueOf(datainizio.get(i).toString().substring(5, 7))));
+				if (datainizio.size() - 1 == 0){
+					if (datainizio.get(0).toString().substring(5, 7).equals("01")){
+						creditodebito += (float) (importo.get(0) * 12);
+					} else {
+						if(passaggio)
+							creditodebito += (float) (getValoreQuotaPrecedente(rss.getString("TIPOLOGIA_PRECEDENTE"))
+									* (Integer.valueOf(datainizio.get(0).toString().substring(5, 7)) - 1));
+						else
+							creditodebito += (float) (getValoreQuotaPrecedente(socio.getTipologia())
+									* (Integer.valueOf(datainizio.get(0).toString().substring(5, 7)) - 1));
+						creditodebito += (float) (importo.get(0)
+								* (13 - Integer.valueOf(datainizio.get(0).toString().substring(5, 7))));
+					}
+				} else {
+					for (int i = 0; i < datainizio.size(); i++) {
+						if (datainizio.size() - 1 == i)
+							creditodebito += (float) (importo.get(i)
+									* (13 - Integer.valueOf(datainizio.get(i).toString().substring(5, 7))));
+						else {
+							if (!datainizio.get(i).toString().substring(5, 7).equals("01")) {
+								if (passaggio)
+									creditodebito += (float) (getValoreQuotaPrecedente(
+											rss.getString("TIPOLOGIA_PRECEDENTE"))
+											* (Integer.valueOf(datainizio.get(i).toString().substring(5, 7)) - 1));
+								else
+									creditodebito += (float) (getValoreQuotaPrecedente(socio.getTipologia())
+											* (Integer.valueOf(datainizio.get(i).toString().substring(5, 7)) - 1));
+							} else
+								creditodebito += (float) (importo.get(i)
+										* (Integer.valueOf(datainizio.get(i + 1).toString().substring(5, 7))
+												- Integer.valueOf(datainizio.get(i).toString().substring(5, 7))));
+						}
+					}
 				}
+				rss.close();
+				rsq.close();
 				db.open();
 				command = null;
 				command = db.getConn().prepareStatement(operationv);
