@@ -172,14 +172,14 @@ public class QuotaController {
 
 	private boolean validatorForm() {
 		boolean validazione = true;
-		if (!Validator.ValidaDataInizio(viewInserimento.getTxtFieldDataI().getText())) {
+		if (!Validator.validaDataInizio(viewInserimento.getTxtFieldDataI().getText())) {
 			viewInserimento.getTxtFieldDataI().setBackground(Color.red);
 			validazione = false;
 		} else {
 			if (viewInserimento.getTxtFieldDataI().getBackground() == Color.red)
 				viewInserimento.getTxtFieldDataI().setBackground(Color.white);
 		}
-		if (!Validator.ValidaImporto(viewInserimento.getTxtFieldValore().getText())) {
+		if (!Validator.validaImporto(viewInserimento.getTxtFieldValore().getText())) {
 			viewInserimento.getTxtFieldValore().setBackground(Color.red);
 			validazione = false;
 		} else {
@@ -189,7 +189,7 @@ public class QuotaController {
 
 		if (!viewInserimento.getTxtFieldDataI().getText().equals("")
 				&& !viewInserimento.getTxtFieldDataIPre().getText().equals("")) {
-			if (!Validator.ValidaDataMaggiore(Date.valueOf(viewInserimento.getTxtFieldDataIPre().getText()),
+			if (!Validator.validaDataMaggiore(Date.valueOf(viewInserimento.getTxtFieldDataIPre().getText()),
 					Date.valueOf(viewInserimento.getTxtFieldDataI().getText() + "-01"))) {
 				viewInserimento.getTxtFieldDataI().setBackground(Color.red);
 				validazione = false;

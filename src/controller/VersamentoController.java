@@ -470,7 +470,7 @@ public class VersamentoController {
 	}
 	
 	private void riempimentoTableChiusura() {
-		String[] nameColumns = { "Socio", "Tipologia", "Modalità di pagamento", "Credito/Debito"};
+		String[] nameColumns = { "Socio", "Tipologia", "Modalitï¿½ di pagamento", "Credito/Debito"};
 		SocioModel modelSocio = new SocioModel();
 		ArrayList<Socio> socichiusura = modelSocio.elencoSoci();
 
@@ -502,21 +502,21 @@ public class VersamentoController {
 
 	private boolean validatorForm() {
 		boolean validazione = true;
-		if (!Validator.ValidaData(viewInserimento.getTxtFieldData().getText())) {
+		if (!Validator.validaData(viewInserimento.getTxtFieldData().getText())) {
 			viewInserimento.getTxtFieldData().setBackground(Color.red);
 			validazione = false;
 		} else {
 			if (viewInserimento.getTxtFieldData().getBackground() == Color.red)
 				viewInserimento.getTxtFieldData().setBackground(Color.white);
 		}
-		if (!Validator.ValidaImporto(viewInserimento.getTxtFieldImporto().getText())) {
+		if (!Validator.validaImporto(viewInserimento.getTxtFieldImporto().getText())) {
 			viewInserimento.getTxtFieldImporto().setBackground(Color.red);
 			validazione = false;
 		} else {
 			if (viewInserimento.getTxtFieldImporto().getBackground() == Color.red)
 				viewInserimento.getTxtFieldImporto().setBackground(Color.white);
 		}
-		if (!Validator.ValidaMesi(viewInserimento.getNumberChckbxChecked(),
+		if (!Validator.validaMesi(viewInserimento.getNumberChckbxChecked(),
 				viewInserimento.getTxtFieldModPagamento().getText())) {
 			viewInserimento.getTxtFieldModPagamento().setBackground(Color.red);
 			validazione = false;

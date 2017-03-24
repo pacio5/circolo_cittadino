@@ -61,14 +61,14 @@ public class ConvenzioneController {
 					if(view.getTextFieldRagioneSociale().getBackground() == Color.red)
 						view.getTextFieldRagioneSociale().setBackground(Color.white);
 				}
-				if (!Validator.ValidaIndirizzo(indirizzo)) {
+				if (!Validator.validaIndirizzo(indirizzo)) {
 					view.getTextFieldIndirizzo().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getTextFieldIndirizzo().getBackground() == Color.red)
 						view.getTextFieldIndirizzo().setBackground(Color.white);
 				}
-				if (!Validator.ValidaImporto(sconto) || Double.valueOf(sconto)>100 ) {
+				if (!Validator.validaImporto(sconto) || Double.valueOf(sconto)>100 ) {
 					view.getTextFieldSconto().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -136,14 +136,14 @@ public class ConvenzioneController {
 					if(view.getTextFieldRagioneSociale().getBackground() == Color.red)
 						view.getTextFieldRagioneSociale().setBackground(Color.white);
 				}
-				if (!Validator.ValidaIndirizzo(indirizzo)) {
+				if (!Validator.validaIndirizzo(indirizzo)) {
 					view.getTextFieldIndirizzo().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getTextFieldIndirizzo().getBackground() == Color.red)
 						view.getTextFieldIndirizzo().setBackground(Color.white);
 				}
-				if (!Validator.ValidaImporto(sconto) || Double.valueOf(sconto)>100) {
+				if (!Validator.validaImporto(sconto) || Double.valueOf(sconto)>100) {
 					view.getTextFieldSconto().setBackground(Color.red);
 					validazione = false;
 				} else {

@@ -88,77 +88,77 @@ public class SocioController {
 				String tipologia = view.getTipologia().getSelectedItem().toString().toUpperCase();
 
 				boolean validazione = true;
-				if (!Validator.ValidaCf(cf)) {
+				if (!Validator.validaCf(cf)) {
 					view.getCf().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getCf().getBackground() == Color.red)
 						view.getCf().setBackground(Color.white);
 				}
-				if (!Validator.ValidaAnagrafica(nome)) {
+				if (!Validator.validaAnagrafica(nome)) {
 					view.getNome().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getNome().getBackground() == Color.red)
 						view.getNome().setBackground(Color.white);
 				}
-				if (!Validator.ValidaAnagrafica(cognome)) {
+				if (!Validator.validaAnagrafica(cognome)) {
 					view.getCognome().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getCognome().getBackground() == Color.red)
 						view.getCognome().setBackground(Color.white);
 				}
-				if (!Validator.ValidaData(dataNascita)) {
+				if (!Validator.validaData(dataNascita)) {
 					view.getDataNascita().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getDataNascita().getBackground() == Color.red)
 						view.getDataNascita().setBackground(Color.white);
 				}
-				if (!Validator.ValidaAnagrafica(luogoNascita) || luogoNascita.length() > 35) {
+				if (!Validator.validaAnagrafica(luogoNascita) || luogoNascita.length() > 35) {
 					view.getLuogoNascita().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getLuogoNascita().getBackground() == Color.red)
 						view.getLuogoNascita().setBackground(Color.white);
 				}
-				if (!Validator.ValidaIndirizzo(indirizzo)) {
+				if (!Validator.validaIndirizzo(indirizzo)) {
 					view.getIndirizzo().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getIndirizzo().getBackground() == Color.red)
 						view.getIndirizzo().setBackground(Color.white);
 				}
-				if (!Validator.ValidaAnagrafica(citta) || citta.length() > 35) {
+				if (!Validator.validaAnagrafica(citta) || citta.length() > 35) {
 					view.getCitta().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getCitta().getBackground() == Color.red)
 						view.getCitta().setBackground(Color.white);
 				}
-				if (!Validator.ValidaCap(cap)) {
+				if (!Validator.validaCap(cap)) {
 					view.getCap().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getCap().getBackground() == Color.red)
 						view.getCap().setBackground(Color.white);
 				}
-				if (!Validator.ValidaEmail(email)) {
+				if (!Validator.validaEmail(email)) {
 					view.getEmail().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getEmail().getBackground() == Color.red)
 						view.getEmail().setBackground(Color.white);
 				}
-				if (!Validator.ValidaTel(telefono)) {
+				if (!Validator.validaTel(telefono)) {
 					view.getTelefono().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getTelefono().getBackground() == Color.red)
 						view.getTelefono().setBackground(Color.white);
 				}
-				if (!Validator.ValidaAnagrafica(professione) || professione.length() > 30) {
+				if (!Validator.validaAnagrafica(professione) || professione.length() > 30) {
 					view.getProfessione().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -166,7 +166,7 @@ public class SocioController {
 						view.getProfessione().setBackground(Color.white);
 				}
 				if (coniuge != null) {
-					if (!Validator.ValidaAnagrafica(coniuge) || coniuge.length() > 20) {
+					if (!Validator.validaAnagrafica(coniuge) || coniuge.length() > 20) {
 						view.getConiuge().setBackground(Color.red);
 						validazione = false;
 					} else {
@@ -174,14 +174,14 @@ public class SocioController {
 							view.getConiuge().setBackground(Color.white);
 					}
 				}
-				if (!Validator.ValidaData(dataAmmissione)) {
+				if (!Validator.validaData(dataAmmissione)) {
 					view.getDataAmmissione().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getDataAmmissione().getBackground() == Color.red)
 						view.getDataAmmissione().setBackground(Color.white);
 				}
-				if (!Validator.ValidaImporto(tassaAmmissione)) {
+				if (!Validator.validaImporto(tassaAmmissione)) {
 					view.getTassaAmmissione().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -319,77 +319,77 @@ public class SocioController {
 				String tipologia = view.getTipologia().getSelectedItem().toString().toUpperCase();
 
 				boolean validazione = true;
-				if (!Validator.ValidaCf(cf)) {
+				if (!Validator.validaCf(cf)) {
 					view.getCf().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getCf().getBackground() == Color.red)
 						view.getCf().setBackground(Color.white);
 				}
-				if (!Validator.ValidaAnagrafica(nome)) {
+				if (!Validator.validaAnagrafica(nome)) {
 					view.getNome().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getNome().getBackground() == Color.red)
 						view.getNome().setBackground(Color.white);
 				}
-				if (!Validator.ValidaAnagrafica(cognome)) {
+				if (!Validator.validaAnagrafica(cognome)) {
 					view.getCognome().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getCognome().getBackground() == Color.red)
 						view.getCognome().setBackground(Color.white);
 				}
-				if (!Validator.ValidaData(dataNascita)) {
+				if (!Validator.validaData(dataNascita)) {
 					view.getDataNascita().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getDataNascita().getBackground() == Color.red)
 						view.getDataNascita().setBackground(Color.white);
 				}
-				if (!Validator.ValidaCitta(luogoNascita)) {
+				if (!Validator.validaCitta(luogoNascita)) {
 					view.getLuogoNascita().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getLuogoNascita().getBackground() == Color.red)
 						view.getLuogoNascita().setBackground(Color.white);
 				}
-				if (!Validator.ValidaIndirizzo(indirizzo)) {
+				if (!Validator.validaIndirizzo(indirizzo)) {
 					view.getIndirizzo().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getIndirizzo().getBackground() == Color.red)
 						view.getIndirizzo().setBackground(Color.white);
 				}
-				if (!Validator.ValidaCitta(citta)) {
+				if (!Validator.validaCitta(citta)) {
 					view.getCitta().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getCitta().getBackground() == Color.red)
 						view.getCitta().setBackground(Color.white);
 				}
-				if (!Validator.ValidaCap(cap)) {
+				if (!Validator.validaCap(cap)) {
 					view.getCap().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getCap().getBackground() == Color.red)
 						view.getCap().setBackground(Color.white);
 				}
-				if (!Validator.ValidaEmail(email)) {
+				if (!Validator.validaEmail(email)) {
 					view.getEmail().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getEmail().getBackground() == Color.red)
 						view.getEmail().setBackground(Color.white);
 				}
-				if (!Validator.ValidaTel(telefono)) {
+				if (!Validator.validaTel(telefono)) {
 					view.getTelefono().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getTelefono().getBackground() == Color.red)
 						view.getTelefono().setBackground(Color.white);
 				}
-				if (!Validator.ValidaProfessione(professione)) {
+				if (!Validator.validaProfessione(professione)) {
 					view.getProfessione().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -397,7 +397,7 @@ public class SocioController {
 						view.getProfessione().setBackground(Color.white);
 				}
 				if (coniuge != null) {
-					if (!Validator.ValidaAnagrafica(coniuge)) {
+					if (!Validator.validaAnagrafica(coniuge)) {
 						view.getConiuge().setBackground(Color.red);
 						validazione = false;
 					} else {
@@ -405,14 +405,14 @@ public class SocioController {
 							view.getConiuge().setBackground(Color.white);
 					}
 				}
-				if (!Validator.ValidaData(dataAmmissione)) {
+				if (!Validator.validaData(dataAmmissione)) {
 					view.getDataAmmissione().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getDataAmmissione().getBackground() == Color.red)
 						view.getDataAmmissione().setBackground(Color.white);
 				}
-				if (!Validator.ValidaImporto(tassaAmmissione)) {
+				if (!Validator.validaImporto(tassaAmmissione)) {
 					view.getTassaAmmissione().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -445,7 +445,7 @@ public class SocioController {
 				String data;
 				do {
 					data = JOptionPane.showInputDialog("Inserisci la data di dimissione");
-				} while (!Validator.ValidaData(data));
+				} while (!Validator.validaData(data));
 				if (model.diventaExSocio(new ExSocio(view.getList().getSelectedValue(), Date.valueOf(data), false))) {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Passaggio Effettuato");
 					visualizzazioneSoci();
@@ -461,7 +461,7 @@ public class SocioController {
 				String data;
 				do {
 					data = JOptionPane.showInputDialog("Inserisci la data di espulsione");
-				} while (!Validator.ValidaData(data));
+				} while (!Validator.validaData(data));
 				if (model.diventaExSocio(new ExSocio(view.getList().getSelectedValue(), Date.valueOf(data), true))) {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Espulsione Effettuata");
 					visualizzazioneSoci();
@@ -532,21 +532,21 @@ public class SocioController {
 					aCarico = false;
 
 				Boolean validazione = true;
-				if (!Validator.ValidaCf(cf)) {
+				if (!Validator.validaCf(cf)) {
 					view.getCf().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getCf().getBackground() == Color.red)
 						view.getCf().setBackground(Color.white);
 				}
-				if (!Validator.ValidaAnagrafica(nome)) {
+				if (!Validator.validaAnagrafica(nome)) {
 					view.getNome().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getNome().getBackground() == Color.red)
 						view.getNome().setBackground(Color.white);
 				}
-				if (!Validator.ValidaData(dataNascita)) {
+				if (!Validator.validaData(dataNascita)) {
 					view.getDataNascita().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -669,21 +669,21 @@ public class SocioController {
 					aCarico = false;
 
 				Boolean validazione = true;
-				if (!Validator.ValidaCf(cf)) {
+				if (!Validator.validaCf(cf)) {
 					view.getCf().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getCf().getBackground() == Color.red)
 						view.getCf().setBackground(Color.white);
 				}
-				if (!Validator.ValidaAnagrafica(nome)) {
+				if (!Validator.validaAnagrafica(nome)) {
 					view.getNome().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getCf().getBackground() == Color.red)
 						view.getNome().setBackground(Color.white);
 				}
-				if (!Validator.ValidaData(dataNascita)) {
+				if (!Validator.validaData(dataNascita)) {
 					view.getDataNascita().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -735,14 +735,14 @@ public class SocioController {
 				String telefono = view.getTelefono().getText().toUpperCase();
 
 				Boolean validazione = true;
-				if (!Validator.ValidaCf(cf)) {
+				if (!Validator.validaCf(cf)) {
 					view.getCf().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getCf().getBackground() == Color.red)
 						view.getCf().setBackground(Color.white);
 				}
-				if (!Validator.ValidaAnagrafica(nome)) {
+				if (!Validator.validaAnagrafica(nome)) {
 					view.getNome().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -750,7 +750,7 @@ public class SocioController {
 						view.getNome().setBackground(Color.white);
 				}
 
-				if (!Validator.ValidaAnagrafica(cognome)) {
+				if (!Validator.validaAnagrafica(cognome)) {
 					view.getCognome().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -758,7 +758,7 @@ public class SocioController {
 						view.getCognome().setBackground(Color.white);
 				}
 
-				if (!Validator.ValidaEmail(email)) {
+				if (!Validator.validaEmail(email)) {
 					view.getEmail().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -766,7 +766,7 @@ public class SocioController {
 						view.getEmail().setBackground(Color.white);
 				}
 
-				if (!Validator.ValidaTel(telefono)) {
+				if (!Validator.validaTel(telefono)) {
 					view.getTelefono().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -859,14 +859,14 @@ public class SocioController {
 				String telefono = view.getTelefono().getText().toUpperCase();
 
 				Boolean validazione = true;
-				if (!Validator.ValidaCf(cf)) {
+				if (!Validator.validaCf(cf)) {
 					view.getCf().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getCf().getBackground() == Color.red)
 						view.getCf().setBackground(Color.white);
 				}
-				if (!Validator.ValidaAnagrafica(nome)) {
+				if (!Validator.validaAnagrafica(nome)) {
 					view.getNome().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -874,7 +874,7 @@ public class SocioController {
 						view.getNome().setBackground(Color.white);
 				}
 
-				if (!Validator.ValidaAnagrafica(cognome)) {
+				if (!Validator.validaAnagrafica(cognome)) {
 					view.getCognome().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -882,7 +882,7 @@ public class SocioController {
 						view.getCognome().setBackground(Color.white);
 				}
 
-				if (!Validator.ValidaEmail(email)) {
+				if (!Validator.validaEmail(email)) {
 					view.getEmail().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -890,7 +890,7 @@ public class SocioController {
 						view.getEmail().setBackground(Color.white);
 				}
 
-				if (!Validator.ValidaTel(telefono)) {
+				if (!Validator.validaTel(telefono)) {
 					view.getTelefono().setBackground(Color.red);
 					validazione = false;
 				} else {

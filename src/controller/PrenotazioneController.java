@@ -72,7 +72,7 @@ public class PrenotazioneController {
 				String prezzo = view.getPrezzo().getText();
 				
 				boolean validazione = true;
-				if (!Validator.ValidaAnagrafica(nome)) {
+				if (!Validator.validaAnagrafica(nome)) {
 					view.getNomeEvento().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -80,7 +80,7 @@ public class PrenotazioneController {
 						view.getNomeEvento().setBackground(Color.white);
 				}
 				
-				if (!Validator.ValidaData(data)) {
+				if (!Validator.validaData(data)) {
 					view.getData().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -88,7 +88,7 @@ public class PrenotazioneController {
 						view.getData().setBackground(Color.white);
 				}
 				
-				if (!Validator.ValidaTesto(descrizione)) {
+				if (!Validator.validaTesto(descrizione)) {
 					view.getDescrizione().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -96,7 +96,7 @@ public class PrenotazioneController {
 						view.getDescrizione().setBackground(Color.white);
 				}
 								
-				if (!Validator.ValidaTesto(luogo) || luogo.length() > 35) {
+				if (!Validator.validaTesto(luogo) || luogo.length() > 35) {
 					view.getLuogo().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -104,7 +104,7 @@ public class PrenotazioneController {
 						view.getLuogo().setBackground(Color.white);
 				}
 				
-				if (!Validator.ValidaImporto(prezzo)) {
+				if (!Validator.validaImporto(prezzo)) {
 					view.getPrezzo().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -168,7 +168,7 @@ public class PrenotazioneController {
 				String prezzo = view.getPrezzo().getText();
 
 				boolean validazione = true;
-				if (!Validator.ValidaAnagrafica(nome)) {
+				if (!Validator.validaAnagrafica(nome)) {
 					view.getNomeEvento().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -176,7 +176,7 @@ public class PrenotazioneController {
 						view.getNomeEvento().setBackground(Color.white);
 				}
 				
-				if (!Validator.ValidaData(data)) {
+				if (!Validator.validaData(data)) {
 					view.getData().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -184,7 +184,7 @@ public class PrenotazioneController {
 						view.getData().setBackground(Color.white);
 				}
 				
-				if (!Validator.ValidaTesto(descrizione)) {
+				if (!Validator.validaTesto(descrizione)) {
 					view.getDescrizione().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -192,7 +192,7 @@ public class PrenotazioneController {
 						view.getDescrizione().setBackground(Color.white);
 				}
 								
-				if (!Validator.ValidaTesto(luogo) || luogo.length() > 35) {
+				if (!Validator.validaTesto(luogo) || luogo.length() > 35) {
 					view.getLuogo().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -200,7 +200,7 @@ public class PrenotazioneController {
 						view.getLuogo().setBackground(Color.white);
 				}
 				
-				if (!Validator.ValidaImporto(prezzo)) {
+				if (!Validator.validaImporto(prezzo)) {
 					view.getPrezzo().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -278,7 +278,7 @@ public class PrenotazioneController {
 				
 				boolean validazione = true;
 				
-				if (!Validator.ValidaAnagrafica(nome)) {
+				if (!Validator.validaAnagrafica(nome)) {
 					view.getNomeSala().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -286,7 +286,7 @@ public class PrenotazioneController {
 						view.getNomeSala().setBackground(Color.white);
 				}
 								
-				if (!Validator.ValidaTesto(descrizione)) {
+				if (!Validator.validaTesto(descrizione)) {
 					view.getDescrizione().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -294,7 +294,7 @@ public class PrenotazioneController {
 						view.getDescrizione().setBackground(Color.white);
 				}
 				
-				if (!Validator.ValidaImporto(tariffa)) {
+				if (!Validator.validaImporto(tariffa)) {
 					view.getTariffa().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -352,7 +352,7 @@ public class PrenotazioneController {
 				String tariffa = view.getTariffa().getText();
 
 				boolean validazione = true;
-				if (!Validator.ValidaAnagrafica(nome)) {
+				if (!Validator.validaAnagrafica(nome)) {
 					view.getNomeSala().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -360,7 +360,7 @@ public class PrenotazioneController {
 						view.getNomeSala().setBackground(Color.white);
 				}
 				
-				if (!Validator.ValidaTesto(descrizione)) {
+				if (!Validator.validaTesto(descrizione)) {
 					view.getDescrizione().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -368,7 +368,7 @@ public class PrenotazioneController {
 						view.getDescrizione().setBackground(Color.white);
 				}
 										
-				if (!Validator.ValidaImporto(tariffa)) {
+				if (!Validator.validaImporto(tariffa)) {
 					view.getTariffa().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -654,7 +654,7 @@ public class PrenotazioneController {
 				Evento evento = view.getListEventi().getSelectedValue();
 				boolean validazione = true;
 				
-				if (!Validator.ValidaData(data)) {
+				if (!Validator.validaData(data)) {
 					view.getData().setBackground(Color.red);
 					validazione = false;
 				} else {
