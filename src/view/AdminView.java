@@ -24,6 +24,7 @@ public class AdminView {
 	private JButton btnChiusuraAnnuale;
 	private JButton btnPassaggioCategoria;
 	private JButton btnGestioneConvenzioni;
+	private JButton btnBefane;
 
 	/**
 	 * Create the frame.
@@ -82,6 +83,15 @@ public class AdminView {
 		btnChiusuraAnnuale = new JButton("Chiusura annuale");
 		btnChiusuraAnnuale.setBounds(199, 214, 152, 29);
 		
+		btnPassaggioCategoria = new JButton("Passaggio Categoria");
+		btnPassaggioCategoria.setBounds(363, 50, 152, 29);
+		
+		btnGestioneConvenzioni = new JButton("Gestione Convenzioni");
+		btnGestioneConvenzioni.setBounds(363, 91, 152, 29);
+		
+		btnBefane = new JButton("Le Befane");
+		btnBefane.setBounds(363, 132, 152, 29);
+		
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(btnLogout);
 		frame.getContentPane().add(btnInserisciSocio);
@@ -98,17 +108,10 @@ public class AdminView {
 		frame.getContentPane().add(btnInserisciSala);
 		frame.getContentPane().add(btnPrenotaSala);
 		frame.getContentPane().add(btnPrenotaEvento);
-		frame.getContentPane().add(btnChiusuraAnnuale);
-		
-		btnPassaggioCategoria = new JButton("Passaggio Categoria");
-		btnPassaggioCategoria.setBounds(363, 50, 152, 29);
+		frame.getContentPane().add(btnChiusuraAnnuale);	
 		frame.getContentPane().add(btnPassaggioCategoria);
-		
-		btnGestioneConvenzioni = new JButton("Gestione Convenzioni");
-		btnGestioneConvenzioni.setBounds(363, 91, 152, 29);
-		frame.getContentPane().add(btnGestioneConvenzioni);
-		
-		
+		frame.getContentPane().add(btnGestioneConvenzioni);	
+		frame.getContentPane().add(btnBefane);				
 	}
 
 	public JFrame getFrame() {
@@ -181,5 +184,9 @@ public class AdminView {
 
 	public JButton getBtnGestioneConvenzioni() {
 		return btnGestioneConvenzioni;
+	}
+	
+	public JButton getBtnBefane() {
+		return btnBefane;
 	}
 }

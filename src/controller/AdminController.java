@@ -181,5 +181,14 @@ public class AdminController {
 				adminView.getFrame().dispose();
 			}
 		});
+		
+		adminView.getBtnBefane().addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e){
+				PrenotazioneController befaneController = new PrenotazioneController();
+				befaneController.gestioneBefane();
+				adminView.getFrame().dispose();
+			}
+		});
 	}	
 }

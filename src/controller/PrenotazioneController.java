@@ -2,10 +2,12 @@ package controller;
 
 import model.PrenotazioneModel;
 import model.SocioModel;
+
 import view.GestioneEventiView;
 import view.GestioneSaleView;
 import view.AffittaSalaView;
 import view.PrenotaEventoView;
+import view.BefaneView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 import utility.Validator;
 
 import entita.Evento;
+import entita.Figlio;
 import entita.Sala;
 import entita.Socio;
 import entita.NonSocio;
@@ -699,4 +702,21 @@ public class PrenotazioneController {
 		});
 	}
 	
+
+	public void gestioneBefane() {
+		ArrayList<Figlio> figli = modelS.elencoFigli(null);
+		BefaneView view = new BefaneView(figli);
+		view.getFrame().setVisible(true);
+		
+		view.getListF().addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent lse) {
+				Figlio f = view.getListF().getSelectedValue();
+				Socio s = f.getGenitore();
+				view.setTxtG(s.toString());
+				gestioneBefane();
+				view.getFrame().dispose();
+			}
+		});
+	}
 }

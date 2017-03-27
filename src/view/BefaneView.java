@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JTextArea;
 
 /**
  * @author simoneonori
@@ -21,11 +22,10 @@ public class BefaneView {
 	
 	private JFrame frame;
 	private JList<Figlio> list;
-	private JList<Socio> lists; 
 	private DefaultListModel<Figlio> dlm;
 	private ScrollPane scrollPaneFigli;
-	private ScrollPane scrollPaneGenitori;
 	private JButton btnDashboard;
+	private JTextArea textArea;
 	
 	/**
 	 * Create the frame
@@ -38,11 +38,11 @@ public class BefaneView {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblElencoFigli = new JLabel("Figli");
-		lblElencoFigli.setBounds(163, 21, 38, 16);
+		lblElencoFigli.setBounds(156, 57, 38, 16);
 		frame.getContentPane().add(lblElencoFigli);
 		
-		JLabel lblElencoSoci = new JLabel("Genitori");
-		lblElencoSoci.setBounds(163, 21, 38, 16);
+		JLabel lblElencoSoci = new JLabel("Genitore");
+		lblElencoSoci.setBounds(445, 57, 89, 16);
 		frame.getContentPane().add(lblElencoSoci);
 		
 		list = new JList<Figlio>();
@@ -50,12 +50,10 @@ public class BefaneView {
 		figli.stream().forEach((s)->{
 			dlm.addElement(s);
 		});
-		list.setModel(dlm);		
-		
-		lists = new JList<Socio>();		
+		list.setModel(dlm);
 		
 		scrollPaneFigli = new ScrollPane();
-		scrollPaneFigli.setBounds(10, 57, 353, 503);
+		scrollPaneFigli.setBounds(10, 91, 373, 469);
 		frame.getContentPane().add(scrollPaneFigli);
 		scrollPaneFigli.add(list);
 		
@@ -63,10 +61,9 @@ public class BefaneView {
 		btnDashboard.setBounds(697, 9, 97, 41);
 		frame.getContentPane().add(btnDashboard);
 		
-		scrollPaneGenitori = new ScrollPane();
-		scrollPaneGenitori.setBounds(431, 57, 353, 503);
-		frame.getContentPane().add(scrollPaneGenitori);
-		scrollPaneGenitori.add(lists);
+		textArea = new JTextArea();
+		textArea.setBounds(445, 91, 327, 189);
+		frame.getContentPane().add(textArea);
 
 	}
 
@@ -77,10 +74,6 @@ public class BefaneView {
 	public JList<Figlio> getListF() {
 		return list;
 	}
-	
-	public JList<Socio> getListG() {
-		return lists;
-	}
 
 	public DefaultListModel<Figlio> getDlm() {
 		return dlm;
@@ -90,8 +83,12 @@ public class BefaneView {
 		return scrollPaneFigli;
 	}
 	
-	public ScrollPane getScrollPaneG() {
-		return scrollPaneGenitori;
+	public JTextArea getTxtG() {
+		return textArea;
+	}
+	
+	public void setTxtG(String g) {
+		textArea.setText(g);
 	}
 
 	public JButton getBtnDashboard() {
