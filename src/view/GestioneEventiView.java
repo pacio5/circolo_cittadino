@@ -13,6 +13,7 @@ import javax.swing.DefaultListModel;
 import entita.Evento;
 
 import java.util.ArrayList;
+import javax.swing.SpinnerNumberModel;
 
 public class GestioneEventiView {
 	
@@ -94,6 +95,7 @@ public class GestioneEventiView {
 		frmCircoloCittadino.getContentPane().add(lblNposti);
 
 		spnNPosti = new JSpinner();
+		spnNPosti.setModel(new SpinnerNumberModel(0, 0, null, 1));
 		spnNPosti.setBounds(636, 202, 130, 26);
 		frmCircoloCittadino.getContentPane().add(spnNPosti);
 

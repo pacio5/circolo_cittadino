@@ -13,6 +13,7 @@ import javax.swing.DefaultListModel;
 import entita.Sala;
 
 import java.util.ArrayList;
+import javax.swing.SpinnerNumberModel;
 
 public class GestioneSaleView {
 	
@@ -83,6 +84,7 @@ public class GestioneSaleView {
 		frmCircoloCittadino.getContentPane().add(lblCapienza);
 
 		spnCapienza = new JSpinner();
+		spnCapienza.setModel(new SpinnerNumberModel(0, 0, null, 1));
 		spnCapienza.setBounds(636, 165, 130, 26);
 		frmCircoloCittadino.getContentPane().add(spnCapienza);
 

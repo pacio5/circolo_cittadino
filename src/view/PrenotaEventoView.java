@@ -19,6 +19,7 @@ import javax.swing.JSpinner;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
+import javax.swing.SpinnerNumberModel;
 
 public class PrenotaEventoView {
 
@@ -158,6 +159,7 @@ public class PrenotaEventoView {
 		textFieldData.setColumns(10);
 		
 		SpNumeroBiglietti = new JSpinner();
+		SpNumeroBiglietti.setModel(new SpinnerNumberModel(0, 0, null, 1));
 		SpNumeroBiglietti.setBounds(409, 450, 97, 20);
 		frmCircoloCittadino.getContentPane().add(SpNumeroBiglietti);
 		

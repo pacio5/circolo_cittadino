@@ -276,7 +276,7 @@ public class PrenotazioneController {
 
 				String nome = view.getNomeSala().getText().toUpperCase();
 				String descrizione = view.getDescrizione().getText().toUpperCase();
-				String capienza = view.getCapienza().toString();
+				int capienza = Integer.valueOf(view.getCapienza().toString());
 				String tariffa = view.getTariffa().getText();
 				
 				boolean validazione = true;
@@ -306,7 +306,7 @@ public class PrenotazioneController {
 				}
 
 				if (validazione) {
-					boolean esito = model.insertSala(new Sala(nome, Integer.valueOf(capienza),	descrizione, Float.valueOf(tariffa)));
+					boolean esito = model.insertSala(new Sala(nome, capienza,	descrizione, Float.valueOf(tariffa)));
 					if (esito) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
 						view.getFrame().dispose();
