@@ -424,7 +424,7 @@ public class PrenotazioneModel {
 		PreparedStatement stm = null;
 		boolean esito = false;
 		String query = "INSERT INTO Sala (NOME, CAPIENZA, DESCRIZIONE)"
-				+ " VALUES(?,?,?,?)";
+				+ " VALUES(?,?,?)";
 		try {	
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1,  s.getNome());

@@ -276,7 +276,7 @@ public class PrenotazioneController {
 
 				String nome = view.getNomeSala().getText().toUpperCase();
 				String descrizione = view.getDescrizione().getText().toUpperCase();
-				int capienza = Integer.valueOf(view.getCapienza().toString());
+				int capienza = Integer.valueOf(view.getCapienza().getValue().toString());
 				String tariffa = view.getTariffa().getText();
 				
 				boolean validazione = true;
