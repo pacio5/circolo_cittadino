@@ -70,7 +70,7 @@ public class PrenotazioneController {
 				String nome = view.getNomeEvento().getText().toUpperCase();
 				String data = view.getData().getText();
 				String descrizione = view.getDescrizione().getText().toUpperCase();
-				String nPosti = view.getNPosti().toString();
+				String nPosti = view.getNPosti().getValue().toString();
 				String luogo = view.getLuogo().getText().toUpperCase();
 				String prezzo = view.getPrezzo().getText();
 				
@@ -651,7 +651,7 @@ public class PrenotazioneController {
 			public void mouseClicked(MouseEvent e) {
 
 				String data = view.getData().getText();
-				int nBiglietti = Integer.valueOf(view.getNumBiglietti().toString());
+				int nBiglietti = Integer.valueOf(view.getNumBiglietti().getValue().toString());
 				Socio socio = view.getListSoci().getSelectedValue();
 				NonSocio nsocio = view.getListNonSoci().getSelectedValue();
 				Evento evento = view.getListEventi().getSelectedValue();
