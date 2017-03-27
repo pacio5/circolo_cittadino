@@ -517,12 +517,12 @@ public class VersamentoController {
 				viewInserimento.getTxtFieldImporto().setBackground(Color.white);
 		}
 		if (!Validator.validaMesi(viewInserimento.getNumberChckbxChecked(),
-				viewInserimento.getTxtFieldModPagamento().getText())) {
-			viewInserimento.getTxtFieldModPagamento().setBackground(Color.red);
+				viewInserimento.getTxtFieldMetPagamento().getText())) {
+			viewInserimento.getTxtFieldMetPagamento().setBackground(Color.red);
 			validazione = false;
 		} else {
-			if (viewInserimento.getTxtFieldModPagamento().getBackground() == Color.red)
-				viewInserimento.getTxtFieldModPagamento().setBackground(null);
+			if (viewInserimento.getTxtFieldMetPagamento().getBackground() == Color.red)
+				viewInserimento.getTxtFieldMetPagamento().setBackground(null);
 		}
 		if (viewInserimento.getCmbbxSocio().getSelectedIndex() != -1){
 			ArrayList<String> mesipagati = model.getMesiPagati(soci.get(viewInserimento.getCmbbxSocio().getSelectedIndex()).getCf());
