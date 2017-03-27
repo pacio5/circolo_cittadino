@@ -526,84 +526,84 @@ public class VersamentoController {
 		}
 		if (viewInserimento.getCmbbxSocio().getSelectedIndex() != -1){
 			ArrayList<String> mesipagati = model.getMesiPagati(soci.get(viewInserimento.getCmbbxSocio().getSelectedIndex()).getCf());
-			if (!Validator.ValidaMesiPagati("Gennaio", mesipagati) && viewInserimento.getChckbxGennaio().isSelected()){
+			if (mesipagati.contains("Gennaio") && viewInserimento.getChckbxGennaio().isSelected()){
 				viewInserimento.getChckbxGennaio().setBackground(Color.red);
 				validazione = false;
 			} else {
 				if (viewInserimento.getChckbxGennaio().getBackground() == Color.red)
 					viewInserimento.getChckbxGennaio().setBackground(null);
 			}
-			if (!Validator.ValidaMesiPagati("Febbraio", mesipagati) && viewInserimento.getChckbxFebbraio().isSelected()){
+			if (mesipagati.contains("Febbraio") && viewInserimento.getChckbxFebbraio().isSelected()){
 				viewInserimento.getChckbxFebbraio().setBackground(Color.red);
 				validazione = false;
 			} else {
 				if (viewInserimento.getChckbxFebbraio().getBackground() == Color.red)
 					viewInserimento.getChckbxFebbraio().setBackground(null);
 			}
-			if (!Validator.ValidaMesiPagati("Marzo", mesipagati) && viewInserimento.getChckbxMarzo().isSelected()){
+			if (mesipagati.contains("Marzo") && viewInserimento.getChckbxMarzo().isSelected()){
 				viewInserimento.getChckbxMarzo().setBackground(Color.red);
 				validazione = false;
 			} else {
 				if (viewInserimento.getChckbxMarzo().getBackground() == Color.red)
 					viewInserimento.getChckbxMarzo().setBackground(null);
 			}
-			if (!Validator.ValidaMesiPagati("Aprile", mesipagati) && viewInserimento.getChckbxAprile().isSelected()){
+			if (mesipagati.contains("Aprile") && viewInserimento.getChckbxAprile().isSelected()){
 				viewInserimento.getChckbxAprile().setBackground(Color.red);
 				validazione = false;
 			} else {
 				if (viewInserimento.getChckbxAprile().getBackground() == Color.red)
 					viewInserimento.getChckbxAprile().setBackground(null);
 			}
-			if (!Validator.ValidaMesiPagati("Maggio", mesipagati) && viewInserimento.getChckbxMaggio().isSelected()){
+			if (mesipagati.contains("Maggio") && viewInserimento.getChckbxMaggio().isSelected()){
 				viewInserimento.getChckbxMaggio().setBackground(Color.red);
 				validazione = false;
 			} else {
 				if (viewInserimento.getChckbxMaggio().getBackground() == Color.red)
 					viewInserimento.getChckbxMaggio().setBackground(null);
 			}
-			if (!Validator.ValidaMesiPagati("Giugno", mesipagati) && viewInserimento.getChckbxGiugno().isSelected()){
+			if (mesipagati.contains("Giugno") && viewInserimento.getChckbxGiugno().isSelected()){
 				viewInserimento.getChckbxGiugno().setBackground(Color.red);
 				validazione = false;
 			} else {
 				if (viewInserimento.getChckbxGiugno().getBackground() == Color.red)
 					viewInserimento.getChckbxGiugno().setBackground(null);
 			}
-			if (!Validator.ValidaMesiPagati("Luglio", mesipagati) && viewInserimento.getChckbxLuglio().isSelected()){
+			if (mesipagati.contains("Luglio") && viewInserimento.getChckbxLuglio().isSelected()){
 				viewInserimento.getChckbxLuglio().setBackground(Color.red);
 				validazione = false;
 			} else {
 				if (viewInserimento.getChckbxLuglio().getBackground() == Color.red)
 					viewInserimento.getChckbxLuglio().setBackground(null);
 			}
-			if (!Validator.ValidaMesiPagati("Agosto", mesipagati) && viewInserimento.getChckbxAgosto().isSelected()){
+			if (mesipagati.contains("Agosto") && viewInserimento.getChckbxAgosto().isSelected()){
 				viewInserimento.getChckbxAgosto().setBackground(Color.red);
 				validazione = false;
 			} else {
 				if (viewInserimento.getChckbxAgosto().getBackground() == Color.red)
 					viewInserimento.getChckbxAgosto().setBackground(null);
 			}
-			if (!Validator.ValidaMesiPagati("Settembre", mesipagati) && viewInserimento.getChckbxSettembre().isSelected()){
+			if (mesipagati.contains("Settembre") && viewInserimento.getChckbxSettembre().isSelected()){
 				viewInserimento.getChckbxSettembre().setBackground(Color.red);
 				validazione = false;
 			} else {
 				if (viewInserimento.getChckbxSettembre().getBackground() == Color.red)
 					viewInserimento.getChckbxSettembre().setBackground(null);
 			}
-			if (!Validator.ValidaMesiPagati("Ottobre", mesipagati) && viewInserimento.getChckbxOttobre().isSelected()){
+			if (mesipagati.contains("Ottobre") && viewInserimento.getChckbxOttobre().isSelected()){
 				viewInserimento.getChckbxOttobre().setBackground(Color.red);
 				validazione = false;
 			} else {
 				if (viewInserimento.getChckbxOttobre().getBackground() == Color.red)
 					viewInserimento.getChckbxOttobre().setBackground(null);
 			}
-			if (!Validator.ValidaMesiPagati("Novembre", mesipagati) && viewInserimento.getChckbxNovembre().isSelected()){
+			if (mesipagati.contains("Novembre") && viewInserimento.getChckbxNovembre().isSelected()){
 				viewInserimento.getChckbxNovembre().setBackground(Color.red);
 				validazione = false;
 			} else {
 				if (viewInserimento.getChckbxNovembre().getBackground() == Color.red)
 					viewInserimento.getChckbxNovembre().setBackground(null);
 			}
-			if (!Validator.ValidaMesiPagati("Dicembre", mesipagati) && viewInserimento.getChckbxDicembre().isSelected()){
+			if (mesipagati.contains("Dicembre") && viewInserimento.getChckbxDicembre().isSelected()){
 				viewInserimento.getChckbxDicembre().setBackground(Color.red);
 				validazione = false;
 			} else {

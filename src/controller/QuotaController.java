@@ -189,8 +189,8 @@ public class QuotaController {
 
 		if (!viewInserimento.getTxtFieldDataI().getText().equals("")
 				&& !viewInserimento.getTxtFieldDataIPre().getText().equals("")) {
-			if (!Validator.validaDataMaggiore(Date.valueOf(viewInserimento.getTxtFieldDataIPre().getText()),
-					Date.valueOf(viewInserimento.getTxtFieldDataI().getText() + "-01"))) {
+			if (!Date.valueOf(viewInserimento.getTxtFieldDataIPre().getText()).before(Date.valueOf(viewInserimento.getTxtFieldDataI().getText() + "-01"))
+					) {
 				viewInserimento.getTxtFieldDataI().setBackground(Color.red);
 				validazione = false;
 			} else {

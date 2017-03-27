@@ -90,12 +90,4 @@ public class Validator {
 		return ((metpagamento.equals("MENSILE") && mesi == 1) || (metpagamento.equals("TRIMESTRALE") && mesi == 3)
 				|| (metpagamento.equals("SEMESTRALE") && mesi == 6) || (metpagamento.equals("ANNUALE") && mesi == 12));
 	}
-	
-	public static boolean validaDataMaggiore(Date dataPre, Date data){
-		return dataPre.before(data);
-	}
-	
-	public static boolean ValidaMesiPagati(String mese, ArrayList<String> mesipagati) {
-		return !mesipagati.contains(mese);
-	}
 }

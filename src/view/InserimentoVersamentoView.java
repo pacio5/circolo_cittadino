@@ -165,7 +165,7 @@ public class InserimentoVersamentoView {
 		chckbxFebbraio.setBounds(496, 127, 91, 23);
 
 		chckbxMarzo = new JCheckBox("Marzo");
-		chckbxMarzo.setBounds(584, 129, 73, 23);
+		chckbxMarzo.setBounds(584, 127, 73, 23);
 
 		chckbxAprile = new JCheckBox("Aprile");
 		chckbxAprile.setBounds(412, 152, 73, 23);
@@ -174,7 +174,7 @@ public class InserimentoVersamentoView {
 		chckbxMaggio.setBounds(496, 152, 73, 23);
 
 		chckbxGiugno = new JCheckBox("Giugno");
-		chckbxGiugno.setBounds(584, 154, 73, 23);
+		chckbxGiugno.setBounds(584, 152, 73, 23);
 
 		chckbxLuglio = new JCheckBox("Luglio");
 		chckbxLuglio.setBounds(412, 177, 73, 23);
