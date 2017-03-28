@@ -70,7 +70,7 @@ public class PrenotazioneController {
 				String nome = view.getNomeEvento().getText().toUpperCase();
 				String data = view.getData().getText();
 				String descrizione = view.getDescrizione().getText().toUpperCase();
-				String nPosti = view.getNPosti().getValue().toString();
+				int nPosti = Integer.valueOf(view.getNPosti().getValue().toString());
 				String luogo = view.getLuogo().getText().toUpperCase();
 				String prezzo = view.getPrezzo().getText();
 				
@@ -106,17 +106,10 @@ public class PrenotazioneController {
 					if (view.getLuogo().getBackground() == Color.red)
 						view.getLuogo().setBackground(Color.white);
 				}
-								
-				if (!Validator.validaTesto(descrizione)) {
-					view.getDescrizione().setBackground(Color.red);
-					validazione = false;
-				} else {
-					if (view.getDescrizione().getBackground() == Color.red)
-						view.getDescrizione().setBackground(Color.white);
-				}
 
 				if (validazione) {
-					boolean esito = model.insertEvento(new Evento(nome, Date.valueOf(data), descrizione, Integer.valueOf(nPosti), luogo, Float.valueOf(prezzo)));
+					Evento evnt = new Evento(nome, Date.valueOf(data), descrizione, nPosti, luogo, Float.valueOf(prezzo));
+					boolean esito = model.insertEvento(evnt);
 					if (esito) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
 						view.getFrame().dispose();
@@ -164,6 +157,7 @@ public class PrenotazioneController {
 		view.getBtnSalvaModifiche().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				
+				int idv = Integer.valueOf(view.getList().getSelectedValue().getId());
 				String nome = view.getNomeEvento().getText().toUpperCase();
 				String data = view.getData().getText();
 				String descrizione = view.getDescrizione().getText().toUpperCase();
@@ -203,18 +197,10 @@ public class PrenotazioneController {
 					if (view.getLuogo().getBackground() == Color.red)
 						view.getLuogo().setBackground(Color.white);
 				}
-								
-				if (!Validator.validaTesto(descrizione)) {
-					view.getDescrizione().setBackground(Color.red);
-					validazione = false;
-				} else {
-					if (view.getDescrizione().getBackground() == Color.red)
-						view.getDescrizione().setBackground(Color.white);
-				}
 
 				if (validazione) {
-					boolean esito = model.insertEvento(new Evento(nome, Date.valueOf(data),
-							descrizione, Integer.valueOf(nPosti), luogo, Float.valueOf(prezzo)));
+					boolean esito = model.updateEvento(new Evento(nome, Date.valueOf(data),
+							descrizione, Integer.valueOf(nPosti), luogo, Float.valueOf(prezzo)), idv);
 
 					if (esito) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Modifica Effettuata");
@@ -292,14 +278,6 @@ public class PrenotazioneController {
 					if (view.getNomeSala().getBackground() == Color.red)
 						view.getNomeSala().setBackground(Color.white);
 				}
-								
-				if (!Validator.validaTesto(descrizione)) {
-					view.getDescrizione().setBackground(Color.red);
-					validazione = false;
-				} else {
-					if (view.getDescrizione().getBackground() == Color.red)
-						view.getDescrizione().setBackground(Color.white);
-				}
 				
 				if (!Validator.validaImporto(tariffa)) {
 					view.getTariffa().setBackground(Color.red);
@@ -358,7 +336,7 @@ public class PrenotazioneController {
 				
 				String nome = view.getNomeSala().getText().toUpperCase();
 				String descrizione = view.getDescrizione().getText().toUpperCase();
-				String capienza = view.getCapienza().toString();
+				int capienza = Integer.valueOf(view.getCapienza().getValue().toString());
 				String tariffa = view.getTariffa().getText();
 
 				boolean validazione = true;
@@ -368,14 +346,6 @@ public class PrenotazioneController {
 				} else {
 					if (view.getNomeSala().getBackground() == Color.red)
 						view.getNomeSala().setBackground(Color.white);
-				}
-				
-				if (!Validator.validaTesto(descrizione)) {
-					view.getDescrizione().setBackground(Color.red);
-					validazione = false;
-				} else {
-					if (view.getDescrizione().getBackground() == Color.red)
-						view.getDescrizione().setBackground(Color.white);
 				}
 										
 				if (!Validator.validaImporto(tariffa)) {
@@ -387,7 +357,8 @@ public class PrenotazioneController {
 				}
 
 				if (validazione) {
-					boolean esito = model.insertSala(new Sala(nome, Integer.valueOf(capienza), 	descrizione, Float.valueOf(tariffa)));
+					String nomevs = view.getList().getSelectedValue().getNome();
+					boolean esito = model.updateSala(new Sala(nome, capienza, 	descrizione, Float.valueOf(tariffa)), nomevs);
 
 					if (esito) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Modifica Effettuata");
