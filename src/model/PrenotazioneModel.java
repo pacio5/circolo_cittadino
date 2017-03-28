@@ -505,7 +505,7 @@ public class PrenotazioneModel {
 		ArrayList<Sala> Sale = new ArrayList<Sala>();
 		Statement stm;
 		String query = "SELECT * FROM sala WHERE sala.nome NOT IN (SELECT * FROM sala INNER JOIN affittos ON sala.nome = affittos.sala INNER JOIN "
-				+ "affitton.sala = sala.nome WHERE affittos.data>CURDATE && affitton.data>CURDATE;);";
+				+ "affitton.sala = sala.nome WHERE affittos.data>GETDATE() && affitton.data>GETDATE());";
 		try {
 			db.open();
 			stm = db.getConn().createStatement();
