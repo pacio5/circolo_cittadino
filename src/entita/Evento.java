@@ -70,7 +70,7 @@ public class Evento {
 	public void setLuogo(String posto) {
 		luogo = posto;
 	}
-	public double getPrezzo() {
+	public float getPrezzo() {
 		return prezzo;
 	}
 	public void setPrezzo(float costo) {

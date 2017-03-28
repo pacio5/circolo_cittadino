@@ -108,8 +108,7 @@ public class PrenotazioneController {
 				}
 
 				if (validazione) {
-					Evento evnt = new Evento(nome, Date.valueOf(data), descrizione, nPosti, luogo, Float.valueOf(prezzo));
-					boolean esito = model.insertEvento(evnt);
+					boolean esito = model.insertEvento(new Evento(nome, Date.valueOf(data), descrizione, nPosti, luogo, Float.valueOf(prezzo)));
 					if (esito) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
 						view.getFrame().dispose();

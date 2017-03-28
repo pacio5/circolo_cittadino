@@ -34,7 +34,7 @@ public class PrenotazioneModel {
 		PreparedStatement stm = null;
 		boolean esito = false;
 		String query = "INSERT INTO Evento (NOME, DATA, DESCRIZIONE, N_POSTI, LUOGO, PREZZO)"
-				+ " VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ " VALUES(?,?,?,?,?,?);";
 		try {	
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, e.getNome());
@@ -42,7 +42,7 @@ public class PrenotazioneModel {
 			stm.setString(3, e.getDescrizione());
 			stm.setInt(4, e.getPosti());
 			stm.setString(5, e.getLuogo());
-			stm.setDouble(6, e.getPrezzo());
+			stm.setFloat(6, e.getPrezzo());
 			
 			if (stm.executeUpdate() == 1)
 				esito = true;
@@ -69,7 +69,7 @@ public class PrenotazioneModel {
 			stm.setString(3, e.getDescrizione());
 			stm.setInt(4, e.getPosti());
 			stm.setString(5, e.getLuogo());
-			stm.setDouble(6, e.getPrezzo());
+			stm.setFloat(6, e.getPrezzo());
 			stm.setInt(7, idvecchio);
 			
 			int res = stm.executeUpdate();
@@ -217,60 +217,6 @@ public class PrenotazioneModel {
 			stm.setDate(2, dataAcq);
 			stm.setString(3, s.getCf());
 			stm.setString(4, e.getId());
-			
-			int res = stm.executeUpdate();
-			if (res == 1)
-				esito = true;
-			stm.close();	
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			db.close();
-		}
-		return esito;
-	}
-	
-	public boolean updatePrenotazioneN(String cfns, int NumB, int idevento, Date dataAcq, String cfvns, int ideventov){
-		db.open();
-		PreparedStatement stm = null;
-		boolean esito = false;
-		String query = "UPDATE PrenotazioneN SET N_BIGLIETTI = ?, DATA_ACQUISTO = ?, NONSOCIO = ?, EVENTO = ? "
-				+ "WHERE NONSOCIO = ? && EVENTO = ?";
-		try{
-			stm = db.getConn().prepareStatement(query);
-			stm.setInt(1, NumB);
-			stm.setDate(2, dataAcq);
-			stm.setString(3, cfns);
-			stm.setInt(4, idevento);
-			stm.setString(5, cfvns);
-			stm.setInt(6, ideventov);
-			
-			int res = stm.executeUpdate();
-			if (res == 1)
-				esito = true;
-			stm.close();	
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			db.close();
-		}
-		return esito;
-	}
-	
-	public boolean updatePrenotazioneS(String cfs, int NumB, int idevento, Date dataAcq, String cfvs, int ideventov){
-		db.open();
-		PreparedStatement stm = null;
-		boolean esito = false;
-		String query = "UPDATE PrenotazioneS SET N_BIGLIETTI = ?, DATA_ACQUISTO = ?, SOCIO = ?, EVENTO = ? "
-				+ "WHERE SOCIO = ? && EVENTO = ?";
-		try{
-			stm = db.getConn().prepareStatement(query);
-			stm.setInt(1, NumB);
-			stm.setDate(2, dataAcq);
-			stm.setString(3, cfs);
-			stm.setInt(4, idevento);
-			stm.setString(5, cfvs);
-			stm.setInt(6, ideventov);
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -446,7 +392,7 @@ public class PrenotazioneModel {
 			stm.setString(1, s.getNome());
 			stm.setInt(2,  s.getCapienza());
 			stm.setString(3, s.getDescrizione());
-			stm.setDouble(4, s.getTariffa());
+			stm.setFloat(4, s.getTariffa());
 			stm.setString(5, nomevs);
 			
 			int res = stm.executeUpdate();
@@ -564,60 +510,6 @@ public class PrenotazioneModel {
 			stm.setDate(1, dataAft);
 			stm.setString(2, sc.getCf());
 			stm.setString(3, s.getNome());
-			
-			int res = stm.executeUpdate();
-			if (res == 1)
-				esito = true;
-			stm.close();	
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			db.close();
-		}
-		return esito;
-	}
-	
-	public boolean updateAffittoN(NonSocio ns, Sala s, Date dataAft, Date dataAftPrecedente, String cfns, String nomevs){
-		db.open();
-		PreparedStatement stm = null;
-		boolean esito = false;
-		String query = "UPDATE AFFITTON SET DATA = ?, NONSOCIO = ?, SALA = ? "
-				+ "WHERE DATA = ? && NONSOCIO = ? && SALA = ?";
-		try{
-			stm = db.getConn().prepareStatement(query);
-			stm.setDate(1, dataAft);
-			stm.setString(2, ns.getCf());
-			stm.setString(3, s.getNome());
-			stm.setDate(4, dataAftPrecedente);
-			stm.setString(5, cfns);
-			stm.setString(6, nomevs);
-			
-			int res = stm.executeUpdate();
-			if (res == 1)
-				esito = true;
-			stm.close();	
-		} catch (SQLException ex) {
-			ex.printStackTrace();
-		} finally {
-			db.close();
-		}
-		return esito;
-	}
-	
-	public boolean updateAffittoS(Socio sc, Sala s, Date dataAft, Date dataAftPrecedente, String cfs, String nomevs){
-		db.open();
-		PreparedStatement stm = null;
-		boolean esito = false;
-		String query = "UPDATE AFFITTOS SET DATA = ?, SOCIO = ?, SALA = ? "
-				+ "WHERE DATA = ? && SOCIO = ? && SALA = ?";
-		try{
-			stm = db.getConn().prepareStatement(query);
-			stm.setDate(1, dataAft);
-			stm.setString(2, sc.getCf());
-			stm.setString(3, s.getNome());
-			stm.setDate(4, dataAftPrecedente);
-			stm.setString(5, cfs);
-			stm.setString(6, nomevs);
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
