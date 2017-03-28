@@ -99,7 +99,7 @@ public class PrenotazioneController {
 						view.getPrezzo().setBackground(Color.white);
 				}
 				
-				if (!Validator.validaTesto(luogo) || luogo.length() > 35) {
+				if (!Validator.validaIndirizzo(luogo) || luogo.length() > 35) {
 					view.getLuogo().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -116,14 +116,11 @@ public class PrenotazioneController {
 				}
 
 				if (validazione) {
-					boolean esito = model.insertEvento(new Evento(nome, Date.valueOf(data),
-							descrizione, Integer.valueOf(nPosti), luogo, Float.valueOf(prezzo)));
-
+					boolean esito = model.insertEvento(new Evento(nome, Date.valueOf(data), descrizione, Integer.valueOf(nPosti), luogo, Float.valueOf(prezzo)));
 					if (esito) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
 						view.getFrame().dispose();
-						AdminController adminController = new AdminController();
-						adminController.controlloEvento();
+						gestioneEventi();
 					} else {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Non Effettuato");
 					}
@@ -145,17 +142,21 @@ public class PrenotazioneController {
 		
 		view.getBtnModifica().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				view.getBtnInserisci().setVisible(false);
-				view.getBtnCancella().setVisible(false);
-				view.getBtnModifica().setVisible(false);
-				view.getBtnAnnullaModifiche().setVisible(true);
-				view.getBtnSalvaModifiche().setVisible(true);
-				view.getNomeEvento().setEnabled(true);
-				view.getData().setEnabled(true);
-				view.getDescrizione().setEnabled(true);
-				view.getNPosti().setEnabled(true);
-				view.getLuogo().setEnabled(true);
-				view.getPrezzo().setEnabled(true);
+				if(view.getList().isSelectionEmpty() == false) {
+					view.getBtnInserisci().setVisible(false);
+					view.getBtnCancella().setVisible(false);
+					view.getBtnModifica().setVisible(false);
+					view.getBtnAnnullaModifiche().setVisible(true);
+					view.getBtnSalvaModifiche().setVisible(true);
+					view.getNomeEvento().setEnabled(true);
+					view.getData().setEnabled(true);
+					view.getDescrizione().setEnabled(true);
+					view.getNPosti().setEnabled(true);
+					view.getLuogo().setEnabled(true);
+					view.getPrezzo().setEnabled(true);
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Evento Non Selezionato");
+				}
 			}
 
 		});
@@ -187,28 +188,28 @@ public class PrenotazioneController {
 						view.getData().setBackground(Color.white);
 				}
 				
-				if (!Validator.validaTesto(descrizione)) {
-					view.getDescrizione().setBackground(Color.red);
-					validazione = false;
-				} else {
-					if (view.getDescrizione().getBackground() == Color.red)
-						view.getDescrizione().setBackground(Color.white);
-				}
-								
-				if (!Validator.validaTesto(luogo) || luogo.length() > 35) {
-					view.getLuogo().setBackground(Color.red);
-					validazione = false;
-				} else {
-					if (view.getLuogo().getBackground() == Color.red)
-						view.getLuogo().setBackground(Color.white);
-				}
-				
 				if (!Validator.validaImporto(prezzo)) {
 					view.getPrezzo().setBackground(Color.red);
 					validazione = false;
 				} else {
 					if (view.getPrezzo().getBackground() == Color.red)
 						view.getPrezzo().setBackground(Color.white);
+				}
+				
+				if (!Validator.validaIndirizzo(luogo) || luogo.length() > 35) {
+					view.getLuogo().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getLuogo().getBackground() == Color.red)
+						view.getLuogo().setBackground(Color.white);
+				}
+								
+				if (!Validator.validaTesto(descrizione)) {
+					view.getDescrizione().setBackground(Color.red);
+					validazione = false;
+				} else {
+					if (view.getDescrizione().getBackground() == Color.red)
+						view.getDescrizione().setBackground(Color.white);
 				}
 
 				if (validazione) {
@@ -218,8 +219,7 @@ public class PrenotazioneController {
 					if (esito) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Modifica Effettuata");
 						view.getFrame().dispose();
-						AdminController adminController = new AdminController();
-						adminController.controlloEvento();
+						gestioneEventi();
 					} else {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Modifica Non Effettuata");
 					}
@@ -233,13 +233,17 @@ public class PrenotazioneController {
 		
 		view.getBtnCancella().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				boolean esito = model.deleteEvento(view.getList().getSelectedValue().getId());
-				if (esito) {
-					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
-					gestioneEventi();
-					view.getFrame().dispose();
+				if(view.getList().isSelectionEmpty() == false) {
+					boolean esito = model.deleteEvento(view.getList().getSelectedValue().getId());
+					if (esito) {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
+						gestioneEventi();
+						view.getFrame().dispose();
+					} else {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellazione non effettuata");
+					}
 				} else {
-					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellazione non effettuata");
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Evento Non Selezionato");
 				}
 			}
 		});
@@ -332,16 +336,20 @@ public class PrenotazioneController {
 		
 		view.getBtnModifica().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				view.getBtnInserisci().setVisible(false);
-				view.getBtnCancella().setVisible(false);
-				view.getBtnModifica().setVisible(false);
-				view.getBtnAnnullaModifiche().setVisible(true);
-				view.getBtnSalvaModifiche().setVisible(true);
-				view.getNomeSala().setEnabled(true);;
-				view.getDescrizione().setEnabled(true);
-				view.getCapienza().setEnabled(true);
-				view.getTariffa().setEnabled(true);
-			}
+				if(view.getList().isSelectionEmpty() == false) {
+					view.getBtnInserisci().setVisible(false);
+					view.getBtnCancella().setVisible(false);
+					view.getBtnModifica().setVisible(false);
+					view.getBtnAnnullaModifiche().setVisible(true);
+					view.getBtnSalvaModifiche().setVisible(true);
+					view.getNomeSala().setEnabled(true);;
+					view.getDescrizione().setEnabled(true);
+					view.getCapienza().setEnabled(true);
+					view.getTariffa().setEnabled(true);
+				} else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Sala Non Selezionata");
+				}
+			} 
 
 		});
 
@@ -399,13 +407,17 @@ public class PrenotazioneController {
 		
 		view.getBtnCancella().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				boolean esito = model.deleteSala(view.getList().getSelectedValue().getNome());
-				if (esito) {
-					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
-					gestioneSale();
-					view.getFrame().dispose();
+				if(view.getList().isSelectionEmpty() == false) {
+					boolean esito = model.deleteSala(view.getList().getSelectedValue().getNome());
+					if (esito) {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
+						gestioneSale();
+						view.getFrame().dispose();
+					} else {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellazione non effettuata");
+					}
 				} else {
-					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellazione non effettuata");
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Sala Non Selezionata");
 				}
 			}
 		});
@@ -475,14 +487,18 @@ public class PrenotazioneController {
 		
 		view.getBtnCancella().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				Affitto a = view.getList().getSelectedValue();
-				boolean esito = model.deleteAffitto(a);
-				if (esito) {
-					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
-					gestioneSale();
-					view.getFrame().dispose();
-				} else {
-					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellazione non effettuata");
+				if(view.getList().isSelectionEmpty() == false) {
+					Affitto a = view.getList().getSelectedValue();
+					boolean esito = model.deleteAffitto(a);
+					if (esito) {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
+						gestioneSale();
+						view.getFrame().dispose();
+					} else {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellazione non effettuata");
+					}
+				}else {
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Prenotazione Non Selezionata");
 				}
 			}
 		});
@@ -686,16 +702,20 @@ public class PrenotazioneController {
 		
 		view.getBtnCancella().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				Prenotazione p = view.getListPrenotazioni().getSelectedValue();
-				boolean esito = model.deletePrenotazione(p);
-				if (esito) {
-					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
-					int pd = Integer.valueOf(view.getTxtAreaPD().getText());
-					view.setTxtAreaPD(pd+p.getNumBiglietti());
-					gestioneSale();
-					view.getFrame().dispose();
+				if(view.getListPrenotazioni().isSelectionEmpty() == false) {
+					Prenotazione p = view.getListPrenotazioni().getSelectedValue();
+					boolean esito = model.deletePrenotazione(p);
+					if (esito) {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
+						int pd = Integer.valueOf(view.getTxtAreaPD().getText());
+						view.setTxtAreaPD(pd+p.getNumBiglietti());
+						gestioneSale();
+						view.getFrame().dispose();
+					} else {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellazione non effettuata");
+					}
 				} else {
-					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellazione non effettuata");
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Prenotazione Non Selezionata");
 				}
 			}
 		});
