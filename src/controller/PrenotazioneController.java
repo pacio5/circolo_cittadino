@@ -356,8 +356,7 @@ public class PrenotazioneController {
 				}
 
 				if (validazione) {
-					String nomevs = view.getList().getSelectedValue().getNome();
-					boolean esito = model.updateSala(new Sala(nome, capienza, 	descrizione, Float.valueOf(tariffa)), nomevs);
+					boolean esito = model.updateSala(new Sala(nome, capienza, 	descrizione, Float.valueOf(tariffa)), view.getList().getSelectedValue().getNome());
 
 					if (esito) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Modifica Effettuata");

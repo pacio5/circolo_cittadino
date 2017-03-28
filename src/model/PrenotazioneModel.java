@@ -385,8 +385,8 @@ public class PrenotazioneModel {
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
-		String query = "UPDATE Sala SET NOME = ?, CAPIENZA = ?, DESCRIZIONE = ? TARIFFA = ?"
-				+ " WHERE NOME = ?";
+		String query = "UPDATE sala SET nome = ?, capienza = ?, descrizione = ? tariffa = ?"
+				+ " WHERE nome = ?;";
 		try {	
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, s.getNome());
