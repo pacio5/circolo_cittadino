@@ -737,5 +737,13 @@ public class PrenotazioneController {
 				view.getFrame().dispose();
 			}
 		});
+		
+		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				AdminController adminController = new AdminController();
+				adminController.controlloEvento();
+				view.getFrame().dispose();
+			}
+		});
 	}
 }
