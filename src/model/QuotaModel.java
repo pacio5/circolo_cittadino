@@ -135,15 +135,11 @@ public class QuotaModel {
 			ResultSet rss = command.executeQuery();
 			if(rss.next())
 				passaggio = true;
-			if(passaggio){
-				command = null;
-				command = db.getConn().prepareStatement(operationq);
+			command = db.getConn().prepareStatement(operationq);
+			if(passaggio)
 				command.setString(1, rss.getString("TIPOLOGIA_PRECEDENTE"));
-			} else {
-				command = null;
-				command = db.getConn().prepareStatement(operationq);
+			else 
 				command.setString(1, socio.getTipologia());
-			}
 			ResultSet rsq = command.executeQuery();
 			while (rsq.next()) {
 				datainizio.add(rsq.getDate("DATA_INIZIO"));
