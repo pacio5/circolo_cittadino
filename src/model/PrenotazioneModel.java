@@ -135,7 +135,7 @@ public class PrenotazioneModel {
 		ArrayList<Evento> Eventi = new ArrayList<Evento>();
 		db.open();
 		Statement stm;
-		String query = "SELECT * FROM evento WHERE data>CURDATE;";
+		String query = "SELECT * FROM evento WHERE data>CURDATE();";
 		try {
 			stm = db.getConn().createStatement();
 			ResultSet res = stm.executeQuery(query);
@@ -454,7 +454,7 @@ public class PrenotazioneModel {
 		ArrayList<Sala> Sale = new ArrayList<Sala>();
 		Statement stm;
 		String query = "SELECT * FROM sala WHERE sala.nome NOT IN (SELECT * FROM sala INNER JOIN affittos ON sala.nome = affittos.sala INNER JOIN "
-				+ "affitton.sala = sala.nome WHERE affittos.data>GETDATE() && affitton.data>GETDATE());";
+				+ "affitton.sala = sala.nome WHERE affittos.data>CURDATE() && affitton.data>CURDATE());";
 		try {
 			db.open();
 			stm = db.getConn().createStatement();
@@ -560,7 +560,7 @@ public class PrenotazioneModel {
 		ArrayList<Affitto> affittuari = new ArrayList<Affitto>();
 		db.open();
 		PreparedStatement stm;
-		String query = "SELECT * FROM affittos, affitton WHERE data>CURDATE;";
+		String query = "SELECT * FROM affittos, affitton WHERE data>CURDATE();";
 		try{		
 			stm = db.getConn().prepareStatement(query);
 			ResultSet res = stm.executeQuery(query);
@@ -584,7 +584,7 @@ public class PrenotazioneModel {
 		db.open();
 		PreparedStatement stm;
 		String query = "SELECT * FROM socio AS sc INNER JOIN affittos AS a ON sc.cf = a.socio"
-				+ " INNER JOIN sala AS s A a.sala = s.nome WHERE s.nome = ? && a.data>CURDATE;";
+				+ " INNER JOIN sala AS s A a.sala = s.nome WHERE s.nome = ? && a.data>CURDATE();";
 		try {
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, s.getNome());
@@ -624,7 +624,7 @@ public class PrenotazioneModel {
 		db.open();
 		PreparedStatement stm;
 		String query = "SELECT * FROM nonsocio AS ns INNER JOIN affitton AS a ON ns.cf = a.nonsocio"
-				+ " INNER JOIN sala AS s a.sala = s.nome WHERE s.nome = ? && a.data>CURDATE;";
+				+ " INNER JOIN sala AS s a.sala = s.nome WHERE s.nome = ? && a.data>CURDATE();";
 		try {
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, s.getNome());

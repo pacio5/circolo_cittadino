@@ -698,15 +698,10 @@ public class PrenotazioneController {
 		view.getFrame().setVisible(true);
 		
 		view.getListF().addListSelectionListener(new ListSelectionListener() {
-			@Override
 			public void valueChanged(ListSelectionEvent lse) {
-				Figlio f = view.getListF().getSelectedValue();
-				Socio s = f.getGenitore();
-				view.setTxtG(s.toString());
-				gestioneBefane();
-				view.getFrame().dispose();
+				view.setTxtG(view.getListF().getSelectedValue().getGenitore().toString());
 			}
-		});
+		});	
 		
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
