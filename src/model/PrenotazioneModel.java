@@ -20,7 +20,9 @@ import java.util.ArrayList;
  */
 
 public class PrenotazioneModel {
-	private MySql db;
+	
+	MySql db = null;
+	
 	public PrenotazioneModel(){
 		db=new MySql();
 	}
@@ -42,11 +44,11 @@ public class PrenotazioneModel {
 			stm.setString(5, e.getLuogo());
 			stm.setDouble(6, e.getPrezzo());
 			
-			int res = stm.executeUpdate();
-			if (res == 1)
+			if (stm.executeUpdate() == 1)
 				esito = true;
 			stm.close();
 		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
 			ex.printStackTrace();
 		} finally {
 			db.close();
@@ -54,7 +56,7 @@ public class PrenotazioneModel {
 		return esito;
 	}
 	
-	public boolean updateEvento(Evento e, String idvecchio) {
+	public boolean updateEvento(Evento e, int idvecchio) {
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
@@ -62,14 +64,13 @@ public class PrenotazioneModel {
 				+ " WHERE ID = ?";
 		try {	
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1,  e.getId() );
-			stm.setString(2, e.getNome());
-			stm.setDate(3,  e.getData());
-			stm.setString(4, e.getDescrizione());
-			stm.setInt(5, e.getPosti());
-			stm.setString(6, e.getLuogo());
-			stm.setDouble(7, e.getPrezzo());
-			stm.setString(8, idvecchio);
+			stm.setString(1, e.getNome());
+			stm.setDate(2,  e.getData());
+			stm.setString(3, e.getDescrizione());
+			stm.setInt(4, e.getPosti());
+			stm.setString(5, e.getLuogo());
+			stm.setDouble(6, e.getPrezzo());
+			stm.setInt(7, idvecchio);
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -413,13 +414,14 @@ public class PrenotazioneModel {
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
-		String query = "INSERT INTO Sala (NOME, CAPIENZA, DESCRIZIONE)"
-				+ " VALUES(?,?,?)";
+		String query = "INSERT INTO Sala (NOME, CAPIENZA, DESCRIZIONE, TARIFFA)"
+				+ " VALUES(?,?,?,?)";
 		try {	
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1,  s.getNome());
 			stm.setInt(2, s.getCapienza());
 			stm.setString(3, s.getDescrizione());
+			stm.setDouble(4, s.getTariffa());
 		
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -437,14 +439,15 @@ public class PrenotazioneModel {
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
-		String query = "UPDATE Sala SET NOME = ?, CAPIENZA = ?, DESCRIZIONE = ?"
+		String query = "UPDATE Sala SET NOME = ?, CAPIENZA = ?, DESCRIZIONE = ? TARIFFA = ?"
 				+ " WHERE NOME = ?";
 		try {	
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, s.getNome());
 			stm.setInt(2,  s.getCapienza());
 			stm.setString(3, s.getDescrizione());
-			stm.setString(3, nomevs);
+			stm.setDouble(4, s.getTariffa());
+			stm.setString(5, nomevs);
 			
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -492,7 +495,7 @@ public class PrenotazioneModel {
 						res.getString("nome"), 
 						res.getInt("capienza"),
 						res.getString("descrizione"),
-						res.getFloat("prezzo")));
+						res.getFloat("tariffa")));
 			}
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
@@ -515,7 +518,7 @@ public class PrenotazioneModel {
 						res.getString("nome"), 
 						res.getInt("capienza"),
 						res.getString("descrizione"),
-						res.getFloat("prezzo")));
+						res.getFloat("tariffa")));
 			}
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
