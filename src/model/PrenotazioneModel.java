@@ -263,7 +263,7 @@ public class PrenotazioneModel {
 		ArrayList<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
 		db.open();
 		PreparedStatement stm;
-		String query = "SELECT * FROM prenotazionen, prenotaziones WHERE id=?;";
+		String query = "SELECT * FROM prenotazionen, prenotaziones WHERE evento=?;";
 		try {
 			stm = db.getConn().prepareStatement(query);
 			stm.setInt(1, Integer.valueOf(IdEvento));
