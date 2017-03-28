@@ -91,14 +91,14 @@ public class PrenotazioneController {
 						view.getData().setBackground(Color.white);
 				}
 				
-				if (!Validator.validaTesto(descrizione)) {
-					view.getDescrizione().setBackground(Color.red);
+				if (!Validator.validaImporto(prezzo)) {
+					view.getPrezzo().setBackground(Color.red);
 					validazione = false;
 				} else {
-					if (view.getDescrizione().getBackground() == Color.red)
-						view.getDescrizione().setBackground(Color.white);
+					if (view.getPrezzo().getBackground() == Color.red)
+						view.getPrezzo().setBackground(Color.white);
 				}
-								
+				
 				if (!Validator.validaTesto(luogo) || luogo.length() > 35) {
 					view.getLuogo().setBackground(Color.red);
 					validazione = false;
@@ -106,13 +106,13 @@ public class PrenotazioneController {
 					if (view.getLuogo().getBackground() == Color.red)
 						view.getLuogo().setBackground(Color.white);
 				}
-				
-				if (!Validator.validaImporto(prezzo)) {
-					view.getPrezzo().setBackground(Color.red);
+								
+				if (!Validator.validaTesto(descrizione)) {
+					view.getDescrizione().setBackground(Color.red);
 					validazione = false;
 				} else {
-					if (view.getPrezzo().getBackground() == Color.red)
-						view.getPrezzo().setBackground(Color.white);
+					if (view.getDescrizione().getBackground() == Color.red)
+						view.getDescrizione().setBackground(Color.white);
 				}
 
 				if (validazione) {
@@ -310,8 +310,7 @@ public class PrenotazioneController {
 					if (esito) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
 						view.getFrame().dispose();
-						AdminController adminController = new AdminController();
-						adminController.controlloEvento();
+						gestioneSale();
 					} else {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Non Effettuato");
 					}

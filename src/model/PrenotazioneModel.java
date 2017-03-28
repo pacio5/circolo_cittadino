@@ -126,8 +126,6 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
-		} finally {
-			db.close();
 		}
 		return Eventi;
 	}
@@ -154,8 +152,6 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
-		} finally {
-			db.close();
 		}
 		return Eventi;
 	}
@@ -337,8 +333,6 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
-		} finally {
-			db.close();
 		}
 		return prenotazioni;
 	}
@@ -382,8 +376,6 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
-		} finally {
-			db.close();
 		}
 		return partecipantiS;
 	}
@@ -411,8 +403,6 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
-		} finally {
-			db.close();
 		}
 		return partecipantiNS;
 	}
@@ -490,7 +480,7 @@ public class PrenotazioneModel {
 	}
 	
 	public ArrayList<Sala> listaSale() {
-		ArrayList<Sala> Sale = new ArrayList<Sala>();
+		ArrayList<Sala> sale = new ArrayList<Sala>();
 		Statement stm;
 		try {
 			db.open();
@@ -498,7 +488,7 @@ public class PrenotazioneModel {
 			stm = db.getConn().createStatement();
 			ResultSet res = stm.executeQuery(query);
 			while (res.next()) {
-				Sale.add(new Sala(
+				sale.add(new Sala(
 						res.getString("nome"), 
 						res.getInt("capienza"),
 						res.getString("descrizione"),
@@ -507,19 +497,17 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
-		} finally {
-			db.close();
-		}
-		return Sale;
+		} 
+		return sale;
 	}
 	
 	public ArrayList<Sala> listaSaleDisponibili() {
 		ArrayList<Sala> Sale = new ArrayList<Sala>();
-		db.open();
 		Statement stm;
 		String query = "SELECT * FROM sala WHERE sala.nome NOT IN (SELECT * FROM sala INNER JOIN affittos ON sala.nome = affittos.sala INNER JOIN "
 				+ "affitton.sala = sala.nome WHERE affittos.data>CURDATE && affitton.data>CURDATE;);";
 		try {
+			db.open();
 			stm = db.getConn().createStatement();
 			ResultSet res = stm.executeQuery(query);
 			while (res.next()) {
@@ -532,9 +520,7 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
-		} finally {
-			db.close();
-		}
+		} 
 		return Sale;
 	}
 	
@@ -694,8 +680,6 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 						ex.printStackTrace();
-		} finally {
-			db.close();
 		}
 		return affittuari;
 	}
@@ -736,8 +720,6 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
-		} finally {
-			db.close();
 		}
 		return affittuariS;
 	}
@@ -765,8 +747,6 @@ public class PrenotazioneModel {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
-		} finally {
-			db.close();
 		}
 		return affittuariNS;
 	}
