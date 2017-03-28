@@ -15,7 +15,7 @@ public class Evento {
 	private String descrizione;
 	private int posti;
 	private String luogo;
-	private double prezzo;
+	private float prezzo;
 	
 	public Evento(){
 		this(null, null, null, null, 0, null, 0);
@@ -73,7 +73,7 @@ public class Evento {
 	public double getPrezzo() {
 		return prezzo;
 	}
-	public void setPrezzo(double costo) {
+	public void setPrezzo(float costo) {
 		prezzo = costo;
 	}
 	public String getId() {

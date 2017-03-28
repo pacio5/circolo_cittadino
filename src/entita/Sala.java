@@ -11,9 +11,9 @@ public class Sala {
 	private String nome;
 	private int capienza;
 	private String descrizione;
-	private double tariffa;
+	private float tariffa;
 	
-	public Sala(String name, int posti, String desc, double prezzo){
+	public Sala(String name, int posti, String desc, float prezzo){
 		nome = name;
 		capienza = posti;
 		descrizione = desc;
@@ -36,7 +36,7 @@ public class Sala {
 		return descrizione;
 	}
 	
-	public double getTariffa(){
+	public float getTariffa(){
 		return tariffa;
 	}
 	
