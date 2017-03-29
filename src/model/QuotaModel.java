@@ -1,8 +1,11 @@
 package model;
 
 import java.util.*;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.SQLException;
 import java.sql.Date;
+import java.sql.ResultSet;
 
 import utility.MySql;
 import entita.Versamento;
