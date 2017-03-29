@@ -1,14 +1,9 @@
 package view;
 
-import java.awt.Font;
-
 import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.JTextArea;
-import javax.swing.JCheckBox;
 import javax.swing.JButton;
 
 public class GestioneVersamentiView {

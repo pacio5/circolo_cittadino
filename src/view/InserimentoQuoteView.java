@@ -47,7 +47,7 @@ public class InserimentoQuoteView {
 
 		cmbbxTipologia = new JComboBox<String>();
 		cmbbxTipologia.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "Ordinario", "Straordinario", "Benemerito", "Onorario" }));
+				new String[] { "Ordinario", "Straordinario", "Benemerito", "Onorario", "Giovane", "Piu giovane" }));
 		cmbbxTipologia.setBounds(79, 122, 137, 20);
 		cmbbxTipologia.setSelectedIndex(-1);
 

@@ -470,7 +470,7 @@ public class VersamentoController {
 	}
 	
 	private void riempimentoTableChiusura() {
-		String[] nameColumns = { "Socio", "Tipologia", "Modalit� di pagamento", "Credito/Debito"};
+		String[] nameColumns = { "Socio", "Tipologia", "Modalita di pagamento", "Credito/Debito"};
 		SocioModel modelSocio = new SocioModel();
 		ArrayList<Socio> socichiusura = modelSocio.elencoSoci();
 
