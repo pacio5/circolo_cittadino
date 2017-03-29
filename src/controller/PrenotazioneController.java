@@ -17,6 +17,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Color;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -401,23 +402,32 @@ public class PrenotazioneController {
 	}
 	
 	public void affittaSale() {
-		ArrayList<Sala> sale = model.listaSaleDisponibili();
 		ArrayList<Affitto> affitti = model.afittuari();
 		ArrayList<Socio> soci = modelS.elencoSoci();
 		ArrayList<NonSocio> nsoci = modelS.elencoNonSoci();
 		
-		AffittaSalaView view = new AffittaSalaView(sale, soci, nsoci, affitti);
+		AffittaSalaView view = new AffittaSalaView(soci, nsoci, affitti);
 		view.getFrame().setVisible(true);
 		
 		view.getData().addFocusListener(new FocusListener() {
 			@Override
-			public void focusLost(FocusEvent e){
-				ArrayList<Sala> sale = model.listaSaleDisponibili();
-				affittaSale();				
+			public void focusLost(FocusEvent e) {	
+				view.getBtnVisualizzaSale().setVisible(false);
 			}
 			@Override
 			public void focusGained(FocusEvent e) {
-				
+				view.getBtnVisualizzaSale().setVisible(true);
+			}
+		});
+		
+		view.getBtnVisualizzaSale().addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				ArrayList<Sala> sale = model.listaSaleDisponibili(Date.valueOf(view.getData().toString()));
+				DefaultListModel<Sala> dlms = new DefaultListModel<Sala>();
+				sale.stream().forEach((s)->{
+					dlms.addElement(s);
+				});
+				view.getListSala().setModel(dlms);
 			}
 		});
 		

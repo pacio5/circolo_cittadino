@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.ScrollPane;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -32,7 +30,6 @@ public class AffittaSalaView {
 	private JList<Socio> lstS;
 	private JList<NonSocio> lstNS;
 	private JList<Affitto> lst;
-	private DefaultListModel<Sala> dlms;
 	private DefaultListModel<Affitto> dlma;
 	private DefaultListModel<Socio> dlm;
 	private DefaultListModel<NonSocio> dlmns;
@@ -45,10 +42,11 @@ public class AffittaSalaView {
 	private ButtonGroup tipo;
 	private JTextField textFieldData;
 	private JButton btnInfo;
+	private JButton btnLstSale;
 	
 
 	
-	public AffittaSalaView(ArrayList<Sala> sale, ArrayList<Socio> soci, ArrayList<NonSocio> nsoci, ArrayList<Affitto> prenotazioni) {
+	public AffittaSalaView(ArrayList<Socio> soci, ArrayList<NonSocio> nsoci, ArrayList<Affitto> prenotazioni) {
 		frmCircoloCittadino = new JFrame("Circolo Cittadino - Prenota Sala");
 		frmCircoloCittadino.setTitle("Circolo Cittadino - Prenotazione Sale");
 		frmCircoloCittadino.setBounds(100, 100, 800, 600);
@@ -57,11 +55,6 @@ public class AffittaSalaView {
 		frmCircoloCittadino.getContentPane().setLayout(null);
 		
 		lstSale = new JList<Sala>();
-		dlms = new DefaultListModel<Sala>();
-		sale.stream().forEach((s)->{
-			dlms.addElement(s);
-		});
-		lstSale.setModel(dlms);
 								
 		lstS = new JList<Socio>();
 		dlm = new DefaultListModel<Socio>();
@@ -154,12 +147,13 @@ public class AffittaSalaView {
 		frmCircoloCittadino.getContentPane().add(lblDataPrenotazione);
 		
 		btnInfo = new JButton("Informazioni");
-		btnInfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnInfo.setBounds(325, 513, 117, 29);
 		frmCircoloCittadino.getContentPane().add(btnInfo);
+		
+		btnLstSale = new JButton("Visualizza Sale");
+		btnLstSale.setBounds(59, 513, 129, 29);
+		btnLstSale.setVisible(false);
+		frmCircoloCittadino.getContentPane().add(btnLstSale);
 	}
 	
 	public JTextField getData() {
@@ -168,6 +162,10 @@ public class AffittaSalaView {
 	
 	public JButton getBtnInfo() {
 		return btnInfo;
+	}
+	
+	public JButton getBtnVisualizzaSale() {
+		return btnLstSale;
 	}
 	
 	public JButton getBtnDashboard() {

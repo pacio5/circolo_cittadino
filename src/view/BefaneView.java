@@ -1,7 +1,6 @@
 package view;
 
 import entita.Figlio;
-import entita.Socio;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;

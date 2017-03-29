@@ -450,14 +450,16 @@ public class PrenotazioneModel {
 		return sale;
 	}
 	
-	public ArrayList<Sala> listaSaleDisponibili() {
+	public ArrayList<Sala> listaSaleDisponibili(Date data) {
 		ArrayList<Sala> Sale = new ArrayList<Sala>();
-		Statement stm;  //funziona ma con errore sulla data
+		PreparedStatement stm;
 		String query = "SELECT * FROM sala WHERE sala.nome NOT IN (SELECT sala.nome FROM sala INNER JOIN affittos ON sala.nome = affittos.sala INNER JOIN "
-				+ "affitton ON affitton.sala = sala.nome WHERE affittos.data>CURDATE() && affitton.data>CURDATE());";
+				+ "affitton ON affitton.sala = sala.nome WHERE affittos.data=? && affitton.data=?);";
 		try {
 			db.open();
-			stm = db.getConn().createStatement();
+			stm = db.getConn().prepareStatement(query);
+			stm.setDate(1, data);
+			stm.setDate(2, data);
 			ResultSet res = stm.executeQuery(query);
 			while (res.next()) {
 				Sale.add(new Sala(

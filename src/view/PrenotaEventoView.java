@@ -16,8 +16,6 @@ import java.awt.ScrollPane;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import javax.swing.SpinnerNumberModel;
 
@@ -172,10 +170,6 @@ public class PrenotaEventoView {
 		frmCircoloCittadino.getContentPane().add(lblNumeroBiglietti);
 		
 		btnInfo = new JButton("Informazioni");
-		btnInfo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnInfo.setBounds(39, 513, 117, 29);
 		frmCircoloCittadino.getContentPane().add(btnInfo);
 		
