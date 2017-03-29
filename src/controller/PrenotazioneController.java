@@ -357,12 +357,10 @@ public class PrenotazioneController {
 
 				if (validazione) {
 					boolean esito = model.updateSala(new Sala(nome, capienza, 	descrizione, Float.valueOf(tariffa)), view.getList().getSelectedValue().getNome());
-
 					if (esito) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Modifica Effettuata");
+						gestioneSale();
 						view.getFrame().dispose();
-						AdminController adminController = new AdminController();
-						adminController.controlloEvento();
 					} else {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Modifica Non Effettuata");
 					}

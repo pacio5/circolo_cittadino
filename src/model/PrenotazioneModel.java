@@ -382,11 +382,10 @@ public class PrenotazioneModel {
 	}
 	
 	public boolean updateSala(Sala s, String nomevs) {
-		db.open();
-		PreparedStatement stm = null;
 		boolean esito = false;
-		String query = "UPDATE sala SET nome = ?, capienza = ?, descrizione = ? tariffa = ?"
-				+ " WHERE nome = ?;";
+		db.open();
+		PreparedStatement stm = null;		
+		String query = "UPDATE sala SET nome = ?, capienza = ?, descrizione = ?, tariffa = ? WHERE nome = ?;";
 		try {	
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, s.getNome());
@@ -395,11 +394,11 @@ public class PrenotazioneModel {
 			stm.setFloat(4, s.getTariffa());
 			stm.setString(5, nomevs);
 			
-			int res = stm.executeUpdate();
-			if (res == 1)
+			if (stm.executeUpdate() == 1)
 				esito = true;
 			stm.close();
 		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
 			ex.printStackTrace();
 		} finally {
 			db.close();
