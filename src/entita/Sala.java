@@ -53,6 +53,6 @@ public class Sala {
 	}
 	
 	public String toString(){
-		return "La sala: "+ nome + " ha una capienza di: " + capienza + ", la sua tariffa è: " + tariffa + ". Breve descrizione della sala: "+ descrizione;
+		return nome + " " + capienza + " " + tariffa;
 	}
 }

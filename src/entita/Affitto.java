@@ -47,7 +47,7 @@ public class Affitto {
 	
 	@Override
 	public String toString() {
-		return "La Sala=" + sala + ", in data=" + data + ", risulta prenotata da cf=" + cf;
+		return sala + " " + data + " " + cf;
 	}
 	
 	

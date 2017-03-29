@@ -428,7 +428,6 @@ public class PrenotazioneController {
 			public void mouseClicked(MouseEvent e) {
 				String data = view.getData().getText();
 				if (Validator.validaData(data)) {
-					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), data);
 					ArrayList<Sala> sale = model.listaSaleDisponibili(Date.valueOf(data));
 					DefaultListModel<Sala> dlms = new DefaultListModel<Sala>();
 					sale.stream().forEach((s) -> {
@@ -473,9 +472,6 @@ public class PrenotazioneController {
 						|| view.getListNonSoci().isSelectionEmpty() == false)
 						&& view.getListSala().isSelectionEmpty() == false) {
 					String data = view.getData().getText();
-					Socio socio = view.getListSoci().getSelectedValue();
-					NonSocio nsocio = view.getListNonSoci().getSelectedValue();
-					Sala sala = view.getListSala().getSelectedValue();
 					boolean validazione = true;
 					boolean esito;
 					if (!Validator.validaData(data)) {
@@ -486,10 +482,11 @@ public class PrenotazioneController {
 							view.getData().setBackground(Color.white);
 					}
 					if (validazione) {
-						if (view.getListSoci().isVisible()) {
-							esito = model.insertAffittoS(socio, sala, Date.valueOf(data));
+						Sala sala = view.getListSala().getSelectedValue();
+						if (view.getPaneSoci().isVisible()) {
+							esito = model.insertAffittoS(view.getListSoci().getSelectedValue(), sala, Date.valueOf(data));
 						} else
-							esito = model.insertAffittoN(nsocio, sala, Date.valueOf(data));
+							esito = model.insertAffittoN(view.getListNonSoci().getSelectedValue(), sala, Date.valueOf(data));
 						if (esito) {
 							JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
 							view.getFrame().dispose();
@@ -528,47 +525,8 @@ public class PrenotazioneController {
 		view.getBtnInfo().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (view.getListSala().isSelectionEmpty() == false) {
-					frame = new JFrame("Circolo Cittadino - Prenota Evento");
-					frame.setTitle("Circolo Cittadino - Prenotazione Eventi");
-					frame.setBounds(100, 100, 800, 600);
-					frame.setResizable(false);
-					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame.getContentPane().setLayout(null);
-
-					// i valori del posizionamento sono casuali
 					Sala sala = view.getListSala().getSelectedValue();
-
-					JLabel lblNome = new JLabel("Nome");
-					lblNome.setBounds(253, 95, 97, 16);
-					frame.getContentPane().add(lblNome);
-
-					JLabel lblName = new JLabel(sala.getNome());
-					lblName.setBounds(253, 111, 27, 46);
-					frame.getContentPane().add(lblName);
-
-					JLabel lblCap = new JLabel("Capienza");
-					lblCap.setBounds(253, 95, 97, 16);
-					frame.getContentPane().add(lblCap);
-
-					JLabel lblDate = new JLabel(String.valueOf(sala.getCapienza()));
-					lblDate.setBounds(253, 123, 22, 34);
-					frame.getContentPane().add(lblDate);
-
-					JLabel lblDescrizione = new JLabel("Descrizione");
-					lblDescrizione.setBounds(123, 23, 14, 25);
-					frame.getContentPane().add(lblDescrizione);
-
-					JLabel lblDescription = new JLabel(sala.getDescrizione());
-					lblDescription.setBounds(124, 26, 97, 16);
-					frame.getContentPane().add(lblDescription);
-
-					JLabel lblPrezzo = new JLabel("Tariffa");
-					lblPrezzo.setBounds(113, 125, 117, 116);
-					frame.getContentPane().add(lblPrezzo);
-
-					JLabel lblPrice = new JLabel(String.valueOf(sala.getTariffa()));
-					lblPrice.setBounds(153, 115, 141, 116);
-					frame.getContentPane().add(lblPrice);
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "La sala : " + sala.getNome() + "\nHa capienza: "+ sala.getCapienza() + " \nDescrizione: " + sala.getDescrizione());
 				} else
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Sala Non Selezionata");
 			}

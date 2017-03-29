@@ -75,6 +75,7 @@ public class AffittaSalaView {
 		prenotazioni.stream().forEach((a)->{
 			dlma.addElement(a);
 		});
+		lst.setModel(dlma);
 		
 		scrollPaneSal = new ScrollPane();
 		scrollPaneSal.setBounds(261, 103, 245, 375);
