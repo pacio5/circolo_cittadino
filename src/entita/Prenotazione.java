@@ -57,7 +57,7 @@ public class Prenotazione {
 	
 	@Override
 	public String toString() {
-		return "L'evento=" + evento + ", è stato prenotato da cf=" + cf + " per " + nBiglietti + " persone il " + dataAcquisto;
+		return  evento + " " + cf + " " + nBiglietti;
 	}
 		
 }

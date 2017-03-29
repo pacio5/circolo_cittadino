@@ -48,7 +48,7 @@ public class PrenotaEventoView {
 	private ButtonGroup tipo;
 	private JTextField textFieldData;
 	private JButton btnInfo;
-	private JTextArea textArea;
+	private JTextField txtBigliettiDisponibili;
 	
 	
 
@@ -93,6 +93,7 @@ public class PrenotaEventoView {
 		prenotazioni.stream().forEach((p)->{
 			dlmp.addElement(p);
 		});
+		lstPrenotazioni.setModel(dlmp);
 		
 		scrollPaneEvt = new ScrollPane();
 		scrollPaneEvt.setBounds(10, 115, 245, 329);
@@ -174,22 +175,19 @@ public class PrenotaEventoView {
 		frmCircoloCittadino.getContentPane().add(btnInfo);
 		
 		JLabel lblBigliettiDisponibili = new JLabel("Biglietti Disponibili");
-		lblBigliettiDisponibili.setBounds(302, 486, 109, 14);
+		lblBigliettiDisponibili.setBounds(302, 486, 129, 14);
 		frmCircoloCittadino.getContentPane().add(lblBigliettiDisponibili);
 		
-		textArea = new JTextArea();
-		textArea.setBounds(409, 481, 97, 20);
-		frmCircoloCittadino.getContentPane().add(textArea);
-	}
-	
-	public JTextArea getTxtAreaPD() {
-		return textArea;
-	}
-	
-	public void setTxtAreaPD(int pd) {
-		textArea.setText(String.valueOf(pd));
+		txtBigliettiDisponibili = new JTextField();
+		txtBigliettiDisponibili.setBounds(432, 481, 74, 20);
+		frmCircoloCittadino.getContentPane().add(txtBigliettiDisponibili);
+		txtBigliettiDisponibili.setEnabled(false);
 	}
 		
+	public JTextField getTxtBigliettiDisponibili() {
+		return txtBigliettiDisponibili;
+	}
+
 	public JFrame getFrame() {
 		return frmCircoloCittadino;
 	}

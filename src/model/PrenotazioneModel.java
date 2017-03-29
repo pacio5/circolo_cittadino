@@ -129,7 +129,7 @@ public class PrenotazioneModel {
 		ArrayList<Evento> Eventi = new ArrayList<Evento>();
 		db.open();
 		Statement stm;
-		String query = "SELECT * FROM evento WHERE data>CURDATE();";
+		String query = "SELECT * FROM evento WHERE data>CURDATE()";
 		try {
 			stm = db.getConn().createStatement();
 			ResultSet res = stm.executeQuery(query);
@@ -150,15 +150,19 @@ public class PrenotazioneModel {
 		db.open();
 		int po = 0;
 		PreparedStatement stm = null;
-		String query = "SELECT SUM(n_biglietti) AS n FROM prenotaziones AS ps INNER JOIN evento AS e ON ps.evento=e.id INNER JOIN"
-				+ " prenotazionen AS pn ON pn.evento=e.id WHERE e.id=?"; // query
-																			// giusta?
 		try {
+			String query = "SELECT SUM(n_biglietti) AS n FROM prenotazionen WHERE evento = ?;";
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, e.getId());
-
-			ResultSet res = stm.executeQuery(query);
+			ResultSet res = stm.executeQuery();
+			res.next();
 			po = res.getInt("n");
+			query = "SELECT SUM(n_biglietti) AS n FROM prenotaziones WHERE evento = ?;";
+			stm = db.getConn().prepareStatement(query);
+			stm.setString(1, e.getId());
+			res = stm.executeQuery();
+			res.next();
+			po += res.getInt("n");
 
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -221,23 +225,24 @@ public class PrenotazioneModel {
 	public boolean deletePrenotazione(Prenotazione p) {
 		db.open();
 		PreparedStatement stm = null;
-		PreparedStatement stm2 = null;
 		boolean esito = false;
-		String query = "DELETE FROM PrenotazioneN WHERE NONSOCIO = ? && EVENTO = ?";
-		String query2 = "DELETE FROM PrenotazioneS WHERE SOCIO = ? && EVENTO = ?";
 		try {
+			String query = "DELETE FROM PrenotazioneN WHERE NONSOCIO = ? && EVENTO = ? && DATA_ACQUISTO = ? && N_BIGLIETTI = ?";
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, p.getCf());
 			stm.setInt(2, p.getEvento());
-
-			stm2 = db.getConn().prepareStatement(query2);
-			stm2.setString(1, p.getCf());
-			stm2.setInt(2, p.getEvento());
-
-			int res = stm.executeUpdate();
-			int res2 = stm.executeUpdate();
-			if (res == 1 || res2 == 1)
-				esito = true;
+			stm.setDate(3, p.getDataAcquisto());
+			stm.setInt(4, p.getNumBiglietti());
+			stm.executeUpdate();
+			
+			query = "DELETE FROM PrenotazioneS WHERE SOCIO = ? && EVENTO = ? && DATA_ACQUISTO = ? && N_BIGLIETTI = ?";
+			stm = db.getConn().prepareStatement(query);
+			stm.setString(1, p.getCf());
+			stm.setInt(2, p.getEvento());
+			stm.setDate(3, p.getDataAcquisto());
+			stm.setInt(4, p.getNumBiglietti());
+			stm.executeUpdate();
+			esito = true;
 			stm.close();
 		} catch (SQLException ex) {
 			ex.printStackTrace();
@@ -247,21 +252,25 @@ public class PrenotazioneModel {
 		return esito;
 	}
 
-	public ArrayList<Prenotazione> listaPrenotazioni(String IdEvento) {
+	public ArrayList<Prenotazione> listaPrenotazioni(String idEvento) {
 		ArrayList<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
 		db.open();
-		PreparedStatement stm;
-		String query = "SELECT * FROM prenotazionen, prenotaziones WHERE evento=?;";
 		try {
-			stm = db.getConn().prepareStatement(query);
-			stm.setInt(1, Integer.valueOf(IdEvento));
-			stm.setInt(2, Integer.valueOf(IdEvento));
-
-			ResultSet res = stm.executeQuery(query);
+			ResultSet res = null;
+			if (idEvento != null) {
+				String query = "(SELECT * FROM prenotazionen WHERE evento = ?) UNION (SELECT * FROM prenotaziones WHERE evento = ?);";
+				PreparedStatement stm = db.getConn().prepareStatement(query);
+				stm.setInt(1, Integer.valueOf(idEvento));
+				stm.setInt(2, Integer.valueOf(idEvento));
+				res = stm.executeQuery();
+			} else {
+				String query = "(SELECT * FROM prenotazionen) UNION (SELECT * FROM prenotaziones );";
+				Statement stm = db.getConn().createStatement();
+				res = stm.executeQuery(query);
+			}
 			while (res.next()) {
-				Prenotazione p = new Prenotazione(res.getDate("data_acquisto"), res.getString("cf"),
-						res.getInt("evento"), res.getInt("n_biglietti"));
-				prenotazioni.add(p);
+				prenotazioni.add(new Prenotazione(res.getDate("data_acquisto"), res.getString("nonsocio"),
+						res.getInt("evento"), res.getInt("n_biglietti")));
 			}
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
@@ -281,7 +290,7 @@ public class PrenotazioneModel {
 		try {
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, e.getId());
-			ResultSet res = stm.executeQuery(query);
+			ResultSet res = stm.executeQuery();
 			while (res.next()) {
 				Socio s = new Socio(res.getString("cf"), res.getString("nome"), res.getString("cognome"),
 						res.getString("sesso").charAt(0), res.getDate("data_nascita"), res.getString("luogo_nascita"),
@@ -308,7 +317,7 @@ public class PrenotazioneModel {
 		try {
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, e.getId());
-			ResultSet res = stm.executeQuery(query);
+			ResultSet res = stm.executeQuery();
 			while (res.next()) {
 				NonSocio ns = new NonSocio(res.getString("cf"), res.getString("nome"), res.getString("cognome"),
 						res.getString("sesso").charAt(0), res.getString("email"), res.getString("telefono"));

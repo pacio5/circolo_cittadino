@@ -18,8 +18,6 @@ import java.awt.event.MouseEvent;
 import java.awt.Color;
 
 import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
@@ -41,7 +39,6 @@ public class PrenotazioneController {
 
 	private PrenotazioneModel model;
 	private SocioModel modelS;
-	private JFrame frame;
 
 	public PrenotazioneController() {
 		model = new PrenotazioneModel();
@@ -484,9 +481,11 @@ public class PrenotazioneController {
 					if (validazione) {
 						Sala sala = view.getListSala().getSelectedValue();
 						if (view.getPaneSoci().isVisible()) {
-							esito = model.insertAffittoS(view.getListSoci().getSelectedValue(), sala, Date.valueOf(data));
+							esito = model.insertAffittoS(view.getListSoci().getSelectedValue(), sala,
+									Date.valueOf(data));
 						} else
-							esito = model.insertAffittoN(view.getListNonSoci().getSelectedValue(), sala, Date.valueOf(data));
+							esito = model.insertAffittoN(view.getListNonSoci().getSelectedValue(), sala,
+									Date.valueOf(data));
 						if (esito) {
 							JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
 							view.getFrame().dispose();
@@ -526,7 +525,8 @@ public class PrenotazioneController {
 			public void mouseClicked(MouseEvent e) {
 				if (view.getListSala().isSelectionEmpty() == false) {
 					Sala sala = view.getListSala().getSelectedValue();
-					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "La sala : " + sala.getNome() + "\nHa capienza: "+ sala.getCapienza() + " \nDescrizione: " + sala.getDescrizione());
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "La sala : " + sala.getNome()
+							+ "\nHa capienza: " + sala.getCapienza() + " \nDescrizione: " + sala.getDescrizione());
 				} else
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Sala Non Selezionata");
 			}
@@ -540,7 +540,7 @@ public class PrenotazioneController {
 		ArrayList<Evento> eventi = model.listaEventiValidi();
 		ArrayList<Socio> soci = modelS.elencoSoci();
 		ArrayList<NonSocio> nsoci = modelS.elencoNonSoci();
-		ArrayList<Prenotazione> prenotazioni = model.listaPrenotazioni("0");
+		ArrayList<Prenotazione> prenotazioni = model.listaPrenotazioni(null);
 
 		PrenotaEventoView view = new PrenotaEventoView(eventi, prenotazioni, soci, nsoci);
 		view.getFrame().setVisible(true);
@@ -551,10 +551,13 @@ public class PrenotazioneController {
 				Evento e = view.getListEventi().getSelectedValue();
 				int pd = model.postiDisponibili(e);
 				ArrayList<Prenotazione> prenotazioni = model.listaPrenotazioni(e.getId());
-				PrenotaEventoView view = new PrenotaEventoView(eventi, prenotazioni, soci, nsoci);
-				view.getFrame().dispose();
-				view.setTxtAreaPD(pd);
-				// non so se si fa cosi
+				view.getTxtBigliettiDisponibili().setText(String.valueOf(pd));
+
+				DefaultListModel<Prenotazione> dlmp = new DefaultListModel<Prenotazione>();
+				prenotazioni.stream().forEach((p) -> {
+					dlmp.addElement(p);
+				});
+				view.getListPrenotazioni().setModel(dlmp);
 			}
 		});
 
@@ -584,104 +587,56 @@ public class PrenotazioneController {
 
 		view.getBtnInfo().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
-				frame = new JFrame("Circolo Cittadino - Prenota Evento");
-				frame.setTitle("Circolo Cittadino - Prenotazione Eventi");
-				frame.setBounds(100, 100, 800, 600);
-				frame.setResizable(false);
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.getContentPane().setLayout(null);
-
-				// i valori del posizionamento sono casuali
-				Evento evnt = view.getListEventi().getSelectedValue();
-
-				JLabel lblNome = new JLabel("Nome");
-				lblNome.setBounds(253, 95, 97, 16);
-				frame.getContentPane().add(lblNome);
-
-				JLabel lblName = new JLabel(evnt.getNome());
-				lblName.setBounds(253, 111, 27, 46);
-				frame.getContentPane().add(lblName);
-
-				JLabel lblData = new JLabel("Data");
-				lblData.setBounds(253, 95, 97, 16);
-				frame.getContentPane().add(lblData);
-
-				JLabel lblDate = new JLabel(evnt.getData().toString());
-				lblDate.setBounds(253, 123, 22, 34);
-				frame.getContentPane().add(lblDate);
-
-				JLabel lblDescrizione = new JLabel("Descrizione");
-				lblDescrizione.setBounds(123, 23, 14, 25);
-				frame.getContentPane().add(lblDescrizione);
-
-				JLabel lblDescription = new JLabel(evnt.getDescrizione());
-				lblDescription.setBounds(124, 26, 97, 16);
-				frame.getContentPane().add(lblDescription);
-
-				JLabel lblNPosti = new JLabel("Numero Posti");
-				lblData.setBounds(33, 235, 17, 99);
-				frame.getContentPane().add(lblNPosti);
-
-				JLabel lblNSeat = new JLabel(String.valueOf(evnt.getPosti()));
-				lblNSeat.setBounds(37, 295, 57, 116);
-				frame.getContentPane().add(lblNSeat);
-
-				JLabel lblLuogo = new JLabel("Luogo");
-				lblLuogo.setBounds(63, 45, 27, 16);
-				frame.getContentPane().add(lblLuogo);
-
-				JLabel lblLocation = new JLabel(evnt.getLuogo());
-				lblLocation.setBounds(53, 25, 7, 6);
-				frame.getContentPane().add(lblLocation);
-
-				JLabel lblPrezzo = new JLabel("Prezzo");
-				lblPrezzo.setBounds(113, 125, 117, 116);
-				frame.getContentPane().add(lblPrezzo);
-
-				JLabel lblPrice = new JLabel(String.valueOf(evnt.getPrezzo()));
-				lblPrice.setBounds(153, 115, 141, 116);
-				frame.getContentPane().add(lblPrice);
+				if (view.getListEventi().isSelectionEmpty() == false) {
+					Evento ev = view.getListEventi().getSelectedValue();
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
+							"L'evento : " + ev.getNome() + "\nN Posti: " + ev.getPosti() + "\nIn data: " + ev.getData()
+									+ "\nDescrizione: " + ev.getDescrizione());
+				} else
+					JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Sala Non Selezionata");
 			}
 		});
 
 		view.getBtnInserisci().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-
-				String data = view.getData().getText();
-				int nBiglietti = Integer.valueOf(view.getNumBiglietti().getValue().toString());
-				Socio socio = view.getListSoci().getSelectedValue();
-				NonSocio nsocio = view.getListNonSoci().getSelectedValue();
 				Evento evento = view.getListEventi().getSelectedValue();
-				boolean validazione = true;
+				if (Integer.valueOf(view.getTxtBigliettiDisponibili().getText()) > evento.getPosti()) {
+					String data = view.getData().getText();
+					int nBiglietti = Integer.valueOf(view.getNumBiglietti().getValue().toString());
+					Socio socio = view.getListSoci().getSelectedValue();
+					NonSocio nsocio = view.getListNonSoci().getSelectedValue();
 
-				if (!Validator.validaData(data)) {
-					view.getData().setBackground(Color.red);
-					validazione = false;
-				} else {
-					if (view.getData().getBackground() == Color.red)
-						view.getData().setBackground(Color.white);
-				}
+					boolean validazione = true;
 
-				if (validazione) {
-					boolean esito;
-					if (view.getListSoci().isVisible()) {
-						esito = model.insertPrenotazioneS(socio, nBiglietti, evento, Date.valueOf(data));
-					} else
-						esito = model.insertPrenotazioneN(nsocio, nBiglietti, evento, Date.valueOf(data));
-					if (esito) {
-						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
-						int pd = Integer.valueOf(view.getTxtAreaPD().getText());
-						view.setTxtAreaPD(pd - nBiglietti); // sotto e'
-															// corretto?
-						view.getFrame().dispose();
-						AdminController adminController = new AdminController();
-						adminController.controlloEvento();
-					} else
-						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Non Effettuato");
+					if (!Validator.validaData(data)) {
+						view.getData().setBackground(Color.red);
+						validazione = false;
+					} else {
+						if (view.getData().getBackground() == Color.red)
+							view.getData().setBackground(Color.white);
+					}
+
+					if (validazione) {
+						boolean esito;
+						if (view.getPaneSoci().isVisible()) {
+							esito = model.insertPrenotazioneS(socio, nBiglietti, evento, Date.valueOf(data));
+						} else
+							esito = model.insertPrenotazioneN(nsocio, nBiglietti, evento, Date.valueOf(data));
+						if (esito) {
+							JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
+							prenotaEvento();
+							view.getFrame().dispose();
+						} else
+							JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
+									"Inserimento Non Effettuato");
+					} else {
+						JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
+								"Campi non validi, modificare i campi contrassegnati in rosso");
+					}
 				} else {
 					JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
-							"Campi non validi, modificare i campi contrassegnati in rosso");
+							"Ci sono pochi biglietti disponibili, richiedine meno del numero massimo");
 				}
 			}
 		});
@@ -690,12 +645,9 @@ public class PrenotazioneController {
 			public void mouseClicked(MouseEvent e) {
 				if (view.getListPrenotazioni().isSelectionEmpty() == false) {
 					Prenotazione p = view.getListPrenotazioni().getSelectedValue();
-					boolean esito = model.deletePrenotazione(p);
-					if (esito) {
+					if (model.deletePrenotazione(p)) {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellato correttamente");
-						int pd = Integer.valueOf(view.getTxtAreaPD().getText());
-						view.setTxtAreaPD(pd + p.getNumBiglietti());
-						gestioneSale();
+						prenotaEvento();
 						view.getFrame().dispose();
 					} else {
 						JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Cancellazione non effettuata");
