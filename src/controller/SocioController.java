@@ -1011,6 +1011,14 @@ public class SocioController {
 			}
 		});
 		
+		view.getList().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent e) {
+				view.getLblCategoriaAttuale().setText("Categoria Attuale: " + view.getList().getSelectedValue().getTipologia());
+			}
+
+		});
+
+		
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				AdminController adminController = new AdminController();

@@ -208,7 +208,7 @@ public class InserisciSocioView {
 		lblModPagamento.setBounds(357, 320, 130, 16);
 		frame.getContentPane().add(lblModPagamento);
 
-		String[] mod = { "Esattore", "Bonifico Bancario" };
+		String[] mod = { "ESATTORE", "BONIFICO BANCARIO" };
 		modPagamento = new JComboBox(mod); // Manca <String>
 		modPagamento.setSelectedIndex(0);
 		modPagamento.setBounds(503, 316, 130, 27);
@@ -218,7 +218,7 @@ public class InserisciSocioView {
 		lblMetPagamento.setBounds(357, 358, 130, 16);
 		frame.getContentPane().add(lblMetPagamento);
 
-		String[] met = { "Mensile", "Trimestrale", "Semestrale", "Annuale" };
+		String[] met = { "MENSILE", "TRIMESTRALE", "SEMESTRALE", "ANNUALE" };
 		metPagamento = new JComboBox(met);
 		metPagamento.setSelectedIndex(3);
 		metPagamento.setBounds(503, 354, 130, 27);
@@ -228,7 +228,7 @@ public class InserisciSocioView {
 		lblTipologia.setBounds(357, 396, 130, 16);
 		frame.getContentPane().add(lblTipologia);
 
-		String[] tip = { "Ordinario", "Straordinario", "Benemerito", "Onorario" };
+		String[] tip = { "ORDINARIO", "STRAORDINARIO", "BENEMERITO", "ONORARIO", "GIOVANE", "PIU GIOVANE" };
 		tipologia = new JComboBox(tip);
 		tipologia.setSelectedIndex(0);
 		tipologia.setBounds(503, 392, 130, 27);

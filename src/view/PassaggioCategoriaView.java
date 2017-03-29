@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JTextPane;
 
 /**
  * @author eliapacioni
@@ -27,6 +28,7 @@ public class PassaggioCategoriaView {
 	private ScrollPane scrollPane;
 	private JButton btnEffettua;
 	private JButton btnDashboard;
+	private JLabel lblCategoriaAttuale;
 	
 	/**
 	 * Create the frame
@@ -39,7 +41,7 @@ public class PassaggioCategoriaView {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblElencoSoci = new JLabel("Gestione Passaggi Categoria ");
-		lblElencoSoci.setBounds(341, 20, 105, 16);
+		lblElencoSoci.setBounds(341, 20, 213, 16);
 		frame.getContentPane().add(lblElencoSoci);
 		
 		list = new JList<Socio>();
@@ -55,13 +57,22 @@ public class PassaggioCategoriaView {
 		scrollPane.add(list);
 		
 		btnEffettua = new JButton("Effettua");
-		btnEffettua.setBounds(523, 295, 117, 29);
+		btnEffettua.setBounds(525, 394, 117, 29);
 		frame.getContentPane().add(btnEffettua);
 		
 		btnDashboard = new JButton("Dashboard");
 		btnDashboard.setBounds(697, 9, 97, 41);
 		frame.getContentPane().add(btnDashboard);
-		btnEffettua.setVisible(true);
+		
+		JTextPane textPane = new JTextPane();
+		textPane.setBackground(null);
+		textPane.setText("Categoria Attuale -> Categoria Futura\n\nPIU GIOVANE -> GIOVANE \nGIOVANE -> ORDINARIO \nORDINARIO -> BENEMERITO");
+		textPane.setBounds(468, 54, 251, 85);
+		frame.getContentPane().add(textPane);
+		
+		lblCategoriaAttuale = new JLabel("Categoria Attuale:");
+		lblCategoriaAttuale.setBounds(466, 151, 241, 16);
+		frame.getContentPane().add(lblCategoriaAttuale);
 	}
 
 	public JFrame getFrame() {
@@ -88,4 +99,7 @@ public class PassaggioCategoriaView {
 		return btnDashboard;
 	}
 	
+	public JLabel getLblCategoriaAttuale(){
+		return lblCategoriaAttuale;
+	}
 }

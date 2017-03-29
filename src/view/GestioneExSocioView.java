@@ -270,7 +270,7 @@ public class GestioneExSocioView {
 		lblTipologia.setBounds(531, 396, 130, 16);
 		frame.getContentPane().add(lblTipologia);
 
-		String[] tip = { "ORDINARIO", "STRAORDINARIO", "BENEMERITO", "ONORARIO" };
+		String[] tip = { "ORDINARIO", "STRAORDINARIO", "BENEMERITO", "ONORARIO", "GIOVANE", "PIU GIOVANE" };
 		tipologia = new JComboBox(tip);
 		tipologia.setSelectedIndex(0);
 		tipologia.setBounds(661, 392, 130, 27);

@@ -119,7 +119,7 @@ public class PrenotazioneModel {
 						res.getString("nome"), 
 						res.getDate("data"),
 						res.getString("descrizione"), 
-						res.getInt("posti"), 
+						res.getInt("n_posti"), 
 						res.getString("luogo"),
 						res.getFloat("prezzo"));
 				Eventi.add(e);
@@ -145,7 +145,7 @@ public class PrenotazioneModel {
 						res.getString("nome"), 
 						res.getDate("data"),
 						res.getString("descrizione"), 
-						res.getInt("posti"), 
+						res.getInt("n_posti"), 
 						res.getString("luogo"),
 						res.getFloat("prezzo"));
 				Eventi.add(e);
@@ -263,10 +263,11 @@ public class PrenotazioneModel {
 		ArrayList<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
 		db.open();
 		PreparedStatement stm;
-		String query = "SELECT * FROM prenotazionen, prenotaziones WHERE evento=?;";
+		String query = "SELECT * FROM prenotazionen, prenotaziones WHERE prenotaziones.evento=? AND prenotazionen.evento=?;";
 		try {
 			stm = db.getConn().prepareStatement(query);
 			stm.setInt(1, Integer.valueOf(IdEvento));
+			stm.setInt(2, Integer.valueOf(IdEvento));
 			
 			ResultSet res = stm.executeQuery(query);
 			while (res.next()) {
@@ -382,11 +383,10 @@ public class PrenotazioneModel {
 	}
 	
 	public boolean updateSala(Sala s, String nomevs) {
-		db.open();
-		PreparedStatement stm = null;
 		boolean esito = false;
-		String query = "UPDATE sala SET nome = ?, capienza = ?, descrizione = ? tariffa = ?"
-				+ " WHERE nome = ?;";
+		db.open();
+		PreparedStatement stm = null;		
+		String query = "UPDATE sala SET nome = ?, capienza = ?, descrizione = ?, tariffa = ? WHERE nome = ?;";
 		try {	
 			stm = db.getConn().prepareStatement(query);
 			stm.setString(1, s.getNome());
@@ -395,11 +395,11 @@ public class PrenotazioneModel {
 			stm.setFloat(4, s.getTariffa());
 			stm.setString(5, nomevs);
 			
-			int res = stm.executeUpdate();
-			if (res == 1)
+			if (stm.executeUpdate() == 1)
 				esito = true;
 			stm.close();
 		} catch (SQLException ex) {
+			// TODO Auto-generated catch block
 			ex.printStackTrace();
 		} finally {
 			db.close();
@@ -452,9 +452,9 @@ public class PrenotazioneModel {
 	
 	public ArrayList<Sala> listaSaleDisponibili() {
 		ArrayList<Sala> Sale = new ArrayList<Sala>();
-		Statement stm;
-		String query = "SELECT * FROM sala WHERE sala.nome NOT IN (SELECT * FROM sala INNER JOIN affittos ON sala.nome = affittos.sala INNER JOIN "
-				+ "affitton.sala = sala.nome WHERE affittos.data>CURDATE() && affitton.data>CURDATE());";
+		Statement stm;  //funziona ma con errore sulla data
+		String query = "SELECT * FROM sala WHERE sala.nome NOT IN (SELECT sala.nome FROM sala INNER JOIN affittos ON sala.nome = affittos.sala INNER JOIN "
+				+ "affitton ON affitton.sala = sala.nome WHERE affittos.data>CURDATE() && affitton.data>CURDATE());";
 		try {
 			db.open();
 			stm = db.getConn().createStatement();
@@ -560,7 +560,7 @@ public class PrenotazioneModel {
 		ArrayList<Affitto> affittuari = new ArrayList<Affitto>();
 		db.open();
 		PreparedStatement stm;
-		String query = "SELECT * FROM affittos, affitton WHERE data>CURDATE();";
+		String query = "SELECT * FROM affittos, affitton WHERE affittos.data>CURDATE() AND affitton.data>CURDATE();";
 		try{		
 			stm = db.getConn().prepareStatement(query);
 			ResultSet res = stm.executeQuery(query);
