@@ -263,7 +263,7 @@ public class PrenotazioneModel {
 		ArrayList<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
 		db.open();
 		PreparedStatement stm;
-		String query = "SELECT * FROM prenotazionen, prenotaziones WHERE prenotaziones.evento=? AND prenotazionen.evento=?;";
+		String query = "SELECT * FROM prenotazionen, prenotaziones WHERE evento=?;";
 		try {
 			stm = db.getConn().prepareStatement(query);
 			stm.setInt(1, Integer.valueOf(IdEvento));
@@ -451,18 +451,16 @@ public class PrenotazioneModel {
 	}
 	
 	public ArrayList<Sala> listaSaleDisponibili(Date data) {
-		ArrayList<Sala> Sale = new ArrayList<Sala>();
+		ArrayList<Sala> sale = new ArrayList<Sala>();
 		PreparedStatement stm;
-		String query = "SELECT * FROM sala WHERE sala.nome NOT IN (SELECT sala.nome FROM sala INNER JOIN affittos ON sala.nome = affittos.sala INNER JOIN "
-				+ "affitton ON affitton.sala = sala.nome WHERE affittos.data=? && affitton.data=?);";
+		String query = "SELECT * FROM sala WHERE sala.nome NOT IN (SELECT affitton.sala FROM affitton WHERE affitton.data = ?);";
 		try {
 			db.open();
 			stm = db.getConn().prepareStatement(query);
 			stm.setDate(1, data);
-			stm.setDate(2, data);
 			ResultSet res = stm.executeQuery(query);
 			while (res.next()) {
-				Sale.add(new Sala(
+				sale.add(new Sala(
 						res.getString("nome"), 
 						res.getInt("capienza"),
 						res.getString("descrizione"),
@@ -472,7 +470,7 @@ public class PrenotazioneModel {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
 		} 
-		return Sale;
+		return sale;
 	}
 	
 	/* Operazioni Sull'affitto delle sale */
