@@ -58,7 +58,6 @@ public class SocioModel {
 			st.setString(18, n.getMetPagamento());
 			st.setString(19, n.getTipologia());
 
-			
 			if (st.executeUpdate() == 1)
 				esito = true;
 			st.close();
@@ -154,7 +153,7 @@ public class SocioModel {
 						res.getString("met_pagamento"), res.getString("tipologia")));
 			}
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
 		return soci;
@@ -457,7 +456,7 @@ public class SocioModel {
 			st.setString(4, Character.toString(n.getSesso()));
 			st.setString(5, n.getEmail());
 			st.setString(6, n.getTelefono());
-			
+
 			if (st.executeUpdate() == 1)
 				esito = true;
 			st.close();
@@ -543,7 +542,9 @@ public class SocioModel {
 		try {
 			db.open();
 			st = db.getConn().createStatement();
-			String query = "SELECT * FROM socio WHERE DATEDIFF(NOW(), data_ammissione)>=18250 AND tipologia = 'ORDINARIO' OR tipologia = 'STRAORDINARIO';";
+			String query = "SELECT * FROM socio WHERE (DATEDIFF(NOW(), data_ammissione)>=18250 AND tipologia = 'ORDINARIO') "
+					+ "OR (DATEDIFF(NOW(), data_nascita)>=14600 AND tipologia = 'GIOVANE')"
+					+ "OR (DATEDIFF(NOW(), data_nascita)>=12775 AND tipologia = 'PIU GIOVANE');";
 			ResultSet res = st.executeQuery(query);
 			while (res.next()) {
 				soci.add(new Socio(res.getString("cf"), res.getString("nome"), res.getString("cognome"),
@@ -566,20 +567,32 @@ public class SocioModel {
 	public boolean effettuaPassaggioCategoria(Socio n) {
 		boolean esito = false;
 		PreparedStatement st;
+		String tip = null;
+		switch (n.getTipologia()) {
+		case ("ORDINARIO"):
+			tip = "BENEMERITO";
+			break;
+		case ("GIOVANE"):
+			tip = "ORDINARIO";
+			break;
+		case ("PIU GIOVANE"):
+			tip = "GIOVANE";
+			break;
+		}
 		try {
 			db.open();
-			String query = "UPDATE socio SET tipologia = 'BENEMERITO' WHERE cf = ? ";
+			String query = "UPDATE socio SET tipologia = ? WHERE cf = ? ";
 			st = db.getConn().prepareStatement(query);
-			st.setString(1, n.getCf());
-
-			if (st.executeUpdate() == 1) {
-				esito = true;
-				query = "INSERT INTO passaggio VALUES(?,?,?);";
-				st = db.getConn().prepareStatement(query);
-				st.setDate(1, Date.valueOf(LocalDate.now()));
-				st.setString(2, n.getTipologia());
-				st.setString(3, n.getCf());
-			}
+			st.setString(1, tip);
+			st.setString(2, n.getCf());
+			st.executeUpdate();
+			query = "INSERT INTO passaggio (data_passaggio, tipologia_precedente, socio) VALUES(?,?,?);";
+			st = db.getConn().prepareStatement(query);
+			st.setDate(1, Date.valueOf(LocalDate.now()));
+			st.setString(2, n.getTipologia());
+			st.setString(3, n.getCf());
+			st.executeUpdate();
+			esito = true;
 			st.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
