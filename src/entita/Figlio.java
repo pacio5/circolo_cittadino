@@ -55,6 +55,6 @@ public class Figlio {
 	}
 	
 	public String toString(){
-		return nome + " Genitore " + genitore.getNome() + " " + genitore.getCognome();
+		return nome + " Data di Nascita " + dataNascita;
 	}
 }
