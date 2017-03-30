@@ -1,6 +1,3 @@
-/**
- * 
- */
 package entita;
 
 import java.sql.Date;
