@@ -6,6 +6,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 
+/**
+ * @author smerilli
+ *
+ */
 public class GestioneQuoteView {
 
 	private JFrame frame;

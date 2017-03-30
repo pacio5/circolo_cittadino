@@ -6,6 +6,10 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JPasswordField;
 
+/**
+ * @author eliapacioni
+ *
+ */
 public class LoginView {
 
 	private JFrame frmCircoloCittadino;

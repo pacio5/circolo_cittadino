@@ -1,6 +1,7 @@
 package model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.sql.SQLException;
@@ -12,6 +13,10 @@ import entita.Versamento;
 import entita.Quota;
 import entita.Socio;
 
+/**
+ * @author smerilli
+ *
+ */
 public class QuotaModel {
 
 	MySql db;

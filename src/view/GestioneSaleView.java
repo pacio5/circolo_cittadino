@@ -15,6 +15,10 @@ import entita.Sala;
 import java.util.ArrayList;
 import javax.swing.SpinnerNumberModel;
 
+/**
+ * @author simoneonori
+ *
+ */
 public class GestioneSaleView {
 	
 	private JFrame frmCircoloCittadino;

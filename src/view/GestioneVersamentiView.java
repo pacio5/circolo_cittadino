@@ -6,6 +6,10 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 
+/**
+ * @author smerilli
+ *
+ */
 public class GestioneVersamentiView {
 
 	private JFrame frame;

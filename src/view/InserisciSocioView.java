@@ -8,6 +8,10 @@ import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
+/**
+ * @author eliapacioni
+ *
+ */
 public class InserisciSocioView {
 
 	private JFrame frame;

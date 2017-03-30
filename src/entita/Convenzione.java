@@ -1,5 +1,9 @@
 package entita;
 
+/**
+ * @author talento
+ *
+ */
 public class Convenzione {
 	private int id;
 	private String ragioneSociale;

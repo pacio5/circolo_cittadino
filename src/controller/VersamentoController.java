@@ -27,6 +27,10 @@ import model.SocioModel;
 
 import utility.Validator;
 
+/**
+ * @author smerilli
+ *
+ */
 public class VersamentoController {
 	private InserimentoVersamentoView viewInserimento;
 	private GestioneVersamentiView viewGestione;

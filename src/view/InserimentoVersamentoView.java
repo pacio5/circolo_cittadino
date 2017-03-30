@@ -10,6 +10,10 @@ import javax.swing.JCheckBox;
 import java.awt.Font;
 import java.awt.Color;
 
+/**
+ * @author smerilli
+ *
+ */
 public class InserimentoVersamentoView {
 
 	private JFrame frameInsVersamento;

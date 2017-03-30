@@ -14,6 +14,10 @@ import javax.swing.JTextField;
 
 import entita.Convenzione;
 
+/**
+ * @author talento
+ *
+ */
 public class GestioneConvenzioniView{
 	private JFrame frame;
 	private JTextField textFieldIndirizzo;

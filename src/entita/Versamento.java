@@ -2,6 +2,10 @@ package entita;
 
 import java.sql.Date;
 
+/**
+ * @author smerilli
+ *
+ */
 public class Versamento {
 	private int id;
 	private float importo;

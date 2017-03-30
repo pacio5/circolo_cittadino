@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+/**
+ * @author simoneonori
+ *
+ */
 public class AffittaSalaView {
 	
 	private JFrame frmCircoloCittadino;

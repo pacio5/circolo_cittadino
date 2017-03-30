@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controller;
 
 import java.awt.Color;
@@ -22,7 +19,7 @@ import view.GestioneQuoteView;
 import entita.Quota;
 
 /**
- * @author smero
+ * @author smerilli
  *
  */
 public class QuotaController {

@@ -8,6 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * @author talento
+ *
+ */
 public class ConvenzioneModel {
 	private MySql db;
 

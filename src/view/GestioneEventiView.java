@@ -15,6 +15,10 @@ import entita.Evento;
 import java.util.ArrayList;
 import javax.swing.SpinnerNumberModel;
 
+/**
+ * @author simoneonori
+ *
+ */
 public class GestioneEventiView {
 	
 	private JFrame frmCircoloCittadino;	

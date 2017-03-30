@@ -11,6 +11,10 @@ import javax.swing.DefaultComboBoxModel;
 import java.awt.Font;
 import javax.swing.JButton;
 
+/**
+ * @author smerilli
+ *
+ */
 public class InserimentoQuoteView {
 
 	private JFrame frame;

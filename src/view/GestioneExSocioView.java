@@ -15,6 +15,10 @@ import javax.swing.JList;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+/**
+ * @author eliapacioni
+ *
+ */
 public class GestioneExSocioView {
 
 	private JFrame frame;

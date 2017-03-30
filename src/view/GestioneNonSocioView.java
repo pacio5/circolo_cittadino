@@ -14,6 +14,10 @@ import javax.swing.JTextField;
 import entita.NonSocio;
 import javax.swing.JButton;
 
+/**
+ * @author eliapacioni
+ *
+ */
 public class GestioneNonSocioView {
 
 	private JFrame frame;

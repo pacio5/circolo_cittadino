@@ -13,6 +13,10 @@ import model.ConvenzioneModel;
 import utility.Validator;
 import view.GestioneConvenzioniView;
 
+/**
+ * @author talento
+ *
+ */
 public class ConvenzioneController {
 	private ConvenzioneModel model;
 

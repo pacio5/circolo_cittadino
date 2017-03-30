@@ -19,6 +19,10 @@ import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.SpinnerNumberModel;
 
+/**
+ * @author simoneonori
+ *
+ */
 public class PrenotaEventoView {
 
 	private JFrame frmCircoloCittadino;

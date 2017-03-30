@@ -6,6 +6,10 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+/**
+ * @author smerilli
+ *
+ */
 public class ChiusuraAnnualeView {
 
 	private JFrame frame;

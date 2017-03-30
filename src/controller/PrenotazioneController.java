@@ -35,6 +35,10 @@ import entita.NonSocio;
 import entita.Affitto;
 import entita.Prenotazione;
 
+/**
+ * @author simoneonori
+ *
+ */
 public class PrenotazioneController {
 
 	private PrenotazioneModel model;
