@@ -42,55 +42,55 @@ public class AdminView {
 		btnLogout.setBounds(677, 6, 117, 29);
 		
 		btnInserisciSocio = new JButton("Inserisci Socio");
-		btnInserisciSocio.setBounds(100, 200, 150, 29);
+		btnInserisciSocio.setBounds(100, 200, 160, 29);
 		
 		btnInserisciVersamento = new JButton("Inserisci Versamento");
-		btnInserisciVersamento.setBounds(100, 300, 150, 29);
+		btnInserisciVersamento.setBounds(325, 200, 160, 29);
 		
 		btnInserisciEvento = new JButton("Gestisci Eventi");
-		btnInserisciEvento.setBounds(325, 400, 150, 29);
+		btnInserisciEvento.setBounds(550, 300, 160, 29);
 
 		btnElencoSoci = new JButton("Elenco Soci");
-		btnElencoSoci.setBounds(325, 200, 150, 29);
+		btnElencoSoci.setBounds(100, 250, 160, 29);
 		
 		btnGestioneFigli = new JButton("Gestione Figli");
-		btnGestioneFigli.setBounds(100, 250, 150, 29);
+		btnGestioneFigli.setBounds(100, 300, 160, 29);
 		
 		btnGestioneVersamenti = new JButton("Gestione Versamenti");
-		btnGestioneVersamenti.setBounds(325, 300, 150, 29);
+		btnGestioneVersamenti.setBounds(325, 250, 160, 29);
 		
 		btnGestioneNonSocio = new JButton("Gestione Non Socio");
-		btnGestioneNonSocio.setBounds(325, 250, 150, 29);
+		btnGestioneNonSocio.setBounds(100, 400, 160, 29);
 		
 		btnGestioneExSocio = new JButton("Gestione Ex Socio");
-		btnGestioneExSocio.setBounds(550, 250, 150, 29);
+		btnGestioneExSocio.setBounds(100, 350, 160, 29);
 		
 		btnInserisciQuota = new JButton("Inserimento Quota");
-		btnInserisciQuota.setBounds(550, 300, 150, 29);
+		btnInserisciQuota.setBounds(325, 300, 160, 29);
 		
 		btnVisualizzazioneQuote = new JButton("Visualizzazione Quote");
-		btnVisualizzazioneQuote.setBounds(100, 350, 150, 29);
+		btnVisualizzazioneQuote.setBounds(325, 350, 160, 29);
 		
 		btnInserisciSala = new JButton("Gestione Sale");
-		btnInserisciSala.setBounds(218, 450, 150, 29);
+		btnInserisciSala.setBounds(550, 200, 160, 29);
 		
 		btnPrenotaSala = new JButton("Prenota Sala");
-		btnPrenotaSala.setBounds(443, 450, 150, 29);
+		btnPrenotaSala.setBounds(550, 250, 160, 29);
 		
 		btnPrenotaEvento = new JButton("Prenota Evento");
-		btnPrenotaEvento.setBounds(550, 400, 150, 29);
+		btnPrenotaEvento.setBounds(550, 350, 160, 29);
 		
 		btnChiusuraAnnuale = new JButton("Chiusura Annuale");
-		btnChiusuraAnnuale.setBounds(325, 350, 150, 29);
+		btnChiusuraAnnuale.setBounds(325, 400, 160, 29);
 		
 		btnPassaggioCategoria = new JButton("Passaggio Categoria");
-		btnPassaggioCategoria.setBounds(550, 200, 150, 29);
+		btnPassaggioCategoria.setBounds(213, 450, 160, 29);
 		
 		btnGestioneConvenzioni = new JButton("Gestione Convenzioni");
-		btnGestioneConvenzioni.setBounds(550, 350, 150, 29);
+		btnGestioneConvenzioni.setBounds(440, 450, 160, 29);
 		
 		btnBefane = new JButton("Le Befane");
-		btnBefane.setBounds(100, 400, 150, 29);
+		btnBefane.setBounds(550, 400, 160, 29);
 		
 		icon = new ImageIcon("circolo.png");
 		JLabel lblImg = new JLabel(new ImageIcon(".\\resources\\circolo.png"));
