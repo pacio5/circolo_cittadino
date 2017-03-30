@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Font;
 import java.awt.ScrollPane;
 import java.util.ArrayList;
 
@@ -79,6 +80,10 @@ public class GestioneConvenzioniView{
 		frame.getContentPane().add(lblDescrizione);
 		
 		textAreaDescrizione = new JTextArea();
+		textAreaDescrizione.setWrapStyleWord(true);
+		textAreaDescrizione.setFont(new Font("Monospaced", Font.PLAIN, 11));
+		textAreaDescrizione.setLineWrap(true);
+		textAreaDescrizione.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 		textAreaDescrizione.setBounds(491, 251, 269, 193);
 		frame.getContentPane().add(textAreaDescrizione);
 		
