@@ -36,7 +36,15 @@ import entita.Prenotazione;
 
 /**
  * @author simoneonori
- *
+ * @author eliapacioni
+ * @author smerilliriccardo
+ * @author francescotalento
+ * @version 1.0 marzo 2017
+ */
+/**
+ *classe che gestisce tutte le interazioni tra model e base di dati riguardanti le prenotazioni di sale ed eventi.
+ *sono implementati: metodi di inserimento modifica e cancellazione di sale ed eventi, metodi di inserimento di prenotazioni 
+ *di eventi e sale da parte di soci e non soci, metodi per la cancellazione delle prenotazioni gia' effettuati 
  */
 public class PrenotazioneController {
 
