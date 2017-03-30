@@ -1,6 +1,3 @@
-/**
- * 
- */
 package view;
 
 import java.awt.ScrollPane;
@@ -19,8 +16,14 @@ import entita.Figlio;
 import entita.Socio;
 
 /**
+ * @author simoneonori
  * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
  *
+ * Classe GestioneFigliView, si occupa di visualizzare la finestra di gestione dei figli, 
+ * dove è possibile gestire le varie operazioni
  */
 public class GestioneFigliView {
 
@@ -47,7 +50,8 @@ public class GestioneFigliView {
 	private JButton btnAnnulla;
 	
 	/**
-	 * Create the frame.
+	 * Costruttore GestioneFigliView, si occupa di visualizzare la finestra di gestione dei figli
+	 * e inizializza tutte le proprietà
 	 */
 	public GestioneFigliView(ArrayList<Figlio> figli, ArrayList<Socio> genitori ) {
 		frame = new JFrame("Elenco soci del Circolo Cittadino di Ascoli Piceno");
@@ -188,128 +192,149 @@ public class GestioneFigliView {
 		filtro.setSelectedIndex(0);
 		frame.getContentPane().add(filtro);
 	}
+	
 	/**
-	 * @return the frame
+	 * @return frame (JFrame)
 	 */
 	public JFrame getFrame() {
 		return frame;
 	}
+	
 	/**
-	 * @return the list
+	 * @return lista con l'elenco dei figli (JList)
 	 */
 	public JList<Figlio> getList() {
 		return list;
 	}
+	
 	/**
-	 * @return the dlm
+	 * @return dlm, model della lista (DefaultListModel)
 	 */
 	public DefaultListModel<Figlio> getDlm() {
 		return dlm;
 	}
+	
 	/**
-	 * @return the scrollPane
+	 * @return scrollPane, pannello in cui viene visualizzata la vista (ScrollPane)
 	 */
 	public ScrollPane getScrollPane() {
 		return scrollPane;
 	}
+	
 	/**
-	 * @return the cf
+	 * @return codice fiscale (JTextField)
 	 */
 	public JTextField getCf() {
 		return cf;
 	}
+	
 	/**
-	 * @return the nome
+	 * @return nome (JTextField)
 	 */
 	public JTextField getNome() {
 		return nome;
 	}
+	
 	/**
-	 * @return the rdbtnUomo
+	 * @return radio button uomo (JRadioButton)
 	 */
 	public JRadioButton getRdbtnUomo() {
 		return rdbtnUomo;
 	}
+	
 	/**
-	 * @return the rdbtnDonna
+	 * @return radio button donna (JRadioButton)
 	 */
 	public JRadioButton getRdbtnDonna() {
 		return rdbtnDonna;
 	}
+	
 	/**
-	 * @return the sesso
+	 * @return buttonGroup sesso (ButtonGroup)
 	 */
 	public ButtonGroup getSesso() {
 		return sesso;
 	}
+	
 	/**
-	 * @return the dataNascita
+	 * @return dataNascita (JTextField)
 	 */
 	public JTextField getDataNascita() {
 		return dataNascita;
 	}
+	
 	/**
-	 * @return the genitore
+	 * @return genitore (Socio)
 	 */
 	public JComboBox<Socio> getGenitore() {
 		return genitore;
 	}
+	
 	/**
-	 * @return the rdbtnSi
+	 * @return radio button si (JRadioButton), riferito alla proprietà a carico
 	 */
 	public JRadioButton getRdbtnSi() {
 		return rdbtnSi;
 	}
+	
 	/**
-	 * @return the rdbtnNo
+	 * @return radio button no (JRadioButton), riferito alla proprietà a carico
 	 */
 	public JRadioButton getRdbtnNo() {
 		return rdbtnNo;
 	}
+	
 	/**
-	 * @return the aCarico
+	 * @return buttonGroup aCarico (ButtonGroup)
 	 */
 	public ButtonGroup getaCarico() {
 		return aCarico;
 	}
+	
 	/**
-	 * @return the btnDashboard
+	 * @return bottone per tornare alla dashboard (JButton)
 	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}
+	
 	/**
-	 * @return the btnModifica
+	 * @return bottone per modificare il figlio (JButton)
 	 */
 	public JButton getBtnModifica() {
 		return btnModifica;
 	}
+	
 	/**
-	 * @return the btnElimina
+	 * @return bottone per eliminare il figlio (JButton)
 	 */
 	public JButton getBtnElimina() {
 		return btnElimina;
 	}
+	
 	/**
-	 * @return the btnAggiorna
+	 * @return bottone per salvare i cambiamenti del figlio (JButton)
 	 */
 	public JButton getBtnAggiorna() {
 		return btnAggiorna;
 	}
+	
 	/**
-	 * @return the btnAnnulla
+	 * @return bottone per salvare i cambiamenti del figlio (JButton)
 	 */
 	public JButton getBtnAnnulla() {
 		return btnAnnulla;
 	}
+	
 	/**
-	 * @return the btnInserisci
+	 * @return bottone per l'inserimento del figlio (JButton)
 	 */
 	public JButton getBtnInserisci() {
 		return btnInserisci;
 	}
+	
 	/**
-	 * @return the filtro
+	 * @return filtro, per filtrare i figli in base al genitore (JComboBox)
 	 */
 	public JComboBox<Socio> getFiltro() {
 		return filtro;

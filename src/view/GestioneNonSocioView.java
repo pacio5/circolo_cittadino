@@ -15,8 +15,14 @@ import entita.NonSocio;
 import javax.swing.JButton;
 
 /**
+ * @author simoneonori
  * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
  *
+ * Classe GestioneNonSocioView, si occupa di visualizzare la finestra di gestione dei nonsocio, 
+ * dove è possibile gestire le varie operazioni
  */
 public class GestioneNonSocioView {
 
@@ -39,6 +45,11 @@ public class GestioneNonSocioView {
 	private JButton btnAnnulla;
 	private JButton btnDashboard;
 	
+	/**
+	 * Costruttore GestioneNonSocioView, si occupa di visualizzare la finestra di gestione dei nonsocio
+	 * e inizializza tutte le proprietà
+	 * @param nonSoci, elenco dei nonsocio
+	 */
 	public GestioneNonSocioView(ArrayList<NonSocio> nonSoci) {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 800, 600);
@@ -152,66 +163,117 @@ public class GestioneNonSocioView {
 		frame.getContentPane().add(lblElencoNonSoci);
 	}
 
+	/**
+	 * @return frame (JFrame)
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 
+	/**
+	 * 
+	 * @return list, contiene tutti i non socio (JList)
+	 */
 	public JList<NonSocio> getList() {
 		return list;
 	}
 
+	/**
+	 * @return codice fiscale (JTextField)
+	 */
 	public JTextField getCf() {
 		return cf;
 	}
 
+	/**
+	 * @return nome (JTextField)
+	 */
 	public JTextField getNome() {
 		return nome;
 	}
-
-	public JRadioButton getRdbtnUomo() {
-		return rdbtnUomo;
-	}
-
-	public JRadioButton getRdbtnDonna() {
-		return rdbtnDonna;
-	}
-
-	public ButtonGroup getSesso() {
-		return sesso;
-	}
-
+	
+	/**
+	 * @return cognome (JTextField)
+	 */
 	public JTextField getCognome() {
 		return cognome;
 	}
 
+	/**
+	 * @return radio button uomo (JRadioButton)
+	 */
+	public JRadioButton getRdbtnUomo() {
+		return rdbtnUomo;
+	}
+
+	/**
+	 * @return radio button donna (JRadioButton)
+	 */
+	public JRadioButton getRdbtnDonna() {
+		return rdbtnDonna;
+	}
+	
+	/**
+	 * 
+	 * @return radio button group sesso (ButtonGroup)
+	 */
+	public ButtonGroup getSesso() {
+		return sesso;
+	}
+
+	/**
+	 * @return buttonGroup sesso (ButtonGroup)
+	 */
 	public JTextField getTelefono() {
 		return telefono;
 	}
 
+	/**
+	 * 
+	 * @return email (JTextField)
+	 */
 	public JTextField getEmail() {
 		return email;
 	}
 
+	/**
+	 * @return bottone per inserire il nonsocio (JButton)
+	 */
 	public JButton getBtnInserisci() {
 		return btnInserisci;
 	}
 
+	/**
+	 * @return bottone per eliminare il nonsocio (JButton)
+	 */
 	public JButton getBtnElimina() {
 		return btnElimina;
 	}
 
+	/**
+	 * @return bottone per modificare il nonsocio (JButton)
+	 */
 	public JButton getBtnModifica() {
 		return btnModifica;
 	}
 
+	/**
+	 * @return bottone per salvare le modifiche del nonsocio (JButton)
+	 */
 	public JButton getBtnAggiorna() {
 		return btnAggiorna;
 	}
 	
+	/**
+	 * @return bottone per annullare le modifiche del nonsocio (JButton)
+	 */
 	public JButton getBtnAnnulla() {
 		return btnAnnulla;
 	}
 
+	/**
+	 * @return bottone per tornare alla dashboard (JButton)
+	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}

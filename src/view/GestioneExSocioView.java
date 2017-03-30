@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  * @author francescotalento
  * @version 1.0 Marzo 2017 
  * 
- * Classe GestioneExSociView, si occupa di visualizzare la finestra "Dashboard" del programma, 
+ * Classe GestioneExSociView, si occupa di visualizzare la finestra di gestione degli ex soci, 
  * da dove è possibile accedere a tutte le view per gestire le varie operazioni
  */
 public class GestioneExSocioView {
