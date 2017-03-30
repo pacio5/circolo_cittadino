@@ -508,7 +508,7 @@ public class SocioModel {
 			db.open();
 			String query;
 			st = db.getConn().createStatement();
-			query = "SELECT * FROM figlio WHERE DATEDIFF(data_nascita, CURDATE())<4380";		
+			query = "SELECT * FROM figlio WHERE DATEDIFF(NOW(), data_nascita)<4380";		
 			ResultSet res = st.executeQuery(query);
 			while (res.next()) {
 				figli.add(new Figlio(res.getString("cf"), res.getString("nome"), res.getString("sesso").charAt(0),
