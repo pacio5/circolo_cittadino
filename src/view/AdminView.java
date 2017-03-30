@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -25,6 +26,7 @@ public class AdminView {
 	private JButton btnPassaggioCategoria;
 	private JButton btnGestioneConvenzioni;
 	private JButton btnBefane;
+	private ImageIcon icon;
 
 	/**
 	 * Create the frame.
@@ -47,9 +49,6 @@ public class AdminView {
 		
 		btnInserisciEvento = new JButton("Gestisci Eventi");
 		btnInserisciEvento.setBounds(325, 400, 150, 29);
-		
-		JLabel lblCircoloCittadinoDi = new JLabel("Circolo Cittadino di Ascoli Piceno");
-		lblCircoloCittadinoDi.setBounds(321, 12, 211, 16);
 
 		btnElencoSoci = new JButton("Elenco Soci");
 		btnElencoSoci.setBounds(325, 200, 150, 29);
@@ -93,12 +92,15 @@ public class AdminView {
 		btnBefane = new JButton("Le Befane");
 		btnBefane.setBounds(100, 400, 150, 29);
 		
+		icon = new ImageIcon("circolo.png");
+		JLabel lblImg = new JLabel(new ImageIcon(".\\resources\\circolo.png"));
+		lblImg.setBounds(22,6,762,183);
+		
 		frmCircoloCittadinoDi.getContentPane().setLayout(null);
 		frmCircoloCittadinoDi.getContentPane().add(btnLogout);
 		frmCircoloCittadinoDi.getContentPane().add(btnInserisciSocio);
 		frmCircoloCittadinoDi.getContentPane().add(btnInserisciVersamento);
 		frmCircoloCittadinoDi.getContentPane().add(btnInserisciEvento);
-		frmCircoloCittadinoDi.getContentPane().add(lblCircoloCittadinoDi);
 		frmCircoloCittadinoDi.getContentPane().add(btnElencoSoci);
 		frmCircoloCittadinoDi.getContentPane().add(btnGestioneFigli);
 		frmCircoloCittadinoDi.getContentPane().add(btnGestioneVersamenti);
@@ -112,7 +114,8 @@ public class AdminView {
 		frmCircoloCittadinoDi.getContentPane().add(btnChiusuraAnnuale);	
 		frmCircoloCittadinoDi.getContentPane().add(btnPassaggioCategoria);
 		frmCircoloCittadinoDi.getContentPane().add(btnGestioneConvenzioni);	
-		frmCircoloCittadinoDi.getContentPane().add(btnBefane);				
+		frmCircoloCittadinoDi.getContentPane().add(btnBefane);	
+		frmCircoloCittadinoDi.getContentPane().add(lblImg);
 	}
 
 	public JFrame getFrame() {
