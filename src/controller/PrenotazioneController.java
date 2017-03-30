@@ -692,7 +692,7 @@ public class PrenotazioneController {
 	 * e il ritrono alla dashboard (btnDashboard)
 	 */
 	public void gestioneBefane() {
-		ArrayList<Figlio> figli = modelS.elencoFigli(null);
+		ArrayList<Figlio> figli = modelS.elencoFigliBefane();
 		BefaneView view = new BefaneView(figli);
 		view.getFrame().setVisible(true);
 

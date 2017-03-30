@@ -40,12 +40,9 @@ public class GestioneEventiView {
 	
 
 	/**
-	 * Costruttore PrenotaEventoView, si occupa di visualizzare la finestra di gestione degli eventi
+	 * Costruttore GestioneEventiView, si occupa di visualizzare la finestra di gestione degli eventi
 	 * e inizializza tutte le proprietà
 	 * @param eventi oggetto di tipo ArrayList<Evento> contenente tutti gli eventi
-	 * @param prenotazioni oggetto di tipo ArrayList<Prenotazione> contenente le prenotazioni relative agli eventi
-	 * @param affittuariS oggetto di tipo ArrayList<Socio> contenente tutti i soci
-	 * @param affittuariNS oggetto di tipo ArrayList<NonSocio> contenente tutti i non soci
 	 */
 	public GestioneEventiView(ArrayList<Evento> eventi){
 		frmCircoloCittadino = new JFrame("Circolo Cittadino - Elenco attivita'");
@@ -172,50 +169,79 @@ public class GestioneEventiView {
 		return frmCircoloCittadino;
 	}
 
+	/**
+	 * @return Bottone per inserire i dati dell'evento (JButton)
+	 */
 	public JButton getBtnInserisci() {
 		return btnInserisci;
 	}
-	
+
+	/**
+	 * @return Bottone per modificare i dati dell'evento (JButton)
+	 */
 	public JButton getBtnModifica(){
 		return btnModifica;
 	}
-	
+
+	/**
+	 * @return Bottone per cancellare i dati dell'evento (JButton)
+	 */
 	public JButton getBtnCancella(){
 		return btnCancella;
 	}
-	
+
+	/**
+	 * @return Bottone per salvare le modifiche effettuate (JButton)
+	 */
 	public JButton getBtnSalvaModifiche(){
 		return btnSalvaModifiche;
 	}
-	
+
+	/**
+	 * @return Bottone per annullare le modifiche effettuate (JButton)
+	 */
 	public JButton getBtnAnnullaModifiche(){
 		return btnAnnullaModifiche;
 	}
 
-	public void setBtnInserisci(JButton btnInserisci) {
-		this.btnInserisci = btnInserisci;
-	}
-
+	/**
+	 * @return txtFieldNomeEvento (JTextField)
+	 */
 	public JTextField getNomeEvento() {
 		return txtFieldNomeEvento;
 	}
 
+	/**
+	 * @return txtFieldDataEvento (JTextField)
+	 */
 	public JTextField getData() {
 		return txtFieldDataEvento;
 	}
 
+	/**
+	 * @return txtAreaDescrizione (JTextArea)
+	 */
 	public JTextArea getDescrizione() {
 		return txtAreaDescrizione;
 	}
 
+	/**
+	 * @return spnNPosti (JSpinner)
+	 */
 	public JSpinner getNPosti() {
 		return spnNPosti;
 	}
 
+	/**
+	 * @return txtFieldLuogo (JTextField)
+	 */
 	public JTextField getLuogo() {
 		return txtFieldLuogo;
 	}
 
+	/**
+	 * @return txtFieldPrezzo (JTextField)
+	 */
 	public JTextField getPrezzo() {
 		return txtFieldPrezzo;
 	}
@@ -228,6 +254,9 @@ public class GestioneEventiView {
 		this.lstEventi = list;
 	}
 	
+	/**
+	 * @return lstEventi contentente gli Eventi (JList)
+	 */
 	public JList<Evento> getList() {
 		return lstEventi;
 	}

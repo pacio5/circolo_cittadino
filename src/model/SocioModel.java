@@ -494,6 +494,33 @@ public class SocioModel {
 		}
 		return figli;
 	}
+	
+	/**
+	 * Metodo che si occupa di recuperare l'elenco di tutti i figli 
+	 * che abbiano almeno 12 anni per l'evento delle befane
+	 * @param cf codice fiscale del socio per filtrare la ricerca dei figli in base al genitore
+	 * @return oggetto di tipo ArrayList<Figlio> che contiene tutti i figli trovati
+	 */
+	public ArrayList<Figlio> elencoFigliBefane() {
+		ArrayList<Figlio> figli = new ArrayList<Figlio>();
+		Statement st;
+		try {
+			db.open();
+			String query;
+			st = db.getConn().createStatement();
+			query = "SELECT * FROM figlio WHERE DATEDIFF(data_nascita, CURDATE())<4380";		
+			ResultSet res = st.executeQuery(query);
+			while (res.next()) {
+				figli.add(new Figlio(res.getString("cf"), res.getString("nome"), res.getString("sesso").charAt(0),
+						res.getDate("data_nascita"), cercaSocio(res.getString("genitore")), res.getBoolean("acarico")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			db.close();
+		}
+		return figli;
+	}
 
 	/**
 	 * Metodo che si occupa di recuperare l'elenco di tutti i figli degli ex-socio o dei figli di un ex-socio nel database
