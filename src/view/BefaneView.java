@@ -19,7 +19,7 @@ import javax.swing.JTextArea;
  */
 public class BefaneView {
 	
-	private JFrame frame;
+	private JFrame frmCircoloCittadinoAscoli;
 	private JList<Figlio> list;
 	private DefaultListModel<Figlio> dlm;
 	private ScrollPane scrollPaneFigli;
@@ -30,19 +30,20 @@ public class BefaneView {
 	 * Create the frame
 	 */
 	public BefaneView(ArrayList<Figlio> figli){
-		frame = new JFrame("Circolo Cittadino Ascoli Piceno");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setBounds(100, 100, 800, 600);
-		frame.setResizable(false);
-		frame.getContentPane().setLayout(null);
+		frmCircoloCittadinoAscoli = new JFrame("Circolo Cittadino Ascoli Piceno");
+		frmCircoloCittadinoAscoli.setTitle("Circolo Cittadino Ascoli Piceno - Le Befane");
+		frmCircoloCittadinoAscoli.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCircoloCittadinoAscoli.setBounds(100, 100, 800, 600);
+		frmCircoloCittadinoAscoli.setResizable(false);
+		frmCircoloCittadinoAscoli.getContentPane().setLayout(null);
 		
 		JLabel lblElencoFigli = new JLabel("Figli");
 		lblElencoFigli.setBounds(156, 57, 38, 16);
-		frame.getContentPane().add(lblElencoFigli);
+		frmCircoloCittadinoAscoli.getContentPane().add(lblElencoFigli);
 		
 		JLabel lblElencoSoci = new JLabel("Genitore");
 		lblElencoSoci.setBounds(445, 57, 89, 16);
-		frame.getContentPane().add(lblElencoSoci);
+		frmCircoloCittadinoAscoli.getContentPane().add(lblElencoSoci);
 		
 		list = new JList<Figlio>();
 		dlm = new DefaultListModel<Figlio>();
@@ -53,21 +54,21 @@ public class BefaneView {
 		
 		scrollPaneFigli = new ScrollPane();
 		scrollPaneFigli.setBounds(10, 91, 373, 469);
-		frame.getContentPane().add(scrollPaneFigli);
+		frmCircoloCittadinoAscoli.getContentPane().add(scrollPaneFigli);
 		scrollPaneFigli.add(list);
 		
 		btnDashboard = new JButton("Dashboard");
 		btnDashboard.setBounds(697, 9, 97, 41);
-		frame.getContentPane().add(btnDashboard);
+		frmCircoloCittadinoAscoli.getContentPane().add(btnDashboard);
 		
 		textArea = new JTextArea();
 		textArea.setBounds(445, 91, 327, 189);
-		frame.getContentPane().add(textArea);
+		frmCircoloCittadinoAscoli.getContentPane().add(textArea);
 
 	}
 
 	public JFrame getFrame() {
-		return frame;
+		return frmCircoloCittadinoAscoli;
 	}
 
 	public JList<Figlio> getListF() {

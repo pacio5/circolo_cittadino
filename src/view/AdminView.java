@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 
 public class AdminView {
 
-	private JFrame frame;
+	private JFrame frmCircoloCittadinoDi;
 	private JButton btnLogout;
 	private JButton btnInserisciSocio;
 	private JButton btnInserisciVersamento;
@@ -30,92 +30,93 @@ public class AdminView {
 	 * Create the frame.
 	 */
 	public AdminView() {
-		frame = new JFrame();
-		frame.setResizable(false);
-		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCircoloCittadinoDi = new JFrame();
+		frmCircoloCittadinoDi.setTitle("Circolo Cittadino di Ascoli Piceno");
+		frmCircoloCittadinoDi.setResizable(false);
+		frmCircoloCittadinoDi.setBounds(100, 100, 800, 600);
+		frmCircoloCittadinoDi.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		btnLogout = new JButton("Logout");
 		btnLogout.setBounds(677, 6, 117, 29);
 		
 		btnInserisciSocio = new JButton("Inserisci Socio");
-		btnInserisciSocio.setBounds(24, 50, 152, 29);
+		btnInserisciSocio.setBounds(100, 200, 150, 29);
 		
 		btnInserisciVersamento = new JButton("Inserisci Versamento");
-		btnInserisciVersamento.setBounds(199, 50, 152, 29);
+		btnInserisciVersamento.setBounds(100, 300, 150, 29);
 		
-		btnInserisciEvento = new JButton("Inserisci Evento");
-		btnInserisciEvento.setBounds(24, 254, 152, 29);
+		btnInserisciEvento = new JButton("Gestisci Eventi");
+		btnInserisciEvento.setBounds(325, 400, 150, 29);
 		
 		JLabel lblCircoloCittadinoDi = new JLabel("Circolo Cittadino di Ascoli Piceno");
-		lblCircoloCittadinoDi.setBounds(266, 11, 211, 16);
+		lblCircoloCittadinoDi.setBounds(321, 12, 211, 16);
 
 		btnElencoSoci = new JButton("Elenco Soci");
-		btnElencoSoci.setBounds(24, 91, 152, 29);
+		btnElencoSoci.setBounds(325, 200, 150, 29);
 		
 		btnGestioneFigli = new JButton("Gestione Figli");
-		btnGestioneFigli.setBounds(24, 132, 152, 29);
+		btnGestioneFigli.setBounds(100, 250, 150, 29);
 		
 		btnGestioneVersamenti = new JButton("Gestione Versamenti");
-		btnGestioneVersamenti.setBounds(199, 90, 152, 29);
+		btnGestioneVersamenti.setBounds(325, 300, 150, 29);
 		
 		btnGestioneNonSocio = new JButton("Gestione Non Socio");
-		btnGestioneNonSocio.setBounds(24, 173, 152, 29);
+		btnGestioneNonSocio.setBounds(325, 250, 150, 29);
 		
 		btnGestioneExSocio = new JButton("Gestione Ex Socio");
-		btnGestioneExSocio.setBounds(24, 214, 152, 29);
+		btnGestioneExSocio.setBounds(550, 250, 150, 29);
 		
 		btnInserisciQuota = new JButton("Inserimento Quota");
-		btnInserisciQuota.setBounds(199, 132, 152, 29);
+		btnInserisciQuota.setBounds(550, 300, 150, 29);
 		
 		btnVisualizzazioneQuote = new JButton("Visualizzazione Quote");
-		btnVisualizzazioneQuote.setBounds(199, 172, 152, 29);
+		btnVisualizzazioneQuote.setBounds(100, 350, 150, 29);
 		
-		btnInserisciSala = new JButton("Inserisci Sala");
-		btnInserisciSala.setBounds(199, 254, 152, 29);
+		btnInserisciSala = new JButton("Gestione Sale");
+		btnInserisciSala.setBounds(218, 450, 150, 29);
 		
 		btnPrenotaSala = new JButton("Prenota Sala");
-		btnPrenotaSala.setBounds(199, 294, 152, 29);
+		btnPrenotaSala.setBounds(443, 450, 150, 29);
 		
 		btnPrenotaEvento = new JButton("Prenota Evento");
-		btnPrenotaEvento.setBounds(24, 294, 152, 29);
+		btnPrenotaEvento.setBounds(550, 400, 150, 29);
 		
-		btnChiusuraAnnuale = new JButton("Chiusura annuale");
-		btnChiusuraAnnuale.setBounds(199, 214, 152, 29);
+		btnChiusuraAnnuale = new JButton("Chiusura Annuale");
+		btnChiusuraAnnuale.setBounds(325, 350, 150, 29);
 		
 		btnPassaggioCategoria = new JButton("Passaggio Categoria");
-		btnPassaggioCategoria.setBounds(363, 50, 152, 29);
+		btnPassaggioCategoria.setBounds(550, 200, 150, 29);
 		
 		btnGestioneConvenzioni = new JButton("Gestione Convenzioni");
-		btnGestioneConvenzioni.setBounds(363, 91, 152, 29);
+		btnGestioneConvenzioni.setBounds(550, 350, 150, 29);
 		
 		btnBefane = new JButton("Le Befane");
-		btnBefane.setBounds(363, 132, 152, 29);
+		btnBefane.setBounds(100, 400, 150, 29);
 		
-		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(btnLogout);
-		frame.getContentPane().add(btnInserisciSocio);
-		frame.getContentPane().add(btnInserisciVersamento);
-		frame.getContentPane().add(btnInserisciEvento);
-		frame.getContentPane().add(lblCircoloCittadinoDi);
-		frame.getContentPane().add(btnElencoSoci);
-		frame.getContentPane().add(btnGestioneFigli);
-		frame.getContentPane().add(btnGestioneVersamenti);
-		frame.getContentPane().add(btnGestioneNonSocio);
-		frame.getContentPane().add(btnGestioneExSocio);
-		frame.getContentPane().add(btnInserisciQuota);
-		frame.getContentPane().add(btnVisualizzazioneQuote);
-		frame.getContentPane().add(btnInserisciSala);
-		frame.getContentPane().add(btnPrenotaSala);
-		frame.getContentPane().add(btnPrenotaEvento);
-		frame.getContentPane().add(btnChiusuraAnnuale);	
-		frame.getContentPane().add(btnPassaggioCategoria);
-		frame.getContentPane().add(btnGestioneConvenzioni);	
-		frame.getContentPane().add(btnBefane);				
+		frmCircoloCittadinoDi.getContentPane().setLayout(null);
+		frmCircoloCittadinoDi.getContentPane().add(btnLogout);
+		frmCircoloCittadinoDi.getContentPane().add(btnInserisciSocio);
+		frmCircoloCittadinoDi.getContentPane().add(btnInserisciVersamento);
+		frmCircoloCittadinoDi.getContentPane().add(btnInserisciEvento);
+		frmCircoloCittadinoDi.getContentPane().add(lblCircoloCittadinoDi);
+		frmCircoloCittadinoDi.getContentPane().add(btnElencoSoci);
+		frmCircoloCittadinoDi.getContentPane().add(btnGestioneFigli);
+		frmCircoloCittadinoDi.getContentPane().add(btnGestioneVersamenti);
+		frmCircoloCittadinoDi.getContentPane().add(btnGestioneNonSocio);
+		frmCircoloCittadinoDi.getContentPane().add(btnGestioneExSocio);
+		frmCircoloCittadinoDi.getContentPane().add(btnInserisciQuota);
+		frmCircoloCittadinoDi.getContentPane().add(btnVisualizzazioneQuote);
+		frmCircoloCittadinoDi.getContentPane().add(btnInserisciSala);
+		frmCircoloCittadinoDi.getContentPane().add(btnPrenotaSala);
+		frmCircoloCittadinoDi.getContentPane().add(btnPrenotaEvento);
+		frmCircoloCittadinoDi.getContentPane().add(btnChiusuraAnnuale);	
+		frmCircoloCittadinoDi.getContentPane().add(btnPassaggioCategoria);
+		frmCircoloCittadinoDi.getContentPane().add(btnGestioneConvenzioni);	
+		frmCircoloCittadinoDi.getContentPane().add(btnBefane);				
 	}
 
 	public JFrame getFrame() {
-		return frame;
+		return frmCircoloCittadinoDi;
 	}
 	
 	public JButton getBtnLogout() {
