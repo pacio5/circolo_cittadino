@@ -14,18 +14,33 @@ import entita.Quota;
 import entita.Socio;
 
 /**
- * @author smerilli
- *
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * 
+ * @version 1.0 Marzo 2017
+ * 
+ * 
+ * Classe che si occupa delle interazioni con le entità Quota e Versamento del database 
  */
 public class QuotaModel {
 
 	MySql db;
 
+	/** 
+	 * Costruttore, il model è costituito da un oggetto MySql 
+	 * per stabilire la connessione con il database
+	 */
 	public QuotaModel() {
 		db = new MySql();
 	}
 
-	/* Operazioni quote */
+	/**
+	 * Inserimento di una quota
+	 * @param quo quota da inserire
+	 * @return true se l'operazione ha successo, altrimenti false
+	 */
 	public boolean insertQuota(Quota quo) {
 		boolean esito = false;
 		String operation = "INSERT INTO Quota (DATA_INIZIO, VALORE, TIPOLOGIA) VALUES (?, ?, ?)";
@@ -46,6 +61,11 @@ public class QuotaModel {
 		return esito;
 	}
 
+	/**
+	 * Aggiornamento di una quota
+	 * @param quo quota da aggiornare
+	 * @return true se l'operazione ha successo, altrimenti false
+	 */
 	public boolean updateQuota(Quota quo) {
 		boolean esito = false;
 		String operation = "UPDATE Quota SET DATA_INIZIO = ?,  VALORE = ?, TIPOLOGIA = ? WHERE ID = ?";
@@ -67,6 +87,11 @@ public class QuotaModel {
 		return esito;
 	}
 
+	/**
+	 * Elimina di una quota
+	 * @param quo quota da eliminare
+	 * @return true se l'operazione ha successo, altrimenti false
+	 */
 	public boolean deleteQuota(int cod) {
 		boolean esito = false;
 		String operation = "DELETE FROM Quota WHERE ID = ?";
@@ -85,6 +110,10 @@ public class QuotaModel {
 		return esito;
 	}
 
+	/**
+	 * Visualizzazione tutte le quote ordinate per data iniziale e tipologia
+	 * @return ArrayList contenente tutte le quote presenti
+	 */
 	public ArrayList<Quota> getQuote() {
 		ArrayList<Quota> quote = new ArrayList<Quota>();
 		try {
@@ -104,6 +133,11 @@ public class QuotaModel {
 		return quote;
 	}
 
+	/**
+	 * Visualizzazione dell'ultima quota della tipologia considerata
+	 * @param tipo tipologia di socio considerata
+	 * @return l'ultima quota caricata
+	 */
 	public Quota getQuotaPrecendente(String tipo) {
 		Quota quote = null;
 		String operation = "SELECT * FROM Quota WHERE DATA_INIZIO = (SELECT MAX(DATA_INIZIO) FROM Quota WHERE TIPOLOGIA = ?) AND TIPOLOGIA = ?";
@@ -127,6 +161,11 @@ public class QuotaModel {
 		return quote;
 	}
 
+	/**
+	 * Calcolo del debito/credito del socio considerato
+	 * @param socio socio considerato
+	 * @return il valore del debito/credito
+	 */
 	public float getCreditoDebito(Socio socio) {
 		ArrayList<Date> datainizio = new ArrayList<Date>();
 		ArrayList<Float> importo = new ArrayList<Float>();
@@ -141,24 +180,29 @@ public class QuotaModel {
 			command = db.getConn().prepareStatement(operations);
 			command.setString(1, socio.getCf());
 			ResultSet rss = command.executeQuery();
+			/* Controlla se sono presenti passaggi di tipologia */
 			if(rss.next())
 				passaggio = true;
 			command = db.getConn().prepareStatement(operationq);
 			if(passaggio)
-				command.setString(1, rss.getString("TIPOLOGIA_PRECEDENTE"));
+				command.setString(1, rss.getString("TIPOLOGIA_PRECEDENTE")); // Inserisco tipologia precedente al cambio
 			else 
-				command.setString(1, socio.getTipologia());
+				command.setString(1, socio.getTipologia()); 
 			ResultSet rsq = command.executeQuery();
 			while (rsq.next()) {
 				datainizio.add(rsq.getDate("DATA_INIZIO"));
 				importo.add(rsq.getFloat("VALORE"));
 			}
 			rsq.close();
+			/* Caso in cui è presente almeno una quota nell'anno precedente */
 			if (!datainizio.isEmpty()) {
+				/* Caso in cui è presente una sola quota */
 				if (datainizio.size() - 1 == 0){
+					/* Caso in cui la quota abbia inizio a Gennaio */
 					if (datainizio.get(0).toString().substring(5, 7).equals("01")){
 						creditodebito += (float) (importo.get(0) * 12);
 					} else {
+						/* Controllo per il cambio di tipologia */
 						if(passaggio)
 							creditodebito += (float) (getValoreQuotaPrecedente(rss.getString("TIPOLOGIA_PRECEDENTE"))
 									* (Integer.valueOf(datainizio.get(0).toString().substring(5, 7)) - 1));
@@ -210,6 +254,12 @@ public class QuotaModel {
 		return creditodebito;
 	}
 
+	/**
+	 * Restituisce il valore della quota valida sia negl'ultimi mesi dei due anni precendenti
+	 * e sia nei mesi iniziali dell'anno appena trascorso (rispetto all'anno della chiusura annuale considerata)
+	 * @param tipologia
+	 * @return importo della quota
+	 */
 	private float getValoreQuotaPrecedente(String tipologia) {
 		float importo = 0;
 		String operation = "SELECT VALORE FROM Quota WHERE TIPOLOGIA = ? AND DATA_INIZIO = (SELECT MAX(DATA_INIZIO) FROM Quota WHERE YEAR(DATA_INIZIO) = (YEAR(curdate())-2))";
@@ -230,6 +280,11 @@ public class QuotaModel {
 		return importo;
 	}
 
+	/**
+	 * Visualizza la lista dei mesi pagati nell'anno attuale
+	 * @param cf codice fiscale del socio
+	 * @return ArrayList contenente i mesi pagati
+	 */
 	public ArrayList<String> getMesiPagati(String cf) {
 		ArrayList<String> mesipagati = new ArrayList<String>();
 		String operation = "SELECT Mese.DATA as Mesi FROM Mese, Versamento WHERE Mese.VERSAMENTO = Versamento.ID AND Versamento.SOCIO = ? AND YEAR(Versamento.DATA) = YEAR(curdate())";
@@ -250,7 +305,11 @@ public class QuotaModel {
 		return mesipagati;
 	}
 
-	/* Operazioni versamenti */
+	/**
+	 * Inserimento di un versamento
+	 * @param spill versamento da inserire
+	 * @return true se l'operazione ha successo, altrimenti false
+	 */
 	public boolean insertVersamento(Versamento spill) {
 		boolean esito = false;
 		String operationV = "INSERT INTO Versamento (DATA, IMPORTO, DESCRIZIONE, SOCIO) VALUES (?, ?, ?, ?)";
@@ -281,6 +340,11 @@ public class QuotaModel {
 		return esito;
 	}
 
+	/**
+	 * Aggiornamento di un versamento
+	 * @param spill versamento da aggiornare
+	 * @return true se l'operazione ha successo, altrimenti false
+	 */
 	public boolean updateVersamento(Versamento spill) {
 		boolean esito = false;
 		String operationU = "UPDATE Versamento SET DATA = ?, IMPORTO = ?, DESCRIZIONE = ?, SOCIO = ? WHERE ID = ?";
@@ -318,6 +382,11 @@ public class QuotaModel {
 		return esito;
 	}
 
+	/**
+	 * Eliminazione di un versamento
+	 * @param cod codice del versamento da eliminare
+	 * @return true se l'operazione ha successo, altrimenti false
+	 */
 	public boolean deleteVersamento(int cod) {
 		boolean esito = false;
 		String operation = "DELETE FROM Versamento WHERE ID = ?";
@@ -336,6 +405,10 @@ public class QuotaModel {
 		return esito;
 	}
 
+	/**
+	 * Visualizza tutti i versamenti e i relativi mesi
+	 * @return ArrayList di versamenti
+	 */
 	public ArrayList<Versamento> getVersamenti() {
 		ArrayList<Versamento> spill = new ArrayList<Versamento>();
 		try {
@@ -363,6 +436,13 @@ public class QuotaModel {
 		return spill;
 	}
 
+	/**
+	 * Restituisce il valore della quota valida per il periodo considerato
+	 * di un determinato tipo di socio
+	 * @param tipo tipologia dei soci
+	 * @param data data dell'inizio della quota
+	 * @return valore della quota
+	 */
 	public float getImportoMese(String tipo, Date data) {
 		float valore = 0;
 		String operation = "SELECT VALORE FROM Quota WHERE TIPOLOGIA = ? AND DATA_INIZIO = (SELECT MAX(DATA_INIZIO) FROM Quota WHERE DATA_INIZIO <= ? AND TIPOLOGIA = ?)";
@@ -385,6 +465,11 @@ public class QuotaModel {
 		return valore;
 	}
 	
+	/**
+	 * Inserimento del versamento della chiusura annuale
+	 * @param spill versamento della chiusura annuale da inserire
+	 * @return true se l'operazione ha successo, altrimenti false
+	 */
 	public boolean insertChiusuraAnnuale(Versamento spill) {
 		boolean esito = false;
 		String operationV = "INSERT INTO Versamento (DATA, IMPORTO, DESCRIZIONE, SOCIO) VALUES (?, ?, ?, ?)";

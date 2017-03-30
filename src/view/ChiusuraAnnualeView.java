@@ -7,8 +7,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
 /**
- * @author smerilli
- *
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * 
+ * @version 1.0 Marzo 2017
+ * 
+ * 
+ * Classe che si della definizione e visualizzazione della
+ * finestra della chiusura annuale e i relativi componenti
  */
 public class ChiusuraAnnualeView {
 
@@ -18,14 +26,14 @@ public class ChiusuraAnnualeView {
 	private JButton btnSalda;
 
 	/**
-	 * Create the application.
+	 * Creazione dell'applicazione
 	 */
 	public ChiusuraAnnualeView() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inizializzazione del contenuto del frame
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -55,18 +63,30 @@ public class ChiusuraAnnualeView {
 		frame.getContentPane().add(btnSalda);
 	}
 
+	/**
+	 * @return frame (JFrame)
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 
+	/**
+	 * @return table (JTable)
+	 */
 	public JTable getTable() {
 		return table;
 	}
 
+	/**
+	 * @return btnDashboard (JButton)
+	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}
 
+	/**
+	 * @return btnSalda (JButton)
+	 */
 	public JButton getBtnSalda() {
 		return btnSalda;
 	}
