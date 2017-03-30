@@ -5,6 +5,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+/**
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
+ * 
+ * Classe AdminView, si occupa di visualizzare la finestra "Dashboard" del programma, 
+ * da dove è possibile accedere a tutte le view per gestire le varie operazioni
+ */
 public class AdminView {
 
 	private JFrame frmCircoloCittadinoDi;
@@ -26,10 +36,9 @@ public class AdminView {
 	private JButton btnPassaggioCategoria;
 	private JButton btnGestioneConvenzioni;
 	private JButton btnBefane;
-	private ImageIcon icon;
 
 	/**
-	 * Create the frame.
+	 * Costruttore senza parametri, crea il frame ed inizializza tutti i componenti
 	 */
 	public AdminView() {
 		frmCircoloCittadinoDi = new JFrame();
@@ -92,8 +101,7 @@ public class AdminView {
 		btnBefane = new JButton("Le Befane");
 		btnBefane.setBounds(550, 400, 160, 29);
 		
-		icon = new ImageIcon("circolo.png");
-		JLabel lblImg = new JLabel(new ImageIcon(".\\resources\\circolo.png"));
+		JLabel lblImg = new JLabel(new ImageIcon("./resources/circolo.png"));
 		lblImg.setBounds(22,6,762,183);
 		
 		frmCircoloCittadinoDi.getContentPane().setLayout(null);
@@ -118,78 +126,154 @@ public class AdminView {
 		frmCircoloCittadinoDi.getContentPane().add(lblImg);
 	}
 
+	/**
+	 * 
+	 * @return frame (JFrame)
+	 */
 	public JFrame getFrame() {
 		return frmCircoloCittadinoDi;
 	}
 	
+	/**
+	 * 
+	 * @return bottone per il logout (JButton)
+	 */
 	public JButton getBtnLogout() {
 		return btnLogout;
 	}
 	
+	/**
+	 * 
+	 * @return bottone per l'inserimento del socio (Jbutton)
+	 */
 	public JButton getBtnInserisciSocio() {
 		return btnInserisciSocio;
 	}
 	
+	/**
+	 * 
+	 * @return bottone per l'inserimento del versamento (Jbutton)
+	 */
 	public JButton getBtnInserisciVersamento() {
 		return btnInserisciVersamento;
 	}
 	
+	/**
+	 * 
+	 * @return bottone per visualizzare l'elenco soci (Jbutton)
+	 */
 	public JButton getBtnElencoSoci() {
 		return btnElencoSoci;
 	}
 	
+	/**
+	 * 
+	 * @return bottone per l'inserimento dell'evento (Jbutton)
+	 */
 	public JButton getBtnInserisciEvento() {
 		return btnInserisciEvento;
 	}
 	
+	/**
+	 * 
+	 * @return bottone per la gestione dei figli (Jbutton)
+	 */
 	public JButton getBtnGestioneFigli() {
 		return btnGestioneFigli;
 	}
 	
+	/**
+	 * 
+	 * @return bottone per la gestione dei versamenti (Jbutton)
+	 */
 	public JButton getBtnGestioneVersamenti(){
 		return btnGestioneVersamenti;
 	}
 
+	/**
+	 * 
+	 * @return bottone per la gestione dei  nonsocio (Jbutton)
+	 */
 	public JButton getBtnGestioneNonSocio() {
 		return btnGestioneNonSocio;
 	}
 
+	/**
+	 * 
+	 * @return bottone per la gestione degli exsocio (Jbutton)
+	 */
 	public JButton getBtnGestioneExSocio() {
 		return btnGestioneExSocio;
 	}
 
+	/**
+	 * 
+	 * @return bottone per l'inserimento delle quote (Jbutton)
+	 */
 	public JButton getBtnInserisciQuota() {
 		return btnInserisciQuota;
 	}
 
+	/**
+	 * 
+	 * @return bottone per la visualizzazione delle quote (Jbutton)
+	 */
 	public JButton getBtnVisualizzazioneQuote() {
 		return btnVisualizzazioneQuote;
 	}
 	
+	/**
+	 * 
+	 * @return bottone per l'inserimento della sala (Jbutton)
+	 */
 	public JButton getBtnInserisciSala() {
 		return btnInserisciSala;
 	}
 	
+	/**
+	 * 
+	 * @return bottone per la prenotazione della sala (Jbutton)
+	 */
 	public JButton getBtnPrenotaSala() {
 		return btnPrenotaSala;
 	}
 	
+	/**
+	 * 
+	 * @return bottone per la prenotazione dell'evento (Jbutton)
+	 */
 	public JButton getBtnPrenotaEvento() {
 		return btnPrenotaEvento;
 	}
 	
+	/**
+	 * 
+	 * @return bottone per la gestione della chiusura annuale (Jbutton)
+	 */
 	public JButton getBtnChiusuraAnnuale() {
 		return btnChiusuraAnnuale;
 	}
 
+	/**
+	 * 
+	 * @return bottone per la gestione del passaggio di categoria (Jbutton)
+	 */
 	public JButton getBtnPassaggioCategoria() {
 		return btnPassaggioCategoria;
 	}
 
+	/**
+	 * 
+	 * @return bottone per la gestione delle convenzioni (Jbutton)
+	 */
 	public JButton getBtnGestioneConvenzioni() {
 		return btnGestioneConvenzioni;
 	}
 	
+	/**
+	 * 
+	 * @return bottone per la gestione dell'evento "Befane" (JButton)
+	 */
 	public JButton getBtnBefane() {
 		return btnBefane;
 	}

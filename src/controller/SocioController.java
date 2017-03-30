@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controller;
 
 import model.SocioModel;
@@ -32,17 +29,30 @@ import controller.AdminController;
 import view.VisualizzaSociView;
 
 /**
+ * @author simoneonori
  * @author eliapacioni
- *
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
+ * 
+ * Classe SocioController che si occupa di gestire tutti gli eventi generati delle view riguardanti socio, nonsocio, exsocio, figlio
+ *  e di prendere i dati necessari dal socioModel
  */
 public class SocioController {
 
 	private SocioModel model;
 
+	/**
+	 * Costruttore senza parametri del SocioController, inizializza il SocioModel
+	 */
 	public SocioController() {
 		model = new SocioModel();
 	}
 
+	/**
+	 * Metodo che gestisce gli eventi della InserisciSocioView, 
+	 * in particolare l'inserimento del socio (btnInserisci) e il ritorno alla dashboard (btnDashboard)
+	 */
 	public void inserimentoSocio() {
 		InserisciSocioView view = new InserisciSocioView();
 		view.getFrame().setVisible(true);
@@ -219,6 +229,10 @@ public class SocioController {
 		});
 	}
 
+	/**
+	 * Metodo che gestisce gli eventi generati della VisualizzaSociView, 
+	 * in particolare la selezione di un socio, la modifica, l'eliminazione, la dimissione, l'espulsione e il ritorno alla dashboard
+	 */
 	public void visualizzazioneSoci() {
 		VisualizzaSociView view = new VisualizzaSociView(model.elencoSoci());
 		view.getFrame().setVisible(true);
@@ -500,6 +514,10 @@ public class SocioController {
 		});
 	}
 
+	/**
+	 * Metodo che si occupa della gestione degli eventi generati dalla GestioneFigliView,
+	 * in particolare l'inserimento, modifica, eliminazione di un figlio e il ritorno alla dashboard
+	 */
 	public void gestioneFigli() {
 		GestioneFigliView view = new GestioneFigliView(model.elencoFigli(null), model.elencoSoci());
 		view.getFrame().setVisible(true);
@@ -716,6 +734,10 @@ public class SocioController {
 
 	}
 
+	/**
+	 * Metodo che si occupa della gestione degli eventi generati dalla GestioneNonSocioView, 
+	 * in particolare inserimento, modifica, eliminazione di un non socio e il ritorno alla dashboard
+	 */
 	public void gestioneNonSocio() {
 		GestioneNonSocioView view = new GestioneNonSocioView(model.elencoNonSoci());
 		view.getFrame().setVisible(true);
@@ -939,6 +961,10 @@ public class SocioController {
 		});
 	}
 
+	/**
+	 * Metodo che si occupa della gestione degli eventi generati dalla GestioneExSocioView, 
+	 * in particolare inserimento, modifica, eliminazione di un non socio e il ritorno alla dashboard
+	 */
 	public void gestioneExSocio() {
 		GestioneExSocioView view = new GestioneExSocioView(model.elencoExSoci());
 		view.getFrame().setVisible(true);
@@ -992,6 +1018,10 @@ public class SocioController {
 		});
 	}
 
+	/**
+	 * Metodo che si occupa della gestione degli eventi generati dalla PassaggiCategoriaView,
+	 * in particolare di effettuare il passaggio e tornare alla dashboard
+	 */
 	public void passaggiCategoria() {
 		PassaggioCategoriaView view = new PassaggioCategoriaView(model.passaggioCategoria());
 		view.getFrame().setVisible(true);

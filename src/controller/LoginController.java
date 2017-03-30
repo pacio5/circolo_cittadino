@@ -1,6 +1,3 @@
-/**
- * 
- */
 package controller;
 
 import java.awt.event.KeyEvent;
@@ -13,20 +10,33 @@ import view.LoginView;
 import model.LoginModel;
 
 /**
+ * @author simoneonori
  * @author eliapacioni
- *
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
+ * 
+ * Classe LoginController che si occupa di gestire gli eventi generati dalla LoginView e prendere i dati necessari dal LoginModel
  */
 public class LoginController {
 
 	private LoginModel loginModel;
 	private LoginView loginView;
 
+	/**
+	 * Costruttore senza parametri del LoginController,
+	 * inizializza la LoginView e la rende visibile,
+	 * inizializza il LoginModel
+	 */
 	public LoginController() {
 		loginView = new LoginView();
 		loginView.getFrame().setVisible(true);
 		loginModel = new LoginModel();
 	}
 
+	/**
+	 * Metodo che serve per intercettare gli eventi generati dalla view
+	 */
 	public void controlloEvento() {
 		
 		loginView.getTextFieldPassword().addKeyListener(new KeyListener() {

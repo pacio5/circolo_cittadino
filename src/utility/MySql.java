@@ -23,8 +23,13 @@ import java.io.IOException;
 
 
 /**
+ * @author simoneonori
  * @author eliapacioni
- *
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
+ * 
+ * Classe MySql che si occupa di gestire la connessione con il database
  */
 public class MySql {
 	private String driver;
@@ -33,6 +38,9 @@ public class MySql {
 	private String password;
 	private Connection conn = null;
 
+	/**
+	 * Costruttore della classe Mysql, si occupa di leggere i parametri di connessione al database dal file config.xml
+	 */
 	public MySql() {
 		try {
 			File inputFile = new File("resources/config.xml");
@@ -69,7 +77,9 @@ public class MySql {
 		}
 	}
 
-	// Effettua la connessione al db
+	/**
+	 * Metodo che si occupa di aprire una connessione con il database
+	 */
 	public void open() {
 		try {
 			// Carico il driver
@@ -83,28 +93,36 @@ public class MySql {
 			// Apro la connessione
 			conn = DriverManager.getConnection(url, utente, password);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	// Chiude la connessione al db
+	/**
+	 * Metodo che si occupa di chiudere la connessione con il database
+	 */
 	public void close() {
 		try {
 			conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
+	/**
+	 * 
+	 * @return ritorna la connessione al database (Connection)
+	 */
 	public Connection getConn() {
 		return conn;
 	}
 
+	/**
+	 * Override del metodo toString()
+	 */
+	@Override
 	public String toString() {
 		return "Il driver usato per la connessione al database è: " + driver + " l'url del db è: " + url
-				+ " e il suo utente è: " + utente + " la sua password è: " + password;
+				+ " e il suo utente è: " + utente;
 	}
 
 }

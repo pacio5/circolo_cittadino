@@ -1,15 +1,17 @@
-/**
- * 
- */
 package entita;
 
-/**
- * @author eliapacioni
- *
- */
 
 import java.sql.Date;
 
+/**
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
+ * 
+ * Classe che si occupa di mappare l'entità nonsocio contenuta nel database
+ */
 public class NonSocio {
 	protected String cf;
 	protected String nome;
@@ -22,10 +24,23 @@ public class NonSocio {
 	protected String email;
 	protected String telefono;
 	
+	/**
+	 * Costruttore del socio senza parametri
+	 * 
+	 */
 	public NonSocio() {
 		this(null, null, null, ' ', null, null);
 	}
 	
+	/**
+	 * 
+	 * @param codice
+	 * @param name
+	 * @param surname
+	 * @param sex
+	 * @param mail
+	 * @param tel
+	 */
 	public NonSocio(String codice, String name, String surname, char sex, String mail, String tel) {
 		cf = codice;
 		nome = name;
@@ -35,70 +50,58 @@ public class NonSocio {
 		telefono = tel;
 	}
 
+	/**
+	 * 
+	 * @return codice fiscale del nonsocio (String)
+	 */
 	public String getCf() {
 		return cf;
 	}
 
+	/**
+	 * 
+	 * @return nome del nonsocio (String)
+	 */
 	public String getNome() {
 		return nome;
 	}
 
+	/**
+	 * 
+	 * @return cognome del nonsocio (String)
+	 */
 	public String getCognome() {
 		return cognome;
 	}
 
+	/**
+	 * 
+	 * @return sesso del nonsocio (char)
+	 */
 	public char getSesso() {
 		return sesso;
 	}
 
+	/**
+	 * 
+	 * @return indirizzo email del nonsocio (String)
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * 
+	 * @return numero di telefono del nonsocio (String)
+	 */
 	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setCf(String codice) {
-		cf = codice;
-	}
-
-	public void setNome(String name) {
-		nome = name;
-	}
-
-	public void setCognome(String surname) {
-		cognome = surname;
-	}
-
-	public void setSesso(char sex) {
-		sesso = sex;
-	}
-
-	public void setDataNascita(Date dateB) {
-		dataNascita = dateB;
-	}
-
-	public void setIndirizzo(String address) {
-		indirizzo = address;
-	}
-
-	public void setCitta(String city) {
-		citta = city;
-	}
-
-	public void setCap(String postalCode) {
-		cap = postalCode;
-	}
-
-	public void setEmail(String mail) {
-		email = mail;
-	}
-
-	public void setTelefono(String tel) {
-		telefono = tel;
-	}
-
+	/**
+	 * Override del metodo toString()
+	 * @return stringa contente i dati del nonsocio
+	 */
 	@Override
 	public String toString() {
 		return nome + " " + cognome + " " + cf;
