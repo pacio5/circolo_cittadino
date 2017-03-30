@@ -130,10 +130,17 @@ public class GestioneSaleView {
 		frmCircoloCittadino.getContentPane().add(btnAnnullaModifiche);
 	}
 	
+	
+	/**
+	 * @return Bottone per tornare alla dashboard (JButton)
+	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}
 
+	/**
+	 * @return frame (JFrame)
+	 */
 	public JFrame getFrame() {
 		return frmCircoloCittadino;
 	}

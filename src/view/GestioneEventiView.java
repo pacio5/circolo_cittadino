@@ -39,7 +39,14 @@ public class GestioneEventiView {
 	private ScrollPane scrollPane;
 	
 
-	
+	/**
+	 * Costruttore PrenotaEventoView, si occupa di visualizzare la finestra di gestione degli eventi
+	 * e inizializza tutte le proprietà
+	 * @param eventi oggetto di tipo ArrayList<Evento> contenente tutti gli eventi
+	 * @param prenotazioni oggetto di tipo ArrayList<Prenotazione> contenente le prenotazioni relative agli eventi
+	 * @param affittuariS oggetto di tipo ArrayList<Socio> contenente tutti i soci
+	 * @param affittuariNS oggetto di tipo ArrayList<NonSocio> contenente tutti i non soci
+	 */
 	public GestioneEventiView(ArrayList<Evento> eventi){
 		frmCircoloCittadino = new JFrame("Circolo Cittadino - Elenco attivita'");
 		frmCircoloCittadino.setTitle("Circolo Cittadino - Gestisci attivita'");
@@ -150,10 +157,17 @@ public class GestioneEventiView {
 		frmCircoloCittadino.getContentPane().add(btnAnnullaModifiche);
 	}
 	
+	
+	/**
+	 * @return Bottone per tornare alla dashboard (JButton)
+	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}
-
+ 
+	/**
+	 * @return frame (JFrame)
+	 */
 	public JFrame getFrame() {
 		return frmCircoloCittadino;
 	}
