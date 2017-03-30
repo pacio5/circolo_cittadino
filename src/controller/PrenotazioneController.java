@@ -2,7 +2,6 @@ package controller;
 
 import model.PrenotazioneModel;
 import model.SocioModel;
-
 import view.GestioneEventiView;
 import view.GestioneSaleView;
 import view.AffittaSalaView;
@@ -44,11 +43,16 @@ public class PrenotazioneController {
 	private PrenotazioneModel model;
 	private SocioModel modelS;
 
+	/** Costruttore del Controller della prenotazione
+	 * @return oggetto di tipo PrenotazioneController
+	 * @throws non definito
+	 */
 	public PrenotazioneController() {
 		model = new PrenotazioneModel();
 		modelS = new SocioModel();
 	}
-
+	
+	
 	public void gestioneEventi() {
 		ArrayList<Evento> eventi = model.listaEventi();
 		GestioneEventiView view = new GestioneEventiView(eventi);
@@ -406,7 +410,7 @@ public class PrenotazioneController {
 	}
 
 	public void affittaSale() {
-		ArrayList<Affitto> affitti = model.afittuari();
+		ArrayList<Affitto> affitti = model.affittuari();
 		ArrayList<Socio> soci = modelS.elencoSoci();
 		ArrayList<NonSocio> nsoci = modelS.elencoNonSoci();
 
