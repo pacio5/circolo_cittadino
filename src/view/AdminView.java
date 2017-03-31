@@ -38,6 +38,7 @@ public class AdminView {
 	private JButton btnBefane;
 	private JButton btnGestioneBadge;
 	private JButton btnStampaBigliettoAuguri;
+	private JButton btnGestionePdf;
 
 	/**
 	 * Costruttore senza parametri, crea il frame ed inizializza tutti i componenti
@@ -109,6 +110,9 @@ public class AdminView {
 		btnStampaBigliettoAuguri = new JButton("Biglietto Auguri");
 		btnStampaBigliettoAuguri.setBounds(100, 504, 160, 29);
 		
+		btnGestionePdf = new JButton("Gestione PDF");
+		btnGestionePdf.setBounds(550, 450, 160, 29);
+		
 		JLabel lblImg = new JLabel(new ImageIcon("./resources/circolo.png"));
 
 		lblImg.setBounds(22,6,762,183);
@@ -132,9 +136,11 @@ public class AdminView {
 		frmCircoloCittadinoDi.getContentPane().add(btnPassaggioCategoria);
 		frmCircoloCittadinoDi.getContentPane().add(btnGestioneConvenzioni);	
 		frmCircoloCittadinoDi.getContentPane().add(btnBefane);	
-		frmCircoloCittadinoDi.getContentPane().add(btnGestioneBadge);	
-		frmCircoloCittadinoDi.getContentPane().add(btnStampaBigliettoAuguri);
+		frmCircoloCittadinoDi.getContentPane().add(btnGestionePdf);
 		frmCircoloCittadinoDi.getContentPane().add(lblImg);
+		
+		
+		
 		
 		
 		
@@ -291,16 +297,16 @@ public class AdminView {
 	public JButton getBtnBefane() {
 		return btnBefane;
 	}
-
-	public JButton getBtnGestioneBadge() {
-		return btnGestioneBadge;
-	}
-
-	public JButton getBtnStampaBiglietto() {
-		return btnStampaBigliettoAuguri;
-	}
 	
+	/**
+	 * 
+	 * @return Bottone che porta alla creazione di PDF per Badge, Biglietti di Auguri 
+	 * e liste dei soci partecipanti agli eventi
+	 */
 	
+	public JButton getBtnGestionePdf() {
+		return btnGestionePdf;
+	}
 	
 	
 }

@@ -198,22 +198,15 @@ public class AdminController {
 			}
 		});
 		
-		adminView.getBtnGestioneBadge().addMouseListener(new MouseAdapter(){
+		adminView.getBtnGestionePdf().addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e){
-				PdfController pdfController = new PdfController();
-				pdfController.gestioneBadge();
+				GestionePdfController gestionePdfController = new GestionePdfController();
+				gestionePdfController.gestionePdf();
 				adminView.getFrame().setEnabled(false);
 			}
 		});
 		
-		adminView.getBtnStampaBiglietto().addMouseListener(new MouseAdapter(){
-			@Override
-			public void mouseClicked(MouseEvent e){
-				PdfController pdfController = new PdfController();
-				pdfController.gestioneBiglietto();
-				adminView.getFrame().setEnabled(false);
-			}
-		});
+		
 	}	
 }

@@ -35,7 +35,7 @@ import com.itextpdf.text.pdf.PdfWriter;
  *
  */
 
-public class PdfController {
+public class SalvaPdfController {
 	private BadgeView viewBadge;
 	private BigliettoView viewBiglietto;
 	private ArrayList<Socio> soci;
@@ -116,6 +116,8 @@ public class PdfController {
 				 * Blocco di codice contenente istruzioni che potrebbero
 				 * generare un'eccezione se ciò non si verifica verrà creato e
 				 * salvato il pdf, altrimenti verrà eseguito il blocco catch
+				 * document è il container in formato ID1(ideale per Badge) 
+				 * che rappresenta un oggetto della classe Document
 				 */
 				try {
 					String file = null;
@@ -144,7 +146,7 @@ public class PdfController {
 	 * il salvataggio del pdf
 	 * 
 	 * @param document
-	 *            il file in formato pdf
+	 *            dà in input il documento pdf creato in precedenza
 	 * @return il percorso di destinazione
 	 */
 
@@ -162,9 +164,11 @@ public class PdfController {
 	/**
 	 * Metodo per creare il pdf relativo al badge del socio richiesto nella
 	 * combobox formato da: nome, cognome, cf, tipologia socio e città
+	 * attraverso la scrittura e il salvataggio delle informazioni
+	 * nel documento
 	 * 
 	 * @param document
-	 *            il documento da creare in formato pdf
+	 *           
 	 * @throws DocumentException
 	 *             Delega delle eccezioni gestite nel try... catch
 	 */
@@ -289,7 +293,7 @@ public class PdfController {
 	 * il salvataggio del pdf
 	 * 
 	 * @param document
-	 *            il file in formato pdf
+	 *            dà in input il documento pdf creato in precedenza
 	 * @return il percorso di destinazione
 	 */
 
@@ -307,9 +311,11 @@ public class PdfController {
 	/**
 	 * Metodo per creare il pdf relativo al badge del socio richiesto nella
 	 * combobox formato da: nome, cognome, cf, tipologia socio e città
+	 * attraverso la scrittura e il salvataggio delle informazioni
+	 * nel documento
 	 * 
 	 * @param document
-	 *            il documento da creare in formato pdf
+	 *           	
 	 * @throws DocumentException
 	 *             Delega delle eccezioni gestite nel try... catch
 	 */
@@ -324,7 +330,7 @@ public class PdfController {
 		prefazioneBiglietto.add(new Paragraph(" "));
 
 		prefazioneBiglietto.add(new Paragraph("Questo nostro piccolo pensiero sia per te un augurio sincero di buon compleanno!", formalFont));
-
+		
 		/**
 		 * Aggiunta al documento
 		 */
