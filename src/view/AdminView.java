@@ -26,7 +26,10 @@ public class AdminView {
 	private JButton btnPassaggioCategoria;
 	private JButton btnGestioneConvenzioni;
 	private JButton btnBefane;
+	private JButton btnGestioneBadge;
+	private JButton btnStampaBigliettoAuguri;
 	private ImageIcon icon;
+	
 
 	/**
 	 * Create the frame.
@@ -84,13 +87,19 @@ public class AdminView {
 		btnChiusuraAnnuale.setBounds(325, 400, 160, 29);
 		
 		btnPassaggioCategoria = new JButton("Passaggio Categoria");
-		btnPassaggioCategoria.setBounds(213, 450, 160, 29);
+		btnPassaggioCategoria.setBounds(100, 450, 160, 29);
 		
 		btnGestioneConvenzioni = new JButton("Gestione Convenzioni");
-		btnGestioneConvenzioni.setBounds(440, 450, 160, 29);
+		btnGestioneConvenzioni.setBounds(325, 450, 160, 29);
 		
 		btnBefane = new JButton("Le Befane");
 		btnBefane.setBounds(550, 400, 160, 29);
+		
+		btnGestioneBadge = new JButton("Badge");
+		btnGestioneBadge.setBounds(550, 450, 160, 29);
+		
+		btnStampaBigliettoAuguri = new JButton("Biglietto Auguri");
+		btnStampaBigliettoAuguri.setBounds(100, 504, 160, 29);
 		
 		icon = new ImageIcon("circolo.png");
 		JLabel lblImg = new JLabel(new ImageIcon(".\\resources\\circolo.png"));
@@ -115,7 +124,12 @@ public class AdminView {
 		frmCircoloCittadinoDi.getContentPane().add(btnPassaggioCategoria);
 		frmCircoloCittadinoDi.getContentPane().add(btnGestioneConvenzioni);	
 		frmCircoloCittadinoDi.getContentPane().add(btnBefane);	
+		frmCircoloCittadinoDi.getContentPane().add(btnGestioneBadge);	
+		frmCircoloCittadinoDi.getContentPane().add(btnStampaBigliettoAuguri);
 		frmCircoloCittadinoDi.getContentPane().add(lblImg);
+		
+		
+		
 	}
 
 	public JFrame getFrame() {
@@ -193,4 +207,16 @@ public class AdminView {
 	public JButton getBtnBefane() {
 		return btnBefane;
 	}
+
+	public JButton getBtnGestioneBadge() {
+		return btnGestioneBadge;
+	}
+
+	public JButton getBtnStampaBiglietto() {
+		return btnStampaBigliettoAuguri;
+	}
+	
+	
+	
+	
 }

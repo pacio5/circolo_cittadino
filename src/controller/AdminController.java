@@ -190,5 +190,23 @@ public class AdminController {
 				adminView.getFrame().dispose();
 			}
 		});
+		
+		adminView.getBtnGestioneBadge().addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e){
+				PdfController pdfController = new PdfController();
+				pdfController.gestioneBadge();
+				adminView.getFrame().setEnabled(false);
+			}
+		});
+		
+		adminView.getBtnStampaBiglietto().addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e){
+				PdfController pdfController = new PdfController();
+				pdfController.gestioneBiglietto();
+				adminView.getFrame().setEnabled(false);
+			}
+		});
 	}	
 }
