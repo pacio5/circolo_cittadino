@@ -16,7 +16,6 @@ import java.awt.ScrollPane;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
-import javax.swing.JTextArea;
 import javax.swing.SpinnerNumberModel;
 
 /**

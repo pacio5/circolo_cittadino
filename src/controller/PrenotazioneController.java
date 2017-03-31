@@ -628,7 +628,7 @@ public class PrenotazioneController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Evento evento = view.getListEventi().getSelectedValue();
-				if (Integer.valueOf(view.getTxtBigliettiDisponibili().getText()) > evento.getPosti()) {
+				if (Integer.valueOf(view.getTxtBigliettiDisponibili().getText()) >= Integer.valueOf(view.getNumBiglietti().getValue().toString())) {
 					String data = view.getData().getText();
 					int nBiglietti = Integer.valueOf(view.getNumBiglietti().getValue().toString());
 					Socio socio = view.getListSoci().getSelectedValue();
