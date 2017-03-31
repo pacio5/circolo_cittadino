@@ -116,7 +116,7 @@ public class PrenotazioneController {
 						view.getPrezzo().setBackground(Color.white);
 				}
 
-				if (!Validator.validaIndirizzo(luogo) || luogo.length() > 35) {
+				if (luogo.length() > 35) {
 					view.getLuogo().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -207,7 +207,7 @@ public class PrenotazioneController {
 						view.getPrezzo().setBackground(Color.white);
 				}
 
-				if (!Validator.validaIndirizzo(luogo) || luogo.length() > 35) {
+				if (luogo.length() > 35) {
 					view.getLuogo().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -515,8 +515,7 @@ public class PrenotazioneController {
 						if (esito) {
 							JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
 							view.getFrame().dispose();
-							AdminController adminController = new AdminController();
-							adminController.controlloEvento();
+							affittaSale();
 						} else
 							JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
 									"Inserimento Non Effettuato");
