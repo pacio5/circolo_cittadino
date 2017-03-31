@@ -197,7 +197,7 @@ public class QuotaModel {
 			/* Caso in cui è presente almeno una quota nell'anno precedente */
 			if (!datainizio.isEmpty()) {
 				/* Caso in cui è presente una sola quota */
-				if (datainizio.size() - 1 == 0){
+				if (datainizio.size() == 1){
 					/* Caso in cui la quota abbia inizio a Gennaio */
 					if (datainizio.get(0).toString().substring(5, 7).equals("01")){
 						creditodebito += (float) (importo.get(0) * 12);
@@ -213,25 +213,22 @@ public class QuotaModel {
 								* (13 - Integer.valueOf(datainizio.get(0).toString().substring(5, 7))));
 					}
 				} else {
-					for (int i = 0; i < datainizio.size(); i++) {
-						if (datainizio.size() - 1 == i)
-							creditodebito += (float) (importo.get(i)
-									* (13 - Integer.valueOf(datainizio.get(i).toString().substring(5, 7))));
-						else {
-							if (!datainizio.get(i).toString().substring(5, 7).equals("01")) {
-								if (passaggio)
-									creditodebito += (float) (getValoreQuotaPrecedente(
-											rss.getString("TIPOLOGIA_PRECEDENTE"))
-											* (Integer.valueOf(datainizio.get(i).toString().substring(5, 7)) - 1));
-								else
-									creditodebito += (float) (getValoreQuotaPrecedente(socio.getTipologia())
-											* (Integer.valueOf(datainizio.get(i).toString().substring(5, 7)) - 1));
-							} else
-								creditodebito += (float) (importo.get(i)
-										* (Integer.valueOf(datainizio.get(i + 1).toString().substring(5, 7))
-												- Integer.valueOf(datainizio.get(i).toString().substring(5, 7))));
+					for (int i = 0; i < datainizio.size() - 1; i++) {
+						if (!datainizio.get(i).toString().substring(5, 7).equals("01") && i == 0) {
+							if (passaggio)
+								creditodebito += (float) (getValoreQuotaPrecedente(
+										rss.getString("TIPOLOGIA_PRECEDENTE"))
+										* (Integer.valueOf(datainizio.get(i).toString().substring(5, 7)) - 1));
+							else
+								creditodebito += (float) (getValoreQuotaPrecedente(socio.getTipologia())
+										* (Integer.valueOf(datainizio.get(i).toString().substring(5, 7)) - 1));
 						}
+						creditodebito += (float) (importo.get(i)
+								* (Integer.valueOf(datainizio.get(i + 1).toString().substring(5, 7))
+										- Integer.valueOf(datainizio.get(i).toString().substring(5, 7))));
 					}
+					creditodebito += (importo.get(importo.size()-1)
+							* (13 - Integer.valueOf(datainizio.get(importo.size()-1).toString().substring(5, 7))));
 				}
 				rss.close();
 				rsq.close();
