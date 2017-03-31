@@ -37,7 +37,11 @@ public class GestioneSaleView {
 	private ScrollPane scrollPane;
 	
 
-	
+	/**
+	 * Costruttore GestioneSaleView, si occupa di visualizzare la finestra di gestione delle sale
+	 * e inizializza tutte le proprietà
+	 * @param sale oggetto di tipo ArrayList<Sala> contenente tutte le sale
+	 */
 	public GestioneSaleView(ArrayList<Sala> sale){
 		frmCircoloCittadino = new JFrame("Circolo Cittadino - Elenco Sale");
 		frmCircoloCittadino.setTitle("Circolo Cittadino - Gestisci Sale");
@@ -145,42 +149,65 @@ public class GestioneSaleView {
 		return frmCircoloCittadino;
 	}
 
+	/**
+	 * @return Bottone per inserire una nuova sala (JButton)
+	 */
 	public JButton getBtnInserisci() {
 		return btnInserisci;
 	}
 	
+	/**
+	 * @return Bottone per modificare una sala (JButton)
+	 */
 	public JButton getBtnModifica(){
 		return btnModifica;
 	}
 	
+	/**
+	 * @return Bottone per cancellare una sala (JButton)
+	 */
 	public JButton getBtnCancella(){
 		return btnCancella;
 	}
 	
+	/**
+	 * @return Bottone per salavare le modifiche di una sala (JButton)
+	 */
 	public JButton getBtnSalvaModifiche(){
 		return btnSalvaModifiche;
 	}
 	
+	/**
+	 * @return Bottone per annullare le modifiche ad una sala (JButton)
+	 */
 	public JButton getBtnAnnullaModifiche(){
 		return btnAnnullaModifiche;
 	}
-
-	public void setBtnInserisci(JButton btnInserisci) {
-		this.btnInserisci = btnInserisci;
-	}
 	
+	/**
+	 * @return txtFieldNomeSala (JTextField)
+	 */
 	public JTextField getNomeSala() {
 		return txtFieldNomeSala;
 	}
 
+	/**
+	 * @return txtAreaDescrizione (JTextArea)
+	 */
 	public JTextArea getDescrizione() {
 		return txtAreaDescrizione;
 	}
 
+	/**
+	 * @return spnCapienza (JSpinner)
+	 */
 	public JSpinner getCapienza() {
 		return spnCapienza;
 	}
 
+	/**
+	 * @return txtFieldTariffa (JTextField)
+	 */
 	public JTextField getTariffa() {
 		return txtFieldTariffa;
 	}
@@ -193,6 +220,9 @@ public class GestioneSaleView {
 		this.lstSale = list;
 	}
 	
+	/**
+	 * @return lstSale contentente le sale (JList)
+	 */
 	public JList<Sala> getList() {
 		return lstSale;
 	}
