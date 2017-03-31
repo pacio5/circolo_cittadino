@@ -28,8 +28,17 @@ import model.SocioModel;
 import utility.Validator;
 
 /**
- * @author smerilli
- *
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * 
+ * @version 1.0 Marzo 2017
+ * 
+ * 
+ * Classe che si occupa della gestione degli eventi azionati dall'utente
+ * interagendo con la view dei versamenti e della gestione delle interazioni tra le view
+ * e il model
  */
 public class VersamentoController {
 	private InserimentoVersamentoView viewInserimento;
@@ -40,33 +49,50 @@ public class VersamentoController {
 	private ArrayList<Versamento> versamenti;
 	private float importo;
 
+	/**
+	 * Costruttore, il controller è costruito
+	 * mediante il QuotaModel, la GestioneVersamentiView,
+	 * l'InserimentoVersamentoView, un ArrayList soci contenente
+	 * tutte i soci esistenti, un ArrayList versamenti contenente tutti
+	 * i versamenti esistenti e una variabile importo come appoggio per
+	 * sommare tutti gli importi delle quote dei mesi selezionati.
+	 */
 	public VersamentoController() {
 		model = new QuotaModel();
+		viewGestione = new GestioneVersamentiView();
+		viewInserimento = new InserimentoVersamentoView();
+		viewChiusura = new ChiusuraAnnualeView();
+		soci = null;
+		versamenti = null;
+		importo = (float)0.0;
 	}
 
 	public void mostraGestioneVers() {
-		viewGestione = new GestioneVersamentiView();
 		riempimentoTableVersamento();
 		viewGestione.getFrameGestVersamento().setVisible(true);
 		controlloEventiGestione();
 	}
 
 	public void mostraInserimentoVers() {
-		viewInserimento = new InserimentoVersamentoView();
 		viewInserimento.getFrameInsVersamento().setVisible(true);
 		riempimentoCmbbxSoci();
 		controlloEventiInserimento();
 	}
 	
 	public void mostraChiusuraAnnuale() {
-		viewChiusura = new ChiusuraAnnualeView();
 		viewChiusura.getFrame().setVisible(true);
 		riempimentoTableChiusura();
 		controlloEventiChiusura();
 	}
 
+	/**
+	 * Metodo per la gestione degli eventi
+	 * nel form della gestione dei versamenti
+	 */ 
 	private void controlloEventiGestione() {
-		// Evento eliminazione Versamento
+		/**
+		 * Evento eliminazione Versamento 
+		 */
 		viewGestione.getBtnElimina().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -88,7 +114,9 @@ public class VersamentoController {
 			}
 		});
 
-		// Evento ritorno all'AdminView
+		/**
+		 * Evento ritorno all'AdminView 
+		 */
 		viewGestione.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -99,8 +127,14 @@ public class VersamentoController {
 		});
 	}
 
+	/**
+	 * Metodo per la gestione degli eventi
+	 * nel form dell'inserimento dei versamenti
+	 */ 
 	private void controlloEventiInserimento() {
-		// Evento inserimento
+		/**
+		 * Evento inserimento 
+		 */
 		viewInserimento.getBtnInserisci().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -127,7 +161,9 @@ public class VersamentoController {
 			}
 		});
 
-		// Evento azzeramento form
+		/**
+		 *  Evento azzeramento form 
+		 */
 		viewInserimento.getBtnAzzera().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -135,7 +171,9 @@ public class VersamentoController {
 			}
 		});
 
-		// Evento riempimento informazioni Socio
+		/* *
+		 * Riempimento informazioni Socio 
+		 */
 		viewInserimento.getCmbbxSocio().addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
@@ -178,7 +216,10 @@ public class VersamentoController {
 			}
 		});
 
-		// Evento calcolo importo
+		/* 
+		 * Eventi per il calcolo dell'importo totale
+		 * da pagare, a seconda di quale mese viene selezionato
+		*/
 		viewInserimento.getChckbxGennaio().addActionListener(new ActionListener() {
 			@Override
 		    public void actionPerformed(ActionEvent actionEvent) {
@@ -347,7 +388,9 @@ public class VersamentoController {
 			}
 		});
 
-		// Evento ritorno all'AdminView
+		/**
+		 * Evento ritorno all'AdminView 
+		 */
 		viewInserimento.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -358,8 +401,14 @@ public class VersamentoController {
 		});
 	}
 	
+	/**
+	 * Metodo per la gestione degli eventi
+	 * nel form della gestione della chiusura annuale
+	 */ 
 	public void controlloEventiChiusura() {
-		// Evento versamento chiusura annuale
+		/**
+		 * Evento versamento chiusura annuale
+		 */
 		viewChiusura.getBtnSalda().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -381,7 +430,9 @@ public class VersamentoController {
 			}
 		});
 
-		// Evento ritorno all'AdminView
+		/**
+		 * Evento ritorno all'AdminView 
+		 */
 		viewChiusura.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -392,6 +443,10 @@ public class VersamentoController {
 		});
 	}
 
+	/**
+	 * Setta tutti i valori di default dei componenti 
+	 * nel form dell'inserimento dei versamenti
+	 */
 	private void azzeraFormInsert() {
 		viewInserimento.getCmbbxSocio().setSelectedIndex(-1);
 		viewInserimento.getTxtFieldData().setText("");
@@ -411,6 +466,10 @@ public class VersamentoController {
 		viewInserimento.getChckbxDicembre().setSelected(false);
 	}
 
+	/**
+	 *  Inserimento dei mesi all'interno 
+	 *  di un oggetto Versamento 
+	 */
 	private Versamento inserisciMesiChecked(Versamento spill) {
 		if (viewInserimento.getChckbxGennaio().isSelected())
 			spill.setMese(viewInserimento.getChckbxGennaio().getText());
@@ -439,6 +498,10 @@ public class VersamentoController {
 		return spill;
 	}
 
+	/**
+	 * Inserimento del nome, cognome e codice fiscale
+	 * all'interno della comboBox nel form dell'inserimento del versamento
+	 */
 	private void riempimentoCmbbxSoci() {
 		SocioModel modelSocio = new SocioModel();
 		soci = new ArrayList<Socio>(modelSocio.elencoSoci());
@@ -448,6 +511,10 @@ public class VersamentoController {
 		viewInserimento.getCmbbxSocio().setSelectedIndex(-1);
 	}
 
+	/**
+	 * Definizione e riempimento della tabella
+	 * nella gestione dei versamenti
+	 */
 	private void riempimentoTableVersamento() {
 		String[] nameColumns = { "Id", "Data", "Importo", "Socio", "Descrizione" };
 		versamenti = new ArrayList<Versamento>(model.getVersamenti());
@@ -473,6 +540,10 @@ public class VersamentoController {
 		viewGestione.getTable().setModel(dati);
 	}
 	
+	/**
+	 * Definizione e riempimento della tabella
+	 * nella gestione delle chiusure annuali
+	 */
 	private void riempimentoTableChiusura() {
 		String[] nameColumns = { "Socio", "Tipologia", "Modalita di pagamento", "Credito/Debito"};
 		SocioModel modelSocio = new SocioModel();
@@ -504,6 +575,11 @@ public class VersamentoController {
 		}
 	}
 
+	/**
+	 * Controllo per i vari componenti
+	 * nel form dell'inserimento dei versamenti
+	 * @return true se vengono rispettati i validator, altrimenti false
+	 */ 
 	private boolean validatorForm() {
 		boolean validazione = true;
 		if (!Validator.validaData(viewInserimento.getTxtFieldData().getText())) {

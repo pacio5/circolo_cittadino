@@ -19,8 +19,17 @@ import view.GestioneQuoteView;
 import entita.Quota;
 
 /**
- * @author smerilli
- *
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * 
+ * @version 1.0 Marzo 2017
+ * 
+ * 
+ * Classe che si occupa della gestione degli eventi azionati dall'utente
+ * interagendo con la view delle quote e della gestione delle interazioni tra le view
+ * e il model
  */
 public class QuotaController {
 	private QuotaModel model;
@@ -29,25 +38,43 @@ public class QuotaController {
 	private ArrayList<Quota> quote;
 	private Quota quotapre;
 
+	/**
+	 * Costruttore, il controller è costruito
+	 * mediante il QuotaModel, la GestioneQuoteView,
+	 * l'InserimentoQuoteView, un ArrayList quote contenente
+	 * tutte le quote esistenti e un oggetto Quota quotapre
+	 * contente l'ultima quota inserita del relativo tipo di socio 
+	 */
 	public QuotaController() {
 		model = new QuotaModel();
+		viewGestione = new GestioneQuoteView();
+		viewInserimento = new InserimentoQuoteView();
+		quote = null;
+		quotapre = null;
 	}
 
 	public void mostraGestioneQuote() {
-		viewGestione = new GestioneQuoteView();
 		riempimentoTableQuote();
 		viewGestione.getFrameGestQuote().setVisible(true);
 		controlloEventiGestione();
 	}
 
 	public void mostraInserimentoQuote() {
-		viewInserimento = new InserimentoQuoteView();
 		viewInserimento.getFrame().setVisible(true);
 		controlloEventiInserimento();
 	}
 
+	
+	/**
+	 * Metodo per la gestione degli eventi
+	 * nel form dell'inserimento delle quote
+	 */ 
 	public void controlloEventiInserimento() {
-		// Riempimento form della quota precedente
+		/**
+		 * Riempimento form informativo riguardo
+		 * all'ultima quota inserita per un determinato
+		 * tipo di socio
+		 */ 
 		viewInserimento.getCmbbxTipologia().addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
@@ -66,7 +93,9 @@ public class QuotaController {
 			}
 		});
 
-		// Evento inserimento quota
+		/**
+		 * Evento inserimento quota 
+		 */
 		viewInserimento.getBtnInserisci().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -91,7 +120,9 @@ public class QuotaController {
 			}
 		});
 
-		// Evento azzeramento form
+		/**
+		 * Evento azzeramento form 
+		 */
 		viewInserimento.getBtnAzzera().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -99,7 +130,9 @@ public class QuotaController {
 			}
 		});
 
-		// Evento ritorno all'AdminView
+		/**
+		 * Evento ritorno all'AdminView 
+		 */
 		viewInserimento.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -110,8 +143,14 @@ public class QuotaController {
 		});
 	}
 
+	/**
+	 * Metodo per la gestione degli eventi
+	 * nel form della gestione delle quote
+	 */ 
 	public void controlloEventiGestione() {
-		// Evento eliminazione Versamento
+		/**
+		 * Evento eliminazione Versamento 
+		 */
 		viewGestione.getBtnElimina().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -132,7 +171,9 @@ public class QuotaController {
 			}
 		});
 
-		// Evento ritorno all'AdminView
+		/* 
+		 *Evento ritorno all'AdminView
+		 */
 		viewGestione.getBtnDashboard().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -143,14 +184,16 @@ public class QuotaController {
 		});
 	}
 
+	/**
+	 * Definizione e riempimento della tabella
+	 * nel form della gestione delle quote
+	 */ 
 	private void riempimentoTableQuote() {
 		String[] nameColumns = { "Id", "Data inizio", "Valore", "Tipologia" };
 		quote = new ArrayList<Quota>(model.getQuote());
 
-		/*
-		 * Istanza del TableModel con l'override di isCellEditable per rendere
-		 * la tabella non modificabile
-		 */
+		/* Istanza del TableModel con l'override di isCellEditable per rendere
+		la tabella non modificabile */
 		DefaultTableModel dati = new DefaultTableModel(nameColumns, 0) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -167,6 +210,11 @@ public class QuotaController {
 		viewGestione.getTable().setModel(dati);
 	}
 
+	/**
+	 * Controllo per i vari componenti
+	 * nel form dell'inserimento delle quote
+	 * @return true se vengono rispettati i validator, altrimenti false
+	 */ 
 	private boolean validatorForm() {
 		boolean validazione = true;
 		if (!Validator.validaDataInizio(viewInserimento.getTxtFieldDataI().getText())) {
@@ -198,6 +246,10 @@ public class QuotaController {
 		return validazione;
 	}
 
+	/**
+	 * Setta tutti i valori di default dei componenti 
+	 * nel form dell'inserimento delle quote
+	 */ 
 	private void azzeraInsertForm() {
 		viewInserimento.getCmbbxTipologia().setSelectedIndex(-1);
 		viewInserimento.getTxtFieldDataI().setText("");

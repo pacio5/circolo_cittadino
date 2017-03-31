@@ -11,8 +11,16 @@ import java.awt.Font;
 import java.awt.Color;
 
 /**
- * @author smerilli
- *
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * 
+ * @version 1.0 Marzo 2017
+ * 
+ * 
+ * Classe che si della definizione e visualizzazione della
+ * finestra dell'inserimento deli versamenti e i relativi componenti
  */
 public class InserimentoVersamentoView {
 
@@ -44,14 +52,14 @@ public class InserimentoVersamentoView {
 	private JButton btnDashboard;
 
 	/**
-	 * Create the application.
+	 * Creazione dell'applicazione
 	 */
 	public InserimentoVersamentoView() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inizializzazione del contenuto del frame
 	 */
 	private void initialize() {
 		frameInsVersamento = new JFrame();
@@ -246,98 +254,171 @@ public class InserimentoVersamentoView {
 		frameInsVersamento.getContentPane().add(btnDashboard);
 	}
 
+	/**
+	 * @return frame (JFrame)
+	 */
 	public JFrame getFrameInsVersamento() {
 		return frameInsVersamento;
 	}
 
+	/**
+	 * @return cmbbxSocio (JComboBox)
+	 */
 	public JComboBox<String> getCmbbxSocio() {
 		return cmbbxSocio;
 	}
 
+	/**
+	 * @return txtFieldCodFisc (JTextField)
+	 */
 	public JTextField getTxtFieldCodFisc() {
 		return txtFieldCodFisc;
 	}
 
+	/**
+	 * @return txtFieldModPagamento (JTextField)
+	 */
 	public JTextField getTxtFieldModPagamento() {
 		return txtFieldModPagamento;
 	}
 
+	/**
+	 * @return txtFieldMetPagamento (JTextField)
+	 */
 	public JTextField getTxtFieldMetPagamento() {
 		return txtFieldMetPagamento;
 	}
 
+	/**
+	 * @return txtFieldTipologia (JTextField)
+	 */
 	public JTextField getTxtFieldTipologia() {
 		return txtFieldTipologia;
 	}
 
+	/**
+	 * @return txtFieldTelefono (JTextField)
+	 */
 	public JTextField getTxtFieldTelefono() {
 		return txtFieldTelefono;
 	}
 
+	/**
+	 * @return txtFieldEmail (JTextField)
+	 */
 	public JTextField getTxtFieldEmail() {
 		return txtFieldEmail;
 	}
 
+	/**
+	 * @return txtFieldData (JTextField)
+	 */
 	public JTextField getTxtFieldData() {
 		return txtFieldData;
 	}
 
+	/**
+	 * @return txtFieldImporto (JTextField)
+	 */
 	public JTextField getTxtFieldImporto() {
 		return txtFieldImporto;
 	}
 
+	/**
+	 * @return txtAreaDescrizione (JTextArea)
+	 */
 	public JTextArea getTxtFieldDescrizione() {
 		return txtAreaDescrizione;
 	}
 
+	/**
+	 * @return chckbxGennaio (JCheckBox)
+	 */
 	public JCheckBox getChckbxGennaio() {
 		return chckbxGennaio;
 	}
 
+	/**
+	 * @return chckbxFebbraio (JCheckBox)
+	 */
 	public JCheckBox getChckbxFebbraio() {
 		return chckbxFebbraio;
 	}
 
+	/**
+	 * @return chckbxMarzo (JCheckBox)
+	 */
 	public JCheckBox getChckbxMarzo() {
 		return chckbxMarzo;
 	}
 
+	/**
+	 * @return chckbxAprile (JCheckBox)
+	 */
 	public JCheckBox getChckbxAprile() {
 		return chckbxAprile;
 	}
 
+	/**
+	 * @return chckbxMaggio (JCheckBox)
+	 */
 	public JCheckBox getChckbxMaggio() {
 		return chckbxMaggio;
 	}
 
+	/**
+	 * @return chckbxGiugno (JCheckBox)
+	 */
 	public JCheckBox getChckbxGiugno() {
 		return chckbxGiugno;
 	}
 
+	/**
+	 * @return chckbxLuglio (JCheckBox)
+	 */
 	public JCheckBox getChckbxLuglio() {
 		return chckbxLuglio;
 	}
 
+	/**
+	 * @return chckbxAgosto (JCheckBox)
+	 */
 	public JCheckBox getChckbxAgosto() {
 		return chckbxAgosto;
 	}
 
+	/**
+	 * @return chckbxSettembre (JCheckBox)
+	 */
 	public JCheckBox getChckbxSettembre() {
 		return chckbxSettembre;
 	}
 
+	/**
+	 * @return chckbxOttobre (JCheckBox)
+	 */
 	public JCheckBox getChckbxOttobre() {
 		return chckbxOttobre;
 	}
 
+	/**
+	 * @return chckbxNovembre (JCheckBox)
+	 */
 	public JCheckBox getChckbxNovembre() {
 		return chckbxNovembre;
 	}
 
+	/**
+	 * @return chckbxDicembre (JCheckBox)
+	 */
 	public JCheckBox getChckbxDicembre() {
 		return chckbxDicembre;
 	}
 
+	/**
+	 * Conta il numero di mesi selezionati da pagare
+	 * @return cont numero mesi selezionati
+	 */
 	public int getNumberChckbxChecked() {
 		int cont = 0;
 		if (chckbxGennaio.isSelected())
@@ -367,14 +448,23 @@ public class InserimentoVersamentoView {
 		return cont;
 	}
 
+	/**
+	 * @return btnInserisci (JButton)
+	 */
 	public JButton getBtnInserisci() {
 		return btnInserisci;
 	}
 
+	/**
+	 * @return btnAzzera (JButton)
+	 */
 	public JButton getBtnAzzera() {
 		return btnAzzera;
 	}
 
+	/**
+	 * @return frame (JButton)
+	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}

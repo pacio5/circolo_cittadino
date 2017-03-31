@@ -1,13 +1,15 @@
-/**
- * 
- */
 package entita;
 
 import java.sql.Date;
 
 /**
+ * @author simoneonori
  * @author eliapacioni
- *
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
+ * 
+ * Classe che si occupa di mappare l'entità socio contenuta nel database
  */
 public class Socio {
 	protected String cf;
@@ -30,6 +32,28 @@ public class Socio {
 	protected String metPagamento;
 	protected String tipologia;
 
+	/**
+	 * Costruttore parametrico del socio, inizializza tutte le proprietà con i valori passati
+	 * @param codice, codice fiscale del socio
+	 * @param name, nome del socio
+	 * @param surname, cognome del socio
+	 * @param sex, sesso del socio
+	 * @param dateB, data di compleanno del socio
+	 * @param placeB, luogo di nascita del socio
+	 * @param address, indirizzo del socio
+	 * @param city, città di residenza del socio
+	 * @param postalCode, cap del socio
+	 * @param mail, indirizzo email del socio
+	 * @param tel, numero di telefono del socio
+	 * @param profession, professione del socio
+	 * @param civilStatus, stato civile del socio
+	 * @param spouse, eventuale nome del coniuge
+	 * @param dateAmmission, data di ammissione al circolo
+	 * @param taxAmmission, tassa di ammissione
+	 * @param modPay, modalità di pagamento scelta
+	 * @param metPay, metodo di pagamento scelto
+	 * @param type, tipologia del socio
+	 */
 	public Socio(String codice, String name, String surname, char sex, Date dateB, String placeB, String address,
 			String city, String postalCode, String mail, String tel, String profession, String civilStatus,
 			String spouse, Date dateAmmission, float taxAmmission, String modPay, String metPay, String type) {
@@ -54,163 +78,172 @@ public class Socio {
 		tipologia = type;
 	}
 
+	/**
+	 * Costruttore del socio senza parametri
+	 * 
+	 */
 	public Socio() {
 		this(null, null, null, ' ', null, null, null, null, null, null, null, null, null, null, null, 0, null, null,
 				null);
 	}
 
+	/**
+	 * 
+	 * @return codice fiscale del socio (String)
+	 */
 	public String getCf() {
 		return cf;
 	}
 
+	/**
+	 * 
+	 * @return nome del socio (String)
+	 */
 	public String getNome() {
 		return nome;
 	}
 
+	/**
+	 * 
+	 * @return cognome del socio (String)
+	 */
 	public String getCognome() {
 		return cognome;
 	}
 
+	/**
+	 * 
+	 * @return sesso del socio (char)
+	 */
 	public char getSesso() {
 		return sesso;
 	}
 
+	/**
+	 * 
+	 * @return data di nascita del socio (Date)
+	 */
 	public Date getDataNascita() {
 		return dataNascita;
 	}
 
+	/**
+	 * 
+	 * @return luogo di nascita del socio (String)
+	 */
 	public String getLuogoNascita() {
 		return luogoNascita;
 	}
 
+	/**
+	 * 
+	 * @return indirizzo del socio (String)
+	 */
 	public String getIndirizzo() {
 		return indirizzo;
 	}
-
+	
+	/**
+	 * 
+	 * @return città di residenza del socio (String)
+	 */
 	public String getCitta() {
 		return citta;
 	}
 
+	/**
+	 * 
+	 * @return cap del socio (String)
+	 */
 	public String getCap() {
 		return cap;
 	}
 
+	/**
+	 * 
+	 * @return indirizzo email del socio (String)
+	 */
 	public String getEmail() {
 		return email;
 	}
 
+	/**
+	 * 
+	 * @return numero di telefono del socio (String)
+	 */
 	public String getTelefono() {
 		return telefono;
 	}
 
+	/**
+	 * 
+	 * @return professione del socio (String)
+	 */
 	public String getProfessione() {
 		return professione;
 	}
+	
 	/**
-	 * @return the statoCivile
+	 * @return statoCivile (String)
 	 */
 	public String getStatoCivile() {
 		return statoCivile;
 	}
+	
+	/**
+	 * 
+	 * @return nome del coniuge (String)
+	 */
 	public String getConiuge() {
 		return coniuge;
 	}
 
+	/**
+	 * 
+	 * @return data ammissione al circolo (Date)
+	 */
 	public Date getDataAmmissione() {
 		return dataAmmissione;
 	}
 
+	/**
+	 * 
+	 * @return tassa ammissione al circolo (float)
+	 */
 	public float getTassaAmmissione() {
 		return tassaAmmissione;
 	}
-
+	
+	/**
+	 * 
+	 * @return modalità di pagamento scelta dal socio (String)
+	 */
 	public String getModPagamento() {
 		return modPagamento;
 	}
 
+	/**
+	 * 
+	 * @return metodo di pagamento scelto dal socio (String)
+	 */
 	public String getMetPagamento() {
 		return metPagamento;
 	}
 
+	/**
+	 * 
+	 * @return tipologia del socio (String)
+	 */
 	public String getTipologia() {
 		return tipologia;
 	}
-
-	public void setCf(String codice) {
-		cf = codice;
-	}
-
-	public void setNome(String name) {
-		nome = name;
-	}
-
-	public void setCognome(String surname) {
-		cognome = surname;
-	}
-
-	public void setSesso(char sex) {
-		sesso = sex;
-	}
-
-	public void setDataNascita(Date dateB) {
-		dataNascita = dateB;
-	}
-
-	public void setLuogoNascita(String placeB) {
-		luogoNascita = placeB;
-	}
-
-	public void setIndirizzo(String address) {
-		indirizzo = address;
-	}
-
-	public void setCitta(String city) {
-		citta = city;
-	}
-
-	public void setCap(String postalCode) {
-		cap = postalCode;
-	}
-
-	public void setEmail(String mail) {
-		email = mail;
-	}
-
-	public void setTelefono(String tel) {
-		telefono = tel;
-	}
-
-	public void setProfessione(String profession) {
-		professione = profession;
-	}
-
-	public void setStatoCivile(String civilState) {
-		statoCivile = civilState;
-	}
-
-	public void setConiuge(String spouse) {
-		coniuge = spouse;
-	}
-
-	public void setDataAmmissione(Date dateA) {
-		dataAmmissione = dateA;
-	}
-
-	public void setTassaAmmissione(float taxA) {
-		tassaAmmissione = taxA;
-	}
-
-	public void setModPagamento(String modPay) {
-		modPagamento = modPay;
-	}
-
-	public void setTipologia(String type) {
-		tipologia = type;
-	}
 	
+	/**
+	 * Override del metodo toString()
+	 * @return stringa contente i dati del socio
+	 */
 	@Override
 	public String toString() {
 		return nome + " " + cognome + " "+ cf;
 	}
-	
 }

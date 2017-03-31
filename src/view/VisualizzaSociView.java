@@ -17,7 +17,13 @@ import javax.swing.JTextField;
 
 /**
  * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
  *
+ * Classe VisualizzaSociView, si occupa di visualizzare la finestra per la gestione dei soci,
+ * modifica, cancellazione, dimissioni, espulsione
  */
 public class VisualizzaSociView {
 
@@ -55,7 +61,9 @@ public class VisualizzaSociView {
 	private JButton btnAnnulla;
 
 	/**
-	 * Create the frame.
+	 * 
+	 * @param soci, elenco dei soci
+	 * Costruttore VisualizzaSociView, si occupa di inizializzare tutte le proprietà e di visualizzare la finesta per la gestione dei soci
 	 */
 	public VisualizzaSociView(ArrayList<Socio> soci) {
 		frame = new JFrame("Elenco soci del Circolo Cittadino di Ascoli Piceno");
@@ -321,222 +329,239 @@ public class VisualizzaSociView {
 	}
 	
 	/**
-	 * @return the frame
+	 * @return frame (JFrame)
 	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 	
 	/**
-	 * @return the list
+	 * @return list (JList) lista dei soci
 	 */
 	public JList<Socio> getList() {
 		return list;
 	}
 	/**
-	 * @param list the list to set
+	 * @param list, serve per settare la lista 
 	 */
 	public void setList(JList<Socio> list) {
 		this.list = list;
 	}
 	
 	/**
-	 * @return the cf
+	 * @return cf (JTextField)
 	 */
 	public JTextField getCf() {
 		return cf;
 	}
 
 	/**
-	 * @return the nome
+	 * @return nome (JTextField)
 	 */
 	public JTextField getNome() {
 		return nome;
 	}
 
 	/**
-	 * @return the cognome
+	 * @return cognome (JTextField)
 	 */
 	public JTextField getCognome() {
 		return cognome;
 	}
 
 	/**
-	 * @return the dataNascita
+	 * 
+	 * @return dataNascita (JTextField)
 	 */
 	public JTextField getDataNascita() {
 		return dataNascita;
 	}
 
 	/**
-	 * @return the luogoNascita
+	 * 
+	 * @return luogoNascita (JTextField)
 	 */
 	public JTextField getLuogoNascita() {
 		return luogoNascita;
 	}
 
 	/**
-	 * @return the rdbtnUomo
+	 * @return radio button uomo (JRadioButton)
 	 */
 	public JRadioButton getRdbtnUomo() {
 		return rdbtnUomo;
 	}
 
 	/**
-	 * @return the rdbtnDonna
+	 * @return radio button donna (JRadioButton)
 	 */
 	public JRadioButton getRdbtnDonna() {
 		return rdbtnDonna;
 	}
 
 	/**
-	 * @return the sesso
+	 * 
+	 * @return radio button group sesso (ButtonGroup)
 	 */
 	public ButtonGroup getSesso() {
 		return sesso;
 	}
 
 	/**
-	 * @return the indirizzo
+	 * 
+	 * @return indirizzo (JTextField)
 	 */
 	public JTextField getIndirizzo() {
 		return indirizzo;
 	}
 
 	/**
-	 * @return the citta
+	 * 
+	 * @return citta (JTextField)
 	 */
 	public JTextField getCitta() {
 		return citta;
 	}
 
 	/**
-	 * @return the cap
+	 * 
+	 * @return cap (JTextField)
 	 */
 	public JTextField getCap() {
 		return cap;
 	}
 
 	/**
-	 * @return the email
+	 * 
+	 * @return email (JTextField)
 	 */
 	public JTextField getEmail() {
 		return email;
 	}
 
 	/**
-	 * @return the telefono
+	 * 
+	 * @return telefono (JTextField)
 	 */
 	public JTextField getTelefono() {
 		return telefono;
 	}
 
 	/**
-	 * @return the professione
+	 * 
+	 * @return professione (JTextField)
 	 */
 	public JTextField getProfessione() {
 		return professione;
 	}
 
 	/**
-	 * @return the statoCivile
+	 * 
+	 * @return statoCivile (JComboBox)
 	 */
 	public JComboBox<String> getStatoCivile() {
 		return statoCivile;
 	}
 
 	/**
-	 * @return the coniuge
+	 * 
+	 * @return coniuge (JTextField)
 	 */
 	public JTextField getConiuge() {
 		return coniuge;
 	}
 
 	/**
-	 * @return the dataAmmissione
+	 * 
+	 * @return dataAmmissione (JTextField)
 	 */
 	public JTextField getDataAmmissione() {
 		return dataAmmissione;
 	}
 
 	/**
-	 * @return the tassaAmmissione
+	 * 
+	 * @return tassaAmmissione (JTextFiled)
 	 */
 	public JTextField getTassaAmmissione() {
 		return tassaAmmissione;
 	}
 
 	/**
-	 * @return the modPagamento
+	 * 
+	 * @return modPagamento (JComboBox)
 	 */
 	public JComboBox<String> getModPagamento() {
 		return modPagamento;
 	}
 
 	/**
-	 * @return the metPagamento
+	 * 
+	 * @return metPagamento (JComboBox)
 	 */
 	public JComboBox<String> getMetPagamento() {
 		return metPagamento;
 	}
 
 	/**
-	 * @return the tipologia
+	 * 
+	 * @return tipologia (JComboBox)
 	 */
 	public JComboBox<String> getTipologia() {
 		return tipologia;
 	}
 
 	/**
-	 * @return the btnDashboard
+	 * 
+	 * @return bottone per tornare alla dashboard (JButton)
 	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}
 	/**
-	 * @return the btnModifica
+	 * @return btnModifica (JButton) bottone per attivare la modifica del socio
 	 */
 	public JButton getBtnModifica() {
 		return btnModifica;
 	}
 	
 	/**
-	 * @return the btnAggiorna
+	 * @return btnAggiorna (JButton) bottone per salvare le modifiche al socio
 	 */
 	public JButton getBtnAggiorna() {
 		return btnAggiorna;
 	}
 
 	/**
-	 * @return the btnDiventaExsocio
+	 * @return btnDiventaExsocio bottone per dimettere il socio (JButton)
 	 */
 	public JButton getBtnDiventaExsocio() {
 		return btnDiventaExsocio;
 	}
 
 	/**
-	 * @return the btnEspelli
+	 * @return btnEspelli (JButton) bottone per l'espulsione del socio
 	 */
 	public JButton getBtnEspelli() {
 		return btnEspelli;
 	}
 
 	/**
-	 * @return the btnElimina
+	 * @return btnElimina (JButton) bottone per l'eliminazione del socio
 	 */
 	public JButton getBtnElimina() {
 		return btnElimina;
 	}
 	
 	/**
-	 * @return the btnElimina
+	 * @return btnAnnulla (JButton) bottone per annullare le modifiche
 	 */
 	public JButton getBtnAnnulla() {
 		return btnAnnulla;
 	}
 
 	/**
-	 * @return the scrollPane
+	 * @return scrollPane (ScrollPane) visualizza la lista
 	 */
 	public ScrollPane getScrollPane() {
 		return scrollPane;

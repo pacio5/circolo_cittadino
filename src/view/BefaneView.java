@@ -66,23 +66,38 @@ public class BefaneView {
 		frmCircoloCittadinoAscoli.getContentPane().add(textArea);
 
 	}
-
+	
+	/**
+	 * @return frame (JFrame)
+	 */
 	public JFrame getFrame() {
 		return frmCircoloCittadinoAscoli;
 	}
 
+	/**
+	 * @return lista contentente i figli (JList)
+	 */
 	public JList<Figlio> getListF() {
 		return list;
 	}
 
+	/**
+	 * @return il defult list model dei figli (DefaultListModel)
+	 */
 	public DefaultListModel<Figlio> getDlm() {
 		return dlm;
 	}
 
+	/**
+	 * @return scroll pane della lista dei figli (ScrollPane)
+	 */
 	public ScrollPane getScrollPaneF() {
 		return scrollPaneFigli;
 	}
 	
+	/**
+	 * @return area di testo per i dati del genitore (JTextArea)
+	 */
 	public JTextArea getTxtG() {
 		return textArea;
 	}
@@ -91,6 +106,10 @@ public class BefaneView {
 		textArea.setText(g);
 	}
 
+	
+	/**
+	 * @return Bottone per tornare alla dashboard (JButton)
+	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}

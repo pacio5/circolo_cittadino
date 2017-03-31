@@ -12,8 +12,16 @@ import java.awt.Font;
 import javax.swing.JButton;
 
 /**
- * @author smerilli
- *
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * 
+ * @version 1.0 Marzo 2017
+ * 
+ * 
+ * Classe che si della definizione e visualizzazione della
+ * finestra dell'inserimento delle quote e i relativi componenti
  */
 public class InserimentoQuoteView {
 
@@ -28,14 +36,14 @@ public class InserimentoQuoteView {
 	private JButton btnDashboard;
 
 	/**
-	 * Create the application.
+	 * Creazione dell'applicazione
 	 */
 	public InserimentoQuoteView() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inizializzazione del contenuto del frame
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -104,7 +112,7 @@ public class InserimentoQuoteView {
 		btnDashboard = new JButton("Dashboard");
 		btnDashboard.setBounds(654, 11, 120, 33);
 
-		JLabel lblFormatoData = new JLabel("aaaa/mm");
+		JLabel lblFormatoData = new JLabel("aaaa-mm");
 		lblFormatoData.setBounds(515, 168, 72, 14);
 
 		frame.getContentPane().setLayout(null);
@@ -125,38 +133,65 @@ public class InserimentoQuoteView {
 		frame.getContentPane().add(lblFormatoData);
 	}
 
+	/**
+	 * @return frame (JFrame)
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 
+	/**
+	 * @return txtFieldDataI (JTextField)
+	 */
 	public JTextField getTxtFieldDataI() {
 		return txtFieldDataI;
 	}
 
+	/**
+	 * @return txtFieldValore (JTextField)
+	 */
 	public JTextField getTxtFieldValore() {
 		return txtFieldValore;
 	}
 
+	/**
+	 * @return cmbbxTipologia (JTextField)
+	 */
 	public JComboBox<String> getCmbbxTipologia() {
 		return cmbbxTipologia;
 	}
 
+	/**
+	 * @return txtFieldDataIPre (JTextField)
+	 */
 	public JTextField getTxtFieldDataIPre() {
 		return txtFieldDataIPre;
 	}
 
+	/**
+	 * @return txtFieldValorePre (JTextField)
+	 */
 	public JTextField getTxtFieldValorePre() {
 		return txtFieldValorePre;
 	}
 
+	/**
+	 * @return btnInserisci (JButton)
+	 */
 	public JButton getBtnInserisci() {
 		return btnInserisci;
 	}
 
+	/**
+	 * @return btnAzzera (JButton)
+	 */
 	public JButton getBtnAzzera() {
 		return btnAzzera;
 	}
 
+	/**
+	 * @return btnDashboard (JButton)
+	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}

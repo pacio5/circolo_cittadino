@@ -10,24 +10,31 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
+ * @author simoneonori
  * @author eliapacioni
- *
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
+ * 
+ * Classe AdminController, si occupa di gestire tutti gli eventi generati dell' AdminView e di reindirizzare alla nuova view richiesta
  */
 public class AdminController {
 
 	private AdminView adminView;
 
 	/**
-	 * Il model è stato inserito per dare una visione completa anche se a
-	 * livello di admin è inutilizzato in questo momento private AdminModel
-	 * adminModel;
+	 * Costruttore dell'AdminController, 
+	 * inizializza l'AdminView e la rende visibile
 	 */
-
 	public AdminController() {
 		adminView = new AdminView();
 		adminView.getFrame().setVisible(true);
 	}
 	
+	/**
+	 * Metodo che si occupa di gestire gli eventi generati dall' AdminView, 
+	 * e di inizializzare il controller adeguato per far visualizzare all'utente la view richiesta
+	 */
 	public void controlloEvento() {
 		adminView.getBtnLogout().addMouseListener(new MouseAdapter() {
 			@Override

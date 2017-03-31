@@ -2,7 +2,6 @@ package controller;
 
 import model.PrenotazioneModel;
 import model.SocioModel;
-
 import view.GestioneEventiView;
 import view.GestioneSaleView;
 import view.AffittaSalaView;
@@ -37,18 +36,32 @@ import entita.Prenotazione;
 
 /**
  * @author simoneonori
- *
+ * @author eliapacioni
+ * @author smerilliriccardo
+ * @author francescotalento
+ * @version 1.0 marzo 2017
+ */
+/**
+ *classe che si occupa della gestione degli eventi generati dalle view riguardanti l'affitto delle sale, la prenotazione degli eventi
+ *la gestione di eventi, sale e del'evento speciale delle befane, prendendo i dati necessari dal PrenotazioneModel
  */
 public class PrenotazioneController {
 
 	private PrenotazioneModel model;
 	private SocioModel modelS;
 
+	/** Costruttore del Controller della prenotazione
+	 * @return oggetto di tipo PrenotazioneController
+	 */
 	public PrenotazioneController() {
 		model = new PrenotazioneModel();
 		modelS = new SocioModel();
 	}
-
+	
+	/**
+	 *  metodo che gestisce gli eventi della GestioneEventiView, in particolare l'inserimeto, la modifica e la cancellazione
+	 *  di un evento (btnInserisci, btnModifica, btnCancella) e il ritrono alla dashboard (btnDashboard)
+	 */
 	public void gestioneEventi() {
 		ArrayList<Evento> eventi = model.listaEventi();
 		GestioneEventiView view = new GestioneEventiView(eventi);
@@ -103,7 +116,7 @@ public class PrenotazioneController {
 						view.getPrezzo().setBackground(Color.white);
 				}
 
-				if (!Validator.validaIndirizzo(luogo) || luogo.length() > 35) {
+				if (luogo.length() > 35) {
 					view.getLuogo().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -194,7 +207,7 @@ public class PrenotazioneController {
 						view.getPrezzo().setBackground(Color.white);
 				}
 
-				if (!Validator.validaIndirizzo(luogo) || luogo.length() > 35) {
+				if (luogo.length() > 35) {
 					view.getLuogo().setBackground(Color.red);
 					validazione = false;
 				} else {
@@ -247,6 +260,10 @@ public class PrenotazioneController {
 
 	}
 
+	/**
+	 * metodo che gestisce gli eventi della GestioneSaleView, in particolare l'inserimento, la modifica e la cancellazione 
+	 * di una sala (btnInserisci, btnModifica, btnCancella) e il ritrono alla dashboard (btnDashboard)
+	 */
 	public void gestioneSale() {
 		ArrayList<Sala> sale = model.listaSale();
 		GestioneSaleView view = new GestioneSaleView(sale);
@@ -405,8 +422,13 @@ public class PrenotazioneController {
 
 	}
 
+	/**
+	 * metodo che gestisce gli eventi della AffittaSalaView, in particolare l'inserimento e la cancellazione 
+	 * di un'affitto (btnInserisci, btnCancella), la visualizzazione delle sale disponibili (btnVisualizzaSale),
+	 * la visuzlizzazione delle informazioni di una sala (btnInfo) e il ritrono alla dashboard (btnDashboard)
+	 */
 	public void affittaSale() {
-		ArrayList<Affitto> affitti = model.afittuari();
+		ArrayList<Affitto> affitti = model.affittuari();
 		ArrayList<Socio> soci = modelS.elencoSoci();
 		ArrayList<NonSocio> nsoci = modelS.elencoNonSoci();
 
@@ -493,8 +515,7 @@ public class PrenotazioneController {
 						if (esito) {
 							JOptionPane.showMessageDialog(view.getFrame().getContentPane(), "Inserimento Effettuato");
 							view.getFrame().dispose();
-							AdminController adminController = new AdminController();
-							adminController.controlloEvento();
+							affittaSale();
 						} else
 							JOptionPane.showMessageDialog(view.getFrame().getContentPane(),
 									"Inserimento Non Effettuato");
@@ -538,7 +559,9 @@ public class PrenotazioneController {
 	}
 
 	/**
-	 * @wbp.parser.entryPoint
+	 * metodo che gestisce gli eventi della PrenotaEventoView,  in particolare l'inserimento e la cancellazione 
+	 * di una prenotazione ad un evento (btnInserisci, btnCancella), la visuzlizzazione delle informazioni di un'evento (btnInfo) 
+	 * e il ritrono alla dashboard (btnDashboard)
 	 */
 	public void prenotaEvento() {
 		ArrayList<Evento> eventi = model.listaEventiValidi();
@@ -605,7 +628,7 @@ public class PrenotazioneController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Evento evento = view.getListEventi().getSelectedValue();
-				if (Integer.valueOf(view.getTxtBigliettiDisponibili().getText()) > evento.getPosti()) {
+				if (Integer.valueOf(view.getTxtBigliettiDisponibili().getText()) >= Integer.valueOf(view.getNumBiglietti().getValue().toString())) {
 					String data = view.getData().getText();
 					int nBiglietti = Integer.valueOf(view.getNumBiglietti().getValue().toString());
 					Socio socio = view.getListSoci().getSelectedValue();
@@ -662,9 +685,13 @@ public class PrenotazioneController {
 			}
 		});
 	}
-
+	
+	/**
+	 * metodo che gestisce gli eventi della BefaneView, in particolare la visualizzazione della lista di figli 
+	 * e il ritrono alla dashboard (btnDashboard)
+	 */
 	public void gestioneBefane() {
-		ArrayList<Figlio> figli = modelS.elencoFigli(null);
+		ArrayList<Figlio> figli = modelS.elencoFigliBefane();
 		BefaneView view = new BefaneView(figli);
 		view.getFrame().setVisible(true);
 

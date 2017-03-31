@@ -16,8 +16,14 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 /**
+ * @author simoneonori
  * @author eliapacioni
- *
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
+ * 
+ * Classe GestioneExSociView, si occupa di visualizzare la finestra di gestione degli ex soci, 
+ * da dove è possibile accedere a tutte le view per gestire le varie operazioni
  */
 public class GestioneExSocioView {
 
@@ -50,7 +56,9 @@ public class GestioneExSocioView {
 	private ScrollPane scrollPane;
 
 	/**
-	 * Create the frame.
+	 * Costruttore GestioneExSocioView, si occupa di visualizzare la finestra di gestione degli ex soci
+	 * e inizializza tutte le proprietà
+	 * @param soci
 	 */
 	public GestioneExSocioView(ArrayList<ExSocio> soci) {
 		frame = new JFrame("Circolo Cittadino Ascoli Piceno");
@@ -292,107 +300,199 @@ public class GestioneExSocioView {
 	}
 	
 	/**
-	 * @return the frame
+	 * @return frame (JFrame)
 	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 	
 	/**
-	 * @return the list
+	 * @return lista contentente gli ExSocio (JList)
 	 */
 	public JList<ExSocio> getList() {
 		return list;
 	}
 
+	/**
+	 * 
+	 * @return codice fiscale (JTextField)
+	 */
 	public JTextField getCf() {
 		return cf;
 	}
 
+	/**
+	 * 
+	 * @return nome (JTextField)
+	 */
 	public JTextField getNome() {
 		return nome;
 	}
 
+	/**
+	 * 
+	 * @return cognome (JTextField)
+	 */
 	public JTextField getCognome() {
 		return cognome;
 	}
 
+	/**
+	 * 
+	 * @return dataNascita (JTextField)
+	 */
 	public JTextField getDataNascita() {
 		return dataNascita;
 	}
 
+	/**
+	 * 
+	 * @return luogoNascita (JTextField)
+	 */
 	public JTextField getLuogoNascita() {
 		return luogoNascita;
 	}
 
+	/**
+	 * 
+	 * @return radio button uomo (JRadioButton)
+	 */
 	public JRadioButton getRdbtnUomo() {
 		return rdbtnUomo;
 	}
 
+	/**
+	 * 
+	 * @return radio button donna (JRadioButton)
+	 */
 	public JRadioButton getRdbtnDonna() {
 		return rdbtnDonna;
 	}
 
+	/**
+	 * 
+	 * @return buttonGroup sesso (ButtonGroup)
+	 */
 	public ButtonGroup getSesso() {
 		return sesso;
 	}
 
+	/**
+	 * 
+	 * @return indirizzo (JTextField)
+	 */
 	public JTextField getIndirizzo() {
 		return indirizzo;
 	}
 
+	/**
+	 * 
+	 * @return città (JTextField)
+	 */
 	public JTextField getCitta() {
 		return citta;
 	}
 
+	/**
+	 * 
+	 * @return cap (JTextField)
+	 */
 	public JTextField getCap() {
 		return cap;
 	}
-
+	
+	/**
+	 * 
+	 * @return email (JTextField)
+	 */
 	public JTextField getEmail() {
 		return email;
 	}
-
+	
+	/**
+	 * 
+	 * @return telefono (JTextField)
+	 */
 	public JTextField getTelefono() {
 		return telefono;
 	}
-
+	
+	/**
+	 * 
+	 * @return progessione (JTextField)
+	 */
 	public JTextField getProfessione() {
 		return professione;
 	}
-
+	
+	/**
+	 * 
+	 * @return stato civile (JComboBox)
+	 */
 	public JComboBox<String> getStatoCivile() {
 		return statoCivile;
 	}
-
+	
+	/**
+	 * 
+	 * @return coniuge (JTextField)
+	 */
 	public JTextField getConiuge() {
 		return coniuge;
 	}
 
+	/**
+	 * 
+	 * @return dataAmmissione (JTextField)
+	 */
 	public JTextField getDataAmmissione() {
 		return dataAmmissione;
 	}
-
+	
+	/**
+	 * 
+	 * @return tassaAmmissione (JTextField)
+	 */
 	public JTextField getTassaAmmissione() {
 		return tassaAmmissione;
 	}
 
+	/**
+	 * 
+	 * @return modPagamento (JComboBox)
+	 */
 	public JComboBox<String> getModPagamento() {
 		return modPagamento;
 	}
 
+	/**
+	 * 
+	 * @return metPagamento (JComboBox)
+	 */
 	public JComboBox<String> getMetPagamento() {
 		return metPagamento;
 	}
 
+	/**
+	 * 
+	 * @return tipologia (JComboBox)
+	 */
 	public JComboBox<String> getTipologia() {
 		return tipologia;
 	}
 
+	/**
+	 * 
+	 * @return Bottone per tornare alla dashboard (JButton)
+	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}
 
+	/**
+	 * 
+	 * @return Bottone per tornare ad essere socio (JButton)
+	 */
 	public JButton getBtnDiventaSocio() {
 		return btnDiventaSocio;
 	}

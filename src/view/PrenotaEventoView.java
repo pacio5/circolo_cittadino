@@ -16,7 +16,6 @@ import java.awt.ScrollPane;
 import java.util.ArrayList;
 import javax.swing.JTextField;
 import javax.swing.JSpinner;
-import javax.swing.JTextArea;
 import javax.swing.SpinnerNumberModel;
 
 /**
@@ -57,7 +56,12 @@ public class PrenotaEventoView {
 	
 
 	/**
-	 * Create the frame.
+	 * Costruttore PrenotaEventoView, si occupa di visualizzare la finestra di gestione delle prenotazioni agli eventi
+	 * e inizializza tutte le proprietà
+	 * @param eventi oggetto di tipo ArrayList<Evento> contenente tutti gli eventi
+	 * @param prenotazioni oggetto di tipo ArrayList<Prenotazione> contenente le prenotazioni relative agli eventi
+	 * @param affittuariS oggetto di tipo ArrayList<Socio> contenente tutti i soci
+	 * @param affittuariNS oggetto di tipo ArrayList<NonSocio> contenente tutti i non soci
 	 */
 	public PrenotaEventoView(ArrayList<Evento> eventi, ArrayList<Prenotazione> prenotazioni, ArrayList<Socio> affittuariS, ArrayList<NonSocio> affittuariNS) {
 		frmCircoloCittadino = new JFrame("Circolo Cittadino - Prenota Evento");
@@ -188,52 +192,82 @@ public class PrenotaEventoView {
 		txtBigliettiDisponibili.setEnabled(false);
 	}
 		
+	/**
+	 * @return txtBigliettiDisponibili (JTextField)
+	 */
 	public JTextField getTxtBigliettiDisponibili() {
 		return txtBigliettiDisponibili;
 	}
-
+ 
+	/**
+	 * @return frame (JFrame)
+	 */
 	public JFrame getFrame() {
 		return frmCircoloCittadino;
 	}
 	
+	
+	/**
+	 * @return Bottone per tornare alla dashboard (JButton)
+	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}
 	
+	/**
+	 * @return Bottone per avere informazioni relative all'evento (JButton)
+	 */
 	public JButton getBtnInfo() {
 		return btnInfo;
 	}
 	
+	/**
+	 * @return Bottone per inserire una prenotazione (JButton)
+	 */
 	public JButton getBtnInserisci() {
 		return btnInserisci;
 	}
 	
+	/**
+	 * @return Bottone per cancellare una prenotazione (JButton)
+	 */
 	public JButton getBtnCancella() {
 		return btnCancella;
 	}
 		
+	/**
+	 * @return rdbtnNonSocio (JRadioButton)
+	 */
 	public JRadioButton getRdbtnNonSocio() {
 		return rdbtnNonSocio;
 	}
 	
+	/**
+	 * @return rdbtnSocio (JRadioButton)
+	 */
 	public JRadioButton getRbtnSocio() {
 		return rdbtnSocio;
 	}
 	
+	/**
+	 * @return tipo (ButtonGroup)
+	 */
 	public ButtonGroup getTipo() {
 		return tipo;
 	}
 	
+	/**
+	 * @return textFieldData (JTextField)
+	 */
 	public JTextField getData(){
 		return textFieldData;
 	}
 
+	/**
+	 * @return SpNumeroBiglietti (JSpinner)
+	 */
 	public JSpinner getNumBiglietti(){
 		return SpNumeroBiglietti;
-	}
-
-	public void setBtnInserisci(JButton btnInserisci) {
-		this.btnInserisci = btnInserisci;
 	}
 
 	public void setFrame(JFrame frame) {
@@ -244,6 +278,9 @@ public class PrenotaEventoView {
 		this.lstPrenotazioni = list;
 	}
 	
+	/**
+	 * @return lstPrenotazioni contentente le prenotazioni (JList)
+	 */
 	public JList<Prenotazione> getListPrenotazioni() {
 		return lstPrenotazioni;
 	}
@@ -252,10 +289,16 @@ public class PrenotaEventoView {
 		this.lstEvt = list;
 	}
 	
+	/**
+	 * @return lstEvt contentente gli eventi (JList)
+	 */
 	public JList<Evento> getListEventi() {
 		return lstEvt;
 	}
 	
+	/**
+	 * @return lstSocio contentente i soci (JList)
+	 */
 	public JList<Socio> getListSoci() {
 		return lstSocio;
 	}
@@ -264,6 +307,9 @@ public class PrenotaEventoView {
 		this.lstSocio = list;
 	}
 	
+	/**
+	 * @return lstNonSocio contentente i non soci (JList)
+	 */
 	public JList<NonSocio> getListNonSoci() {
 		return lstNonSocio;
 	}
@@ -272,10 +318,16 @@ public class PrenotaEventoView {
 		this.lstNonSocio = list;
 	}
 	
+	/**
+	 * @return scrollPaneS (ScrollPane)
+	 */
 	public ScrollPane getPaneSoci() {
 		return scrollPaneS;
 	}
 	
+	/**
+	 * @return scrollPaneNS (ScrollPane)
+	 */
 	public ScrollPane getPaneNonSoci() {
 		return scrollPaneNS;
 	}

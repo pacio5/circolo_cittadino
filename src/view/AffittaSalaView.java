@@ -19,7 +19,12 @@ import javax.swing.JTextField;
 
 /**
  * @author simoneonori
- *
+ * @author eliapacioni
+ * @author smerilliriccardo
+ * @author francescotalento
+ * @version 1.0 marzo 2017
+ * Classe AffittaSalaView, si occupa di visualizzare la finestra di gestione dell'affitto delle sale, 
+ * da dove è possibile accedere a tutte le varie funzioni
  */
 public class AffittaSalaView {
 	
@@ -49,7 +54,13 @@ public class AffittaSalaView {
 	private JButton btnLstSale;
 	
 
-	
+	/**
+	 * Costruttore AffittaSalaView, si occupa di visualizzare la finestra di gestione degli affitti delle sale
+	 * e inizializza tutte le proprietà
+	 * @param soci oggetto di tipo ArrayList<Socio> contenente tutti i soci
+	 * @param nsoci oggetto di tipo ArrayList<NonSocio> contenente tutti i non soci
+	 * @param prenotazioni oggetto di tipo ArrayList<Affitto> contenente tutti gli affitti relativi alle sale
+	 */
 	public AffittaSalaView(ArrayList<Socio> soci, ArrayList<NonSocio> nsoci, ArrayList<Affitto> prenotazioni) {
 		frmCircoloCittadino = new JFrame("Circolo Cittadino - Prenota Sala");
 		frmCircoloCittadino.setTitle("Circolo Cittadino - Prenotazione Sale");
@@ -161,42 +172,75 @@ public class AffittaSalaView {
 		frmCircoloCittadino.getContentPane().add(btnLstSale);
 	}
 	
+	/**
+	 * @return data di prenotazione della sala (JTextField)
+	 */
 	public JTextField getData() {
 		return textFieldData;
 	}
 	
+	/**
+	 * @return Bottone per visualizzare le informazioni di una sala (JButton)
+	 */
 	public JButton getBtnInfo() {
 		return btnInfo;
 	}
 	
+	
+	/**
+	 * @return Bottone per visualizzare le sale (JButton)
+	 */
 	public JButton getBtnVisualizzaSale() {
 		return btnLstSale;
 	}
 	
+	
+	/**
+	 * @return Bottone per tornare alla dashboard (JButton)
+	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}
-
+	
+	/**
+	 * @return frame (JFrame)
+	 */
 	public JFrame getFrame() {
 		return frmCircoloCittadino;
 	}
 
+	
+	/**
+	 * @return Bottone per inserire una prenotazione di una sala (JButton)
+	 */
 	public JButton getBtnInserisci() {
 		return btnInserisci;
 	}
 	
+	/**
+	 * @return Bottone per cancellare una prenotazione di una sala (JButton)
+	 */
 	public JButton getBtnCancella() {
 		return btnCancella;
 	}
 		
+	/**
+	 * @return radio button non socio (JRadioButton)
+	 */
 	public JRadioButton getRdbtnNonSocio() {
 		return rdbtnNonSocio;
 	}
 	
+	/**
+	 * @return radio button socio (JRadioButton)
+	 */
 	public JRadioButton getRbtnSocio() {
 		return rdbtnSocio;
 	}
 	
+	/**
+	 * @return Gruppo di Bottoni per la selezione tra socio e non socio (ButtonGroup)
+	 */
 	public ButtonGroup getTipo() {
 		return tipo;
 	}
@@ -213,26 +257,44 @@ public class AffittaSalaView {
 		this.lstSale = list;
 	}
 	
+	/**
+	 * @return lista contentente le sale (JList)
+	 */
 	public JList<Sala> getListSala() {
 		return lstSale;
 	}
 	
+	/**
+	 * @return lista contentente i soci (JList)
+	 */
 	public JList<Socio> getListSoci() {
 		return lstS;
 	}
 	
+	/**
+	 * @return lista contentente i non soci (JList)
+	 */
 	public JList<NonSocio> getListNonSoci() {
 		return lstNS;
 	}
 	
+	/**
+	 * @return lista contentente gli affitti (JList)
+	 */
 	public JList<Affitto> getList() {
 		return lst;
 	}
 	
+	/**
+	 * @return ScrollPane della lista dei soci (ScrollPane)
+	 */
 	public ScrollPane getPaneSoci() {
 		return scrollPaneS;
 	}
 	
+	/**
+	 * @return ScrollPane della lista dei non soci (ScrollPane)
+	 */
 	public ScrollPane getPaneNonSoci() {
 		return scrollPaneNS;
 	}

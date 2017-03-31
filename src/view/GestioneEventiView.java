@@ -39,7 +39,11 @@ public class GestioneEventiView {
 	private ScrollPane scrollPane;
 	
 
-	
+	/**
+	 * Costruttore GestioneEventiView, si occupa di visualizzare la finestra di gestione degli eventi
+	 * e inizializza tutte le proprietà
+	 * @param eventi oggetto di tipo ArrayList<Evento> contenente tutti gli eventi
+	 */
 	public GestioneEventiView(ArrayList<Evento> eventi){
 		frmCircoloCittadino = new JFrame("Circolo Cittadino - Elenco attivita'");
 		frmCircoloCittadino.setTitle("Circolo Cittadino - Gestisci attivita'");
@@ -150,58 +154,94 @@ public class GestioneEventiView {
 		frmCircoloCittadino.getContentPane().add(btnAnnullaModifiche);
 	}
 	
+	
+	/**
+	 * @return Bottone per tornare alla dashboard (JButton)
+	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}
-
+ 
+	/**
+	 * @return frame (JFrame)
+	 */
 	public JFrame getFrame() {
 		return frmCircoloCittadino;
 	}
 
+	/**
+	 * @return Bottone per inserire i dati dell'evento (JButton)
+	 */
 	public JButton getBtnInserisci() {
 		return btnInserisci;
 	}
-	
+
+	/**
+	 * @return Bottone per modificare i dati dell'evento (JButton)
+	 */
 	public JButton getBtnModifica(){
 		return btnModifica;
 	}
-	
+
+	/**
+	 * @return Bottone per cancellare i dati dell'evento (JButton)
+	 */
 	public JButton getBtnCancella(){
 		return btnCancella;
 	}
-	
+
+	/**
+	 * @return Bottone per salvare le modifiche effettuate (JButton)
+	 */
 	public JButton getBtnSalvaModifiche(){
 		return btnSalvaModifiche;
 	}
-	
+
+	/**
+	 * @return Bottone per annullare le modifiche effettuate (JButton)
+	 */
 	public JButton getBtnAnnullaModifiche(){
 		return btnAnnullaModifiche;
 	}
 
-	public void setBtnInserisci(JButton btnInserisci) {
-		this.btnInserisci = btnInserisci;
-	}
-
+	/**
+	 * @return txtFieldNomeEvento (JTextField)
+	 */
 	public JTextField getNomeEvento() {
 		return txtFieldNomeEvento;
 	}
 
+	/**
+	 * @return txtFieldDataEvento (JTextField)
+	 */
 	public JTextField getData() {
 		return txtFieldDataEvento;
 	}
 
+	/**
+	 * @return txtAreaDescrizione (JTextArea)
+	 */
 	public JTextArea getDescrizione() {
 		return txtAreaDescrizione;
 	}
 
+	/**
+	 * @return spnNPosti (JSpinner)
+	 */
 	public JSpinner getNPosti() {
 		return spnNPosti;
 	}
 
+	/**
+	 * @return txtFieldLuogo (JTextField)
+	 */
 	public JTextField getLuogo() {
 		return txtFieldLuogo;
 	}
 
+	/**
+	 * @return txtFieldPrezzo (JTextField)
+	 */
 	public JTextField getPrezzo() {
 		return txtFieldPrezzo;
 	}
@@ -214,6 +254,9 @@ public class GestioneEventiView {
 		this.lstEventi = list;
 	}
 	
+	/**
+	 * @return lstEventi contentente gli Eventi (JList)
+	 */
 	public JList<Evento> getList() {
 		return lstEventi;
 	}

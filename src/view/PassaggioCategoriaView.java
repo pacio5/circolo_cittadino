@@ -17,8 +17,13 @@ import javax.swing.JButton;
 import javax.swing.JTextPane;
 
 /**
+ * @author simoneonori
  * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
  *
+ * Classe PassaggioCategoriaView, si occupa di visualizzare la finestra per gestire i passaggi di categoria dei soci
  */
 public class PassaggioCategoriaView {
 	
@@ -31,7 +36,8 @@ public class PassaggioCategoriaView {
 	private JLabel lblCategoriaAttuale;
 	
 	/**
-	 * Create the frame
+	 * Costruttore PassaggioCategoriaView, si occupa di visualizzare la finestra per il passaggio di categoria
+	 * e di inizializzare tutti i componenti
 	 */
 	public PassaggioCategoriaView(ArrayList<Socio> soci){
 		frame = new JFrame("Circolo Cittadino Ascoli Piceno");
@@ -75,30 +81,57 @@ public class PassaggioCategoriaView {
 		frame.getContentPane().add(lblCategoriaAttuale);
 	}
 
+	/**
+	 * @return frame (JFrame)
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 
+	/**
+	 * 
+	 * @return list, contiene tutti i socio (JList)
+	 */
 	public JList<Socio> getList() {
 		return list;
 	}
 
-	public JButton getBtnEffettua() {
-		return btnEffettua;
-	}
-
+	/**
+	 * 
+	 * @return dlm, model per riempire la lista
+	 */
 	public DefaultListModel<Socio> getDlm() {
 		return dlm;
 	}
 
+	/**
+	 * 
+	 * @return scrollPane, pannello per visualizzare la lista
+	 */
 	public ScrollPane getScrollPane() {
 		return scrollPane;
 	}
+	
+	/**
+	 * 
+	 * @return btnEffattua, bottone per effettuare il passaggio di categoria
+	 */
+	public JButton getBtnEffettua() {
+		return btnEffettua;
+	}
 
+	/**
+	 * 
+	 * @return bottone per tornare alla dashboard (JButton)
+	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}
 	
+	/**
+	 * 
+	 * @return lblCategoriaAttuale, label contenente la categoria attuale del socio (JLabel)
+	 */
 	public JLabel getLblCategoriaAttuale(){
 		return lblCategoriaAttuale;
 	}

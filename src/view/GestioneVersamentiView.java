@@ -7,8 +7,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 
 /**
- * @author smerilli
- *
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * 
+ * @version 1.0 Marzo 2017
+ * 
+ * 
+ * Classe che si della definizione e visualizzazione della
+ * finestra della gestione dei versamenti e i relativi componenti
  */
 public class GestioneVersamentiView {
 
@@ -18,14 +26,14 @@ public class GestioneVersamentiView {
 	private JButton btnDashboard;
 
 	/**
-	 * Create the application.
+	 * Creazione dell'applicazione
 	 */
 	public GestioneVersamentiView() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inizializzazione del contenuto del frame
 	 */
 	private void initialize() {
 		frame = new JFrame();
@@ -56,18 +64,30 @@ public class GestioneVersamentiView {
 
 	}
 
+	/**
+	 * @return frame (JFrame)
+	 */
 	public JFrame getFrameGestVersamento() {
 		return frame;
 	}
 
+	/**
+	 * @return table (JTable)
+	 */
 	public JTable getTable() {
 		return table;
 	}
 
+	/**
+	 * @return btnElimina (JButton)
+	 */
 	public JButton getBtnElimina() {
 		return btnElimina;
 	}
 
+	/**
+	 * @return btnDashboard (JButton)
+	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}

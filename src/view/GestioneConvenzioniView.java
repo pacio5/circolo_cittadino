@@ -15,8 +15,13 @@ import javax.swing.JTextField;
 import entita.Convenzione;
 
 /**
- * @author talento
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
  *
+ * Classe GestioneConvenzioniView, gestisce tutto ciò che riguarda le convenzioni
  */
 public class GestioneConvenzioniView{
 	private JFrame frame;
@@ -34,6 +39,11 @@ public class GestioneConvenzioniView{
 	private JButton btnSalvaModifiche;
 	private JButton btnAnnullaModifiche;
 	
+	/**
+	 * 
+	 * @param conv elenco delle convenzioni
+	 * Costruttore GestioneConvenzioniView, si occupa di visualizzare la finestra e inizializzare le proprietà
+	 */
 	public GestioneConvenzioniView(ArrayList<Convenzione> conv){
 		frame = new JFrame("Circolo Cittadino - Gestisci Convenzioni");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -132,58 +142,114 @@ public class GestioneConvenzioniView{
 		frame.getContentPane().add(label);
 	}
 
+	/**
+	 * 
+	 * @return frame (JFrame)
+	 */
 	public JFrame getFrame() {
 		return frame;
 	}
 
+	/**
+	 * 
+	 * @return textFieldIndirizzo (JTextField)
+	 */
 	public JTextField getTextFieldIndirizzo() {
 		return textFieldIndirizzo;
 	}
 
+	/**
+	 * 
+	 * @return textAreaDescrizione (JTextArea)
+	 */
 	public JTextArea getTextAreaDescrizione() {
 		return textAreaDescrizione;
 	}
 
+	/**
+	 * 
+	 * @return textFieldRagioneSociale (JTextField)
+	 */
 	public JTextField getTextFieldRagioneSociale() {
 		return textFieldRagioneSociale;
 	}
 
+	/**
+	 * 
+	 * @return textFieldSconto (JTextField)
+	 */
 	public JTextField getTextFieldSconto() {
 		return textFieldSconto;
 	}
 
+	/**
+	 * 
+	 * @return btnInserisci (JButton) bottone per inserire una convenzione
+	 */
 	public JButton getBtnInserisci() {
 		return btnInserisci;
 	}
 
+	/**
+	 * 
+	 * @return btnDashboard (JButton) bottone per tornare alla dashboard
+	 */
 	public JButton getBtnDashboard() {
 		return btnDashboard;
 	}
 
+	/**
+	 * 
+	 * @return btnModifica (JButton) bottone per attivare la modifica di una convenzione
+	 */
 	public JButton getBtnModifica() {
 		return btnModifica;
 	}
 
+	/**
+	 * 
+	 * @return btnCancella (JButton) bottone per cancellare una convenzione
+	 */
 	public JButton getBtnCancella() {
 		return btnCancella;
 	}
 
+	/**
+	 * 
+	 * @return btnSalveModifiche (JButton) bottone per salvere le modifiche 
+	 */
 	public JButton getBtnSalvaModifiche() {
 		return btnSalvaModifiche;
 	}
 
+	/**
+	 * 
+	 * @return list (JList) lista contenente le convenzioni
+	 */
 	public JList<Convenzione> getList() {
 		return list;
 	}
 
+	/**
+	 * 
+	 * @return dlm (DefaultListModel) modello dei dati della lista
+	 */
 	public DefaultListModel<Convenzione> getDlm() {
 		return dlm;
 	}
 
+	/**
+	 * 
+	 * @return scrollPane (ScrollPane) pannello per visualizzare la lista
+	 */
 	public ScrollPane getScrollPane() {
 		return scrollPane;
 	}
 
+	/**
+	 * 
+	 * @return btnAnnullaModifiche (JButton) bottone per annullare le modifiche 
+	 */
 	public JButton getBtnAnnullaModifiche() {
 		return btnAnnullaModifiche;
 	}
