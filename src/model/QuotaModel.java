@@ -213,7 +213,9 @@ public class QuotaModel {
 								* (13 - Integer.valueOf(datainizio.get(0).toString().substring(5, 7))));
 					}
 				} else {
+					/* Caso in cui sono presenti più quote */
 					for (int i = 0; i < datainizio.size() - 1; i++) {
+						/* Caso in cui la prima quota dell'anno non è stata creata a Gennaio */
 						if (!datainizio.get(i).toString().substring(5, 7).equals("01") && i == 0) {
 							if (passaggio)
 								creditodebito += (float) (getValoreQuotaPrecedente(
@@ -227,6 +229,7 @@ public class QuotaModel {
 								* (Integer.valueOf(datainizio.get(i + 1).toString().substring(5, 7))
 										- Integer.valueOf(datainizio.get(i).toString().substring(5, 7))));
 					}
+					/* Somma dell'ultima quota dell'anno */
 					creditodebito += (importo.get(importo.size()-1)
 							* (13 - Integer.valueOf(datainizio.get(importo.size()-1).toString().substring(5, 7))));
 				}
