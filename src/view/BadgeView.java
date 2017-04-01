@@ -51,7 +51,7 @@ public class BadgeView {
 		frameBadge.setType(Type.POPUP);
 		frameBadge.setTitle("Badge");
 		frameBadge.setBounds(100, 100, 460, 339);
-		frameBadge.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameBadge.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameBadge.getContentPane().setLayout(null);
 		
 		JLabel lblSocio = new JLabel("Socio:");

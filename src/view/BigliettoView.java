@@ -52,7 +52,7 @@ public class BigliettoView {
 		frameBiglietto.setType(Type.POPUP);
 		frameBiglietto.setTitle("Biglietto Auguri");
 		frameBiglietto.setBounds(100, 100, 460, 339);
-		frameBiglietto.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameBiglietto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frameBiglietto.getContentPane().setLayout(null);
 		
 		JLabel lblSocio = new JLabel("Socio:");

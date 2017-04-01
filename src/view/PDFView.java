@@ -21,7 +21,7 @@ public PDFView(){
 	frmGestionePdf.setTitle("Gestione PDF");
 	frmGestionePdf.setResizable(false);
 	frmGestionePdf.setBounds(100, 100, 550, 400);
-	frmGestionePdf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frmGestionePdf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	
 	
 	btnPdfBadge = new JButton("PDF BADGE");

@@ -203,7 +203,6 @@ public class AdminController {
 			public void mouseClicked(MouseEvent e){
 				GestionePdfController gestionePdfController = new GestionePdfController();
 				gestionePdfController.gestionePdf();
-				adminView.getFrame().setEnabled(false);
 			}
 		});
 		
