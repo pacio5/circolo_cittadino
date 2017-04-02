@@ -40,7 +40,7 @@ public class AdminController {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				LoginController loginController = new LoginController();
-				loginController.controlloEvento();
+				loginController.controlloLogin();
 				adminView.getFrame().dispose();
 			}
 		});

@@ -149,4 +149,10 @@ public class Validator {
 		return ((metpagamento.equals("MENSILE") && mesi == 1) || (metpagamento.equals("TRIMESTRALE") && mesi == 3)
 				|| (metpagamento.equals("SEMESTRALE") && mesi == 6) || (metpagamento.equals("ANNUALE") && mesi == 12));
 	}
+	
+	public static boolean validaHost(String str){
+		Pattern patt = Pattern.compile("[A-Z a-z]*+[:]+[0-9]*");
+		Matcher match = patt.matcher(str);
+		return match.matches();
+	}
 }

@@ -25,7 +25,7 @@ public class Circolo {
 			public void run() {
 				try {
 					LoginController controller = new LoginController();
-					controller.controlloEvento();
+					controller.controlloLogin();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

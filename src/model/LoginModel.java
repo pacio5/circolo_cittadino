@@ -53,4 +53,8 @@ public class LoginModel {
 
 		return accesso;
 	}
+	
+	public MySql getDb(){
+		return db;
+	}
 }

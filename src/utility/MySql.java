@@ -116,6 +116,14 @@ public class MySql {
 		return conn;
 	}
 
+	public String getUrl() {
+		return url;
+	}
+
+	public String getUtente() {
+		return utente;
+	}
+
 	/**
 	 * Override del metodo toString()
 	 */
