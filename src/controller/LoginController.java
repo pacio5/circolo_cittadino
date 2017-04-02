@@ -135,6 +135,11 @@ public class LoginController {
 					validazione = false;
 				}
 				
+				if(userdb.length() == 0)
+					userdb = " ";
+				if(passdb.length() == 0)
+					passdb = " ";
+				
 				if(validazione){
 
 					int res = JOptionPane.showConfirmDialog(view.getFrame().getContentPane(),
