@@ -30,7 +30,7 @@ public class ServerView {
 		frame.getContentPane().setLayout(null);
 		
 		JLabel lblHost = new JLabel("Host: ");
-		lblHost.setBounds(59, 34, 76, 16);
+		lblHost.setBounds(28, 34, 76, 16);
 		frame.getContentPane().add(lblHost);
 		
 		String url = database.getUrl();
@@ -39,35 +39,35 @@ public class ServerView {
 		
 		host = new JTextField();
 		host.setColumns(10);
-		host.setBounds(201, 29, 130, 26);
+		host.setBounds(170, 29, 130, 26);
 		host.setText(parts[0]);
 		frame.getContentPane().add(host);
 		
 		JLabel lblUsername = new JLabel("Username: ");
-		lblUsername.setBounds(59, 72, 70, 16);
+		lblUsername.setBounds(28, 72, 70, 16);
 		frame.getContentPane().add(lblUsername);
 
 		username = new JTextField();
-		username.setBounds(201, 67, 130, 26);
+		username.setBounds(170, 67, 130, 26);
 		username.setColumns(10);
 		username.setText(database.getUtente());
 		frame.getContentPane().add(username);
 
 		JLabel lblPassword = new JLabel("Password: ");
-		lblPassword.setBounds(59, 110, 76, 16);
+		lblPassword.setBounds(28, 110, 76, 16);
 		frame.getContentPane().add(lblPassword);
 
 		password = new JPasswordField();
-		password.setBounds(201, 105, 130, 26);
+		password.setBounds(170, 105, 130, 26);
 		password.setColumns(10);
 		frame.getContentPane().add(password);
 		
 		JLabel lblDb = new JLabel("Nome del database: ");
-		lblDb.setBounds(59, 143, 130, 16);
+		lblDb.setBounds(28, 148, 130, 16);
 		frame.getContentPane().add(lblDb);
 
 		db = new JTextField();
-		db.setBounds(201, 143, 130, 26);
+		db.setBounds(170, 143, 130, 26);
 		db.setColumns(10);
 		db.setText(parts[1]);
 		frame.getContentPane().add(db);
@@ -79,6 +79,10 @@ public class ServerView {
 		btnAnnulla = new JButton("Annulla");
 		btnAnnulla.setBounds(296, 243, 148, 29);
 		frame.getContentPane().add(btnAnnulla);
+		
+		JLabel lblNomehostnomeporta = new JLabel("nomeHost:nomePorta");
+		lblNomehostnomeporta.setBounds(302, 34, 142, 16);
+		frame.getContentPane().add(lblNomehostnomeporta);
 	}
 
 	/**
@@ -136,8 +140,4 @@ public class ServerView {
 	public JButton getBtnAnnulla() {
 		return btnAnnulla;
 	}
-	
-	
-	
-	
 }
