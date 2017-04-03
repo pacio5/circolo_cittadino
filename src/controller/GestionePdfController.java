@@ -362,8 +362,8 @@ public class GestionePdfController {
 					ArrayList<NonSocio> nonsoci = model.partecipantiNonSoci(ev);
 					
 					Paragraph pre = new Paragraph();
-					pre.add(new Paragraph("CIRCOLO CITTADINO", bigFont));
-					pre.add(new Paragraph(" "));
+					pre.add(new Paragraph("CIRCOLO CITTADINO" , bigFont));
+					pre.add(new Paragraph("Evento: " + ev.getNome(), bigFont));
 					pre.add(new Paragraph(" "));
 					pre.add(new Paragraph(" Soci Partecipanti:"));
 					
@@ -373,7 +373,6 @@ public class GestionePdfController {
 					
 					pre.add(new Paragraph(" " ));
 
-					pre.add(new Paragraph("" /*Prenotazioni */));
 
 					pre.add(new Paragraph("Non Soci Partecipanti:"));
 					
@@ -381,11 +380,10 @@ public class GestionePdfController {
 						pre.add(new Paragraph(n.getCf() + " " + n.getNome() + " " + n.getCognome()));
 					});
 
-					pre.add(new Paragraph("" /*Prenotazioni */));
-
 					pre.add(new Paragraph("", formalFont));
 					document.add(pre);
 					document.close();
+					JOptionPane.showMessageDialog(viewPartecipanti.getFramePartecipanti(), "File Salvato Correttamente");
 				} catch (DocumentException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
