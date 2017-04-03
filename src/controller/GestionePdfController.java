@@ -67,7 +67,7 @@ public class GestionePdfController {
 				viewBiglietto = new BigliettoView();
 				viewBiglietto.getFrameBiglietto().setVisible(true);
 				SocioModel modelSocio = new SocioModel();
-				soci = new ArrayList<Socio>(modelSocio.elencoSoci());
+				soci = new ArrayList<Socio>(modelSocio.elencoCompleanniSoci());
 				for (int i = 0; i < soci.size(); i++)
 					viewBiglietto.getComboBoxSocio().addItem(
 							soci.get(i).getNome() + " " + soci.get(i).getCognome() + " - " + soci.get(i).getCf());

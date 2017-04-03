@@ -190,6 +190,35 @@ public class SocioModel {
 		}
 		return soci;
 	}
+	
+	/**
+	 * Metodo che si occupa di recuperare l'elenco di tutti i soci 
+	 * che compiono gli anni nei 7 giorni successivi rispetto al giorno corrente
+	 * 
+	 * @return oggetto di tipo ArrayList<Socio> che contiene tutti i soci trovati
+	 */
+	public ArrayList<Socio> elencoCompleanniSoci() {
+		ArrayList<Socio> soci = new ArrayList<Socio>();
+		Statement st;
+		try {
+			db.open();
+			st = db.getConn().createStatement();
+			String query = "SELECT * FROM socio WHERE (MONTH(DATA_NASCITA) BETWEEN MONTH(curdate()) AND MONTH(DATE_ADD(curdate(), INTERVAL 1 MONTH))) AND (DAY(DATA_NASCITA) BETWEEN DAY(curdate()) AND DAY(DATE_ADD(curdate(), INTERVAL 7 DAY)));";
+			ResultSet res = st.executeQuery(query);
+			while (res.next()) {
+				soci.add(new Socio(res.getString("cf"), res.getString("nome"), res.getString("cognome"),
+						res.getString("sesso").charAt(0), res.getDate("data_nascita"), res.getString("luogo_nascita"),
+						res.getString("indirizzo"), res.getString("citta"), res.getString("cap"),
+						res.getString("email"), res.getString("telefono"), res.getString("professione"),
+						res.getString("stato_civile"), res.getString("coniuge"), res.getDate("data_ammissione"),
+						res.getFloat("tassa_ammissione"), res.getString("mod_pagamento"),
+						res.getString("met_pagamento"), res.getString("tipologia")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return soci;
+	}
 
 	/**
 	 * Metodo che si occupa della transizione da Socio a ExSocio, inserendo l'ExSocio nell'apposita tabella ed eliminandono dalla tabella socio,
