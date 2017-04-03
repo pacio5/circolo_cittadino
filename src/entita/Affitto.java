@@ -1,6 +1,9 @@
 package entita;
 
 import java.sql.Date;
+import entita.Sala;
+import entita.NonSocio;
+import entita.Socio;
 /**
  * @author simoneonori
  * @author eliapacioni
@@ -16,12 +19,15 @@ public class Affitto {
 	private Date data;
 	private String cf;
 	private String sala;
+	private Socio s;
+	private Sala sl;
+	private NonSocio ns;
 	
 	/**
 	 * Costruttore dell'affitto senza parametri
 	 */
 	public Affitto(){
-		this(null, null, null);
+		this(null, "", "");
 	}
 	
 	/**
@@ -34,6 +40,18 @@ public class Affitto {
 		data = date;
 		cf = code;
 		sala = room;
+	}
+	
+	public Affitto(Date date, Socio partner, Sala room) {
+		data = date;
+		s = partner;
+		sl = room;
+	}
+	
+	public Affitto(Date date, NonSocio notPartner, Sala room) {
+		data = date;
+		ns = notPartner;
+		sl = room;
 	}
 		
 	/**
