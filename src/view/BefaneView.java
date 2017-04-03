@@ -15,7 +15,11 @@ import javax.swing.JTextArea;
 
 /**
  * @author simoneonori
- *
+ * @author eliapacioni
+ * @author smerilliriccardo
+ * @author francescotalento
+ * @version 1.0 marzo 2017
+ * Classe BefaneView, si occupa di visualizzare la finestra contenente i figli che possono partecipare all'evento "Le Befane"
  */
 public class BefaneView {
 	

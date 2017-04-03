@@ -17,7 +17,12 @@ import javax.swing.SpinnerNumberModel;
 
 /**
  * @author simoneonori
- *
+ * @author eliapacioni
+ * @author smerilliriccardo
+ * @author francescotalento
+ * @version 1.0 marzo 2017
+ * Classe GestioneEventiView, si occupa di visualizzare la finestra di gestione degli eventi, 
+ * da dove è possibile accedere alle funzioni di inserimento, modifica e canzellazione di un evento
  */
 public class GestioneEventiView {
 	

@@ -83,7 +83,7 @@ public class BadgeView {
 		textFieldCodFisc.setBackground(null);
 		textFieldCodFisc.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		textFieldCodFisc.setEnabled(false);
-		textFieldCodFisc.setBounds(115, 112, 86, 17);
+		textFieldCodFisc.setBounds(115, 112, 267, 17);
 		frameBadge.getContentPane().add(textFieldCodFisc);
 		textFieldCodFisc.setColumns(10);
 		textFieldCodFisc.setDisabledTextColor(Color.black);
@@ -92,7 +92,7 @@ public class BadgeView {
 		textFieldTipologia.setBackground(null);
 		textFieldTipologia.setEnabled(false);
 		textFieldTipologia.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		textFieldTipologia.setBounds(115, 137, 86, 17);
+		textFieldTipologia.setBounds(115, 137, 267, 17);
 		frameBadge.getContentPane().add(textFieldTipologia);
 		textFieldTipologia.setColumns(10);
 		textFieldTipologia.setDisabledTextColor(Color.black);
@@ -101,7 +101,7 @@ public class BadgeView {
 		textFieldDataNascita.setBackground(null);
 		textFieldDataNascita.setEnabled(false);
 		textFieldDataNascita.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		textFieldDataNascita.setBounds(115, 162, 86, 17);
+		textFieldDataNascita.setBounds(115, 162, 267, 17);
 		frameBadge.getContentPane().add(textFieldDataNascita);
 		textFieldDataNascita.setColumns(10);
 		textFieldDataNascita.setDisabledTextColor(Color.black);
@@ -110,7 +110,7 @@ public class BadgeView {
 		textFieldCitta.setBackground(null);
 		textFieldCitta.setEnabled(false);
 		textFieldCitta.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		textFieldCitta.setBounds(115, 187, 86, 17);
+		textFieldCitta.setBounds(115, 187, 267, 17);
 		frameBadge.getContentPane().add(textFieldCitta);
 		textFieldCitta.setColumns(10);
 		textFieldCitta.setDisabledTextColor(Color.black);

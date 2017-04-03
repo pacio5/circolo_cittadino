@@ -19,7 +19,6 @@ public class GestionePdfController {
 			public void mouseClicked(MouseEvent e) {
 				SalvaPdfController pdfController = new SalvaPdfController();
 				pdfController.gestioneBadge();
-				pdfView.getFrameGestionePdf().setEnabled(false);
 			}
 		});
 
@@ -28,7 +27,6 @@ public class GestionePdfController {
 			public void mouseClicked(MouseEvent e) {
 				SalvaPdfController pdfController = new SalvaPdfController();
 				pdfController.gestioneBiglietto();
-				pdfView.getFrameGestionePdf().setEnabled(false);
 			}
 		});
 
@@ -37,7 +35,6 @@ public class GestionePdfController {
 			public void mouseClicked(MouseEvent e) {
 				SalvaPdfController pdfController = new SalvaPdfController();
 				pdfController.gestioneBiglietto();
-				pdfView.getFrameGestionePdf().setEnabled(false);
 			}
 		});
 

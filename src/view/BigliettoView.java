@@ -84,7 +84,7 @@ public class BigliettoView {
 		textFieldCodFisc.setBackground(null);
 		textFieldCodFisc.setBorder(javax.swing.BorderFactory.createEmptyBorder());
 		textFieldCodFisc.setEnabled(false);
-		textFieldCodFisc.setBounds(115, 112, 86, 17);
+		textFieldCodFisc.setBounds(115, 112, 275, 17);
 		frameBiglietto.getContentPane().add(textFieldCodFisc);
 		textFieldCodFisc.setColumns(10);
 		textFieldCodFisc.setDisabledTextColor(Color.black);
@@ -93,7 +93,7 @@ public class BigliettoView {
 		textFieldTipologia.setBackground(null);
 		textFieldTipologia.setEnabled(false);
 		textFieldTipologia.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		textFieldTipologia.setBounds(115, 137, 86, 17);
+		textFieldTipologia.setBounds(115, 137, 275, 17);
 		frameBiglietto.getContentPane().add(textFieldTipologia);
 		textFieldTipologia.setColumns(10);
 		textFieldTipologia.setDisabledTextColor(Color.black);
@@ -102,7 +102,7 @@ public class BigliettoView {
 		textFieldDataNascita.setBackground(null);
 		textFieldDataNascita.setEnabled(false);
 		textFieldDataNascita.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		textFieldDataNascita.setBounds(115, 162, 86, 17);
+		textFieldDataNascita.setBounds(115, 162, 275, 17);
 		frameBiglietto.getContentPane().add(textFieldDataNascita);
 		textFieldDataNascita.setColumns(10);
 		textFieldDataNascita.setDisabledTextColor(Color.black);
@@ -111,7 +111,7 @@ public class BigliettoView {
 		textFieldCitta.setBackground(null);
 		textFieldCitta.setEnabled(false);
 		textFieldCitta.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		textFieldCitta.setBounds(115, 187, 86, 17);
+		textFieldCitta.setBounds(115, 187, 275, 17);
 		frameBiglietto.getContentPane().add(textFieldCitta);
 		textFieldCitta.setColumns(10);
 		textFieldCitta.setDisabledTextColor(Color.black);
@@ -128,7 +128,7 @@ public class BigliettoView {
 		textFieldIndirizzo.setBackground(null);
 		textFieldIndirizzo.setEnabled(false);
 		textFieldIndirizzo.setBorder(javax.swing.BorderFactory.createEmptyBorder());
-		textFieldIndirizzo.setBounds(115, 211, 106, 20);
+		textFieldIndirizzo.setBounds(115, 211, 275, 20);
 		frameBiglietto.getContentPane().add(textFieldIndirizzo);
 		textFieldIndirizzo.setColumns(10);
 		textFieldIndirizzo.setDisabledTextColor(Color.black);

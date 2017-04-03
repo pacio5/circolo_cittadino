@@ -20,7 +20,12 @@ import javax.swing.SpinnerNumberModel;
 
 /**
  * @author simoneonori
- *
+ * @author eliapacioni
+ * @author smerilliriccardo
+ * @author francescotalento
+ * @version 1.0 marzo 2017
+ * Classe PrenotaEventoView, si occupa di visualizzare la finestra di gestione delle prenotazione degli eventi, 
+ * da dove è possibile accedere a tutte le varie funzioni
  */
 public class PrenotaEventoView {
 
