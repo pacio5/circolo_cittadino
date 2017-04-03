@@ -187,9 +187,9 @@ public class PrenotaEventoView {
 		frmCircoloCittadino.getContentPane().add(lblBigliettiDisponibili);
 		
 		txtBigliettiDisponibili = new JTextField();
+		txtBigliettiDisponibili.setEditable(false);
 		txtBigliettiDisponibili.setBounds(432, 481, 74, 20);
 		frmCircoloCittadino.getContentPane().add(txtBigliettiDisponibili);
-		txtBigliettiDisponibili.setEnabled(false);
 	}
 		
 	/**

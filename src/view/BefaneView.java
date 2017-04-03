@@ -62,6 +62,7 @@ public class BefaneView {
 		frmCircoloCittadinoAscoli.getContentPane().add(btnDashboard);
 		
 		textArea = new JTextArea();
+		textArea.setEditable(false);
 		textArea.setBounds(445, 91, 327, 189);
 		frmCircoloCittadinoAscoli.getContentPane().add(textArea);
 
