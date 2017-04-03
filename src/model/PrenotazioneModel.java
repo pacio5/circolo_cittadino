@@ -112,7 +112,7 @@ public class PrenotazioneModel {
 	 * @param id contente l'id dell'evento da cancellare
 	 * @return valore booleano in base all'esito della cancellaizone
 	*/
-	public boolean deleteEvento(String id) {
+	public boolean deleteEvento(int id) {
 		db.open();
 		PreparedStatement stm = null;
 		boolean esito = false;
@@ -120,7 +120,7 @@ public class PrenotazioneModel {
 		try {
 			/* parametrizzo la query di cancellazione passando il valore dell'id dell'evento allo statement*/
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1, id);
+			stm.setInt(1, id);
 
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -147,7 +147,7 @@ public class PrenotazioneModel {
 			stm = db.getConn().createStatement();
 			ResultSet res = stm.executeQuery(query);
 			while (res.next()) {
-				Evento e = new Evento(res.getString("id"), res.getString("nome"), res.getDate("data"),
+				Evento e = new Evento(res.getInt("id"), res.getString("nome"), res.getDate("data"),
 						res.getString("descrizione"), res.getInt("n_posti"), res.getString("luogo"),
 						res.getFloat("prezzo"));
 				Eventi.add(e);
@@ -172,7 +172,7 @@ public class PrenotazioneModel {
 			stm = db.getConn().createStatement();
 			ResultSet res = stm.executeQuery(query);
 			while (res.next()) {
-				Evento e = new Evento(res.getString("id"), res.getString("nome"), res.getDate("data"),
+				Evento e = new Evento(res.getInt("id"), res.getString("nome"), res.getDate("data"),
 						res.getString("descrizione"), res.getInt("n_posti"), res.getString("luogo"),
 						res.getFloat("prezzo"));
 				Eventi.add(e);
@@ -197,14 +197,14 @@ public class PrenotazioneModel {
 			/* calcolo del numero dei posti occupati dai non soci*/
 			String query = "SELECT SUM(n_biglietti) AS n FROM prenotazionen WHERE evento = ?;";
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1, e.getId());
+			stm.setInt(1, e.getId());
 			ResultSet res = stm.executeQuery();
 			res.next();
 			po = res.getInt("n");
 			/* calcolo del numero dei posti occupati dai soci*/
 			query = "SELECT SUM(n_biglietti) AS n FROM prenotaziones WHERE evento = ?;";
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1, e.getId());
+			stm.setInt(1, e.getId());
 			res = stm.executeQuery();
 			res.next();
 			po += res.getInt("n"); //numero di posti occupati relativi all evento e
@@ -237,7 +237,7 @@ public class PrenotazioneModel {
 			stm.setInt(1, NumB);
 			stm.setDate(2, dataAcq);
 			stm.setString(3, ns.getCf());
-			stm.setString(4, e.getId());
+			stm.setInt(4, e.getId());
 
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -271,7 +271,7 @@ public class PrenotazioneModel {
 			stm.setInt(1, NumB);
 			stm.setDate(2, dataAcq);
 			stm.setString(3, s.getCf());
-			stm.setString(4, e.getId());
+			stm.setInt(4, e.getId());
 
 			int res = stm.executeUpdate();
 			if (res == 1)
@@ -327,12 +327,12 @@ public class PrenotazioneModel {
 	 * @param idEvento id dell'evento di cui si desidera conoscere tutte le prenotazioni effettuate
 	 * @return oggetto di tipo ArrayList<Prenotazione> contenente le prenotazioni effettuate
 	*/
-	public ArrayList<Prenotazione> listaPrenotazioni(String idEvento) {
+	public ArrayList<Prenotazione> listaPrenotazioni(int idEvento) {
 		ArrayList<Prenotazione> prenotazioni = new ArrayList<Prenotazione>();
 		db.open();
 		try {
 			ResultSet res = null;
-			if (idEvento != null) {
+			if (idEvento != -1) {
 				String query = "(SELECT * FROM prenotazionen WHERE evento = ?) UNION (SELECT * FROM prenotaziones WHERE evento = ?);";
 				/* parametrizzo la query passando il valore dei parametri allo statement */
 				PreparedStatement stm = db.getConn().prepareStatement(query);
@@ -365,12 +365,11 @@ public class PrenotazioneModel {
 		ArrayList<Socio> partecipantiS = new ArrayList<Socio>();
 		db.open();
 		PreparedStatement stm;
-		String query = "SELECT * FROM socio AS s INNER JOIN prenotaziones AS p ON s.cf = p.socio"
-				+ " INNER JOIN evento AS e p.evento = e.id WHERE e.id = ?;";
+		String query = "SELECT * FROM socio WHERE socio.cf IN (SELECT prenotaziones.socio FROM prenotaziones WHERE prenotaziones.evento = ?);";
 		try {
 			/* parametrizzo la query passando il valore dei parametri allo statement */
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1, e.getId());
+			stm.setInt(1, e.getId());
 			ResultSet res = stm.executeQuery();
 			while (res.next()) {
 				Socio s = new Socio(res.getString("cf"), res.getString("nome"), res.getString("cognome"),
@@ -398,12 +397,12 @@ public class PrenotazioneModel {
 		ArrayList<NonSocio> partecipantiNS = new ArrayList<NonSocio>();
 		db.open();
 		PreparedStatement stm;
-		String query = "SELECT * FROM nonsocio AS ns INNER JOIN prenotazionen AS p ON ns.cf = p.nonsocio"
-				+ " INNER JOIN evento AS e p.evento = e.id WHERE e.id = ?;";
+		String query = "SELECT * FROM nonsocio WHERE nonsocio.cf IN (SELECT prenotazionen.nonsocio FROM prenotazionen WHERE prenotazionen.evento = ?);";
+
 		try {
 			/* parametrizzo la query passando il valore dei parametri allo statement */
 			stm = db.getConn().prepareStatement(query);
-			stm.setString(1, e.getId());
+			stm.setInt(1, e.getId());
 			ResultSet res = stm.executeQuery();
 			while (res.next()) {
 				NonSocio ns = new NonSocio(res.getString("cf"), res.getString("nome"), res.getString("cognome"),

@@ -567,7 +567,7 @@ public class PrenotazioneController {
 		ArrayList<Evento> eventi = model.listaEventiValidi();
 		ArrayList<Socio> soci = modelS.elencoSoci();
 		ArrayList<NonSocio> nsoci = modelS.elencoNonSoci();
-		ArrayList<Prenotazione> prenotazioni = model.listaPrenotazioni(null);
+		ArrayList<Prenotazione> prenotazioni = model.listaPrenotazioni(-1);
 
 		PrenotaEventoView view = new PrenotaEventoView(eventi, prenotazioni, soci, nsoci);
 		view.getFrame().setVisible(true);

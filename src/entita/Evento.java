@@ -12,7 +12,7 @@ import java.sql.Date;
  * classe che si occupa di mappare l'entità evento contenuta nel databese
  */
 public class Evento {
-	private String id;
+	private int id;
 	private String nome;
 	private Date data;
 	private String descrizione;
@@ -24,7 +24,7 @@ public class Evento {
 	 * Costruttore della prenotazione senza parametri
 	 */
 	public Evento(){
-		this(null, null, null, null, 0, null, 0);
+		this(-1, null, null, null, 0, null, 0);
 	}
 	
 	/**
@@ -37,7 +37,7 @@ public class Evento {
 	 * @param location via o luogo dove si svolgerà l'evento
 	 * @param price prezzo del biglietto dell'evento
 	 */
-	public Evento(String identification, String name, Date date, String description, int seats, String location, float price){ 
+	public Evento(int identification, String name, Date date, String description, int seats, String location, float price){ 
 		id = identification;
 		nome = name;
 		data = date;
@@ -124,7 +124,7 @@ public class Evento {
 	/**
 	 * @return id contenente l'id dell'evento
 	 */
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 	

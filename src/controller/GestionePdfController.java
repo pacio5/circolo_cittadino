@@ -5,10 +5,12 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 import com.itextpdf.text.Document;
@@ -18,16 +20,21 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import entita.Evento;
+import entita.NonSocio;
 import entita.Socio;
 import model.SocioModel;
+import model.PrenotazioneModel;
 import view.BadgeView;
 import view.BigliettoView;
 import view.PDFView;
+import view.PartecipantiView;
 
 public class GestionePdfController {
 	private PDFView pdfView;
 	private BadgeView viewBadge;
 	private BigliettoView viewBiglietto;
+	private PartecipantiView viewPartecipanti;
 	private ArrayList<Socio> soci;
 	private Font bigFont = new Font(Font.FontFamily.TIMES_ROMAN, 10, Font.ITALIC);
 	private Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 8, Font.ITALIC);
@@ -44,7 +51,12 @@ public class GestionePdfController {
 			public void mouseClicked(MouseEvent e) {
 				viewBadge = new BadgeView();
 				viewBadge.getFrameBadge().setVisible(true);
-				riempimentoComboBoxSociBadge();
+				SocioModel modelSocio = new SocioModel();
+				soci = new ArrayList<Socio>(modelSocio.elencoSoci());
+				for (int i = 0; i < soci.size(); i++)
+					viewBadge.getComboBoxSocio().addItem(
+							soci.get(i).getNome() + " " + soci.get(i).getCognome() + " - " + soci.get(i).getCf());
+				viewBadge.getComboBoxSocio().setSelectedIndex(-1);
 				controlloEventiBadge();
 			}
 		});
@@ -54,7 +66,12 @@ public class GestionePdfController {
 			public void mouseClicked(MouseEvent e) {
 				viewBiglietto = new BigliettoView();
 				viewBiglietto.getFrameBiglietto().setVisible(true);
-				riempimentoComboBoxSociBiglietto();
+				SocioModel modelSocio = new SocioModel();
+				soci = new ArrayList<Socio>(modelSocio.elencoSoci());
+				for (int i = 0; i < soci.size(); i++)
+					viewBiglietto.getComboBoxSocio().addItem(
+							soci.get(i).getNome() + " " + soci.get(i).getCognome() + " - " + soci.get(i).getCf());
+				viewBiglietto.getComboBoxSocio().setSelectedIndex(-1);
 				controlloEventiBiglietto();
 			}
 		});
@@ -62,26 +79,9 @@ public class GestionePdfController {
 		pdfView.getBtnPdfPartecipanti().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				viewBiglietto = new BigliettoView();
-				viewBiglietto.getFrameBiglietto().setVisible(true);
-				riempimentoComboBoxSociBiglietto();
-				controlloEventiBiglietto();
+				controlloEventiPartecipanti();
 			}
 		});
-	}
-
-	/**
-	 * Metodo per visualizzare i soci presenti nel database del circolo
-	 * visualizzandone il nome, cognome e cf
-	 */
-
-	void riempimentoComboBoxSociBadge() {
-		SocioModel modelSocio = new SocioModel();
-		soci = new ArrayList<Socio>(modelSocio.elencoSoci());
-		for (int i = 0; i < soci.size(); i++)
-			viewBadge.getComboBoxSocio()
-					.addItem(soci.get(i).getNome() + " " + soci.get(i).getCognome() + " - " + soci.get(i).getCf());
-		viewBadge.getComboBoxSocio().setSelectedIndex(-1);
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class GestionePdfController {
 					String file = null;
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					Document document = new Document(PageSize.ID_1);
-					file = showSaveFileDialogBadge(document);
+					file = finestraSalvataggio(document);
 					PdfWriter.getInstance(document, new FileOutputStream(file + ".pdf"));
 					document.open();
 					aggiungiPrefazioneBadge(document);
@@ -163,7 +163,7 @@ public class GestionePdfController {
 	 * @return il percorso di destinazione
 	 */
 
-	private String showSaveFileDialogBadge(Document document) {
+	private String finestraSalvataggio(Document document) {
 		JFileChooser fileChooser = new JFileChooser();
 		fileChooser.setDialogTitle("Salva Badge");
 		File fileToSave = null;
@@ -185,7 +185,7 @@ public class GestionePdfController {
 	 *             Delega delle eccezioni gestite nel try... catch
 	 */
 
-	void aggiungiPrefazioneBadge(Document document) throws DocumentException {
+	private void aggiungiPrefazioneBadge(Document document) throws DocumentException {
 		Paragraph prefazioneBadge = new Paragraph();
 
 		prefazioneBadge.add(new Paragraph("CIRCOLO CITTADINO", bigFont));
@@ -200,7 +200,7 @@ public class GestionePdfController {
 				new Paragraph("CF: " + soci.get(viewBadge.getComboBoxSocio().getSelectedIndex()).getCf(), smallBold));
 
 		prefazioneBadge.add(new Paragraph(
-				"Citt�: " + soci.get(viewBadge.getComboBoxSocio().getSelectedIndex()).getCitta(), smallBold));
+				"Città: " + soci.get(viewBadge.getComboBoxSocio().getSelectedIndex()).getCitta(), smallBold));
 
 		prefazioneBadge.add(new Paragraph(
 				"Tipologia: " + soci.get(viewBadge.getComboBoxSocio().getSelectedIndex()).getTipologia(), smallBold));
@@ -211,20 +211,6 @@ public class GestionePdfController {
 
 		document.add(prefazioneBadge);
 
-	}
-
-	/**
-	 * Metodo per visualizzare i soci del circolo che compiono gli anni
-	 * nell'immediato visualizzandone il nome, cognome e cf
-	 */
-
-	void riempimentoComboBoxSociBiglietto() {
-		SocioModel modelSocio = new SocioModel();
-		soci = new ArrayList<Socio>(modelSocio.elencoSoci());
-		for (int i = 0; i < soci.size(); i++)
-			viewBiglietto.getComboBoxSocio()
-					.addItem(soci.get(i).getNome() + " " + soci.get(i).getCognome() + " - " + soci.get(i).getCf());
-		viewBiglietto.getComboBoxSocio().setSelectedIndex(-1);
 	}
 
 	/**
@@ -284,7 +270,7 @@ public class GestionePdfController {
 					String file = null;
 					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 					Document document = new Document(PageSize.ID_3);
-					file = showSaveFileDialogBiglietto(document);
+					file = finestraSalvataggio(document);
 					PdfWriter.getInstance(document, new FileOutputStream(file + ".pdf"));
 					document.open();
 					aggiungiPrefazioneBiglietto(document);
@@ -303,26 +289,6 @@ public class GestionePdfController {
 	}
 
 	/**
-	 * Metodo per visualizzare a schermo la finestra di dialogo per effettuare
-	 * il salvataggio del pdf
-	 * 
-	 * @param document
-	 *            d� in input il documento pdf creato in precedenza
-	 * @return il percorso di destinazione
-	 */
-
-	private String showSaveFileDialogBiglietto(Document document) {
-		JFileChooser fileChooser = new JFileChooser();
-		fileChooser.setDialogTitle("Salva Biglietto");
-		File fileToSave = null;
-		int userSelection = fileChooser.showSaveDialog(fileChooser);
-		if (userSelection == JFileChooser.APPROVE_OPTION) {
-			fileToSave = fileChooser.getSelectedFile();
-		}
-		return fileToSave.getAbsolutePath();
-	}
-
-	/**
 	 * Metodo per creare il pdf relativo al badge del socio richiesto nella
 	 * combobox formato da: nome, cognome, cf, tipologia socio e citt�
 	 * attraverso la scrittura e il salvataggio delle informazioni nel documento
@@ -333,7 +299,7 @@ public class GestionePdfController {
 	 *             Delega delle eccezioni gestite nel try... catch
 	 */
 
-	void aggiungiPrefazioneBiglietto(Document document) throws DocumentException {
+	private void aggiungiPrefazioneBiglietto(Document document) throws DocumentException {
 		Paragraph prefazioneBiglietto = new Paragraph();
 
 		prefazioneBiglietto.add(new Paragraph("CIRCOLO CITTADINO", bigFont));
@@ -345,11 +311,91 @@ public class GestionePdfController {
 		prefazioneBiglietto.add(new Paragraph(
 				"Questo nostro piccolo pensiero sia per te un augurio sincero di buon compleanno!", formalFont));
 
-		/**
-		 * Aggiunta al documento
-		 */
+		/* Aggiunta al documento */
 
 		document.add(prefazioneBiglietto);
+	}
+
+	private void controlloEventiPartecipanti() {
+		viewPartecipanti = new PartecipantiView();
+		viewPartecipanti.getFramePartecipanti().setVisible(true);
+		PrenotazioneModel model = new PrenotazioneModel();
+		ArrayList<Evento> eventi = model.listaEventiValidi();
+
+		eventi.stream().forEach((e)->{
+			viewPartecipanti.getComboBoxEventi().addItem(e);
+		});
+		
+		viewPartecipanti.getComboBoxEventi().setSelectedIndex(-1);
+
+		viewPartecipanti.getComboBoxEventi().addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (viewPartecipanti.getComboBoxEventi().getSelectedIndex() != -1) {
+					viewPartecipanti.getTextFieldLuogo().setText(
+							eventi.get(viewPartecipanti.getComboBoxEventi().getSelectedIndex()).getLuogo().toString());
+					viewPartecipanti.getTextFieldData().setText(
+							eventi.get(viewPartecipanti.getComboBoxEventi().getSelectedIndex()).getData().toString());
+					viewPartecipanti.getTextFieldNposti().setText(String
+							.valueOf(eventi.get(viewPartecipanti.getComboBoxEventi().getSelectedIndex()).getPosti()));
+
+				} else {
+					viewPartecipanti.getTextFieldLuogo().setText("");
+					viewPartecipanti.getTextFieldData().setText("");
+					viewPartecipanti.getTextFieldNposti().setText("");
+				}
+			}
+
+		});
+		
+		viewPartecipanti.getBtnCreaPdfLista().addMouseListener(new MouseAdapter(){
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				try {
+					Document document = new Document(PageSize.A4);
+					String file = finestraSalvataggio(document);
+					PdfWriter.getInstance(document, new FileOutputStream(file + ".pdf"));
+					document.open();
+					Evento ev = (Evento) viewPartecipanti.getComboBoxEventi().getSelectedItem();
+					ArrayList<Socio> soci = model.partecipantiSoci(ev);
+					ArrayList<NonSocio> nonsoci = model.partecipantiNonSoci(ev);
+					
+					Paragraph pre = new Paragraph();
+					pre.add(new Paragraph("CIRCOLO CITTADINO", bigFont));
+					pre.add(new Paragraph(" "));
+					pre.add(new Paragraph(" "));
+					pre.add(new Paragraph(" Soci Partecipanti:"));
+					
+					soci.stream().forEach((s)->{
+						pre.add(new Paragraph(s.getCf() + " " + s.getNome() + " " + s.getCognome() ));
+					});
+					
+					pre.add(new Paragraph(" " ));
+
+					pre.add(new Paragraph("" /*Prenotazioni */));
+
+					pre.add(new Paragraph("Non Soci Partecipanti:"));
+					
+					nonsoci.stream().forEach((n)->{
+						pre.add(new Paragraph(n.getCf() + " " + n.getNome() + " " + n.getCognome()));
+					});
+
+					pre.add(new Paragraph("" /*Prenotazioni */));
+
+					pre.add(new Paragraph("", formalFont));
+					document.add(pre);
+					document.close();
+				} catch (DocumentException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+			
+		});
 
 	}
 
