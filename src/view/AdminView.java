@@ -110,7 +110,7 @@ public class AdminView {
 		btnStampaBigliettoAuguri = new JButton("Biglietto Auguri");
 		btnStampaBigliettoAuguri.setBounds(100, 504, 160, 29);
 		
-		btnGestionePdf = new JButton("Gestione PDF");
+		btnGestionePdf = new JButton("Crea PDF");
 		btnGestionePdf.setBounds(550, 450, 160, 29);
 		
 		JLabel lblImg = new JLabel(new ImageIcon("./resources/circolo.png"));

@@ -13,54 +13,48 @@ public class PDFView {
 	private JButton btnPdfPartecipanti;
 	private JButton btnPdfBiglietti;
 
-public PDFView(){
-	
-	JFrame frameGestionePdf = new JFrame();
-	frameGestionePdf.setTitle("Gestione PDF");
-	frmGestionePdf = frameGestionePdf;
-	frmGestionePdf.setTitle("Gestione PDF");
-	frmGestionePdf.setResizable(false);
-	frmGestionePdf.setBounds(100, 100, 550, 400);
-	frmGestionePdf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	
-	
-	btnPdfBadge = new JButton("PDF BADGE");
-	btnPdfBadge.setBounds(194, 136, 151, 43);
-	
-	btnPdfBiglietti = new JButton("PDF BIGLIETTI");
-	btnPdfBiglietti.setBounds(194, 213, 151, 43);
-	
-	btnPdfPartecipanti = new JButton("PDF PARTECIPANTI");
-	btnPdfPartecipanti.setBounds(194, 290, 151, 43);
-	
-	JLabel lblImg = new JLabel(new ImageIcon("./resources/circolo.png"));
-	
-	lblImg.setBounds(10,11,524,100);
-	
-	frameGestionePdf.getContentPane().setLayout(null);
-	frameGestionePdf.getContentPane().add(btnPdfBadge);
-	frameGestionePdf.getContentPane().add(btnPdfBiglietti);
-	frameGestionePdf.getContentPane().add(btnPdfPartecipanti);
-	frameGestionePdf.getContentPane().add(lblImg);
-}
+	public PDFView() {
 
-public JFrame getFrameGestionePdf() {
-	return frmGestionePdf;
-}
+		frmGestionePdf = new JFrame();
+		frmGestionePdf.setTitle("Crea PDF");
+		frmGestionePdf.setResizable(false);
+		frmGestionePdf.setBounds(100, 100, 550, 400);
+		frmGestionePdf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
+		btnPdfBadge = new JButton("PDF BADGE");
+		btnPdfBadge.setBounds(194, 136, 151, 43);
 
-public JButton getBtnPdfBadge() {
-	return btnPdfBadge;
-}
+		btnPdfBiglietti = new JButton("PDF BIGLIETTI");
+		btnPdfBiglietti.setBounds(194, 213, 151, 43);
 
-public JButton getBtnPdfBiglietti() {
-	return btnPdfBiglietti;
-}
+		btnPdfPartecipanti = new JButton("PDF PARTECIPANTI");
+		btnPdfPartecipanti.setBounds(194, 290, 151, 43);
 
-public JButton getBtnPdfPartecipanti() {
-	return btnPdfPartecipanti;
-}
+		JLabel lblImg = new JLabel(new ImageIcon("./resources/circolo.png"));
 
+		lblImg.setBounds(10, 11, 524, 100);
 
-	
+		frmGestionePdf.getContentPane().setLayout(null);
+		frmGestionePdf.getContentPane().add(btnPdfBadge);
+		frmGestionePdf.getContentPane().add(btnPdfBiglietti);
+		frmGestionePdf.getContentPane().add(btnPdfPartecipanti);
+		frmGestionePdf.getContentPane().add(lblImg);
+	}
+
+	public JFrame getFrameGestionePdf() {
+		return frmGestionePdf;
+	}
+
+	public JButton getBtnPdfBadge() {
+		return btnPdfBadge;
+	}
+
+	public JButton getBtnPdfBiglietti() {
+		return btnPdfBiglietti;
+	}
+
+	public JButton getBtnPdfPartecipanti() {
+		return btnPdfPartecipanti;
+	}
+
 }

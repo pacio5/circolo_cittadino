@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
@@ -19,34 +17,8 @@ public class BadgeView {
 	private JTextField textFieldTipologia;
 	private JTextField textFieldDataNascita;
 	private JTextField textFieldCitta;
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BadgeView window = new BadgeView();
-					window.frameBadge.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
 	public BadgeView() {
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
 		frameBadge = new JFrame();
 		frameBadge.setType(Type.POPUP);
 		frameBadge.setTitle("Badge");
