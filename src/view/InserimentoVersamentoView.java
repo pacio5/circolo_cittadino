@@ -62,12 +62,13 @@ public class InserimentoVersamentoView {
 	 * Inizializzazione del contenuto del frame
 	 */
 	private void initialize() {
-		frameInsVersamento = new JFrame();
+		frameInsVersamento = new JFrame("Circolo cittadino - Inserimento versamento");
 		frameInsVersamento.setBounds(100, 100, 800, 600);
 		frameInsVersamento.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameInsVersamento.getContentPane().setLayout(null);
 
-		JLabel lblIntroduzione = new JLabel("descrizione");
+		JLabel lblIntroduzione = new JLabel(
+				"Inserimento dei versamenti effettuati dai soci per pagare le quote associative.");
 		lblIntroduzione.setBounds(10, 11, 633, 82);
 
 		JLabel lblSocio = new JLabel("Socio");

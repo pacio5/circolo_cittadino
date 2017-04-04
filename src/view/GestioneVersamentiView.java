@@ -36,11 +36,12 @@ public class GestioneVersamentiView {
 	 * Inizializzazione del contenuto del frame
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Circolo cittadino - Gestione versamenti");
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		JLabel lblIntroduzione = new JLabel("descrizione");
+		JLabel lblIntroduzione = new JLabel(
+				"Visualizzazione di tutti i versamenti precedentemente registrati e possibilità di eliminarli");
 		lblIntroduzione.setBounds(10, 11, 634, 42);
 
 		table = new JTable();

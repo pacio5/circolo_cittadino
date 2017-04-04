@@ -36,12 +36,13 @@ public class ChiusuraAnnualeView {
 	 * Inizializzazione del contenuto del frame
 	 */
 	private void initialize() {
-		frame = new JFrame();
+		frame = new JFrame("Circolo cittadino - Gestione chiusura annuale");
 		frame.setBounds(100, 100, 800, 600);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		JLabel lblDescrizione = new JLabel("descrizione");
+
+		JLabel lblDescrizione = new JLabel(
+				"Permette di visualizzare il resoconto di fine anno di ogni socio");
 		lblDescrizione.setBounds(10, 11, 634, 97);
 		
 		table = new JTable();
