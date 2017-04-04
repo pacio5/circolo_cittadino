@@ -61,7 +61,7 @@ public class GestioneExSocioView {
 	 * @param soci
 	 */
 	public GestioneExSocioView(ArrayList<ExSocio> soci) {
-		frame = new JFrame("Circolo Cittadino Ascoli Piceno");
+		frame = new JFrame("Circolo Cittadino - Gestione Ex Socio");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 800, 600);
 		frame.setResizable(false);

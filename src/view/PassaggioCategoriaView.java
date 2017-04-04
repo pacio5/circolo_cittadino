@@ -40,7 +40,7 @@ public class PassaggioCategoriaView {
 	 * e di inizializzare tutti i componenti
 	 */
 	public PassaggioCategoriaView(ArrayList<Socio> soci){
-		frame = new JFrame("Circolo Cittadino Ascoli Piceno");
+		frame = new JFrame("Circolo Cittadino - Passaggio di Categoria");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 800, 600);
 		frame.setResizable(false);

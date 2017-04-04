@@ -11,7 +11,7 @@ import java.sql.Date;
  * @version 1.0 Marzo 2017
  * 
  * 
- * Classe che si occupa di mappare l'entità Versamento nel database
+ * Classe che si occupa di mappare l'entitï¿½ Versamento nel database
  */
 public class Versamento {
 	private int id;
@@ -21,15 +21,16 @@ public class Versamento {
 	private String socio;
 	private Date data;
 	private String descrizione = new String();
+	private Socio s;
 
 	/**
-	 * Costruttore, un versamento è formato da un id, il valore dell'importo pagato,
+	 * Costruttore, un versamento ï¿½ formato da un id, il valore dell'importo pagato,
 	 * un array mesi contenente i nomi dei mesi considerati nel versamento,
 	 * il numero di mesi inseriti, il codice fiscale del socio, la data del versamento
 	 * e la descrizione
 	 */
 	public Versamento() {
-		this(0, new String[12], 0, (float)0.0, null, null, null);
+		this(0, new String[12], 0, (float)0.0, "", null, null);
 	}
 	
 	/**
@@ -47,6 +48,16 @@ public class Versamento {
 		lunghmesi = length;
 		importo = value;
 		socio = member;
+		data = dataV;
+		descrizione = desc;
+	}
+	
+	public Versamento(int cod, String[] month, int length, float value, Socio member, Date dataV, String desc) {
+		id = cod;
+		mesi = month.clone();
+		lunghmesi = length;
+		importo = value;
+		s = member;
 		data = dataV;
 		descrizione = desc;
 	}
@@ -81,7 +92,7 @@ public class Versamento {
 	
 	/**
 	 * @param x oggetto Versamento
-	 * @return true se le proprietà dei Versamenti corrispondono, altrimenti false
+	 * @return true se le proprietï¿½ dei Versamenti corrispondono, altrimenti false
 	 */
 	public boolean equals(Versamento x) {
 		return (id == x.id && mesi.equals(x.mesi) && importo == x.importo && socio.equals(x.socio)
@@ -95,7 +106,7 @@ public class Versamento {
 	}
 
 	/**
-	 * Metodo per clonare le proprietà di un Versamento x
+	 * Metodo per clonare le proprietï¿½ di un Versamento x
 	 * in un Versamento considerato
 	 * @param x oggetto Verssamento
 	 */
@@ -220,7 +231,7 @@ public class Versamento {
 	}
 
 	/**
-	 * Metodo per azzerare i mesi e la quantità considerata nel versamento
+	 * Metodo per azzerare i mesi e la quantitï¿½ considerata nel versamento
 	 */
 	public void azzeraMesi() {
 		String[] mesivuoti = { null, null, null, null, null, null, null, null, null, null, null, null };

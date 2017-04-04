@@ -41,7 +41,7 @@ public class GestioneQuoteView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		JLabel lblIntroduzione = new JLabel(
-				"Visualizzazione di tutte le quote precedentemente registrate e possibilit‡ di eliminarle");
+				"Visualizzazione di tutte le quote precedentemente registrate e possibilit√† di eliminarle");
 		lblIntroduzione.setBounds(10, 11, 634, 80);
 
 		table = new JTable();

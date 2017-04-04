@@ -54,7 +54,7 @@ public class GestioneFigliView {
 	 * e inizializza tutte le proprietà
 	 */
 	public GestioneFigliView(ArrayList<Figlio> figli, ArrayList<Socio> genitori ) {
-		frame = new JFrame("Elenco soci del Circolo Cittadino di Ascoli Piceno");
+		frame = new JFrame("Circolo Cittadino - Gestione Figli");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 800, 600);
 		frame.setResizable(false);

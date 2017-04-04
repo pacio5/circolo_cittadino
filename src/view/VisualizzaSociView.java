@@ -66,7 +66,7 @@ public class VisualizzaSociView {
 	 * Costruttore VisualizzaSociView, si occupa di inizializzare tutte le proprietà e di visualizzare la finesta per la gestione dei soci
 	 */
 	public VisualizzaSociView(ArrayList<Socio> soci) {
-		frame = new JFrame("Elenco soci del Circolo Cittadino di Ascoli Piceno");
+		frame = new JFrame("Circolo Cittadino - Elenco dei Soci");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(100, 100, 800, 600);
 		frame.setResizable(false);

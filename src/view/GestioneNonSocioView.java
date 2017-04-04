@@ -26,7 +26,7 @@ import javax.swing.JButton;
  */
 public class GestioneNonSocioView {
 
-	private JFrame frame;
+	private JFrame frmCircoloCittadino;
 	private JList<NonSocio> list;
 	private DefaultListModel<NonSocio> dlm;
 	private ScrollPane scrollPane;
@@ -51,62 +51,63 @@ public class GestioneNonSocioView {
 	 * @param nonSoci, elenco dei nonsocio
 	 */
 	public GestioneNonSocioView(ArrayList<NonSocio> nonSoci) {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 800, 600);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmCircoloCittadino = new JFrame();
+		frmCircoloCittadino.setTitle("Circolo Cittadino - Gestione Non Socio");
+		frmCircoloCittadino.setBounds(100, 100, 800, 600);
+		frmCircoloCittadino.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		list = new JList<NonSocio>();
 		dlm = new DefaultListModel<NonSocio>();
 		nonSoci.stream().forEach((n) -> {
 			dlm.addElement(n);
 		});
-		frame.getContentPane().setLayout(null);
+		frmCircoloCittadino.getContentPane().setLayout(null);
 		list.setModel(dlm);
 
 		scrollPane = new ScrollPane();
 		scrollPane.setBounds(6, 54, 228, 470);
 		scrollPane.add(list);
-		frame.getContentPane().add(scrollPane);
+		frmCircoloCittadino.getContentPane().add(scrollPane);
 
 		JLabel lblCodiceFiscale = new JLabel("Codice Fiscale");
 		lblCodiceFiscale.setBounds(253, 95, 97, 16);
-		frame.getContentPane().add(lblCodiceFiscale);
+		frmCircoloCittadino.getContentPane().add(lblCodiceFiscale);
 
 		cf = new JTextField();
 		cf.setBounds(362, 90, 170, 26);
 		cf.setColumns(10);
-		frame.getContentPane().add(cf);
+		frmCircoloCittadino.getContentPane().add(cf);
 
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setBounds(253, 133, 97, 16);
-		frame.getContentPane().add(lblNome);
+		frmCircoloCittadino.getContentPane().add(lblNome);
 
 		nome = new JTextField();
 		nome.setColumns(10);
 		nome.setBounds(362, 128, 170, 26);
-		frame.getContentPane().add(nome);
+		frmCircoloCittadino.getContentPane().add(nome);
 
 		JLabel lblCognome = new JLabel("Cognome");
 		lblCognome.setBounds(253, 171, 97, 16);
-		frame.getContentPane().add(lblCognome);
+		frmCircoloCittadino.getContentPane().add(lblCognome);
 
 		cognome = new JTextField();
 		cognome.setColumns(10);
 		cognome.setBounds(362, 167, 170, 23);
-		frame.getContentPane().add(cognome);
+		frmCircoloCittadino.getContentPane().add(cognome);
 
 		JLabel lblSesso = new JLabel("Sesso");
 		lblSesso.setBounds(253, 209, 97, 16);
-		frame.getContentPane().add(lblSesso);
+		frmCircoloCittadino.getContentPane().add(lblSesso);
 
 		rdbtnUomo = new JRadioButton("Uomo");
 		rdbtnUomo.setBounds(362, 205, 69, 23);
 		rdbtnUomo.setSelected(true);
-		frame.getContentPane().add(rdbtnUomo);
+		frmCircoloCittadino.getContentPane().add(rdbtnUomo);
 
 		rdbtnDonna = new JRadioButton("Donna");
 		rdbtnDonna.setBounds(453, 205, 79, 23);
-		frame.getContentPane().add(rdbtnDonna);
+		frmCircoloCittadino.getContentPane().add(rdbtnDonna);
 
 		sesso = new ButtonGroup();
 		sesso.add(rdbtnUomo);
@@ -114,60 +115,60 @@ public class GestioneNonSocioView {
 
 		JLabel lblEmail = new JLabel("Email");
 		lblEmail.setBounds(253, 244, 97, 16);
-		frame.getContentPane().add(lblEmail);
+		frmCircoloCittadino.getContentPane().add(lblEmail);
 
 		email = new JTextField();
 		email.setColumns(10);
 		email.setBounds(362, 239, 170, 26);
-		frame.getContentPane().add(email);
+		frmCircoloCittadino.getContentPane().add(email);
 
 		JLabel lblTelefono = new JLabel("Telefono");
 		lblTelefono.setBounds(253, 282, 97, 16);
-		frame.getContentPane().add(lblTelefono);
+		frmCircoloCittadino.getContentPane().add(lblTelefono);
 
 		telefono = new JTextField();
 		telefono.setColumns(10);
 		telefono.setBounds(362, 277, 170, 26);
-		frame.getContentPane().add(telefono);
+		frmCircoloCittadino.getContentPane().add(telefono);
 
 		btnInserisci = new JButton("Inserisci");
 		btnInserisci.setBounds(240, 501, 117, 29);
-		frame.getContentPane().add(btnInserisci);
+		frmCircoloCittadino.getContentPane().add(btnInserisci);
 
 		btnElimina = new JButton("Elimina");
 		btnElimina.setVisible(false);
 		btnElimina.setBounds(362, 501, 117, 29);
-		frame.getContentPane().add(btnElimina);
+		frmCircoloCittadino.getContentPane().add(btnElimina);
 
 		btnModifica = new JButton("Modifica");
 		btnModifica.setVisible(false);
 		btnModifica.setBounds(477, 501, 117, 29);
-		frame.getContentPane().add(btnModifica);
+		frmCircoloCittadino.getContentPane().add(btnModifica);
 
 		btnAggiorna = new JButton("Aggiorna");
 		btnAggiorna.setBounds(592, 501, 117, 29);
 		btnAggiorna.setVisible(false);
-		frame.getContentPane().add(btnAggiorna);
+		frmCircoloCittadino.getContentPane().add(btnAggiorna);
 		
 		btnAnnulla = new JButton("Annulla");
 		btnAnnulla.setBounds(240, 530, 117, 29);
 		btnAnnulla.setVisible(false);
-		frame.getContentPane().add(btnAnnulla);
+		frmCircoloCittadino.getContentPane().add(btnAnnulla);
 
 		btnDashboard = new JButton("Dashboard");
 		btnDashboard.setBounds(697, 6, 97, 41);
-		frame.getContentPane().add(btnDashboard);
+		frmCircoloCittadino.getContentPane().add(btnDashboard);
 
 		JLabel lblElencoNonSoci = new JLabel("Elenco Non Soci");
 		lblElencoNonSoci.setBounds(376, 17, 128, 16);
-		frame.getContentPane().add(lblElencoNonSoci);
+		frmCircoloCittadino.getContentPane().add(lblElencoNonSoci);
 	}
 
 	/**
 	 * @return frame (JFrame)
 	 */
 	public JFrame getFrame() {
-		return frame;
+		return frmCircoloCittadino;
 	}
 
 	/**
