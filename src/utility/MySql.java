@@ -116,10 +116,18 @@ public class MySql {
 		return conn;
 	}
 
+	/***
+	 * 
+	 * @return ritorna l'url 
+	 */
 	public String getUrl() {
 		return url;
 	}
 
+	/**
+	 * 
+	 * @return ritorna l'utente
+	 */
 	public String getUtente() {
 		return utente;
 	}
