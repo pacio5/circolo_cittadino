@@ -41,7 +41,7 @@ public class LoginController {
 	private LoginView loginView;
 
 	/**
-	 * Costruttore senza parametri del LoginController, inizializza la LoginView
+	 * Costruttore senza parametri del LoginController, istanzia la LoginView
 	 * e la rende visibile, inizializza il LoginModel
 	 */
 	public LoginController() {
