@@ -31,7 +31,7 @@ public class SocioModel {
 	MySql db = null;
 
 	/**
-	 * Costruttore del SocioModel inizializza l'oggetto MySql
+	 * Costruttore del SocioModel istanzia l'oggetto MySql
 	 */
 	public SocioModel() {
 		db = new MySql();

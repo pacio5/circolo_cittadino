@@ -24,7 +24,7 @@ public class AdminController {
 
 	/**
 	 * Costruttore dell'AdminController, 
-	 * inizializza l'AdminView e la rende visibile
+	 * istanzia l'AdminView e la rende visibile
 	 */
 	public AdminController() {
 		adminView = new AdminView();

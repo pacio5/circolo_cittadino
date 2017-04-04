@@ -10,6 +10,16 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Window.Type;
 
+/**
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ *
+ * Classe BigliettoView, si occupa di visualizzare la finestra per creare il biglietto
+ * di auguri per il compleanno del socio che compie gli anni. 
+ */
+
 public class BigliettoView {
 
 	private JFrame frameBiglietto;
@@ -22,31 +32,18 @@ public class BigliettoView {
 	private JTextField textFieldIndirizzo;
 	
 	/**
-	 * Launch the application.
+	 * Costruttore BigliettoView, si occupa di visualizzare le informazioni di un singolo socio 
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					BigliettoView window = new BigliettoView();
-					window.frameBiglietto.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
+	
 	public BigliettoView() {
 		initialize();
 	}
-
+	
 	/**
-	 * Initialize the contents of the frame.
+	 * inizializzazione proprietà
 	 */
+
 	private void initialize() {
 		frameBiglietto = new JFrame();
 		frameBiglietto.setType(Type.POPUP);
@@ -133,35 +130,67 @@ public class BigliettoView {
 		textFieldIndirizzo.setColumns(10);
 		textFieldIndirizzo.setDisabledTextColor(Color.black);
 	}
+	
+	/**
+	 * @return frame (JFrame)
+	 */
 
 	public JFrame getFrameBiglietto() {
 		return frameBiglietto;
 	}
 
+	/**
+	 * @return bottone per creare e salvare il pdf del biglietto di auguri (JButton)
+	 */
+	
 	public JButton getBtnCreaPdfBiglietto() {
 		return btnCreaPdfBiglietto;
 	}
 
+	/**
+	 * @return comboBoxSocio dei soci che compiono gli anni nei successivi sette giorni (JComboBox<String>)
+	 */
+	
 	public JComboBox<String> getComboBoxSocio() {
 		return comboBoxSocio;
 	}
+	
+	/**
+	 * @return textFieldCodFisc (JTextField)
+	 */
 
 	public JTextField getTextFieldCodFisc() {
 		return textFieldCodFisc;
 	}
 
+	/**
+	 * @return textFieldTipologia (JTextField)
+	 */
+	
 	public JTextField getTextFieldTipologia() {
 		return textFieldTipologia;
 	}
 
+	/**
+	 * @return textFieldDataNascita (JTextField)
+	 */
+	
 	public JTextField getTextFieldDataNascita() {
 		return textFieldDataNascita;
 	}
 
+	/**
+	 * @return textFieldCitta (JTextField)
+	 */
+	
 	public JTextField getTextFieldCitta() {
 		return textFieldCitta;
 	}
 
+	/**
+	 * @return textFieldIndirizzo (JTextField)
+	 */
+	
 	public JTextField getTextFieldIndirizzo() {
 		return textFieldIndirizzo;
 	}
