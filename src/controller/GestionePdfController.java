@@ -129,7 +129,7 @@ public class GestionePdfController {
 		});
 
 		/**
-		 * Gestione evento per il funzionamento del tasto "Crea PDF" che porter�
+		 * Gestione evento per il funzionamento del tasto "Crea PDF" che portera'
 		 * alla creazione e al salvataggio del badge in formato ID1 del socio
 		 * puntato nella combobox
 		 */
@@ -138,9 +138,9 @@ public class GestionePdfController {
 			public void mouseClicked(MouseEvent e) {
 				/**
 				 * Blocco di codice contenente istruzioni che potrebbero
-				 * generare un'eccezione se ci� non si verifica verr� creato e
-				 * salvato il pdf, altrimenti verr� eseguito il blocco catch
-				 * document � il container in formato ID1(ideale per Badge) che
+				 * generare un'eccezione se cio' non si verifica verr� creato e
+				 * salvato il pdf, altrimenti verra' eseguito il blocco catch
+				 * document e' il container in formato ID1(ideale per Badge) che
 				 * rappresenta un oggetto della classe Document
 				 */
 				try {
@@ -153,7 +153,7 @@ public class GestionePdfController {
 					aggiungiPrefazioneBadge(document);
 					document.close();
 					/**
-					 * Utile per informare dove � stata rilevata l'eccezione
+					 * Utile per informare dove e' stata rilevata l'eccezione
 					 * all'interno del codice
 					 */
 				} catch (Exception p) {

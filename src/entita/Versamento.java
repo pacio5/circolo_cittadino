@@ -21,7 +21,6 @@ public class Versamento {
 	private String socio;
 	private Date data;
 	private String descrizione = new String();
-	private Socio s;
 
 	/**
 	 * Costruttore, un versamento � formato da un id, il valore dell'importo pagato,
@@ -48,16 +47,6 @@ public class Versamento {
 		lunghmesi = length;
 		importo = value;
 		socio = member;
-		data = dataV;
-		descrizione = desc;
-	}
-	
-	public Versamento(int cod, String[] month, int length, float value, Socio member, Date dataV, String desc) {
-		id = cod;
-		mesi = month.clone();
-		lunghmesi = length;
-		importo = value;
-		s = member;
 		data = dataV;
 		descrizione = desc;
 	}
