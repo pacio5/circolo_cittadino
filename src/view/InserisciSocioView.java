@@ -179,7 +179,7 @@ public class InserisciSocioView {
 		frame.getContentPane().add(lblStatoCivile);
 
 		String[] state = {"Coniugato", "Celibe", "Nubile", "Vedovo"};
-		statoCivile = new JComboBox(state);
+		statoCivile = new JComboBox<String>(state);
 		statoCivile.setSelectedIndex(2);
 		statoCivile.setBounds(503, 167, 130, 26);
 		frame.getContentPane().add(statoCivile);
@@ -217,7 +217,7 @@ public class InserisciSocioView {
 		frame.getContentPane().add(lblModPagamento);
 
 		String[] mod = { "ESATTORE", "BONIFICO BANCARIO" };
-		modPagamento = new JComboBox(mod); // Manca <String>
+		modPagamento = new JComboBox<String>(mod); // Manca <String>
 		modPagamento.setSelectedIndex(0);
 		modPagamento.setBounds(503, 316, 130, 27);
 		frame.getContentPane().add(modPagamento);
@@ -227,7 +227,7 @@ public class InserisciSocioView {
 		frame.getContentPane().add(lblMetPagamento);
 
 		String[] met = { "MENSILE", "TRIMESTRALE", "SEMESTRALE", "ANNUALE" };
-		metPagamento = new JComboBox(met);
+		metPagamento = new JComboBox<String>(met);
 		metPagamento.setSelectedIndex(3);
 		metPagamento.setBounds(503, 354, 130, 27);
 		frame.getContentPane().add(metPagamento);
@@ -237,7 +237,7 @@ public class InserisciSocioView {
 		frame.getContentPane().add(lblTipologia);
 
 		String[] tip = { "ORDINARIO", "STRAORDINARIO", "BENEMERITO", "ONORARIO", "GIOVANE", "PIU GIOVANE" };
-		tipologia = new JComboBox(tip);
+		tipologia = new JComboBox<String>(tip);
 		tipologia.setSelectedIndex(0);
 		tipologia.setBounds(503, 392, 130, 27);
 		frame.getContentPane().add(tipologia);

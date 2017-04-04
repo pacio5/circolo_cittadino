@@ -14,16 +14,26 @@ import utility.Validator;
 import view.GestioneConvenzioniView;
 
 /**
- * @author talento
- *
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
+ * La classe ConvenzioneController si occupa di gestire gli eventi generati dalla GestioneConvenzioniView, di interagire con il relativo model e aggiornare la view
  */
 public class ConvenzioneController {
 	private ConvenzioneModel model;
 
+	/**
+	 * Il costruttore istanzia il model necessario in tutti i metodi della classe
+	 */
 	public ConvenzioneController() {
 		model = new ConvenzioneModel();
 	}
 
+	/**
+	 * Si occupa di gestire gli eventi generati dalla view
+	 */
 	public void gestioneConvenzione() {
 		GestioneConvenzioniView view = new GestioneConvenzioniView(model.listaConvenzioni());
 		view.getFrame().setVisible(true);

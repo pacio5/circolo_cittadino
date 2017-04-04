@@ -43,7 +43,7 @@ public class SocioController {
 	private SocioModel model;
 
 	/**
-	 * Costruttore senza parametri del SocioController, inizializza il SocioModel
+	 * Costruttore senza parametri del SocioController, istanzia il SocioModel
 	 */
 	public SocioController() {
 		model = new SocioModel();
@@ -221,6 +221,7 @@ public class SocioController {
 		});
 
 		view.getBtnDashboard().addMouseListener(new MouseAdapter() {
+			@Override
 			public void mouseClicked(MouseEvent e) {
 				AdminController adminController = new AdminController();
 				adminController.controlloEvento();

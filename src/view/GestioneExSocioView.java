@@ -220,7 +220,7 @@ public class GestioneExSocioView {
 		frame.getContentPane().add(lblStatoCivile);
 
 		String[] state = {"CONIUGATO", "CELIBE", "NUBILE", "VEDOVO"};
-		statoCivile = new JComboBox(state);
+		statoCivile = new JComboBox<String>(state);
 		statoCivile.setSelectedIndex(2);
 		statoCivile.setBounds(664, 167, 130, 26);
 		statoCivile.setEnabled(false);
@@ -261,7 +261,7 @@ public class GestioneExSocioView {
 		frame.getContentPane().add(lblModPagamento);
 
 		String[] mod = { "ESATTORE", "BONIFICO BANCARIO" };
-		modPagamento = new JComboBox(mod); // Manca <String>
+		modPagamento = new JComboBox<String>(mod); // Manca <String>
 		modPagamento.setSelectedIndex(0);
 		modPagamento.setBounds(661, 316, 130, 27);
 		modPagamento.setEnabled(false);
@@ -272,7 +272,7 @@ public class GestioneExSocioView {
 		frame.getContentPane().add(lblMetPagamento);
 
 		String[] met = { "MENSILE", "TRIMESTRALE", "SEMESTRALE", "ANNUALE" };
-		metPagamento = new JComboBox(met);
+		metPagamento = new JComboBox<String>(met);
 		metPagamento.setSelectedIndex(3);
 		metPagamento.setBounds(661, 354, 130, 27);
 		metPagamento.setEnabled(false);
@@ -283,7 +283,7 @@ public class GestioneExSocioView {
 		frame.getContentPane().add(lblTipologia);
 
 		String[] tip = { "ORDINARIO", "STRAORDINARIO", "BENEMERITO", "ONORARIO", "GIOVANE", "PIU GIOVANE" };
-		tipologia = new JComboBox(tip);
+		tipologia = new JComboBox<String>(tip);
 		tipologia.setSelectedIndex(0);
 		tipologia.setBounds(661, 392, 130, 27);
 		tipologia.setEnabled(false);

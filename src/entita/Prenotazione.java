@@ -17,9 +17,6 @@ public class Prenotazione {
 	private String cf;
 	private int evento;
 	private int nBiglietti;
-	private Evento e;
-	private NonSocio ns;
-	private Socio s;
 	
 	/**
 	 * Costruttore della prenotazione senza parametri
@@ -39,20 +36,6 @@ public class Prenotazione {
 		dataAcquisto = date;
 		cf = code;
 		evento = event;
-		nBiglietti = ticket;
-	}
-	
-	public Prenotazione(Date date, Socio partner, Evento event, int ticket) {
-		dataAcquisto = date;
-		s = partner;
-		e = event;
-		nBiglietti = ticket;
-	}
-	
-	public Prenotazione(Date date, NonSocio notPartner, Evento event, int ticket) {
-		dataAcquisto = date;
-		ns = notPartner;
-		e = event;
 		nBiglietti = ticket;
 	}
 		

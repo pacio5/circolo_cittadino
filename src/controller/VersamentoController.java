@@ -50,7 +50,7 @@ public class VersamentoController {
 	private float importo;
 
 	/**
-	 * Costruttore, il controller è costruito
+	 * Costruttore, il controller ï¿½ costruito
 	 * mediante il QuotaModel, la GestioneVersamentiView,
 	 * l'InserimentoVersamentoView, un ArrayList soci contenente
 	 * tutte i soci esistenti, un ArrayList versamenti contenente tutti
@@ -523,6 +523,7 @@ public class VersamentoController {
 		 * Istanza del TableModel con l'override di isCellEditable per rendere
 		 * la tabella non modificabile
 		 */
+		@SuppressWarnings("serial")
 		DefaultTableModel dati = new DefaultTableModel(nameColumns, 0) {
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -553,6 +554,7 @@ public class VersamentoController {
 		 * Istanza del TableModel con l'override di isCellEditable per rendere
 		 * la tabella non modificabile
 		 */
+		@SuppressWarnings("serial")
 		DefaultTableModel dati = new DefaultTableModel(nameColumns, 0) {
 			@Override
 			public boolean isCellEditable(int row, int column) {

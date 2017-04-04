@@ -29,7 +29,12 @@ import view.BadgeView;
 import view.BigliettoView;
 import view.PDFView;
 import view.PartecipantiView;
-
+/**
+ * 
+ * @author eliapacioni
+ *
+ * Classe GestionePdfController si occupa della stampa in pdf dei biglietti di auguri, i badge del circolo e le liste dei partecipanti agli eventi
+ */
 public class GestionePdfController {
 	private PDFView pdfView;
 	private BadgeView viewBadge;
@@ -40,11 +45,17 @@ public class GestionePdfController {
 	private Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 8, Font.ITALIC);
 	private Font formalFont = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.ITALIC);
 
+	/**
+	 * Il costruttore si occupa di istanziare la view principale e di settarne la visibilità
+	 */
 	public GestionePdfController() {
 		pdfView = new PDFView();
 		pdfView.getFrameGestionePdf().setVisible(true);
 	}
 
+	/**
+	 * Metodo che gestisce gli eventi della PDFView
+	 */
 	public void gestionePdf() {
 		pdfView.getBtnPdfBadge().addMouseListener(new MouseAdapter() {
 			@Override
@@ -222,7 +233,7 @@ public class GestionePdfController {
 
 		/**
 		 * Metodo per visualizzare a schermo le informazioni principali(nome,
-		 * cognome, cf, tipologia, citt� e indirizzo) del socio puntato nella
+		 * cognome, cf, tipologia, città e indirizzo) del socio puntato nella
 		 * combobox
 		 */
 

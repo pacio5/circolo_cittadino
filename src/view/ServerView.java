@@ -9,6 +9,15 @@ import javax.swing.JTextField;
 
 import utility.MySql;
 
+/**
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ * @version 1.0 Marzo 2017 
+ *
+ * Classe ServerView, si occupa di visualizzare la finestra per la modifica dei parametri del server
+ */
 public class ServerView {
 
 	private JFrame frame;

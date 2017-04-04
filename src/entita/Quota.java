@@ -11,7 +11,7 @@ import java.sql.Date;
  * @version 1.0 Marzo 2017
  * 
  * 
- * Classe che si occupa di mappare l'entità Quota nel database
+ * Classe che si occupa di mappare l'entitï¿½ Quota nel database
  */
 public class Quota {
 	private int id;
@@ -20,7 +20,7 @@ public class Quota {
 	private Date dataInizio;
 
 	/**
-	 * Costruttore, una quota è costituita da un id,
+	 * Costruttore, una quota ï¿½ costituita da un id,
 	 * l'importo assegnato, la tipologia del socio considerata
 	 * e la data di partenza della quota
 	 */
@@ -60,7 +60,7 @@ public class Quota {
 
 	/**
 	 * @param x oggetto Quota
-	 * @return true se le proprietà delle Quote corrispondono, altrimenti false
+	 * @return true se le proprietï¿½ delle Quote corrispondono, altrimenti false
 	 */
 	public boolean equals(Quota x) {
 		return (id == x.id && valore == x.valore && tipologia.equals(x.tipologia) && !dataInizio.after(x.dataInizio)

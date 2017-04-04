@@ -39,7 +39,7 @@ public class QuotaController {
 	private Quota quotapre;
 
 	/**
-	 * Costruttore, il controller è costruito
+	 * Costruttore, il controller ï¿½ costruito
 	 * mediante il QuotaModel, la GestioneQuoteView,
 	 * l'InserimentoQuoteView, un ArrayList quote contenente
 	 * tutte le quote esistenti e un oggetto Quota quotapre
@@ -194,6 +194,7 @@ public class QuotaController {
 
 		/* Istanza del TableModel con l'override di isCellEditable per rendere
 		la tabella non modificabile */
+		@SuppressWarnings("serial")
 		DefaultTableModel dati = new DefaultTableModel(nameColumns, 0) {
 			@Override
 			public boolean isCellEditable(int row, int column) {

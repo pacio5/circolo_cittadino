@@ -9,16 +9,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
- * @author talento
- *
+ * @author simoneonori
+ * @author eliapacioni
+ * @author smerilliriccardo
+ * @author francescotalento
+ * @version 1.0 marzo 2017
+ */
+/**
+ *Classe che gestisce tutto ciò che riguarda le convenzioni: inserimento, modifica, cancellazione e ricerca
  */
 public class ConvenzioneModel {
 	private MySql db;
 
+	/**
+	 * Il costruttore istanzia l'oggetto db di tipo Mysql
+	 */
 	public ConvenzioneModel() {
 		db = new MySql();
 	}
 
+	/**
+	 * Metodo che si occupa dell'inserimeto nel database di una nuova convenzione
+	 * @param c convenzione da inserire
+	 * @return valore booleano in base all'esito dell'inserimento
+	 */
 	public boolean insertConvenzione(Convenzione c) {
 		db.open();
 		PreparedStatement stm = null;
@@ -42,6 +56,11 @@ public class ConvenzioneModel {
 		return esito;
 	}
 
+	/**
+	 * Metodo che si occupa di aggiornare una convenzione nel database
+	 * @param c convenzione aggionrata
+	 * @return valore booleano in base all'esito dell'inserimento
+	 */
 	public boolean updateConvenzione(Convenzione c) {
 		db.open();
 		PreparedStatement stm = null;
@@ -86,6 +105,10 @@ public class ConvenzioneModel {
 		return esito;
 	}
 
+	/**
+	 * Metodo che si occupa di recuperare tutte le convenzioni dal database
+	 * @return ArrayList contenente tutte le convenzioni
+	 */
 	public ArrayList<Convenzione> listaConvenzioni() {
 		ArrayList<Convenzione> convenzione = new ArrayList<Convenzione>();
 		db.open();
