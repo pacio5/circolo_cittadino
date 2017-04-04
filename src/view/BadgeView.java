@@ -8,6 +8,15 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.Window.Type;
 
+/**
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
+ *
+ *Classe BadgeView, si occupa di visualizzare la finestra per creare il badge di un singolo socio, 
+ */
+
 public class BadgeView {
 
 	private JFrame frameBadge;
@@ -17,6 +26,11 @@ public class BadgeView {
 	private JTextField textFieldTipologia;
 	private JTextField textFieldDataNascita;
 	private JTextField textFieldCitta;
+	
+	/**
+	 * Costruttore BadgeView, si occupa di visualizzare le informazioni di un singolo socio 
+	 * e inizializza tutte le proprietà
+	 */
 
 	public BadgeView() {
 		frameBadge = new JFrame();
@@ -92,29 +106,57 @@ public class BadgeView {
 		frameBadge.getContentPane().add(btnCreaPdfBadge);
 	}
 
+	/**
+	 * @return frame (JFrame)
+	 */
+	
 	public JFrame getFrameBadge() {
 		return frameBadge;
 	}
+	
+	/**
+	 * @return bottone per creare e salvare il pdf del badge di un socio (JButton)
+	 */
 
 	public JButton getBtnCreaPdfBadge() {
 		return btnCreaPdfBadge;
 	}
+	
+	/**
+	 * @return comboBoxSocio dei soci presenti nel database (JComboBox<String>)
+	 */
 
 	public JComboBox<String> getComboBoxSocio() {
 		return comboBoxSocio;
 	}
+	
+	/**
+	 * @return textFieldCodFisc (JTextField)
+	 */
 
 	public JTextField getTextFieldCodFisc() {
 		return textFieldCodFisc;
 	}
+	
+	/**
+	 * @return textFieldTipologia (JTextField)
+	 */
 
 	public JTextField getTextFieldTipologia() {
 		return textFieldTipologia;
 	}
+	
+	/**
+	 * @return textFieldDataNascita (JTextField)
+	 */
 
 	public JTextField getTextFieldDataNascita() {
 		return textFieldDataNascita;
 	}
+	
+	/**
+	 * @return textFieldCitta (JTextField)
+	 */
 
 	public JTextField getTextFieldCitta() {
 		return textFieldCitta;

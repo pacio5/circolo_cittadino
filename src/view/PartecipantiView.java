@@ -12,9 +12,15 @@ import java.awt.Color;
 import java.awt.Window.Type;
 
 /**
- * @author Francesco
+ * @author simoneonori
+ * @author eliapacioni
+ * @author riccardosmerilli
+ * @author francescotalento
  *
+ *Classe PartecipantiView, si occupa di visualizzare la finestra dei partecipanti ad un dato evento, 
+ * da dove è possibile accedere alla funzione di creazione e salvataggio del pdf della lista di partecipazioni.
  */
+
 public class PartecipantiView {
 
 	private JFrame framePartecipanti;
@@ -24,6 +30,12 @@ public class PartecipantiView {
 	private JTextField textFieldData;
 	private JTextField textFieldNposti;
 
+	/**
+	 * Costruttore PartecipantiView, si occupa di visualizzare la finestra dei partecipanti ad un dato evento
+	 * e inizializza tutte le proprietà
+	 * 
+	 */
+	
 	public PartecipantiView() {
 		framePartecipanti = new JFrame();
 		framePartecipanti.setType(Type.POPUP);
@@ -87,25 +99,49 @@ public class PartecipantiView {
 		
 	}
 	
+	/**
+	 * @return frame (JFrame)
+	 */
+	
 	public JFrame getFramePartecipanti() {
 		return framePartecipanti;
 	}
+	
+	/**
+	 * @return comboBoxEventi degli eventi disponibili (JComboBox<Evento>)
+	 */
 
 	public JComboBox<Evento> getComboBoxEventi() {
 		return comboBoxEventi;
 	}
+	
+	/**
+	 * @return textFieldLuogo (JTextField)
+	 */
 
 	public JTextField getTextFieldLuogo() {
 		return textFieldLuogo;
 	}
+	
+	/**
+	 * @return textFieldData (JTextField)
+	 */
 
 	public JTextField getTextFieldData() {
 		return textFieldData;
 	}
+	
+	/**
+	 * @return textFieldNposti (JTextField)
+	 */
 
 	public JTextField getTextFieldNposti() {
 		return textFieldNposti;
 	}
+	
+	/**
+	 * @return bottone per creare e salvare il pdf della lista (JButton)
+	 */
 	
 	public JButton getBtnCreaPdfLista() {
 		return btnCreaPdfLista;
